@@ -15,16 +15,16 @@
   
     <meta name="keywords" content="" />
   
-  <meta name="description" content="1. 深度学习推荐模型演化方式：  改变神经网络的复杂程度  改变特征交叉方式  组合模型  FM深度版本  注意力机制与推荐系统结合  序列模型与推荐模型结合  强化学习与深度学习结合 2.1 神经网络复杂程度2.1.1 Auto-rec–单层神经网络推荐模型  通过自编码器原理，还原输入的结果。 重建函数：     目标函数：    目标函数l2正则：   参考：https:&#x2F;&#x2F;zhuanla">
+  <meta name="description" content="1. 深度学习推荐模型演化方式：  改变神经网络的复杂程度  改变特征交叉方式  wide&amp;deep模型  FM深度版本  注意力机制与推荐系统结合  序列模型与推荐模型结合  强化学习与深度学习结合 2.1 神经网络复杂程度2.1.1 Auto-rec–单层神经网络推荐模型（easy）  通过自编码器原理，还原输入的结果。 重建函数：     目标函数：    目标函数l2正则：   参">
 <meta property="og:type" content="article">
 <meta property="og:title" content="深度推荐系统">
 <meta property="og:url" content="http://example.com/2022/03/15/%E6%B7%B1%E5%BA%A6%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/index.html">
 <meta property="og:site_name" content="limhao博客">
-<meta property="og:description" content="1. 深度学习推荐模型演化方式：  改变神经网络的复杂程度  改变特征交叉方式  组合模型  FM深度版本  注意力机制与推荐系统结合  序列模型与推荐模型结合  强化学习与深度学习结合 2.1 神经网络复杂程度2.1.1 Auto-rec–单层神经网络推荐模型  通过自编码器原理，还原输入的结果。 重建函数：     目标函数：    目标函数l2正则：   参考：https:&#x2F;&#x2F;zhuanla">
+<meta property="og:description" content="1. 深度学习推荐模型演化方式：  改变神经网络的复杂程度  改变特征交叉方式  wide&amp;deep模型  FM深度版本  注意力机制与推荐系统结合  序列模型与推荐模型结合  强化学习与深度学习结合 2.1 神经网络复杂程度2.1.1 Auto-rec–单层神经网络推荐模型（easy）  通过自编码器原理，还原输入的结果。 重建函数：     目标函数：    目标函数l2正则：   参">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/null">
 <meta property="article:published_time" content="2022-03-15T13:20:16.514Z">
-<meta property="article:modified_time" content="2022-03-16T02:41:56.155Z">
+<meta property="article:modified_time" content="2022-03-17T06:24:19.282Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/null">
@@ -162,7 +162,7 @@
                     <i class="fa fa-edit"></i> 
                     
                     
-                        245
+                        584
                     
                     字
                 </li>
@@ -172,7 +172,7 @@
         <div class="kratos-post-content">
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>本文最后编辑于 <time datetime="1647398516155"></time> 前，其中的内容可能需要更新。</p></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1647498259282"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
             <hr />
@@ -182,7 +182,7 @@
 </li>
 <li><p>改变特征交叉方式</p>
 </li>
-<li><p>组合模型</p>
+<li><p>wide&amp;deep模型</p>
 </li>
 <li><p>FM深度版本</p>
 </li>
@@ -191,14 +191,41 @@
 <li><p>序列模型与推荐模型结合</p>
 </li>
 <li><p>强化学习与深度学习结合</p>
-<h2 id="2-1-神经网络复杂程度"><a href="#2-1-神经网络复杂程度" class="headerlink" title="2.1 神经网络复杂程度"></a>2.1 神经网络复杂程度</h2><h3 id="2-1-1-Auto-rec–单层神经网络推荐模型"><a href="#2-1-1-Auto-rec–单层神经网络推荐模型" class="headerlink" title="2.1.1 Auto-rec–单层神经网络推荐模型"></a>2.1.1 Auto-rec–单层神经网络推荐模型</h3></li>
+<h2 id="2-1-神经网络复杂程度"><a href="#2-1-神经网络复杂程度" class="headerlink" title="2.1 神经网络复杂程度"></a>2.1 神经网络复杂程度</h2><h3 id="2-1-1-Auto-rec–单层神经网络推荐模型（easy）"><a href="#2-1-1-Auto-rec–单层神经网络推荐模型（easy）" class="headerlink" title="2.1.1 Auto-rec–单层神经网络推荐模型（easy）"></a>2.1.1 Auto-rec–单层神经网络推荐模型（easy）</h3></li>
 </ol>
 <p>通过自编码器原理，还原输入的结果。</p>
-<p>重建函数：   <img src="https://www.zhihu.com/equation?tex=h%5Cleft(+%5Cmathbf%7Br%7D;%5Ctheta+%5Cright)=f%5Cleft(+%5Cmathbf%7BW%7D+%5Ccdot+g%5Cleft(+%5Cmathbf%7BVr%7D+%5Cmu+%5Cright)++b+%5Cright)" alt="img"> </p>
-<p>目标函数：  <img src="https://www.zhihu.com/equation?tex=%5Cmathop%7Bmin%7D%5Climits_%7B%5Ctheta%7D+%5Csum_%7B%5Cmathbf%7Br%7D+%5Cin+%5Cmathbf%7BS%7D%7D%7B+%5ClVert+%5Cmathbb%7Br%7D-h%5Cleft(+%5Cmathbf%7Br%7D;%5Ctheta+%5Cright)+%5CrVert%7D_2%5E2" alt="img"> </p>
-<p>目标函数l2正则： <img src="https://www.zhihu.com/equation?tex=%5Cmathop%7Bmin%7D%5Climits_%7B%5Ctheta%7D+%5Csum_%7Bi=1%7D%5En%7B+%5ClVert+%5Cmathbb%7Br%7D%5E%7B(i)%7D-h%5Cleft(+%5Cmathbf%7Br%7D%5E%7B(i)%7D;%5Ctheta+%5Cright)%5CrVert%7D_%7B%5Cmathcal%7BO%7D%7D%5E2++%5Cfrac%7B%5Clambda%7D%7B2%7D%5Ccdot+%5Cleft(+%5ClVert+%5Cmathbf%7BW%7D%5CrVert_F%5E2++%5ClVert+%5Cmathbf%7BV%7D%5CrVert_F%5E2++%5Cright)" alt="img"> </p>
+<p>重建函数：   <img src="https://www.zhihu.com/equation?tex=h%5Cleft(+%5Cmathbf%7Br%7D;%5Ctheta+%5Cright)=f%5Cleft(+%5Cmathbf%7BW%7D+%5Ccdot+g%5Cleft(+%5Cmathbf%7BVr%7D+%5Cmu+%5Cright)++b+%5Cright)"> </p>
+<p>目标函数：  <img src="https://www.zhihu.com/equation?tex=%5Cmathop%7Bmin%7D%5Climits_%7B%5Ctheta%7D+%5Csum_%7B%5Cmathbf%7Br%7D+%5Cin+%5Cmathbf%7BS%7D%7D%7B+%5ClVert+%5Cmathbb%7Br%7D-h%5Cleft(+%5Cmathbf%7Br%7D;%5Ctheta+%5Cright)+%5CrVert%7D_2%5E2"> </p>
+<p>目标函数l2正则： <img src="https://www.zhihu.com/equation?tex=%5Cmathop%7Bmin%7D%5Climits_%7B%5Ctheta%7D+%5Csum_%7Bi=1%7D%5En%7B+%5ClVert+%5Cmathbb%7Br%7D%5E%7B(i)%7D-h%5Cleft(+%5Cmathbf%7Br%7D%5E%7B(i)%7D;%5Ctheta+%5Cright)%5CrVert%7D_%7B%5Cmathcal%7BO%7D%7D%5E2++%5Cfrac%7B%5Clambda%7D%7B2%7D%5Ccdot+%5Cleft(+%5ClVert+%5Cmathbf%7BW%7D%5CrVert_F%5E2++%5ClVert+%5Cmathbf%7BV%7D%5CrVert_F%5E2++%5Cright)"> </p>
 <p>参考：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/159087297">https://zhuanlan.zhihu.com/p/159087297</a></p>
-<h3 id="2-1-2-Deep-Crossing模型"><a href="#2-1-2-Deep-Crossing模型" class="headerlink" title="2.1.2 Deep Crossing模型"></a>2.1.2 Deep Crossing模型</h3>
+<h3 id="2-1-2-Deep-Crossing模型–经典深度学习架构"><a href="#2-1-2-Deep-Crossing模型–经典深度学习架构" class="headerlink" title="2.1.2 Deep Crossing模型–经典深度学习架构"></a>2.1.2 Deep Crossing模型–经典深度学习架构</h3><ol>
+<li><p>应用场景</p>
+<p><img src="https://pic2.zhimg.com/80/v2-d01272a3c3877126b9ab3bc7f135b901_720w.jpg"> </p>
+</li>
+<li><p>网络结构 </p>
+<p>embedding层，stacking层，multiple residual units层，scoring层</p>
+</li>
+</ol>
+<p>​                           <img src="https://pic3.zhimg.com/80/v2-31159f816eb0662eab198624dc75b356_720w.jpg"> </p>
+<ol start="3">
+<li><p>反思</p>
+<p>embedding+多层神经网络，相较于传统的二阶特征交叉能力，deep crossing拥有深度交叉的能力</p>
+</li>
+</ol>
+<h3 id="2-1-2-NeuralCF-CF与深度学习的结合"><a href="#2-1-2-NeuralCF-CF与深度学习的结合" class="headerlink" title="2.1.2 NeuralCF - CF与深度学习的结合"></a>2.1.2 NeuralCF - CF与深度学习的结合</h3><p>先回忆一下传统的矩阵分解怎么做</p>
+<ol>
+<li><p>物品-用户共现矩阵分解成用户向量和物品向量</p>
+</li>
+<li><p>向量embedding化</p>
+</li>
+<li><p>embedding后向量取内积（重要）</p>
+</li>
+<li><p>得到分数</p>
+</li>
+</ol>
+<p>这个模型 复杂的位置就是在第三步操作上 使用多层神经网络去替换这个卷积操作</p>
+<p> <img src="https://img-blog.csdnimg.cn/img_convert/a464defa6410390c728f22b494cb1aa5.png"> </p>
+
         </div>
         
             <div class="kratos-copyright text-center clearfix">
@@ -271,7 +298,7 @@
 
 改变特征交叉方式
 
-组合模型
+wide&amp;deep模型
 
 FM深度版本
 
@@ -280,7 +307,7 @@ FM深度版本
 序列模型与推荐模型结合
 
 强化学习与深度学习结合
-2.1 神经网络复杂程度2.1.1 Auto-...`;
+2.1 神经网络复杂程度...`;
             let _URL;
             switch (dest) {
                 case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
@@ -302,7 +329,7 @@ FM深度版本
                     
                 </div>
                 <div class="pull-date">
-                <span>最后编辑：2022-03-16</span>
+                <span>最后编辑：2022-03-17</span>
                 </div>
             </div>
         </footer>
