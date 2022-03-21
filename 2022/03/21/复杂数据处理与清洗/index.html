@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+  <!-- 元数据 -->
+  <meta charset="utf-8">
+  <link rel="icon" href="">
+  <title>商户数据解读与探索(包含较为复杂的数据处理) | limhao博客</title>
+  <meta name="author" content="limhao" />
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="robots" content="index,follow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="format-detection" content="telphone=no, email=no" />
+  
+    <meta name="keywords" content="" />
+  
+  <meta name="description" content="复杂的数据处理过程（含清洗）1. 数据解读123456789101112131415161718192021222324252627282930313233343536373839404142# 导入数据merchant &#x3D; pd.read_csv(&amp;#x27;.&#x2F;eloData&#x2F;merchants.csv&amp;#x27;, header&#x3D;0)# 查看头5行数据merchant.head(5)# 采用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="商户数据解读与探索(包含较为复杂的数据处理)">
+<meta property="og:url" content="http://example.com/2022/03/21/%E5%A4%8D%E6%9D%82%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E4%B8%8E%E6%B8%85%E6%B4%97/index.html">
+<meta property="og:site_name" content="limhao博客">
+<meta property="og:description" content="复杂的数据处理过程（含清洗）1. 数据解读123456789101112131415161718192021222324252627282930313233343536373839404142# 导入数据merchant &#x3D; pd.read_csv(&amp;#x27;.&#x2F;eloData&#x2F;merchants.csv&amp;#x27;, header&#x3D;0)# 查看头5行数据merchant.head(5)# 采用">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/null">
+<meta property="article:published_time" content="2022-03-21T01:54:47.085Z">
+<meta property="article:modified_time" content="2022-03-21T05:57:59.323Z">
+<meta property="article:author" content="limhao">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/null">
+<meta name="twitter:site" content="@null">
+  
+  <!-- 站点验证相关 -->
+  
+    
+    
+    
+  
+  <!-- 样式表文件 -->
+  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" type="text/css" media="all">
+  
+    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" type="text/css" media="all">
+  
+  
+  <link rel="stylesheet" id="fontawe-css" href="https://unpkg.com/font-awesome@4.7.0/css/font-awesome.min.css" type="text/css" media="all">
+  <link rel="stylesheet" id="nprogress-css" href="https://unpkg.com/nprogress@0.2.0/nprogress.css" type="text/css" media="all">
+  
+  
+  
+    <link rel="stylesheet" href="https://unpkg.com/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+  
+  
+    <link rel="stylesheet" id="darkmode-css" href="/css/kr-dark.min.css" type="text/css" media="all">
+  
+  <!-- 不得不预先加载的一些JS文件 -->
+  <script src="https://unpkg.com/jquery@3.6.0/dist/jquery.min.js"></script>
+  
+    <script src="https://unpkg.com/qrcode_js@1.0.0/qrcode.min.js"></script>
+  
+  
+  <style>
+    
+      .kratos-cover.kratos-cover-2 {
+        background-image: url('/images/banner.webp');
+      }
+    
+    
+      @media(min-width:768px) {
+        body.custom-background {
+          background-image: url('/images/bg.webp');
+        }
+      }
+    
+  </style>
+  
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+
+    <body class="custom-background">
+        <div id="kratos-wrapper">
+    <div id="kratos-page">
+        <div id="kratos-header">
+            <header id="kratos-desktop-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="nav-header">
+                        <nav id="kratos-menu-wrap">
+                            <ul id="kratos-primary-menu" class="sf-menu">
+                                
+                                    
+                                        <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+                                    
+                                
+                                    
+                                        <li><a href="/archives/"><i class="fa fa-file"></i>档案馆</a></li>
+                                    
+                                
+                                    
+                                        <li>
+                                            <a><i class="fa fa-link"></i>链接</a>
+                                            <ul class="sub-menu">
+                                                
+                                                    
+                                                
+                                                    
+                                                        <li><a target="_blank" rel="noopener" href="https://github.com/limhao">项目链接</a></li>
+                                                    
+                                                
+                                            </ul>
+                                        </li>
+                                    
+                                
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+            <header id="kratos-mobile-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="color-logo"><a href="/">limhao博客</a></div>
+                    <div class="nav-toggle">
+                        <a class="kratos-nav-toggle js-kratos-nav-toggle">
+                            <i></i>
+                        </a>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <div class="kratos-start kratos-hero-2">
+            <!-- <div class="kratos-overlay"></div> -->
+            <div class="kratos-cover kratos-cover-2 text-center">
+                <div class="desc desc2 animate-box">
+                    <a href="/">
+                        <h2>limhao博客</h2> <br />
+                        <span></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="kratos-blog-post">
+            <div class="container">
+                <div id="main" class="row">
+                    
+
+        
+
+            <section class="col-md-8">
+
+        
+
+            <article>
+    <div class="kratos-hentry kratos-post-inner clearfix">
+        <header class="kratos-entry-header">
+            
+                <h1 class="kratos-entry-title text-center">商户数据解读与探索(包含较为复杂的数据处理)</h1>
+            
+            
+            <ul class="kratos-post-meta text-center">
+                <li><i class="fa fa-calendar"></i> 2022-03-21</li>
+                <li><i class="fa fa-user"></i> 作者 limhao</li>
+                <li>
+                    <i class="fa fa-edit"></i> 
+                    
+                    
+                        ~8.28K
+                    
+                    字
+                </li>
+                
+            </ul>
+        </header>
+        <div class="kratos-post-content">
+            <div id="expire-alert" class="alert alert-warning hidden" role="alert">
+                <div class="icon"><i class="fa fa-warning"></i></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1647842279323"></time> 前，其中的内容可能需要更新。</p></div>
+            </div>
+            
+            <hr />
+            <h1 id="复杂的数据处理过程（含清洗）"><a href="#复杂的数据处理过程（含清洗）" class="headerlink" title="复杂的数据处理过程（含清洗）"></a>复杂的数据处理过程（含清洗）</h1><h2 id="1-数据解读"><a href="#1-数据解读" class="headerlink" title="1. 数据解读"></a>1. 数据解读</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 导入数据</span></span><br><span class="line">merchant = pd.read_csv(<span class="string">&#x27;./eloData/merchants.csv&#x27;</span>, header=<span class="number">0</span>)</span><br><span class="line"><span class="comment"># 查看头5行数据</span></span><br><span class="line">merchant.head(<span class="number">5</span>)</span><br><span class="line"><span class="comment"># 采用info()函数打印数据帧的完整摘要。</span></span><br><span class="line">merchant.info()</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">Output exceeds the size limit. Open the full output data in a text editor</span></span><br><span class="line"><span class="string">&lt;class &#x27;pandas.core.frame.DataFrame&#x27;&gt;</span></span><br><span class="line"><span class="string">RangeIndex: 334696 entries, 0 to 334695</span></span><br><span class="line"><span class="string">Data columns (total 22 columns):</span></span><br><span class="line"><span class="string"> #   Column                       Non-Null Count   Dtype  </span></span><br><span class="line"><span class="string">---  ------                       --------------   -----  </span></span><br><span class="line"><span class="string"> 0   merchant_id                  334696 non-null  object </span></span><br><span class="line"><span class="string"> 1   merchant_group_id            334696 non-null  int64  </span></span><br><span class="line"><span class="string"> 2   merchant_category_id         334696 non-null  int64  </span></span><br><span class="line"><span class="string"> 3   subsector_id                 334696 non-null  int64  </span></span><br><span class="line"><span class="string"> 4   numerical_1                  334696 non-null  float64</span></span><br><span class="line"><span class="string"> 5   numerical_2                  334696 non-null  float64</span></span><br><span class="line"><span class="string"> 6   category_1                   334696 non-null  object </span></span><br><span class="line"><span class="string"> 7   most_recent_sales_range      334696 non-null  object </span></span><br><span class="line"><span class="string"> 8   most_recent_purchases_range  334696 non-null  object </span></span><br><span class="line"><span class="string"> 9   avg_sales_lag3               334683 non-null  float64</span></span><br><span class="line"><span class="string"> 10  avg_purchases_lag3           334696 non-null  float64</span></span><br><span class="line"><span class="string"> 11  active_months_lag3           334696 non-null  int64  </span></span><br><span class="line"><span class="string"> 12  avg_sales_lag6               334683 non-null  float64</span></span><br><span class="line"><span class="string"> 13  avg_purchases_lag6           334696 non-null  float64</span></span><br><span class="line"><span class="string"> 14  active_months_lag6           334696 non-null  int64  </span></span><br><span class="line"><span class="string"> 15  avg_sales_lag12              334683 non-null  float64</span></span><br><span class="line"><span class="string"> 16  avg_purchases_lag12          334696 non-null  float64</span></span><br><span class="line"><span class="string"> 17  active_months_lag12          334696 non-null  int64  </span></span><br><span class="line"><span class="string"> 18  category_4                   334696 non-null  object </span></span><br><span class="line"><span class="string"> 19  city_id                      334696 non-null  int64  </span></span><br><span class="line"><span class="string">...</span></span><br><span class="line"><span class="string"> 20  state_id                     334696 non-null  int64  </span></span><br><span class="line"><span class="string"> 21  category_2                   322809 non-null  float64</span></span><br><span class="line"><span class="string">dtypes: float64(9), int64(8), object(5)</span></span><br><span class="line"><span class="string">memory usage: 56.2+ Mb</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="comment"># 查看数据字典 （如果有的话）查看各字段的解释</span></span><br><span class="line">df = pd.read_excel(<span class="string">&#x27;./eloData/Data_Dictionary.xlsx&#x27;</span>, header=<span class="number">2</span>, sheet_name=<span class="string">&#x27;merchant&#x27;</span>)</span><br><span class="line">df</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-数据探索"><a href="#2-数据探索" class="headerlink" title="2. 数据探索"></a>2. 数据探索</h2><ul>
+<li>正确性检验</li>
+</ul>
+<p>查看id出现次数是否唯一</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看id出现次数是否唯一</span></span><br><span class="line"><span class="built_in">print</span>(merchant.shape, merchant[<span class="string">&#x27;merchant_id&#x27;</span>].nunique())</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">(334696, 22) 334633</span></span><br><span class="line"><span class="string">能够看出，该表并不是一个id对应一条数据，存在一个商户有多条记录的情况。</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="comment"># 查看数据特征是否同数据字典特征一致</span></span><br><span class="line"><span class="built_in">print</span>(pd.Series(merchant.columns.tolist()).sort_values().values ==  pd.Series([va[<span class="number">0</span>] <span class="keyword">for</span> va <span class="keyword">in</span> df.values]).sort_values().values)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>缺失值分析</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">merchant.isnull().<span class="built_in">sum</span>()</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">merchant_id                        0</span></span><br><span class="line"><span class="string">merchant_group_id                  0</span></span><br><span class="line"><span class="string">merchant_category_id               0</span></span><br><span class="line"><span class="string">subsector_id                       0</span></span><br><span class="line"><span class="string">numerical_1                        0</span></span><br><span class="line"><span class="string">numerical_2                        0</span></span><br><span class="line"><span class="string">category_1                         0</span></span><br><span class="line"><span class="string">most_recent_sales_range            0</span></span><br><span class="line"><span class="string">most_recent_purchases_range        0</span></span><br><span class="line"><span class="string">avg_sales_lag3                    13</span></span><br><span class="line"><span class="string">avg_purchases_lag3                 0</span></span><br><span class="line"><span class="string">active_months_lag3                 0</span></span><br><span class="line"><span class="string">avg_sales_lag6                    13</span></span><br><span class="line"><span class="string">avg_purchases_lag6                 0</span></span><br><span class="line"><span class="string">active_months_lag6                 0</span></span><br><span class="line"><span class="string">avg_sales_lag12                   13</span></span><br><span class="line"><span class="string">avg_purchases_lag12                0</span></span><br><span class="line"><span class="string">active_months_lag12                0</span></span><br><span class="line"><span class="string">category_4                         0</span></span><br><span class="line"><span class="string">city_id                            0</span></span><br><span class="line"><span class="string">state_id                           0</span></span><br><span class="line"><span class="string">category_2                     11887</span></span><br><span class="line"><span class="string">dtype: int64</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>能够发现，第二个匿名分类变量存在较多缺失值，而avg_sales_lag3&#x2F;6&#x2F;12缺失值数量一致，则很有可能是存在13个商户同时确实了这三方面信息。其他数据没有缺失，数据整体来看较为完整。</p>
+<h2 id="3-数据预处理"><a href="#3-数据预处理" class="headerlink" title="3. 数据预处理"></a>3. 数据预处理</h2><h3 id="3-1-离散-x2F-连续字段标注"><a href="#3-1-离散-x2F-连续字段标注" class="headerlink" title="3.1 离散&#x2F;连续字段标注"></a>3.1 离散&#x2F;连续字段标注</h3><p>由于商户数据集中特征同时存在分类变量和离散变量，因此我们首先可以根据字段的说明对不同属性特征进行统一的划分：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">category_cols = [<span class="string">&#x27;merchant_id&#x27;</span>, <span class="string">&#x27;merchant_group_id&#x27;</span>, <span class="string">&#x27;merchant_category_id&#x27;</span>,</span><br><span class="line">       <span class="string">&#x27;subsector_id&#x27;</span>, <span class="string">&#x27;category_1&#x27;</span>,</span><br><span class="line">       <span class="string">&#x27;most_recent_sales_range&#x27;</span>, <span class="string">&#x27;most_recent_purchases_range&#x27;</span>,</span><br><span class="line">       <span class="string">&#x27;category_4&#x27;</span>, <span class="string">&#x27;city_id&#x27;</span>, <span class="string">&#x27;state_id&#x27;</span>, <span class="string">&#x27;category_2&#x27;</span>]</span><br><span class="line">numeric_cols = [<span class="string">&#x27;numerical_1&#x27;</span>, <span class="string">&#x27;numerical_2&#x27;</span>,</span><br><span class="line">     <span class="string">&#x27;avg_sales_lag3&#x27;</span>, <span class="string">&#x27;avg_purchases_lag3&#x27;</span>, <span class="string">&#x27;active_months_lag3&#x27;</span>,</span><br><span class="line">       <span class="string">&#x27;avg_sales_lag6&#x27;</span>, <span class="string">&#x27;avg_purchases_lag6&#x27;</span>, <span class="string">&#x27;active_months_lag6&#x27;</span>,</span><br><span class="line">       <span class="string">&#x27;avg_sales_lag12&#x27;</span>, <span class="string">&#x27;avg_purchases_lag12&#x27;</span>, <span class="string">&#x27;active_months_lag12&#x27;</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 检验特征是否划分完全</span></span><br><span class="line"><span class="keyword">assert</span> <span class="built_in">len</span>(category_cols) + <span class="built_in">len</span>(numeric_cols) == merchant.shape[<span class="number">1</span>]</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-2-离散数据处理"><a href="#3-2-离散数据处理" class="headerlink" title="3.2 离散数据处理"></a>3.2 离散数据处理</h3><ul>
+<li>离散变量数据情况</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看分类变量的取值水平(多少个不一样的数字)</span></span><br><span class="line">merchant[category_cols].nunique()</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">merchant_id                    334633</span></span><br><span class="line"><span class="string">merchant_group_id              109391</span></span><br><span class="line"><span class="string">merchant_category_id              324</span></span><br><span class="line"><span class="string">subsector_id                       41</span></span><br><span class="line"><span class="string">category_1                          2</span></span><br><span class="line"><span class="string">most_recent_sales_range             5</span></span><br><span class="line"><span class="string">most_recent_purchases_range         5</span></span><br><span class="line"><span class="string">category_4                          2</span></span><br><span class="line"><span class="string">city_id                           271</span></span><br><span class="line"><span class="string">state_id                           25</span></span><br><span class="line"><span class="string">category_2                          5</span></span><br><span class="line"><span class="string">dtype: int64</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="comment"># 查看分类变量目前的类别</span></span><br><span class="line">merchant[category_cols].dtypes</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">merchant_id                     object</span></span><br><span class="line"><span class="string">merchant_group_id                int64</span></span><br><span class="line"><span class="string">merchant_category_id             int64</span></span><br><span class="line"><span class="string">subsector_id                     int64</span></span><br><span class="line"><span class="string">category_1                      object</span></span><br><span class="line"><span class="string">most_recent_sales_range         object</span></span><br><span class="line"><span class="string">most_recent_purchases_range     object</span></span><br><span class="line"><span class="string">category_4                      object</span></span><br><span class="line"><span class="string">city_id                          int64</span></span><br><span class="line"><span class="string">state_id                         int64</span></span><br><span class="line"><span class="string">category_2                     float64</span></span><br><span class="line"><span class="string">dtype: object</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="comment"># 查看离散变量的缺失值情况</span></span><br><span class="line">merchant[category_cols].isnull().<span class="built_in">sum</span>()</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">merchant_id                        0</span></span><br><span class="line"><span class="string">merchant_group_id                  0</span></span><br><span class="line"><span class="string">merchant_category_id               0</span></span><br><span class="line"><span class="string">subsector_id                       0</span></span><br><span class="line"><span class="string">category_1                         0</span></span><br><span class="line"><span class="string">most_recent_sales_range            0</span></span><br><span class="line"><span class="string">most_recent_purchases_range        0</span></span><br><span class="line"><span class="string">category_4                         0</span></span><br><span class="line"><span class="string">city_id                            0</span></span><br><span class="line"><span class="string">state_id                           0</span></span><br><span class="line"><span class="string">category_2                     11887</span></span><br><span class="line"><span class="string">dtype: int64</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="comment"># 离散缺失值标注</span></span><br><span class="line">注意到离散变量中的category_2存在较多缺失值，由于该分类变量取值水平为<span class="number">1</span>-<span class="number">5</span>，因此可以将缺失值先标注为-<span class="number">1</span>，方便后续进行数据探索</span><br><span class="line">merchant[<span class="string">&#x27;category_2&#x27;</span>].unique()</span><br><span class="line"><span class="comment"># array([ 1.,  5., nan,  2.,  3.,  4.])</span></span><br><span class="line"><span class="comment"># 缺失值填充为-1</span></span><br><span class="line">merchant[<span class="string">&#x27;category_2&#x27;</span>] = merchant[<span class="string">&#x27;category_2&#x27;</span>].fillna(-<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>离散变量字典编码</li>
+</ul>
+<p>接下来对离散变量进行字典编码，即将object对象类型按照sort顺序进行数值化（整数）编码。例如原始category_1取值为Y&#x2F;N，通过sort排序后N在Y之前，因此在重新编码时N取值会重编码为0、Y取值会重编码为1。以此类推。</p>
+<p>需要注意的是，从严格角度来说，变量类型应该是有三类，分别是连续性变量、名义型变量以及有序变量。连续变量较好理解，所谓名义变量，指的是没有数值大小意义的分类变量，例如用1表示女、0表示男，0、1只是作为性别的指代，而没有1&gt;0的含义。而所有有序变量，其也是离散型变量，但却有数值大小含义，如上述most_recent_purchases_range字段，销售等级中A&gt;B&gt;C&gt;D&gt;E，该离散变量的5个取值水平是有严格大小意义的，该变量就被称为有序变量。</p>
+<p>在实际建模过程中，如果不需要提取有序变量的数值大小信息的话，可以考虑将其和名义变量一样进行独热编码。但本阶段初级预处理时暂时不考虑这些问题，先统一将object类型转化为数值型。&#x3D;&#x3D;（object类型转换类型）&#x3D;&#x3D;</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 字典编码函数</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">change_object_cols</span>(<span class="params">se</span>):</span><br><span class="line">    value = se.unique().tolist()</span><br><span class="line">    value.sort()</span><br><span class="line">    <span class="keyword">return</span> se.<span class="built_in">map</span>(pd.Series(<span class="built_in">range</span>(<span class="built_in">len</span>(value)), index=value)).values</span><br></pre></td></tr></table></figure>
+
+<p>测试</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">merchant[<span class="string">&#x27;category_1&#x27;</span>]</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">0         N</span></span><br><span class="line"><span class="string">1         N</span></span><br><span class="line"><span class="string">2         N</span></span><br><span class="line"><span class="string">3         Y</span></span><br><span class="line"><span class="string">4         Y</span></span><br><span class="line"><span class="string">         ..</span></span><br><span class="line"><span class="string">334691    N</span></span><br><span class="line"><span class="string">334692    Y</span></span><br><span class="line"><span class="string">334693    N</span></span><br><span class="line"><span class="string">334694    Y</span></span><br><span class="line"><span class="string">334695    N</span></span><br><span class="line"><span class="string">Name: category_1, Length: 334696, dtype: object</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line">change_object_cols(merchant[<span class="string">&#x27;category_1&#x27;</span>])</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-3-连续变量数据探索"><a href="#3-3-连续变量数据探索" class="headerlink" title="3.3 连续变量数据探索"></a>3.3 连续变量数据探索</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看连续变量类别</span></span><br><span class="line">merchant[numeric_cols].dtypes</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">numerical_1            float64</span></span><br><span class="line"><span class="string">numerical_2            float64</span></span><br><span class="line"><span class="string">avg_sales_lag3         float64</span></span><br><span class="line"><span class="string">avg_purchases_lag3     float64</span></span><br><span class="line"><span class="string">active_months_lag3       int64</span></span><br><span class="line"><span class="string">avg_sales_lag6         float64</span></span><br><span class="line"><span class="string">avg_purchases_lag6     float64</span></span><br><span class="line"><span class="string">active_months_lag6       int64</span></span><br><span class="line"><span class="string">avg_sales_lag12        float64</span></span><br><span class="line"><span class="string">avg_purchases_lag12    float64</span></span><br><span class="line"><span class="string">active_months_lag12      int64</span></span><br><span class="line"><span class="string">dtype: object</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="comment"># 连续变量的缺失值情况</span></span><br><span class="line">merchant[numeric_cols].isnull().<span class="built_in">sum</span>()</span><br><span class="line"><span class="comment"># 查看连续变量整体情况</span></span><br><span class="line">merchant[numeric_cols].describe()</span><br></pre></td></tr></table></figure>
+
+<p>据此我们发现连续型变量中存在部分缺失值，并且部分连续变量还存在无穷值inf，需要对其进行简单处理。</p>
+<ul>
+<li>无穷值处理</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 此处我们采用类似天花板盖帽法的方式对其进行修改，即将inf改为最大的显式数值。代码实现流程如下</span></span><br><span class="line">inf_cols = [<span class="string">&#x27;avg_purchases_lag3&#x27;</span>, <span class="string">&#x27;avg_purchases_lag6&#x27;</span>, <span class="string">&#x27;avg_purchases_lag12&#x27;</span>]</span><br><span class="line">merchant[inf_cols] = merchant[inf_cols].replace(np.inf, merchant[inf_cols].replace(np.inf, -<span class="number">99</span>).<span class="built_in">max</span>().<span class="built_in">max</span>())</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>缺失值处理</li>
+</ul>
+<p>不同于无穷值的处理，缺失值处理方法有很多。但该数据集缺失数据较少，33万条数据中只有13条连续特征缺失值，此处我们先简单采用均值进行填补处理，后续若有需要再进行优化处理。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> col <span class="keyword">in</span> numeric_cols:</span><br><span class="line">    merchant[col] = merchant[col].fillna(merchant[col].mean())</span><br><span class="line">merchant[numeric_cols].describe()`</span><br></pre></td></tr></table></figure>
+
+
+        </div>
+        
+            <div class="kratos-copyright text-center clearfix">
+                <h5>本作品采用 <a rel="license nofollow" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a> 进行许可</h5>
+            </div>
+        
+        <footer class="kratos-entry-footer clearfix">
+            
+                <div class="post-like-donate text-center clearfix" id="post-like-donate">
+                
+                
+                    <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> 分享</a>
+                    <div class="share-wrap" style="display: none;">
+    <div class="share-group">
+        <a href="javascript:;" class="share-plain qq" onclick="share('qq');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-qq"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain qzone" onclick="share('qzone');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-star"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weixin pop style-plain" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weixin"></i>
+            </div>
+            <div class="share-int">
+                <div class="qrcode" id="wechat-qr"></div>
+                <p>打开微信“扫一扫”，打开网页后点击屏幕右上角分享按钮</p>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weibo" onclick="share('weibo');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weibo"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain facebook style-plain" onclick="share('facebook');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-facebook"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain twitter style-plain" onclick="share('twitter');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-twitter"></i>
+            </div>
+        </a>
+    </div>
+    <script type="text/javascript">
+        $(()=>{
+            new QRCode("wechat-qr", {
+                text: "http://example.com/2022/03/21/%E5%A4%8D%E6%9D%82%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E4%B8%8E%E6%B8%85%E6%B4%97/",
+                width: 150,
+                height: 150,
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        });
+        function share(dest) {
+            const qqBase        = "https://connect.qq.com/widget/shareqq/index.html?";
+            const weiboBase     = "https://service.weibo.com/share/share.php?";
+            const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
+            const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
+            const twitterBase   = "https://twitter.com/intent/tweet?";
+            const hostUrl       = "http://example.com/2022/03/21/%E5%A4%8D%E6%9D%82%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E4%B8%8E%E6%B8%85%E6%B4%97/";
+            const title         = "「商户数据解读与探索(包含较为复杂的数据处理)」";
+            const excerpt       = `复杂的数据处理过程（含清洗）1. 数据解读123456789101112131415161718192021222324252627282930313233343536373839404142# 导入数据merchant = pd.r...`;
+            let _URL;
+            switch (dest) {
+                case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
+                case "weibo"    : _URL = weiboBase+"url="+hostUrl+"&title="+title+excerpt;                                 break;
+                case "qzone"    : _URL = qzoneBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";  break;
+                case "facebook" : _URL = facebookBase+"u="+hostUrl;                                                        break;
+                case "twitter"  : _URL = twitterBase+"text="+title+excerpt+"&url="+hostUrl;                                break;
+            }
+            window.open(_URL);
+        };
+    </script>
+</div>
+                
+                </div>
+            
+            <div class="footer-tag clearfix">
+                <div class="pull-left">
+                <i class="fa fa-tags"></i>
+                    
+                </div>
+                <div class="pull-date">
+                <span>最后编辑：2022-03-21</span>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+        <nav class="navigation post-navigation clearfix" role="navigation">
+            
+            <div class="nav-previous clearfix">
+                <a title=" kaggle入门" href="/2022/03/20/kaggle入门/">&lt; 上一篇</a>
+            </div>
+            
+            
+        </nav>
+    
+    
+</article>
+
+        
+
+            </section>
+
+        
+
+                
+            
+
+<section id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm">
+    <!-- 文章和页面根据splitter来分割，没有的话就从头开始设置为sticky -->
+    
+    
+                <aside id="krw-about" class="widget widget-kratos-about clearfix">
+    <div class="photo-background"></div>
+    <div class="photo-wrapper clearfix">
+        <div class="photo-wrapper-tip text-center">
+            <img class="about-photo" src="/images/avatar.webp" />
+        </div>
+    </div>
+    <div class="textwidget">
+        <p class="text-center"></p>
+    </div>
+    <div class="site-meta">
+        <a class="meta-item" href="/archives/">
+            <span class="title">
+                文章
+            </span>
+            <span class="count">
+                8
+            </span>
+        </a>
+        <a class="meta-item" href="/categories/">
+            <span class="title">
+                分类
+            </span>
+            <span class="count">
+                0
+            </span>
+        </a>
+        <a class="meta-item" href="/tags/">
+            <span class="title">
+                标签
+            </span>
+            <span class="count">
+                0
+            </span>
+        </a>
+    </div>
+</aside>
+            
+                    <div class="sticky-area">
+                
+                
+
+            
+                
+            
+                
+  <aside id="krw-posts" class="widget widget-kratos-posts">
+  <h4 class="widget-title"><i class="fa fa-file"></i>最新文章</h4>
+  <div class="tab-content">
+      <ul class="list-group">
+        
+        
+          
+          
+            <a class="list-group-item" href="/2022/03/21/%E5%A4%8D%E6%9D%82%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E4%B8%8E%E6%B8%85%E6%B4%97/"><i class="fa  fa-book"></i> 商户数据解读与探索(包含较为复杂的数据处理)</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2022/03/20/kaggle%E5%85%A5%E9%97%A8/"><i class="fa  fa-book"></i> kaggle入门</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2022/03/19/%E6%B7%B1%E5%BA%A6%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F(2)/"><i class="fa  fa-book"></i> 深度推荐系统 下</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2022/03/18/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/"><i class="fa  fa-book"></i> 训练集和数据集数据探索</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2022/03/18/%E8%AE%AD%E7%BB%83%E6%B5%8B%E8%AF%95%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/"><i class="fa  fa-book"></i> 训练集和数据集数据探索</a>
+            
+          
+        
+          
+            
+          
+            
+          
+            
+      </ul>
+  </div>
+  </aside>
+
+            
+    </div>
+</section>
+        
+        </div>
+    </div>
+</div>
+<footer>
+    <div id="footer"  >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 footer-list text-center">
+                    <ul class="kratos-social-icons">
+                        
+                        <li><a href="mailto:982264944@qq.com"><i class="fa fa-envelope"></i></a></li>
+                        <li><a target="_blank" rel="nofollow" href="https://t.me/CandyUnion"><i class="fa fa-telegram"></i></a></li>
+                        
+                        
+                        
+                        <li><a target="_blank" rel="me" href="https://nya.one/@Candinya"><i class="fa fa fa-share-alt-square"></i></a></li>
+                        <li><a target="_blank" rel="nofollow" href="https://github.com/Candinya"><i class="fa fa-github"></i></a></li>
+                        
+                    </ul>
+                    <ul class="kratos-copyright">
+                        <div>
+                            <li>&copy; 2022 limhao博客 版权所有.</li>
+                            <li>本站已运行<span id="span_dt">Loading...</span></li>
+                        </div>
+                        <div>
+                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
+                            <li>Site built with&nbsp;<i class="fa fa-heart throb" style="color:#d43f57"></i>&nbsp;by limhao.</li>
+                        </div>
+                        <div>
+                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
+                            <li>Hosted on <a href="https://github.io" target="_blank">Github Pages</a></li>
+                        </div>
+                        <div>
+                            
+                            
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="kr-tool text-center">
+            <div class="tool">
+                
+                    <div class="box search-box">
+                        <a href="/search/">
+                            <span class="fa fa-search"></span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="darkmode-switch">
+                        <span class="fa fa-adjust"></span>
+                    </div>
+                
+                
+            </div>
+            <div class="box gotop-box">
+                <span class="fa fa-chevron-up"></span>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+</div>
+
+        <script defer src="https://unpkg.com/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
+<script defer src="https://unpkg.com/nprogress@0.2.0/nprogress.js"></script>
+<script>
+    if (!window.kr) {
+        window.kr = {};
+    }
+    window.kr.notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));
+    window.kr.siteRoot = "/";
+</script>
+
+
+
+
+
+    <script defer src="https://unpkg.com/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+<script defer src="https://unpkg.com/clipboard@2.0.6/dist/clipboard.min.js"></script>
+<script defer src="/js/kratosr.min.js"></script>
+<script defer src="/js/pjax.min.js"></script>
+
+
+    <script defer src="/js/kr-dark.min.js"></script>
+
+
+
+<!-- Extra support for third-party plguins  -->
+
+
+    </body>
+</html>
