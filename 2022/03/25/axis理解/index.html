@@ -4,7 +4,7 @@
   <!-- 元数据 -->
   <meta charset="utf-8">
   <link rel="icon" href="">
-  <title>深度推荐系统 下 | limhao博客</title>
+  <title>python中axis=0和axis=1的理解 | limhao博客</title>
   <meta name="author" content="limhao" />
   <meta http-equiv="Cache-Control" content="no-transform" />
   <meta http-equiv="Cache-Control" content="no-siteapp" />
@@ -15,16 +15,16 @@
   
     <meta name="keywords" content="" />
   
-  <meta name="description" content="1. 深度学习推荐模型（2）2.4 FM与深度学习模型2.4.1 FNN - 用FM的隐向量完成embedding层初始化   FNN相较于deep crossing模型的区别  对于embedding进行了改进，在模型初始化时引入了有价值的先验信息    在训练时特征被划分了不同的特征域，每个特征域有对应的embedding层  2.4.2 deepFM用FM代替wide部分 ​">
+  <meta name="description" content="原文链接：https:&#x2F;&#x2F;blog.csdn.net&#x2F;leilei7407&#x2F;article&#x2F;details&#x2F;104461215 axis的重点在于方向，而不是行和列。1表示横轴，方向从左到右；0表示纵轴，方向从上到下。 即axis&#x3D;1为横向，axis&#x3D;0为纵向，而不是行和列，具体到各种用法而言也是如此。当axis&#x3D;1时，如果是求平均，那么是从左到右横向求平均；如果是拼">
 <meta property="og:type" content="article">
-<meta property="og:title" content="深度推荐系统 下">
-<meta property="og:url" content="http://example.com/2022/03/19/%E6%B7%B1%E5%BA%A6%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F(2)/index.html">
+<meta property="og:title" content="python中axis&#x3D;0和axis&#x3D;1的理解">
+<meta property="og:url" content="http://example.com/2022/03/25/axis%E7%90%86%E8%A7%A3/index.html">
 <meta property="og:site_name" content="limhao博客">
-<meta property="og:description" content="1. 深度学习推荐模型（2）2.4 FM与深度学习模型2.4.1 FNN - 用FM的隐向量完成embedding层初始化   FNN相较于deep crossing模型的区别  对于embedding进行了改进，在模型初始化时引入了有价值的先验信息    在训练时特征被划分了不同的特征域，每个特征域有对应的embedding层  2.4.2 deepFM用FM代替wide部分 ​">
+<meta property="og:description" content="原文链接：https:&#x2F;&#x2F;blog.csdn.net&#x2F;leilei7407&#x2F;article&#x2F;details&#x2F;104461215 axis的重点在于方向，而不是行和列。1表示横轴，方向从左到右；0表示纵轴，方向从上到下。 即axis&#x3D;1为横向，axis&#x3D;0为纵向，而不是行和列，具体到各种用法而言也是如此。当axis&#x3D;1时，如果是求平均，那么是从左到右横向求平均；如果是拼">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/null">
-<meta property="article:published_time" content="2022-03-19T07:31:56.636Z">
-<meta property="article:modified_time" content="2022-03-19T11:04:44.220Z">
+<meta property="article:published_time" content="2022-03-25T01:45:41.345Z">
+<meta property="article:modified_time" content="2022-03-25T01:49:03.301Z">
 <meta property="article:author" content="limhao">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/null">
@@ -152,17 +152,17 @@
     <div class="kratos-hentry kratos-post-inner clearfix">
         <header class="kratos-entry-header">
             
-                <h1 class="kratos-entry-title text-center">深度推荐系统 下</h1>
+                <h1 class="kratos-entry-title text-center">python中axis=0和axis=1的理解</h1>
             
             
             <ul class="kratos-post-meta text-center">
-                <li><i class="fa fa-calendar"></i> 2022-03-19</li>
+                <li><i class="fa fa-calendar"></i> 2022-03-25</li>
                 <li><i class="fa fa-user"></i> 作者 limhao</li>
                 <li>
                     <i class="fa fa-edit"></i> 
                     
                     
-                        1156
+                        610
                     
                     字
                 </li>
@@ -172,37 +172,22 @@
         <div class="kratos-post-content">
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>本文最后编辑于 <time datetime="1647687884220"></time> 前，其中的内容可能需要更新。</p></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1648172943301"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
             <hr />
-            <h1 id="1-深度学习推荐模型（2）"><a href="#1-深度学习推荐模型（2）" class="headerlink" title="1. 深度学习推荐模型（2）"></a>1. 深度学习推荐模型（2）</h1><h2 id="2-4-FM与深度学习模型"><a href="#2-4-FM与深度学习模型" class="headerlink" title="2.4 FM与深度学习模型"></a>2.4 FM与深度学习模型</h2><h3 id="2-4-1-FNN-用FM的隐向量完成embedding层初始化"><a href="#2-4-1-FNN-用FM的隐向量完成embedding层初始化" class="headerlink" title="2.4.1 FNN - 用FM的隐向量完成embedding层初始化"></a>2.4.1 FNN - 用FM的隐向量完成embedding层初始化</h3><p> <img src="https://img-blog.csdnimg.cn/20200907211121461.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Jvc2VmdW45Ng==,size_16,color_FFFFFF,t_70#pic_center" alt="img"> </p>
-<p>FNN相较于deep crossing模型的区别</p>
-<ol>
-<li>对于embedding进行了改进，在模型初始化时引入了有价值的先验信息  <img src="https://img-blog.csdnimg.cn/20200907212020610.png#pic_center" alt="img"> </li>
-<li>在训练时特征被划分了不同的特征域，每个特征域有对应的embedding层</li>
-</ol>
-<h3 id="2-4-2-deepFM"><a href="#2-4-2-deepFM" class="headerlink" title="2.4.2 deepFM"></a>2.4.2 deepFM</h3><p>用FM代替wide部分</p>
-<p>​                         <img src="https://img-blog.csdnimg.cn/20190430101250605.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzE4MjkzMjEz,size_16,color_FFFFFF,t_70" alt="img"> </p>
-<p>​    FM与深度模型的组合有两种，一种是二者并行，另一种是二者串行。DeepFM就是并行的一种结构。并行就是FM将输入部分计算完之后单独拿出来，得到一组特征表示，然后再利用深度模型（多层全连接）对输入部分进行告阶的特征组合。最后把二者的特征进行concact，得到一组特征，最后对这组特征进行分类或者回归。其实这只是特征的一种组合方式，目的就是为了得到特征的高阶表示。</p>
-<h3 id="2-4-3-总结"><a href="#2-4-3-总结" class="headerlink" title="2.4.3 总结"></a>2.4.3 总结</h3><p>特征工程在这条路上已经穷尽了可能性的尝试，模型的提升空间会非常小。但是很重要</p>
-<h2 id="2-5-注意力机制的应用"><a href="#2-5-注意力机制的应用" class="headerlink" title="2.5 注意力机制的应用"></a>2.5 注意力机制的应用</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/wuzhongqiang/article/details/109532346">https://blog.csdn.net/wuzhongqiang/article/details/109532346</a></p>
+            <p>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/leilei7407/article/details/104461215">https://blog.csdn.net/leilei7407/article/details/104461215</a></p>
+<p>axis的重点在于方向，而不是行和列。1表示横轴，方向从左到右；0表示纵轴，方向从上到下。</p>
+<p>即axis&#x3D;1为横向，axis&#x3D;0为纵向，而不是行和列，具体到各种用法而言也是如此。<br>当axis&#x3D;1时，如果是求平均，那么是从左到右横向求平均；如果是拼接，那么也是左右横向拼接；如果是drop，那么也是横向发生变化，体现为列的减少</p>
 <ul>
-<li>Attention机制的本质</li>
+<li>axis &#x3D; 0 纵向处理</li>
+<li>axis &#x3D; 1 横向处理</li>
 </ul>
-<p>attention机制的本质是从人类视觉注意力机制中获得灵感(可以说很‘以人为本’了)。大致是我们视觉在感知东西的时候，一般不会是一个场景从到头看到尾每次全部都看，而往往是根据需求观察注意特定的一部分。而且当我们发现一个场景经常在某部分出现自己想观察的东西时，我们就会进行学习在将来再出现类似场景时把注意力放到该部分上。这可以说就是注意力机制的本质内容了。至于它本身包含的‘自上而下’和‘自下而上’方式就不在过多的讨论。</p>
-<ul>
-<li>Attention机制的理解</li>
-</ul>
-<p>Attention机制其实就是一系列注意力分配系数，也就是一系列权重参数罢了。</p>
-<h3 id="2-5-1-AFM-引入注意力机制的FM"><a href="#2-5-1-AFM-引入注意力机制的FM" class="headerlink" title="2.5.1 AFM - 引入注意力机制的FM"></a>2.5.1 AFM - 引入注意力机制的FM</h3><p> 注意力网络的作用是为每一个交叉特征提供权重<img src="https://img-blog.csdnimg.cn/20190523195800742.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzE4MjkzMjEz,size_16,color_FFFFFF,t_70" alt="img"> </p>
-<h3 id="2-5-2-DIN"><a href="#2-5-2-DIN" class="headerlink" title="2.5.2 DIN"></a>2.5.2 DIN</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Blank_spaces/article/details/106485534">https://blog.csdn.net/Blank_spaces/article/details/106485534</a> </p>
-<p>basemodel</p>
-<pre><code> 基本模型是获得一个固定长度的用户的表示向量，但不管候选广告是什么，此表示向量对于给定用户均保持不变。这样，维度受限的用户表示向量将成为表达用户多样化兴趣的瓶颈 
-</code></pre>
-<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X3BuZy9xUDhKUm5XNlQzckNpYTFJNEo3N25ydlRKTGxrTmJ5RXlZYm9JWmthY2ljUDYwc2c5OHBBVmp3OFN6VDRhRXZnb2t1aWJlSVpHUUFsSFY5RUlKR0dvSEJIQS82NDA?x-oss-process=image/format,png" alt="img"> </p>
-<p><strong>DIN通过给定一个候选广告，然后去注意与该广告相关的局部兴趣的表示来模拟此过程</strong>。DIN不会通过使用同一向量来表达所有用户的不同兴趣，而是通过考虑<strong>历史行为的相关性</strong>来自适应地计算用户兴趣的表示向量（对于给定的广告）。 <img src="https://img-blog.csdnimg.cn/0a782443f8c240b8b52aa7b2be9df66a.png#pic_center" alt="img"> </p>
-<p>注意力在其上面的形式是激活单元来生成注意力得分</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">df_1= pd.DataFrame([[<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>], [<span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>], [<span class="number">3</span>, <span class="number">3</span>, <span class="number">3</span>, <span class="number">3</span>]], \</span><br><span class="line">columns=[<span class="string">&quot;col1&quot;</span>, <span class="string">&quot;col2&quot;</span>, <span class="string">&quot;col3&quot;</span>, <span class="string">&quot;col4&quot;</span>])  <span class="comment">#\代表与下面的代码是连接着的</span></span><br><span class="line"><span class="built_in">print</span>(df_1)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;-------&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(df_1.mean(axis=<span class="number">1</span>))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;----------&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(df_1.drop(<span class="string">&#x27;col1&#x27;</span>,axis=<span class="number">1</span>))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<p> <img src="https://img-blog.csdnimg.cn/20200223154620381.png" alt="img"> </p>
 
         </div>
         
@@ -256,7 +241,7 @@
     <script type="text/javascript">
         $(()=>{
             new QRCode("wechat-qr", {
-                text: "http://example.com/2022/03/19/%E6%B7%B1%E5%BA%A6%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F(2)/",
+                text: "http://example.com/2022/03/25/axis%E7%90%86%E8%A7%A3/",
                 width: 150,
                 height: 150,
                 correctLevel : QRCode.CorrectLevel.H
@@ -268,12 +253,11 @@
             const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
             const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
             const twitterBase   = "https://twitter.com/intent/tweet?";
-            const hostUrl       = "http://example.com/2022/03/19/%E6%B7%B1%E5%BA%A6%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F(2)/";
-            const title         = "「深度推荐系统 下」";
-            const excerpt       = `1. 深度学习推荐模型（2）2.4 FM与深度学习模型2.4.1 FNN - 用FM的隐向量完成embedding层初始化  
-FNN相较于deep crossing模型的区别
-
-对于embedding进行了改进，在模型初始化时引入了...`;
+            const hostUrl       = "http://example.com/2022/03/25/axis%E7%90%86%E8%A7%A3/";
+            const title         = "「python中axis=0和axis=1的理解」";
+            const excerpt       = `原文链接：https://blog.csdn.net/leilei7407/article/details/104461215
+axis的重点在于方向，而不是行和列。1表示横轴，方向从左到右；0表示纵轴，方向从上到下。
+即axis&#...`;
             let _URL;
             switch (dest) {
                 case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
@@ -295,7 +279,7 @@ FNN相较于deep crossing模型的区别
                     
                 </div>
                 <div class="pull-date">
-                <span>最后编辑：2022-03-19</span>
+                <span>最后编辑：2022-03-25</span>
                 </div>
             </div>
         </footer>
@@ -304,13 +288,9 @@ FNN相较于deep crossing模型的区别
         <nav class="navigation post-navigation clearfix" role="navigation">
             
             <div class="nav-previous clearfix">
-                <a title=" 训练集和数据集数据探索" href="/2022/03/18/数据分析/">&lt; 上一篇</a>
+                <a title=" 信用卡交易数据解读与探索（数据合并）" href="/2022/03/21/信用卡交易数据解读/">&lt; 上一篇</a>
             </div>
             
-            
-            <div class="nav-next clearfix">
-                <a title=" kaggle入门" href="/2022/03/20/kaggle入门/">下一篇 &gt;</a>
-            </div>
             
         </nav>
     
