@@ -4,7 +4,7 @@
   <!-- 元数据 -->
   <meta charset="utf-8">
   <link rel="icon" href="">
-  <title>深度推荐系统 下 | limhao博客</title>
+  <title>Recommender-System-Pytorch 项目 函数指南 | limhao博客</title>
   <meta name="author" content="limhao" />
   <meta http-equiv="Cache-Control" content="no-transform" />
   <meta http-equiv="Cache-Control" content="no-siteapp" />
@@ -15,16 +15,16 @@
   
     <meta name="keywords" content="" />
   
-  <meta name="description" content="1. 深度学习推荐模型（2）2.4 FM与深度学习模型2.4.1 FNN - 用FM的隐向量完成embedding层初始化   FNN相较于deep crossing模型的区别  对于embedding进行了改进，在模型初始化时引入了有价值的先验信息    在训练时特征被划分了不同的特征域，每个特征域有对应的embedding层  2.4.2 deepFM用FM代替wide部分 ​">
+  <meta name="description" content="个人觉得成熟的rebole的工具 不太适合萌新 来操作自己对于项目的建设 最近找了一个新的项目 来操作  感觉本项目 更贴近萌新到大佬写代码过程 于是乎 有了这篇指南 embedding操作0. 官方操作下面是官方例子 123456789101112131415161718import torch import torch.nn as nnembedding &#x3D; nn.embedding(10,3">
 <meta property="og:type" content="article">
-<meta property="og:title" content="深度推荐系统 下">
-<meta property="og:url" content="http://example.com/2022/03/19/%E6%B7%B1%E5%BA%A6%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F(2)/index.html">
+<meta property="og:title" content="Recommender-System-Pytorch 项目 函数指南">
+<meta property="og:url" content="http://example.com/2022/03/28/Recommender-System-Pytorch%20%E9%A1%B9%E7%9B%AE%20%E5%87%BD%E6%95%B0%E6%8C%87%E5%8D%97/index.html">
 <meta property="og:site_name" content="limhao博客">
-<meta property="og:description" content="1. 深度学习推荐模型（2）2.4 FM与深度学习模型2.4.1 FNN - 用FM的隐向量完成embedding层初始化   FNN相较于deep crossing模型的区别  对于embedding进行了改进，在模型初始化时引入了有价值的先验信息    在训练时特征被划分了不同的特征域，每个特征域有对应的embedding层  2.4.2 deepFM用FM代替wide部分 ​">
+<meta property="og:description" content="个人觉得成熟的rebole的工具 不太适合萌新 来操作自己对于项目的建设 最近找了一个新的项目 来操作  感觉本项目 更贴近萌新到大佬写代码过程 于是乎 有了这篇指南 embedding操作0. 官方操作下面是官方例子 123456789101112131415161718import torch import torch.nn as nnembedding &#x3D; nn.embedding(10,3">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/null">
-<meta property="article:published_time" content="2022-03-19T07:31:56.636Z">
-<meta property="article:modified_time" content="2022-03-19T11:04:44.220Z">
+<meta property="article:published_time" content="2022-03-28T12:43:29.890Z">
+<meta property="article:modified_time" content="2022-03-28T14:03:16.339Z">
 <meta property="article:author" content="limhao">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/null">
@@ -152,17 +152,17 @@
     <div class="kratos-hentry kratos-post-inner clearfix">
         <header class="kratos-entry-header">
             
-                <h1 class="kratos-entry-title text-center">深度推荐系统 下</h1>
+                <h1 class="kratos-entry-title text-center">Recommender-System-Pytorch 项目 函数指南</h1>
             
             
             <ul class="kratos-post-meta text-center">
-                <li><i class="fa fa-calendar"></i> 2022-03-19</li>
+                <li><i class="fa fa-calendar"></i> 2022-03-28</li>
                 <li><i class="fa fa-user"></i> 作者 limhao</li>
                 <li>
                     <i class="fa fa-edit"></i> 
                     
                     
-                        1156
+                        ~2.24K
                     
                     字
                 </li>
@@ -172,37 +172,63 @@
         <div class="kratos-post-content">
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>本文最后编辑于 <time datetime="1647687884220"></time> 前，其中的内容可能需要更新。</p></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1648476196339"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
             <hr />
-            <h1 id="1-深度学习推荐模型（2）"><a href="#1-深度学习推荐模型（2）" class="headerlink" title="1. 深度学习推荐模型（2）"></a>1. 深度学习推荐模型（2）</h1><h2 id="2-4-FM与深度学习模型"><a href="#2-4-FM与深度学习模型" class="headerlink" title="2.4 FM与深度学习模型"></a>2.4 FM与深度学习模型</h2><h3 id="2-4-1-FNN-用FM的隐向量完成embedding层初始化"><a href="#2-4-1-FNN-用FM的隐向量完成embedding层初始化" class="headerlink" title="2.4.1 FNN - 用FM的隐向量完成embedding层初始化"></a>2.4.1 FNN - 用FM的隐向量完成embedding层初始化</h3><p> <img src="https://img-blog.csdnimg.cn/20200907211121461.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Jvc2VmdW45Ng==,size_16,color_FFFFFF,t_70#pic_center" alt="img"> </p>
-<p>FNN相较于deep crossing模型的区别</p>
-<ol>
-<li>对于embedding进行了改进，在模型初始化时引入了有价值的先验信息  <img src="https://img-blog.csdnimg.cn/20200907212020610.png#pic_center" alt="img"> </li>
-<li>在训练时特征被划分了不同的特征域，每个特征域有对应的embedding层</li>
+            <p>个人觉得成熟的rebole的工具 不太适合萌新 来操作自己对于项目的建设</p>
+<p>最近找了一个新的项目 来操作 </p>
+<p>感觉本项目 更贴近萌新到大佬写代码过程 于是乎 有了这篇指南</p>
+<h2 id="embedding操作"><a href="#embedding操作" class="headerlink" title="embedding操作"></a>embedding操作</h2><h3 id="0-官方操作"><a href="#0-官方操作" class="headerlink" title="0. 官方操作"></a>0. 官方操作</h3><p>下面是官方例子</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch </span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"></span><br><span class="line">embedding = nn.embedding(<span class="number">10</span>,<span class="number">3</span>)</span><br><span class="line"><span class="built_in">input</span> = torch.LongTensor([[<span class="number">1</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">5</span>],[<span class="number">4</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">9</span>]])</span><br><span class="line">embedding(<span class="built_in">input</span>)</span><br><span class="line"></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">tensor([[[-0.4057,  0.2994,  0.8345],</span></span><br><span class="line"><span class="string">         [-0.9011,  0.2980, -0.8198],</span></span><br><span class="line"><span class="string">         [-0.0016, -0.7422,  0.4830],</span></span><br><span class="line"><span class="string">         [ 0.1380,  0.3021, -0.6233]],</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        [[-0.0016, -0.7422,  0.4830],</span></span><br><span class="line"><span class="string">         [-1.1394,  0.2577, -0.4709],</span></span><br><span class="line"><span class="string">         [-0.9011,  0.2980, -0.8198],</span></span><br><span class="line"><span class="string">         [-1.4681,  0.4755, -0.2688]]], grad_fn=&lt;EmbeddingBackward0&gt;)</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>官方的解释：</p>
+<p> <code>torch.nn.``Embedding</code>(<em>num_embeddings</em>, <em>embedding_dim</em>, <em>padding_idx&#x3D;None</em>, <em>max_norm&#x3D;None</em>, <em>norm_type&#x3D;2.0</em>, <em>scale_grad_by_freq&#x3D;False</em>, <em>sparse&#x3D;False</em>, <em>_weight&#x3D;None</em>, <em>device&#x3D;None</em>, <em>dtype&#x3D;None</em>)</p>
+<ul>
+<li>num_embeddings：嵌入字典的大小（词的个数）；</li>
+<li>embedding_dim：每个嵌入向量的大小；</li>
+<li>padding_idx：若给定，则每遇到 padding_idx 时，位于 padding_idx 的嵌入向量（即 -padding_idx 映射所对应的向量）为0；</li>
+<li>max_norm：若给定，则每个大于 max_norm 的数都会被规范化为 max_norm；</li>
+<li>norm_type：为 max_norm 计算 p-范数的 p值；</li>
+<li>scale_grad_by_freq：若给定，则将按照 mini-batch 中 words 频率的倒数 scale gradients；</li>
+<li>sparse：若为 True，则 weight 矩阵将是稀疏张量。</li>
+</ul>
+<h3 id="1-自己的瞎吉儿理解"><a href="#1-自己的瞎吉儿理解" class="headerlink" title="1. 自己的瞎吉儿理解"></a>1. 自己的瞎吉儿理解</h3><p>这里呀 就只需要理解好 前三个就好</p>
+<ul>
+<li>对于前两个的理解</li>
+</ul>
+<p>torch.nn.Embedding 的<strong>权重</strong>为 num_embeddings * embedding_dim 的矩阵，例如输入10个词，每个词用3为向量表示，则权重为<img src="https://private.codecogs.com/gif.latex?10%5Ctimes%203" alt="10\times 3">的矩阵；</p>
+<ul>
+<li>对于 padding_idx 理解</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">from</span> torch <span class="keyword">import</span> nn</span><br><span class="line"> </span><br><span class="line"><span class="built_in">input</span> = torch.LongTensor([[<span class="number">1</span>, <span class="number">2</span>, <span class="number">6</span>, <span class="number">4</span>], [<span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>]])</span><br><span class="line">em = nn.Embedding(<span class="number">10</span>, <span class="number">3</span>, padding_idx=<span class="number">6</span>)</span><br><span class="line">output = em(<span class="built_in">input</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;output:&quot;</span>,output)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;output.shape:&quot;</span>,output.shape)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;em.weight.shape:&quot;</span>,em.weight.shape)</span><br></pre></td></tr></table></figure>
+
+<p> <img src="https://img-blog.csdnimg.cn/20200524013059410.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lpemhpc2h1aXhpb25n,size_16,color_FFFFFF,t_70" alt="img"> </p>
+<p> 可以看出 “6” 所对应映射的向量被填充了0。 </p>
+<h2 id="网络初始化"><a href="#网络初始化" class="headerlink" title="网络初始化"></a>网络初始化</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/dss_dssssd/article/details/83959474">https://blog.csdn.net/dss_dssssd/article/details/83959474</a></p>
+<h3 id="1-初始化函数"><a href="#1-初始化函数" class="headerlink" title="1. 初始化函数"></a>1. 初始化函数</h3><ol>
+<li><p>均匀分布<br>torch.nn.init.uniform_(tensor, a&#x3D;0, b&#x3D;1)<br>服从~U ( a , b ) U(a, b)U(a,b)</p>
+</li>
+<li><p>正太分布<br>torch.nn.init.normal_(tensor, mean&#x3D;0, std&#x3D;1)<br>服从~N ( m e a n , s t d ) N(mean, std)N(mean,std)</p>
+</li>
+<li><p>初始化为常数<br>torch.nn.init.constant_(tensor, val)<br>初始化整个矩阵为常数val</p>
+</li>
+<li><p>Xavier</p>
+</li>
 </ol>
-<h3 id="2-4-2-deepFM"><a href="#2-4-2-deepFM" class="headerlink" title="2.4.2 deepFM"></a>2.4.2 deepFM</h3><p>用FM代替wide部分</p>
-<p>​                         <img src="https://img-blog.csdnimg.cn/20190430101250605.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzE4MjkzMjEz,size_16,color_FFFFFF,t_70" alt="img"> </p>
-<p>​    FM与深度模型的组合有两种，一种是二者并行，另一种是二者串行。DeepFM就是并行的一种结构。并行就是FM将输入部分计算完之后单独拿出来，得到一组特征表示，然后再利用深度模型（多层全连接）对输入部分进行告阶的特征组合。最后把二者的特征进行concact，得到一组特征，最后对这组特征进行分类或者回归。其实这只是特征的一种组合方式，目的就是为了得到特征的高阶表示。</p>
-<h3 id="2-4-3-总结"><a href="#2-4-3-总结" class="headerlink" title="2.4.3 总结"></a>2.4.3 总结</h3><p>特征工程在这条路上已经穷尽了可能性的尝试，模型的提升空间会非常小。但是很重要</p>
-<h2 id="2-5-注意力机制的应用"><a href="#2-5-注意力机制的应用" class="headerlink" title="2.5 注意力机制的应用"></a>2.5 注意力机制的应用</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/wuzhongqiang/article/details/109532346">https://blog.csdn.net/wuzhongqiang/article/details/109532346</a></p>
-<ul>
-<li>Attention机制的本质</li>
-</ul>
-<p>attention机制的本质是从人类视觉注意力机制中获得灵感(可以说很‘以人为本’了)。大致是我们视觉在感知东西的时候，一般不会是一个场景从到头看到尾每次全部都看，而往往是根据需求观察注意特定的一部分。而且当我们发现一个场景经常在某部分出现自己想观察的东西时，我们就会进行学习在将来再出现类似场景时把注意力放到该部分上。这可以说就是注意力机制的本质内容了。至于它本身包含的‘自上而下’和‘自下而上’方式就不在过多的讨论。</p>
-<ul>
-<li>Attention机制的理解</li>
-</ul>
-<p>Attention机制其实就是一系列注意力分配系数，也就是一系列权重参数罢了。</p>
-<h3 id="2-5-1-AFM-引入注意力机制的FM"><a href="#2-5-1-AFM-引入注意力机制的FM" class="headerlink" title="2.5.1 AFM - 引入注意力机制的FM"></a>2.5.1 AFM - 引入注意力机制的FM</h3><p> 注意力网络的作用是为每一个交叉特征提供权重<img src="https://img-blog.csdnimg.cn/20190523195800742.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzE4MjkzMjEz,size_16,color_FFFFFF,t_70" alt="img"> </p>
-<h3 id="2-5-2-DIN"><a href="#2-5-2-DIN" class="headerlink" title="2.5.2 DIN"></a>2.5.2 DIN</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Blank_spaces/article/details/106485534">https://blog.csdn.net/Blank_spaces/article/details/106485534</a> </p>
-<p>basemodel</p>
-<pre><code> 基本模型是获得一个固定长度的用户的表示向量，但不管候选广告是什么，此表示向量对于给定用户均保持不变。这样，维度受限的用户表示向量将成为表达用户多样化兴趣的瓶颈 
-</code></pre>
-<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X3BuZy9xUDhKUm5XNlQzckNpYTFJNEo3N25ydlRKTGxrTmJ5RXlZYm9JWmthY2ljUDYwc2c5OHBBVmp3OFN6VDRhRXZnb2t1aWJlSVpHUUFsSFY5RUlKR0dvSEJIQS82NDA?x-oss-process=image/format,png" alt="img"> </p>
-<p><strong>DIN通过给定一个候选广告，然后去注意与该广告相关的局部兴趣的表示来模拟此过程</strong>。DIN不会通过使用同一向量来表达所有用户的不同兴趣，而是通过考虑<strong>历史行为的相关性</strong>来自适应地计算用户兴趣的表示向量（对于给定的广告）。 <img src="https://img-blog.csdnimg.cn/0a782443f8c240b8b52aa7b2be9df66a.png#pic_center" alt="img"> </p>
-<p>注意力在其上面的形式是激活单元来生成注意力得分</p>
+<p>基本思想是通过网络层时，<strong>输入和输出的方差相同</strong>，包括前向传播和后向传播。具体看以下博文：</p>
+<p> <img src="https://img-blog.csdnimg.cn/20181111153036310.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Rzc19kc3Nzc2Q=,size_16,color_FFFFFF,t_70" alt="img"> </p>
+<ol>
+<li><p>为什么需要Xavier 初始化？<br>如果初始化值很小，那么随着层数的传递，方差就会趋于0，此时输入值 也变得越来越小，在sigmoid上就是在0附近，接近于线性，失去了非线性<br>如果初始值很大，那么随着层数的传递，方差会迅速增加，此时输入值变得很大，而sigmoid在大输入值写倒数趋近于0，反向传播时会遇到梯度消失的问题</p>
+</li>
+<li><p>xavier初始化的简单推导</p>
+</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/qsMJ91"><img src="https://s1.ax1x.com/2022/03/28/qsMJ91.png" alt="qsMJ91.png"></a></p>
+<ol start="5">
+<li>kaiming (He initialization)</li>
+</ol>
+<p>以后再说</p>
 
         </div>
         
@@ -256,7 +282,7 @@
     <script type="text/javascript">
         $(()=>{
             new QRCode("wechat-qr", {
-                text: "http://example.com/2022/03/19/%E6%B7%B1%E5%BA%A6%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F(2)/",
+                text: "http://example.com/2022/03/28/Recommender-System-Pytorch%20%E9%A1%B9%E7%9B%AE%20%E5%87%BD%E6%95%B0%E6%8C%87%E5%8D%97/",
                 width: 150,
                 height: 150,
                 correctLevel : QRCode.CorrectLevel.H
@@ -268,12 +294,13 @@
             const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
             const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
             const twitterBase   = "https://twitter.com/intent/tweet?";
-            const hostUrl       = "http://example.com/2022/03/19/%E6%B7%B1%E5%BA%A6%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F(2)/";
-            const title         = "「深度推荐系统 下」";
-            const excerpt       = `1. 深度学习推荐模型（2）2.4 FM与深度学习模型2.4.1 FNN - 用FM的隐向量完成embedding层初始化  
-FNN相较于deep crossing模型的区别
-
-对于embedding进行了改进，在模型初始化时引入了...`;
+            const hostUrl       = "http://example.com/2022/03/28/Recommender-System-Pytorch%20%E9%A1%B9%E7%9B%AE%20%E5%87%BD%E6%95%B0%E6%8C%87%E5%8D%97/";
+            const title         = "「Recommender-System-Pytorch 项目 函数指南」";
+            const excerpt       = `个人觉得成熟的rebole的工具 不太适合萌新 来操作自己对于项目的建设
+最近找了一个新的项目 来操作 
+感觉本项目 更贴近萌新到大佬写代码过程 于是乎 有了这篇指南
+embedding操作0. 官方操作下面是官方例子
+1234567...`;
             let _URL;
             switch (dest) {
                 case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
@@ -295,7 +322,7 @@ FNN相较于deep crossing模型的区别
                     
                 </div>
                 <div class="pull-date">
-                <span>最后编辑：2022-03-19</span>
+                <span>最后编辑：2022-03-28</span>
                 </div>
             </div>
         </footer>
@@ -304,13 +331,9 @@ FNN相较于deep crossing模型的区别
         <nav class="navigation post-navigation clearfix" role="navigation">
             
             <div class="nav-previous clearfix">
-                <a title=" 训练集和数据集数据探索" href="/2022/03/18/数据分析/">&lt; 上一篇</a>
+                <a title=" Recommender-System-Pytorch 项目 函数指南" href="/2022/03/28/embedding/">&lt; 上一篇</a>
             </div>
             
-            
-            <div class="nav-next clearfix">
-                <a title=" kaggle入门" href="/2022/03/20/kaggle入门/">下一篇 &gt;</a>
-            </div>
             
         </nav>
     
