@@ -4,7 +4,7 @@
   <!-- 元数据 -->
   <meta charset="utf-8">
   <link rel="icon" href="">
-  <title>信用卡交易数据解读与探索（数据合并） | limhao博客</title>
+  <title>limhao博客</title>
   <meta name="author" content="limhao" />
   <meta http-equiv="Cache-Control" content="no-transform" />
   <meta http-equiv="Cache-Control" content="no-siteapp" />
@@ -15,16 +15,16 @@
   
     <meta name="keywords" content="" />
   
-  <meta name="description" content="数据分析首先还是对数据集进行解释，以及简单验证数据集的正确性。信用卡交易记录包括了两个数据集，分别是historical_transactions和new_merchant_transactions。两个数据集字段类似，只是记录了不同时间区间的信用卡消费情况： 这里的数据存在两个 一个18以前的数据集 一个18以后的 数据解读123456789101112131415161718192021222">
+  <meta name="description" content="title ： 从din到dien 推荐模型（文献部分）感谢：https:&#x2F;&#x2F;zh.d2l.ai&#x2F;chapter_recurrent-modern&#x2F;gru.html https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;48601882 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;103552262 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;78365283 ​">
 <meta property="og:type" content="article">
-<meta property="og:title" content="信用卡交易数据解读与探索（数据合并）">
-<meta property="og:url" content="http://example.com/2022/03/21/%E4%BF%A1%E7%94%A8%E5%8D%A1%E4%BA%A4%E6%98%93%E6%95%B0%E6%8D%AE%E8%A7%A3%E8%AF%BB/index.html">
+<meta property="og:title" content="limhao博客">
+<meta property="og:url" content="http://example.com/2022/04/04/%E4%BB%8Edin%E5%88%B0dien%20%E6%8E%A8%E8%8D%90%E6%A8%A1%E5%9E%8B%EF%BC%88%E6%96%87%E7%8C%AE%E9%83%A8%E5%88%86%EF%BC%89/index.html">
 <meta property="og:site_name" content="limhao博客">
-<meta property="og:description" content="数据分析首先还是对数据集进行解释，以及简单验证数据集的正确性。信用卡交易记录包括了两个数据集，分别是historical_transactions和new_merchant_transactions。两个数据集字段类似，只是记录了不同时间区间的信用卡消费情况： 这里的数据存在两个 一个18以前的数据集 一个18以后的 数据解读123456789101112131415161718192021222">
+<meta property="og:description" content="title ： 从din到dien 推荐模型（文献部分）感谢：https:&#x2F;&#x2F;zh.d2l.ai&#x2F;chapter_recurrent-modern&#x2F;gru.html https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;48601882 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;103552262 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;78365283 ​">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/null">
-<meta property="article:published_time" content="2022-03-21T07:01:44.023Z">
-<meta property="article:modified_time" content="2022-03-21T11:29:06.169Z">
+<meta property="article:published_time" content="2022-04-04T06:17:53.421Z">
+<meta property="article:modified_time" content="2022-04-04T06:59:17.042Z">
 <meta property="article:author" content="limhao">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/null">
@@ -152,17 +152,15 @@
     <div class="kratos-hentry kratos-post-inner clearfix">
         <header class="kratos-entry-header">
             
-                <h1 class="kratos-entry-title text-center">信用卡交易数据解读与探索（数据合并）</h1>
-            
             
             <ul class="kratos-post-meta text-center">
-                <li><i class="fa fa-calendar"></i> 2022-03-21</li>
+                <li><i class="fa fa-calendar"></i> 2022-04-04</li>
                 <li><i class="fa fa-user"></i> 作者 limhao</li>
                 <li>
                     <i class="fa fa-edit"></i> 
                     
                     
-                        ~3.73K
+                        ~1.89K
                     
                     字
                 </li>
@@ -172,32 +170,35 @@
         <div class="kratos-post-content">
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>本文最后编辑于 <time datetime="1647862146169"></time> 前，其中的内容可能需要更新。</p></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1649055557042"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
             <hr />
-            <h2 id="数据分析"><a href="#数据分析" class="headerlink" title="数据分析"></a>数据分析</h2><p>首先还是对数据集进行解释，以及简单验证数据集的正确性。信用卡交易记录包括了两个数据集，分别是historical_transactions和new_merchant_transactions。两个数据集字段类似，只是记录了不同时间区间的信用卡消费情况：</p>
-<p>这里的数据存在两个 一个18以前的数据集 一个18以后的</p>
-<h3 id="数据解读"><a href="#数据解读" class="headerlink" title="数据解读"></a>数据解读</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 老数据</span></span><br><span class="line">history_transaction = pd.read_csv(<span class="string">&#x27;./eloData/historical_transactions.csv&#x27;</span>, header=<span class="number">0</span>)</span><br><span class="line">history_transaction.head(<span class="number">5</span>)</span><br><span class="line">history_transaction.info()</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">&lt;class &#x27;pandas.core.frame.DataFrame&#x27;&gt;</span></span><br><span class="line"><span class="string">RangeIndex: 29112361 entries, 0 to 29112360</span></span><br><span class="line"><span class="string">Data columns (total 14 columns):</span></span><br><span class="line"><span class="string"> #   Column                Dtype  </span></span><br><span class="line"><span class="string">---  ------                -----  </span></span><br><span class="line"><span class="string"> 0   authorized_flag       object </span></span><br><span class="line"><span class="string"> 1   card_id               object </span></span><br><span class="line"><span class="string"> 2   city_id               int64  </span></span><br><span class="line"><span class="string"> 3   category_1            object </span></span><br><span class="line"><span class="string"> 4   installments          int64  </span></span><br><span class="line"><span class="string"> 5   category_3            object </span></span><br><span class="line"><span class="string"> 6   merchant_category_id  int64  </span></span><br><span class="line"><span class="string"> 7   merchant_id           object </span></span><br><span class="line"><span class="string"> 8   month_lag             int64  </span></span><br><span class="line"><span class="string"> 9   purchase_amount       float64</span></span><br><span class="line"><span class="string"> 10  purchase_date         object </span></span><br><span class="line"><span class="string"> 11  category_2            float64</span></span><br><span class="line"><span class="string"> 12  state_id              int64  </span></span><br><span class="line"><span class="string"> 13  subsector_id          int64  </span></span><br><span class="line"><span class="string">dtypes: float64(2), int64(6), object(6)</span></span><br><span class="line"><span class="string">memory usage: 3.0+ GB</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="comment"># 新数据 信用卡在2018年2月之后的交易信息，和historical_transactions字段完全一致。</span></span><br><span class="line">new_transaction = pd.read_csv(<span class="string">&#x27;./eloData/new_merchant_transactions.csv&#x27;</span>, header=<span class="number">0</span>)</span><br><span class="line">new_transaction.head(<span class="number">5</span>)</span><br><span class="line">pd.read_csv(<span class="string">&#x27;./eloData/new_merchant_transactions.csv&#x27;</span>, header=<span class="number">0</span>).info()</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">该数据中总共有将近200万条数据。并且我们发现，该数据集中有较多字段和商家数据merchant重复，我们可以对其进行简单检验。</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<p>首先简单查看有哪些字段一致：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">duplicate_cols = []</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> col <span class="keyword">in</span> merchant.columns:</span><br><span class="line">    <span class="keyword">if</span> col <span class="keyword">in</span> new_transaction.columns:</span><br><span class="line">        duplicate_cols.append(col)</span><br><span class="line">        </span><br><span class="line"><span class="built_in">print</span>(duplicate_cols)</span><br></pre></td></tr></table></figure>
-
-<p>并且我们进一步发现，交易记录中的merhcant_id信息并不唯一：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 取出和商户数据表重复字段并去重</span></span><br><span class="line">new_transaction[duplicate_cols].drop_duplicates().shape</span><br><span class="line"><span class="comment"># 商户id去重</span></span><br><span class="line">new_transaction[<span class="string">&#x27;merchant_id&#x27;</span>].nunique()</span><br></pre></td></tr></table></figure>
-
-<p>造成该现象的原因可能是商铺在逐渐经营过程动态变化，而基于此，在后续的建模过程中，我们将优先使用交易记录中表中的相应记录。</p>
-<h3 id="数据预处理"><a href="#数据预处理" class="headerlink" title="数据预处理"></a>数据预处理</h3><ul>
-<li>连续&#x2F;离散字段标注</li>
-</ul>
-<p>首先也是一样，需要对其连续&#x2F;离散变量进行标注。当然该数据集中比较特殊的一点，是存在一个时间列，我们将其单独归为一类：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">numeric_cols = [<span class="string">&#x27;installments&#x27;</span>, <span class="string">&#x27;month_lag&#x27;</span>, <span class="string">&#x27;purchase_amount&#x27;</span>]</span><br><span class="line">category_cols = [<span class="string">&#x27;authorized_flag&#x27;</span>, <span class="string">&#x27;card_id&#x27;</span>, <span class="string">&#x27;city_id&#x27;</span>, <span class="string">&#x27;category_1&#x27;</span>,</span><br><span class="line">       <span class="string">&#x27;category_3&#x27;</span>, <span class="string">&#x27;merchant_category_id&#x27;</span>, <span class="string">&#x27;merchant_id&#x27;</span>, <span class="string">&#x27;category_2&#x27;</span>, <span class="string">&#x27;state_id&#x27;</span>,</span><br><span class="line">       <span class="string">&#x27;subsector_id&#x27;</span>]</span><br><span class="line">time_cols = [<span class="string">&#x27;purchase_date&#x27;</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">assert</span> <span class="built_in">len</span>(numeric_cols) + <span class="built_in">len</span>(category_cols) + <span class="built_in">len</span>(time_cols) == new_transaction.shape[<span class="number">1</span>]</span><br></pre></td></tr></table></figure>
-
+            <hr>
+<h2 id="title-：-从din到dien-推荐模型（文献部分）"><a href="#title-：-从din到dien-推荐模型（文献部分）" class="headerlink" title="title ： 从din到dien 推荐模型（文献部分）"></a>title ： 从din到dien 推荐模型（文献部分）</h2><p>感谢：<a target="_blank" rel="noopener" href="https://zh.d2l.ai/chapter_recurrent-modern/gru.html">https://zh.d2l.ai/chapter_recurrent-modern/gru.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/48601882">https://zhuanlan.zhihu.com/p/48601882</a></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/103552262">https://zhuanlan.zhihu.com/p/103552262</a></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/78365283">https://zhuanlan.zhihu.com/p/78365283</a></p>
+<p>​    最近比较迷茫，看了看自己的论文阅读表，这两篇阿里巴巴的文献映入眼帘，作为工业界的老大。其思维比较新颖。且较当时比较的模型有较大百分比的提升。CTR预测， 所谓的CTR，就是点击率Click Through Rate，而CTR预估算法在广告系统中起着至关重要的作用。从这两篇文章中可以看到阿里妈妈在深度学习方向上的探索，也可以窥视到阿里妈妈的CTR算法的发展脉络。 </p>
+<h2 id="0-一切从特征选取开始"><a href="#0-一切从特征选取开始" class="headerlink" title="0. 一切从特征选取开始"></a>0. 一切从特征选取开始</h2><p> 主要有4个特征组，如下图所示，</p>
+<p>1）用户画像特征，</p>
+<p>2）用户行为特征，即用户点击过的商品</p>
+<p>3）待曝光的广告，广告其实也是商品，后文中我们统称为candidate</p>
+<p>4）上下文特征。 </p>
+<p> <img src="https://pic2.zhimg.com/80/v2-f37eaec1bf7f65d15b7905d1cc344355_720w.jpg"> </p>
+<h2 id="1-模型的鼻祖-（embedding-mlp）"><a href="#1-模型的鼻祖-（embedding-mlp）" class="headerlink" title="1. 模型的鼻祖 （embedding + mlp）"></a>1. 模型的鼻祖 （embedding + mlp）</h2><p> <img src="https://pic1.zhimg.com/80/v2-2e6001d73bbaa9bc5151f7045fc62068_720w.jpg"> </p>
+<p>如果说有10个商品的embedding，embedding的维度为16。在业界，pooling的处理方式就两个。</p>
 <ul>
-<li>字段类型转换&#x2F;缺失值填补</li>
+<li>sum pooling 对应的维度数字求和</li>
+<li>mean pooling 对应的维度数字求平均</li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看分类变量的类别</span></span><br><span class="line">new_transaction[category_cols].dtypes</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">authorized_flag          object</span></span><br><span class="line"><span class="string">card_id                  object</span></span><br><span class="line"><span class="string">city_id                   int64</span></span><br><span class="line"><span class="string">category_1               object</span></span><br><span class="line"><span class="string">category_3               object</span></span><br><span class="line"><span class="string">merchant_category_id      int64</span></span><br><span class="line"><span class="string">merchant_id              object</span></span><br><span class="line"><span class="string">category_2              float64</span></span><br><span class="line"><span class="string">state_id                  int64</span></span><br><span class="line"><span class="string">subsector_id              int64</span></span><br><span class="line"><span class="string">dtype: object</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line">new_transaction[category_cols].isnull().<span class="built_in">sum</span>()</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">authorized_flag              0</span></span><br><span class="line"><span class="string">card_id                      0</span></span><br><span class="line"><span class="string">city_id                      0</span></span><br><span class="line"><span class="string">category_1                   0</span></span><br><span class="line"><span class="string">category_3               55922</span></span><br><span class="line"><span class="string">merchant_category_id         0</span></span><br><span class="line"><span class="string">merchant_id              26216</span></span><br><span class="line"><span class="string">category_2              111745</span></span><br><span class="line"><span class="string">state_id                     0</span></span><br><span class="line"><span class="string">subsector_id                 0</span></span><br><span class="line"><span class="string">dtype: int64</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line">和此前的merchant处理类似，我们对其<span class="built_in">object</span>类型对象进行字典编码（<span class="built_in">id</span>除外），并对利用-<span class="number">1</span>对缺失值进行填补：</span><br><span class="line"><span class="keyword">for</span> col <span class="keyword">in</span> [<span class="string">&#x27;authorized_flag&#x27;</span>, <span class="string">&#x27;category_1&#x27;</span>, <span class="string">&#x27;category_3&#x27;</span>]:</span><br><span class="line">    new_transaction[col] = change_object_cols(new_transaction[col].fillna(-<span class="number">1</span>).astype(<span class="built_in">str</span>))</span><br><span class="line">    </span><br><span class="line">new_transaction[category_cols] = new_transaction[category_cols].fillna(-<span class="number">1</span>)</span><br><span class="line">new_transaction[category_cols].dtypes</span><br></pre></td></tr></table></figure>
-
+<h3 id="1-1-问题"><a href="#1-1-问题" class="headerlink" title="1.1 问题"></a>1.1 问题</h3><p>​    在电商这个场景中，通常用户的兴趣具有多样性，可能在一段时间内点击过衣服，电子产品，鞋子等。而对于不同的candidate来说，浏览过的相关商品对于预测帮助更大，不相关的商品对于ctr预估可能并不起作用，例如用户看过的衣服，鞋子对于iphone的预测并没有帮助 </p>
+<h2 id="2-DIN"><a href="#2-DIN" class="headerlink" title="2. DIN"></a>2. DIN</h2><p>​    为了解决上述的问题，既然提到了相关，那肯定得考虑到&#x3D;&#x3D;注意力机制&#x3D;&#x3D;了啦</p>
+<p>​    解决思路是：  在pooling的时候，与candidate相关的商品权重大一些，与candidate不相关的商品权重小一些，这是一种Attention的思想。将candidate与点击序列中的每个商品发生交互来计算attention分数。具体计算方法如图3中右上角的小网络所示，输入包括商品和candidate的embedding向量，以及两者的外积。对于不同的candidate，得到的用户表示向量也不同，具有更大的灵活性。 </p>
+<p>​    模型基础上 提出了Activation Unit单元 来提取商品与目标广告之间的相关性。 其中activation unit的输入包括两个部分，一个是原始的用户行为embedding向量、广告embedding向量；另外一个是两者Embedding向量经过外积计算后得到的向量，文章指出这种方式有利于relevance modeling。 </p>
+<p>​                                                            <a target="_blank" rel="noopener" href="https://imgtu.com/i/qbDHHS"><img src="https://s1.ax1x.com/2022/04/04/qbDHHS.png" alt="qbDHHS.png"></a></p>
+<h3 id="2-1-attention归一化处理"><a href="#2-1-attention归一化处理" class="headerlink" title="2.1 attention归一化处理"></a>2.1 attention归一化处理</h3><p>​    一般来说，做attention的时候，需要对所有的分数通过softmax做归一化，这样做有两个好处，一是保证权重非负，二是保证权重之和为1。但是在DIN的论文中强调，不对点击序列的attention分数做归一化，直接将分数与对应商品的embedding向量做加权和，目的在于保留用户的兴趣强度。例如，用户的点击序列中90%是衣服，10%是电子产品，有一件T恤和一部手机需要预测CTR，那么T恤会激活大部分的用户行为，使得根据T恤计算出来的用户行为向量在数值上更大，相对手机而言。 </p>
+<h3 id="2-2-DIN的创新点"><a href="#2-2-DIN的创新点" class="headerlink" title="2.2 DIN的创新点"></a>2.2 DIN的创新点</h3><p>​    DIN的论文中还提出了两个小的改进点。一个是对L2正则化的改进，在进行SGD优化的时候，每个mini-batch都只会输入部分训练数据，反向传播只针对部分非零特征参数进行训练，添加上L2之后，需要对整个网络的参数包括所有特征的embedding向量进行训练，这个计算量非常大且不可接受。论文中提出，在每个mini-batch中只对该batch的特征embedding参数进行L2正则化。第二个是提出了一个激活函数Dice。对于Relu或者PRelu来说，rectified point(梯度发生变化的点)都在0值，Dice对每个特征以mini-batch为单位计算均值和方差，然后将rectified point调整到均值位置。 </p>
 
         </div>
         
@@ -251,7 +252,7 @@
     <script type="text/javascript">
         $(()=>{
             new QRCode("wechat-qr", {
-                text: "http://example.com/2022/03/21/%E4%BF%A1%E7%94%A8%E5%8D%A1%E4%BA%A4%E6%98%93%E6%95%B0%E6%8D%AE%E8%A7%A3%E8%AF%BB/",
+                text: "http://example.com/2022/04/04/%E4%BB%8Edin%E5%88%B0dien%20%E6%8E%A8%E8%8D%90%E6%A8%A1%E5%9E%8B%EF%BC%88%E6%96%87%E7%8C%AE%E9%83%A8%E5%88%86%EF%BC%89/",
                 width: 150,
                 height: 150,
                 correctLevel : QRCode.CorrectLevel.H
@@ -263,9 +264,11 @@
             const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
             const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
             const twitterBase   = "https://twitter.com/intent/tweet?";
-            const hostUrl       = "http://example.com/2022/03/21/%E4%BF%A1%E7%94%A8%E5%8D%A1%E4%BA%A4%E6%98%93%E6%95%B0%E6%8D%AE%E8%A7%A3%E8%AF%BB/";
-            const title         = "「信用卡交易数据解读与探索（数据合并）」";
-            const excerpt       = `数据分析首先还是对数据集进行解释，以及简单验证数据集的正确性。信用卡交易记录包括了两个数据集，分别是historical_transactions和new_merchant_transactions。两个数据集字段类似，只是记录了不同...`;
+            const hostUrl       = "http://example.com/2022/04/04/%E4%BB%8Edin%E5%88%B0dien%20%E6%8E%A8%E8%8D%90%E6%A8%A1%E5%9E%8B%EF%BC%88%E6%96%87%E7%8C%AE%E9%83%A8%E5%88%86%EF%BC%89/";
+            const title         = "「」";
+            const excerpt       = `
+title ： 从din到dien 推荐模型（文献部分）感谢：https://zh.d2l.ai/chapter_recurrent-modern/gru.html
+https://zhuanlan.zhihu.com/p/4860...`;
             let _URL;
             switch (dest) {
                 case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
@@ -287,7 +290,7 @@
                     
                 </div>
                 <div class="pull-date">
-                <span>最后编辑：2022-03-21</span>
+                <span>最后编辑：2022-04-04</span>
                 </div>
             </div>
         </footer>
@@ -296,13 +299,9 @@
         <nav class="navigation post-navigation clearfix" role="navigation">
             
             <div class="nav-previous clearfix">
-                <a title=" 商户数据解读与探索(包含较为复杂的数据处理)" href="/2022/03/21/复杂数据处理与清洗/">&lt; 上一篇</a>
+                <a title=" RNN模型" href="/2022/04/03/RNN类模型/">&lt; 上一篇</a>
             </div>
             
-            
-            <div class="nav-next clearfix">
-                <a title=" python中axis=0和axis=1的理解" href="/2022/03/25/axis理解/">下一篇 &gt;</a>
-            </div>
             
         </nav>
     
