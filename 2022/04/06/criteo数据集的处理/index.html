@@ -4,7 +4,7 @@
   <!-- 元数据 -->
   <meta charset="utf-8">
   <link rel="icon" href="">
-  <title>深度推荐系统 上 | limhao博客</title>
+  <title>criteo数据集的处理 | limhao博客</title>
   <meta name="author" content="limhao" />
   <meta http-equiv="Cache-Control" content="no-transform" />
   <meta http-equiv="Cache-Control" content="no-siteapp" />
@@ -15,16 +15,16 @@
   
     <meta name="keywords" content="" />
   
-  <meta name="description" content="1. 深度学习推荐模型（1）演化方式：  改变神经网络的复杂程度  改变特征交叉方式  wide&amp;deep模型  FM深度版本  注意力机制与推荐系统结合  序列模型与推荐模型结合  强化学习与深度学习结合 2.1 神经网络复杂程度2.1.1 Auto-rec–单层神经网络推荐模型（easy）  通过自编码器原理，还原输入的结果。 重建函数：     目标函数：    目标函数l2正则：">
+  <meta name="description" content="目前项目涉及三个数据集（criteo，amazon，movielen） 其中 criteo数据集肯定是使用的最多的啦  这里 对于数据的梳理 （对于数据的处理 我觉得也较通用） 特地 整理一个文档 0. 观察数据（其实很重要） 数据 有0 1 2 这样的离散数据 和 一些68fd1e64    80e26c9b    fb936136    7b4723c4 不晓得是啥的数据  感觉能确定的是 第">
 <meta property="og:type" content="article">
-<meta property="og:title" content="深度推荐系统 上">
-<meta property="og:url" content="http://example.com/2022/03/15/%E6%B7%B1%E5%BA%A6%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F(1)/index.html">
+<meta property="og:title" content="criteo数据集的处理">
+<meta property="og:url" content="http://example.com/2022/04/06/criteo%E6%95%B0%E6%8D%AE%E9%9B%86%E7%9A%84%E5%A4%84%E7%90%86/index.html">
 <meta property="og:site_name" content="limhao博客">
-<meta property="og:description" content="1. 深度学习推荐模型（1）演化方式：  改变神经网络的复杂程度  改变特征交叉方式  wide&amp;deep模型  FM深度版本  注意力机制与推荐系统结合  序列模型与推荐模型结合  强化学习与深度学习结合 2.1 神经网络复杂程度2.1.1 Auto-rec–单层神经网络推荐模型（easy）  通过自编码器原理，还原输入的结果。 重建函数：     目标函数：    目标函数l2正则：">
+<meta property="og:description" content="目前项目涉及三个数据集（criteo，amazon，movielen） 其中 criteo数据集肯定是使用的最多的啦  这里 对于数据的梳理 （对于数据的处理 我觉得也较通用） 特地 整理一个文档 0. 观察数据（其实很重要） 数据 有0 1 2 这样的离散数据 和 一些68fd1e64    80e26c9b    fb936136    7b4723c4 不晓得是啥的数据  感觉能确定的是 第">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/null">
-<meta property="article:published_time" content="2022-03-15T13:20:16.514Z">
-<meta property="article:modified_time" content="2022-03-20T01:50:18.533Z">
+<meta property="article:published_time" content="2022-04-06T12:25:47.026Z">
+<meta property="article:modified_time" content="2022-04-06T14:10:31.865Z">
 <meta property="article:author" content="limhao">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/null">
@@ -152,17 +152,17 @@
     <div class="kratos-hentry kratos-post-inner clearfix">
         <header class="kratos-entry-header">
             
-                <h1 class="kratos-entry-title text-center">深度推荐系统 上</h1>
+                <h1 class="kratos-entry-title text-center">criteo数据集的处理</h1>
             
             
             <ul class="kratos-post-meta text-center">
-                <li><i class="fa fa-calendar"></i> 2022-03-15</li>
+                <li><i class="fa fa-calendar"></i> 2022-04-06</li>
                 <li><i class="fa fa-user"></i> 作者 limhao</li>
                 <li>
                     <i class="fa fa-edit"></i> 
                     
                     
-                        ~2.24K
+                        1200
                     
                     字
                 </li>
@@ -172,98 +172,33 @@
         <div class="kratos-post-content">
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>本文最后编辑于 <time datetime="1647741018533"></time> 前，其中的内容可能需要更新。</p></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1649254231865"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
             <hr />
-            <h1 id="1-深度学习推荐模型（1）"><a href="#1-深度学习推荐模型（1）" class="headerlink" title="1. 深度学习推荐模型（1）"></a>1. 深度学习推荐模型（1）</h1><p>演化方式：</p>
-<ol>
-<li><p>改变神经网络的复杂程度</p>
-</li>
-<li><p>改变特征交叉方式</p>
-</li>
-<li><p>wide&amp;deep模型</p>
-</li>
-<li><p>FM深度版本</p>
-</li>
-<li><p>注意力机制与推荐系统结合</p>
-</li>
-<li><p>序列模型与推荐模型结合</p>
-</li>
-<li><p>强化学习与深度学习结合</p>
-<h2 id="2-1-神经网络复杂程度"><a href="#2-1-神经网络复杂程度" class="headerlink" title="2.1 神经网络复杂程度"></a>2.1 神经网络复杂程度</h2><h3 id="2-1-1-Auto-rec–单层神经网络推荐模型（easy）"><a href="#2-1-1-Auto-rec–单层神经网络推荐模型（easy）" class="headerlink" title="2.1.1 Auto-rec–单层神经网络推荐模型（easy）"></a>2.1.1 Auto-rec–单层神经网络推荐模型（easy）</h3></li>
-</ol>
-<p>通过自编码器原理，还原输入的结果。</p>
-<p>重建函数：   <img src="https://www.zhihu.com/equation?tex=h%5Cleft(+%5Cmathbf%7Br%7D;%5Ctheta+%5Cright)=f%5Cleft(+%5Cmathbf%7BW%7D+%5Ccdot+g%5Cleft(+%5Cmathbf%7BVr%7D+%5Cmu+%5Cright)++b+%5Cright)"> </p>
-<p>目标函数：  <img src="https://www.zhihu.com/equation?tex=%5Cmathop%7Bmin%7D%5Climits_%7B%5Ctheta%7D+%5Csum_%7B%5Cmathbf%7Br%7D+%5Cin+%5Cmathbf%7BS%7D%7D%7B+%5ClVert+%5Cmathbb%7Br%7D-h%5Cleft(+%5Cmathbf%7Br%7D;%5Ctheta+%5Cright)+%5CrVert%7D_2%5E2"> </p>
-<p>目标函数l2正则： <img src="https://www.zhihu.com/equation?tex=%5Cmathop%7Bmin%7D%5Climits_%7B%5Ctheta%7D+%5Csum_%7Bi=1%7D%5En%7B+%5ClVert+%5Cmathbb%7Br%7D%5E%7B(i)%7D-h%5Cleft(+%5Cmathbf%7Br%7D%5E%7B(i)%7D;%5Ctheta+%5Cright)%5CrVert%7D_%7B%5Cmathcal%7BO%7D%7D%5E2++%5Cfrac%7B%5Clambda%7D%7B2%7D%5Ccdot+%5Cleft(+%5ClVert+%5Cmathbf%7BW%7D%5CrVert_F%5E2++%5ClVert+%5Cmathbf%7BV%7D%5CrVert_F%5E2++%5Cright)"> </p>
-<p>参考：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/159087297">https://zhuanlan.zhihu.com/p/159087297</a></p>
-<h3 id="2-1-2-Deep-Crossing模型–经典深度学习架构"><a href="#2-1-2-Deep-Crossing模型–经典深度学习架构" class="headerlink" title="2.1.2 Deep Crossing模型–经典深度学习架构"></a>2.1.2 Deep Crossing模型–经典深度学习架构</h3><ol>
-<li><p>应用场景</p>
-<p><img src="https://pic2.zhimg.com/80/v2-d01272a3c3877126b9ab3bc7f135b901_720w.jpg"> </p>
-</li>
-<li><p>网络结构 </p>
-<p>embedding层，stacking层，multiple residual units层，scoring层</p>
-</li>
-</ol>
-<p>​                           <img src="https://pic3.zhimg.com/80/v2-31159f816eb0662eab198624dc75b356_720w.jpg"> </p>
-<ol start="3">
-<li><p>反思</p>
-<p>embedding+多层神经网络，相较于传统的二阶特征交叉能力，deep crossing拥有深度交叉的能力</p>
-</li>
-</ol>
-<h3 id="2-1-2-NeuralCF-CF与深度学习的结合"><a href="#2-1-2-NeuralCF-CF与深度学习的结合" class="headerlink" title="2.1.2 NeuralCF - CF与深度学习的结合"></a>2.1.2 NeuralCF - CF与深度学习的结合</h3><p>先回忆一下传统的矩阵分解怎么做</p>
-<ol>
-<li><p>物品-用户共现矩阵分解成用户向量和物品向量</p>
-</li>
-<li><p>向量embedding化</p>
-</li>
-<li><p>embedding后向量取内积（重要）</p>
-</li>
-<li><p>得到分数</p>
-</li>
-</ol>
-<p>这个模型 复杂的位置就是在第三步操作上 使用多层神经网络去替换这个卷积操作</p>
-<p> <img src="https://img-blog.csdnimg.cn/img_convert/a464defa6410390c728f22b494cb1aa5.png"> </p>
-<p>&#x3D;&#x3D;优势&#x3D;&#x3D;</p>
-<ol>
-<li>利用神经网络来拟合任意函数，灵活地组成不同的特征，按需增加或减少模型的复杂度</li>
-</ol>
-<p>&#x3D;&#x3D;劣势&#x3D;&#x3D;</p>
-<ol>
-<li><p>基于协同过滤构造,没有引入更多其他类型的特征</p>
-</li>
-<li><p>在实践中，防止过拟合的风险</p>
-</li>
-</ol>
-<h2 id="2-2-加强特征交叉能力"><a href="#2-2-加强特征交叉能力" class="headerlink" title="2.2 加强特征交叉能力"></a>2.2 加强特征交叉能力</h2><h3 id="2-2-1-PNN模型"><a href="#2-2-1-PNN模型" class="headerlink" title="2.2.1 PNN模型"></a>2.2.1 PNN模型</h3><p>​             <img src="https://img-blog.csdnimg.cn/20190516094615674.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzE4MjkzMjEz,size_16,color_FFFFFF,t_70" alt="img"> </p>
-<p>​    相较于 deep crossing模型中的stacking层，PNN模型替换成了乘积层。其他的在模型的输入，embeding层，多层神经网络以及最终的输出层上没有结构上的不同。</p>
-<p>​    product层，左边为线性部分，认为 特征之间的关系是and“且”的一种关系，而非add”加”的关系。 </p>
-<p>​                                         <em>z</em>&#x3D;<em>c<strong>o</strong>n<strong>c</strong>a**t</em>([<em>e<strong>m</strong>b</em>1,<em>e<strong>m</strong>b</em>2..,<em>e<strong>m</strong>b**n</em>],<em>a<strong>x</strong>i**s</em>&#x3D;1) </p>
-<p>   其右边操作为乘积操作，有内积和外积的区别。外积在操作上会将问题的复杂度从原来的m到 $m^2$,在选择上更应该慎重。</p>
-<ul>
-<li>优势</li>
+            <p>目前项目涉及三个数据集（criteo，amazon，movielen）</p>
+<p>其中 criteo数据集肯定是使用的最多的啦 </p>
+<p>这里 对于数据的梳理 （对于数据的处理 我觉得也较通用）</p>
+<p>特地 整理一个文档</p>
+<h2 id="0-观察数据（其实很重要）"><a href="#0-观察数据（其实很重要）" class="headerlink" title="0. 观察数据（其实很重要）"></a>0. 观察数据（其实很重要）</h2><p><a target="_blank" rel="noopener" href="https://imgtu.com/i/qvboOs"><img src="https://s1.ax1x.com/2022/04/06/qvboOs.png" alt="qvboOs.png"></a></p>
+<p>数据 有0 1 2 这样的离散数据 和 一些68fd1e64    80e26c9b    fb936136    7b4723c4 不晓得是啥的数据 </p>
+<p>感觉能确定的是 第一列的数据 是标签数据</p>
+<p>欧克 总结数据如下 有标签 离散 和 不晓得是啥的数据（先确定为连续数据吧）</p>
+<h2 id="1-读取数据"><a href="#1-读取数据" class="headerlink" title="1. 读取数据"></a>1. 读取数据</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 标记 数据类型</span></span><br><span class="line">names = [<span class="string">&#x27;label&#x27;</span>,</span><br><span class="line">         <span class="string">&#x27;I1&#x27;</span>, <span class="string">&#x27;I2&#x27;</span>, <span class="string">&#x27;I3&#x27;</span>, <span class="string">&#x27;I4&#x27;</span>, <span class="string">&#x27;I5&#x27;</span>, <span class="string">&#x27;I6&#x27;</span>, <span class="string">&#x27;I7&#x27;</span>, <span class="string">&#x27;I8&#x27;</span>, <span class="string">&#x27;I9&#x27;</span>, <span class="string">&#x27;I10&#x27;</span>, <span class="string">&#x27;I11&#x27;</span>,</span><br><span class="line"><span class="string">&#x27;I12&#x27;</span>, <span class="string">&#x27;I13&#x27;</span>,</span><br><span class="line">         <span class="string">&#x27;C1&#x27;</span>, <span class="string">&#x27;C2&#x27;</span>, <span class="string">&#x27;C3&#x27;</span>, <span class="string">&#x27;C4&#x27;</span>, <span class="string">&#x27;C5&#x27;</span>, <span class="string">&#x27;C6&#x27;</span>, <span class="string">&#x27;C7&#x27;</span>, <span class="string">&#x27;C8&#x27;</span>, <span class="string">&#x27;C9&#x27;</span>, <span class="string">&#x27;C10&#x27;</span>, <span class="string">&#x27;C11&#x27;</span>,<span class="string">&#x27;C12&#x27;</span>, <span class="string">&#x27;C13&#x27;</span>, <span class="string">&#x27;C14&#x27;</span>, <span class="string">&#x27;C15&#x27;</span>, <span class="string">&#x27;C16&#x27;</span>, <span class="string">&#x27;C17&#x27;</span>, <span class="string">&#x27;C18&#x27;</span>, <span class="string">&#x27;C19&#x27;</span>, <span class="string">&#x27;C20&#x27;</span>, <span class="string">&#x27;C21&#x27;</span>, <span class="string">&#x27;C22&#x27;</span>,<span class="string">&#x27;C23&#x27;</span>, <span class="string">&#x27;C24&#x27;</span>, <span class="string">&#x27;C25&#x27;</span>, <span class="string">&#x27;C26&#x27;</span>]</span><br><span class="line"></span><br><span class="line">criteo_data = pd.read_csv(<span class="string">&#x27;./criteo-100k.txt&#x27;</span>,sep=<span class="string">&#x27;\t&#x27;</span>,names=names)</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-1-标准数据查看三件套"><a href="#1-1-标准数据查看三件套" class="headerlink" title="1.1 标准数据查看三件套"></a>1.1 标准数据查看三件套</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">criteo_data.head()</span><br><span class="line">criteo_data.shape</span><br><span class="line">criteo_data.info()</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-2-数据质量分析"><a href="#1-2-数据质量分析" class="headerlink" title="1.2 数据质量分析"></a>1.2 数据质量分析</h3><ul>
+<li>查看缺失值</li>
 </ul>
-<p>​    定义了外积和内积操作更有针对性地强调不同特征之间的交互</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">criteo_data.isnull().<span class="built_in">sum</span>()</span><br></pre></td></tr></table></figure>
+
 <ul>
-<li>局限</li>
+<li>异常值分析</li>
 </ul>
-<p>​    在外积操作上，为了效率经行大量的简化操作，对所有特征进行无差别的交叉，在一定程度上忽略了原始特征中包含的价值信息。</p>
-<h2 id="2-3-记忆能力与泛化能力的综合"><a href="#2-3-记忆能力与泛化能力的综合" class="headerlink" title="2.3 记忆能力与泛化能力的综合"></a>2.3 记忆能力与泛化能力的综合</h2><h3 id="2-3-1-wide-amp-deep模型"><a href="#2-3-1-wide-amp-deep模型" class="headerlink" title="2.3.1 wide&amp;deep模型"></a>2.3.1 wide&amp;deep模型</h3><p>​    wide部分是让模型具有较强的“记忆能力”，deep部分是让模型具有泛化能力。这样的结构使模型兼具了逻辑回归和深度神经网络的优点–能快速处理并且记忆大量的历史行为特征，并且具有强大的表达能力。</p>
-<p> <img src="https://img-blog.csdnimg.cn/20200302174556324.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xpbnhpZA==,size_16,color_FFFFFF,t_70" alt="img"> </p>
-<p>在提出W&amp;D模型，平衡Wide模型和Deep模型的记忆能力和泛化能力。实际上是lr+dnn。<br>记忆（memorization） 通过特征叉乘对原始特征做非线性变换，输入为高维度的稀疏向量。通过大量的特征叉乘产生特征相互作用的“记忆（Memorization）”，高效且可解释，但要泛化需要更多的特征工程。</p>
-<p>泛化（generalization）只需要少量的特征工程，深度神经网络通过embedding的方法，使用低维稠密特征输入，可以更好地泛化训练样本中未出现过的特征组合。但当user-item交互矩阵稀疏且高阶时，容易出现“过泛化（over-generalize）”导致推荐的item相关性差</p>
-<ul>
-<li>工程应用</li>
-</ul>
-<p> <img src="https://pica.zhimg.com/v2-42250a1664527e7fbcd4e21f3a74230f_1440w.jpg?source=172ae18b" alt="img"> </p>
-<h3 id="2-3-2-wide-amp-deep进化-deep-amp-cross模型"><a href="#2-3-2-wide-amp-deep进化-deep-amp-cross模型" class="headerlink" title="2.3.2 wide&amp;deep进化 deep&amp;cross模型"></a>2.3.2 wide&amp;deep进化 deep&amp;cross模型</h3><p> <img src="https://img-blog.csdnimg.cn/20190625111158977.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1lhc2luMA==,size_16,color_FFFFFF,t_70" alt="img"> </p>
-<p> Cross Network</p>
-<p>​    交叉网络的核心思想是以有效的方式应用显式特征交叉。交叉网络由交叉层组成，每个层具有以下公式：</p>
-<p> <img src="https://img-blog.csdnimg.cn/20190625112122963.png" alt="img">     </p>
-<p>​    xl和xl+1 分别是第l层和第l+1层cross layer的输出，wl和bl是这两层之间的连接参数。注意上式中所有的变量均是列向量，W也是列向量，并不是矩阵。xl+1 &#x3D; f(xl, wl, bl) + xl. 每一层的输出，都是上一层的输出加上feature crossing f。而f就是在拟合该层输出和上一层输出的残差。</p>
-<p>​    Cross Layer 设计的巧妙之处全部体现在上面的计算公式中，我们先看一些明显的细节：1) 每层的神经元个数都相同，都等于输入 的维度 </p>
-<p>DCN能够有效地捕获有限度的有效特征的相互作用，学会高度非线性的相互作用，不需要人工特征工程或遍历搜索，并具有较低的计算成本。<br>1）提出了一种新的交叉网络，在每个层上明确地应用特征交叉，有效地学习有界度的预测交叉特征，并且不需要手工特征工程或穷举搜索。<br>2）跨网络简单而有效。通过设计，各层的多项式级数最高，并由层深度决定。网络由所有的交叉项组成，它们的系数各不相同。<br>3）跨网络内存高效，易于实现。<br>4）实验结果表明，交叉网络（DCN）在LogLoss上与DNN相比少了近一个量级的参数量</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">criteo_data.describe()</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/qvOH0A"><img src="https://s1.ax1x.com/2022/04/06/qvOH0A.png" alt="qvOH0A.png"></a></p>
 
         </div>
         
@@ -317,7 +252,7 @@
     <script type="text/javascript">
         $(()=>{
             new QRCode("wechat-qr", {
-                text: "http://example.com/2022/03/15/%E6%B7%B1%E5%BA%A6%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F(1)/",
+                text: "http://example.com/2022/04/06/criteo%E6%95%B0%E6%8D%AE%E9%9B%86%E7%9A%84%E5%A4%84%E7%90%86/",
                 width: 150,
                 height: 150,
                 correctLevel : QRCode.CorrectLevel.H
@@ -329,24 +264,14 @@
             const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
             const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
             const twitterBase   = "https://twitter.com/intent/tweet?";
-            const hostUrl       = "http://example.com/2022/03/15/%E6%B7%B1%E5%BA%A6%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F(1)/";
-            const title         = "「深度推荐系统 上」";
-            const excerpt       = `1. 深度学习推荐模型（1）演化方式：
-
-改变神经网络的复杂程度
-
-改变特征交叉方式
-
-wide&amp;deep模型
-
-FM深度版本
-
-注意力机制与推荐系统结合
-
-序列模型与推荐模型结合
-
-强化学习与深度学习结合
-2.1 神经网络复...`;
+            const hostUrl       = "http://example.com/2022/04/06/criteo%E6%95%B0%E6%8D%AE%E9%9B%86%E7%9A%84%E5%A4%84%E7%90%86/";
+            const title         = "「criteo数据集的处理」";
+            const excerpt       = `目前项目涉及三个数据集（criteo，amazon，movielen）
+其中 criteo数据集肯定是使用的最多的啦 
+这里 对于数据的梳理 （对于数据的处理 我觉得也较通用）
+特地 整理一个文档
+0. 观察数据（其实很重要）
+数据 ...`;
             let _URL;
             switch (dest) {
                 case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
@@ -368,7 +293,7 @@ FM深度版本
                     
                 </div>
                 <div class="pull-date">
-                <span>最后编辑：2022-03-20</span>
+                <span>最后编辑：2022-04-06</span>
                 </div>
             </div>
         </footer>
@@ -377,12 +302,12 @@ FM深度版本
         <nav class="navigation post-navigation clearfix" role="navigation">
             
             <div class="nav-previous clearfix">
-                <a title=" 传统推荐系统" href="/2022/03/14/传统推荐系统/">&lt; 上一篇</a>
+                <a title=" 从din到dien 推荐模型（文献部分）" href="/2022/04/04/从din到dien 推荐模型（文献部分）/">&lt; 上一篇</a>
             </div>
             
             
             <div class="nav-next clearfix">
-                <a title=" 训练集和数据集数据探索" href="/2022/03/18/数据分析/">下一篇 &gt;</a>
+                <a title=" 各种慢" href="/2022/04/06/各种慢/">下一篇 &gt;</a>
             </div>
             
         </nav>
