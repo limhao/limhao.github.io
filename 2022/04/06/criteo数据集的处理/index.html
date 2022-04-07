@@ -4,7 +4,7 @@
   <!-- 元数据 -->
   <meta charset="utf-8">
   <link rel="icon" href="">
-  <title>criteo数据集的处理 | limhao博客</title>
+  <title>criteo数据集的处理 生动 | limhao博客</title>
   <meta name="author" content="limhao" />
   <meta http-equiv="Cache-Control" content="no-transform" />
   <meta http-equiv="Cache-Control" content="no-siteapp" />
@@ -15,16 +15,16 @@
   
     <meta name="keywords" content="" />
   
-  <meta name="description" content="目前项目涉及三个数据集（criteo，amazon，movielen） 其中 criteo数据集肯定是使用的最多的啦  这里 对于数据的梳理 （对于数据的处理 我觉得也较通用） 特地 整理一个文档 0. 观察数据（其实很重要） 数据 有0 1 2 这样的离散数据 和 一些68fd1e64    80e26c9b    fb936136    7b4723c4 不晓得是啥的数据  感觉能确定的是 第">
+  <meta name="description" content="之前 写过一篇 太烂了 在重新写一篇生动的 数据预处理与特征工程：https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_37334135&#x2F;article&#x2F;details&#x2F;86825190 目前项目涉及三个数据集（criteo，amazon，movielen） 其中 criteo数据集肯定是使用的最多的啦  这里 对于数据的梳理 （对于数据的处理 我觉得也较通用） 特地 整理一个文档 0. 观察数据（其">
 <meta property="og:type" content="article">
-<meta property="og:title" content="criteo数据集的处理">
+<meta property="og:title" content="criteo数据集的处理 生动">
 <meta property="og:url" content="http://example.com/2022/04/06/criteo%E6%95%B0%E6%8D%AE%E9%9B%86%E7%9A%84%E5%A4%84%E7%90%86/index.html">
 <meta property="og:site_name" content="limhao博客">
-<meta property="og:description" content="目前项目涉及三个数据集（criteo，amazon，movielen） 其中 criteo数据集肯定是使用的最多的啦  这里 对于数据的梳理 （对于数据的处理 我觉得也较通用） 特地 整理一个文档 0. 观察数据（其实很重要） 数据 有0 1 2 这样的离散数据 和 一些68fd1e64    80e26c9b    fb936136    7b4723c4 不晓得是啥的数据  感觉能确定的是 第">
+<meta property="og:description" content="之前 写过一篇 太烂了 在重新写一篇生动的 数据预处理与特征工程：https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_37334135&#x2F;article&#x2F;details&#x2F;86825190 目前项目涉及三个数据集（criteo，amazon，movielen） 其中 criteo数据集肯定是使用的最多的啦  这里 对于数据的梳理 （对于数据的处理 我觉得也较通用） 特地 整理一个文档 0. 观察数据（其">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/null">
 <meta property="article:published_time" content="2022-04-06T12:25:47.026Z">
-<meta property="article:modified_time" content="2022-04-06T14:10:31.865Z">
+<meta property="article:modified_time" content="2022-04-07T06:53:31.290Z">
 <meta property="article:author" content="limhao">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/null">
@@ -152,7 +152,7 @@
     <div class="kratos-hentry kratos-post-inner clearfix">
         <header class="kratos-entry-header">
             
-                <h1 class="kratos-entry-title text-center">criteo数据集的处理</h1>
+                <h1 class="kratos-entry-title text-center">criteo数据集的处理 生动</h1>
             
             
             <ul class="kratos-post-meta text-center">
@@ -162,7 +162,7 @@
                     <i class="fa fa-edit"></i> 
                     
                     
-                        1200
+                        ~4.78K
                     
                     字
                 </li>
@@ -172,11 +172,13 @@
         <div class="kratos-post-content">
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>本文最后编辑于 <time datetime="1649254231865"></time> 前，其中的内容可能需要更新。</p></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1649314411290"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
             <hr />
-            <p>目前项目涉及三个数据集（criteo，amazon，movielen）</p>
+            <p>之前 写过一篇 太烂了 在重新写一篇生动的</p>
+<p>数据预处理与特征工程：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_37334135/article/details/86825190">https://blog.csdn.net/qq_37334135/article/details/86825190</a></p>
+<p>目前项目涉及三个数据集（criteo，amazon，movielen）</p>
 <p>其中 criteo数据集肯定是使用的最多的啦 </p>
 <p>这里 对于数据的梳理 （对于数据的处理 我觉得也较通用）</p>
 <p>特地 整理一个文档</p>
@@ -184,6 +186,7 @@
 <p>数据 有0 1 2 这样的离散数据 和 一些68fd1e64    80e26c9b    fb936136    7b4723c4 不晓得是啥的数据 </p>
 <p>感觉能确定的是 第一列的数据 是标签数据</p>
 <p>欧克 总结数据如下 有标签 离散 和 不晓得是啥的数据（先确定为连续数据吧）</p>
+<p>按照习惯 其target一般特征后面 </p>
 <h2 id="1-读取数据"><a href="#1-读取数据" class="headerlink" title="1. 读取数据"></a>1. 读取数据</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 标记 数据类型</span></span><br><span class="line">names = [<span class="string">&#x27;label&#x27;</span>,</span><br><span class="line">         <span class="string">&#x27;I1&#x27;</span>, <span class="string">&#x27;I2&#x27;</span>, <span class="string">&#x27;I3&#x27;</span>, <span class="string">&#x27;I4&#x27;</span>, <span class="string">&#x27;I5&#x27;</span>, <span class="string">&#x27;I6&#x27;</span>, <span class="string">&#x27;I7&#x27;</span>, <span class="string">&#x27;I8&#x27;</span>, <span class="string">&#x27;I9&#x27;</span>, <span class="string">&#x27;I10&#x27;</span>, <span class="string">&#x27;I11&#x27;</span>,</span><br><span class="line"><span class="string">&#x27;I12&#x27;</span>, <span class="string">&#x27;I13&#x27;</span>,</span><br><span class="line">         <span class="string">&#x27;C1&#x27;</span>, <span class="string">&#x27;C2&#x27;</span>, <span class="string">&#x27;C3&#x27;</span>, <span class="string">&#x27;C4&#x27;</span>, <span class="string">&#x27;C5&#x27;</span>, <span class="string">&#x27;C6&#x27;</span>, <span class="string">&#x27;C7&#x27;</span>, <span class="string">&#x27;C8&#x27;</span>, <span class="string">&#x27;C9&#x27;</span>, <span class="string">&#x27;C10&#x27;</span>, <span class="string">&#x27;C11&#x27;</span>,<span class="string">&#x27;C12&#x27;</span>, <span class="string">&#x27;C13&#x27;</span>, <span class="string">&#x27;C14&#x27;</span>, <span class="string">&#x27;C15&#x27;</span>, <span class="string">&#x27;C16&#x27;</span>, <span class="string">&#x27;C17&#x27;</span>, <span class="string">&#x27;C18&#x27;</span>, <span class="string">&#x27;C19&#x27;</span>, <span class="string">&#x27;C20&#x27;</span>, <span class="string">&#x27;C21&#x27;</span>, <span class="string">&#x27;C22&#x27;</span>,<span class="string">&#x27;C23&#x27;</span>, <span class="string">&#x27;C24&#x27;</span>, <span class="string">&#x27;C25&#x27;</span>, <span class="string">&#x27;C26&#x27;</span>]</span><br><span class="line"></span><br><span class="line">criteo_data = pd.read_csv(<span class="string">&#x27;./criteo-100k.txt&#x27;</span>,sep=<span class="string">&#x27;\t&#x27;</span>,names=names)</span><br></pre></td></tr></table></figure>
 
 <h3 id="1-1-标准数据查看三件套"><a href="#1-1-标准数据查看三件套" class="headerlink" title="1.1 标准数据查看三件套"></a>1.1 标准数据查看三件套</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">criteo_data.head()</span><br><span class="line">criteo_data.shape</span><br><span class="line">criteo_data.info()</span><br></pre></td></tr></table></figure>
@@ -196,9 +199,75 @@
 <ul>
 <li>异常值分析</li>
 </ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">criteo_data.describe()</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 查看==数值型列==的汇总统计</span><br><span class="line"># 这里的目的是查看是否有及其异常的值</span><br><span class="line">criteo_data.describe()</span><br></pre></td></tr></table></figure>
 
 <p><a target="_blank" rel="noopener" href="https://imgtu.com/i/qvOH0A"><img src="https://s1.ax1x.com/2022/04/06/qvOH0A.png" alt="qvOH0A.png"></a></p>
+<h3 id="1-3-数据分类"><a href="#1-3-数据分类" class="headerlink" title="1.3 数据分类"></a>1.3 数据分类</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 数据特征分为离散和连续类</span></span><br><span class="line">sparse_features = [<span class="string">&#x27;C&#x27;</span> + <span class="built_in">str</span>(i) <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="number">27</span>)]</span><br><span class="line">dense_features = [<span class="string">&#x27;I&#x27;</span> + <span class="built_in">str</span>(i) <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="number">14</span>)]</span><br><span class="line">features = sparse_features + dense_features</span><br><span class="line"><span class="comment"># 检查 特征列是否添加完全</span></span><br><span class="line"><span class="keyword">assert</span> <span class="built_in">len</span>(sparse_features) + <span class="built_in">len</span>(dense_features) == criteo_data.shape[<span class="number">1</span>] - <span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="2-缺失值处理"><a href="#2-缺失值处理" class="headerlink" title="2. 缺失值处理"></a>2. 缺失值处理</h2><p>针对缺失值 的 离散 和连续缺失的值 进行缺失值处理 （缺失一般是异常值）</p>
+<p>一般是四步操作</p>
+<ol>
+<li>查看变量类别</li>
+<li>查看变量缺失值情况</li>
+<li>对于缺失值进行标注</li>
+<li>查看标注完缺失值情况</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看离散变量目前的类别</span></span><br><span class="line">criteo_data[sparse_features].dtypes</span><br><span class="line"><span class="comment"># 查看离散变量缺失值情况</span></span><br><span class="line">criteo_data[sparse_features].isnull().<span class="built_in">sum</span>()</span><br><span class="line"><span class="comment"># 离散缺失值标注</span></span><br><span class="line">criteo_data[sparse_features] = criteo_data[sparse_features].fillna(<span class="string">&#x27;-1&#x27;</span>)</span><br><span class="line"><span class="comment"># 查看离散变量缺失值情况</span></span><br><span class="line">criteo_data[sparse_features].isnull().<span class="built_in">sum</span>(</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看连续变量目前的类别</span></span><br><span class="line">criteo_data[sparse_features].dtypes</span><br><span class="line"><span class="comment"># 查看连续变量缺失值情况</span></span><br><span class="line">criteo_data[sparse_features].isnull().<span class="built_in">sum</span>()</span><br><span class="line"><span class="comment"># 连续缺失值标注</span></span><br><span class="line">criteo_data[sparse_features] = criteo_data[sparse_features].fillna(<span class="number">0</span>)</span><br><span class="line"><span class="comment"># 查看连续变量缺失值情况</span></span><br><span class="line">criteo_data[sparse_features].isnull().<span class="built_in">sum</span>()</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-sklearn-preprocessing数据预处理"><a href="#3-sklearn-preprocessing数据预处理" class="headerlink" title="3.  sklearn.preprocessing数据预处理"></a>3.  <strong>sklearn.preprocessing数据预处理</strong></h2><p>这里搬运一下 分箱的目的 </p>
+<ol>
+<li>离散变量便于特征的增加和减少，便于模型快速迭代</li>
+<li>稀疏向量内积乘法更快，计算结果便于存储，容易扩展</li>
+<li>离散化后的特征对异常数据有很强的<strong>鲁棒性</strong>，例如，连续异常值5000可能对模型影响很大，但如果分箱后，模型影响很小</li>
+<li>为模型引入非线性，提升模型表达能力，加大拟合</li>
+<li>模型更加稳定，不会因为各别数据增加而影响模型精度</li>
+<li>简化模型，防止模型过拟合</li>
+</ol>
+<h3 id="3-1-处理连续型特征"><a href="#3-1-处理连续型特征" class="headerlink" title="3.1 处理连续型特征"></a>3.1 处理连续型特征</h3><p>在处理连续型特征 有两个方法 二值化 与 分段</p>
+<ul>
+<li>二值化</li>
+</ul>
+<p>二值化使用的类是 sklearn.preprocessing.Binarizer</p>
+<p>根据阈值将数据二值化（将特征值设置为0或1），用于处理连续型变量。大于阈值的值映射为1，而小于或等于阈值的值映射为0。默认阈值为0时，特征中所有的正值都映射到1。二值化是对文本计数数据的常见操作，分析人员可以决定仅考虑某种现象的存在与否。</p>
+<ul>
+<li>分段</li>
+</ul>
+<p> 分段使用的类 <strong>preprocessing.KBinsDiscretizer</strong>，相对麻烦点，给出下面的参数列表 </p>
+<p> <img src="https://img-blog.csdnimg.cn/20190209155408360.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM3MzM0MTM1,size_16,color_FFFFFF,t_70" alt="img"> </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> LabelEncoder, OrdinalEncoder, KBinsDiscretizer</span><br><span class="line"><span class="comment"># 连续型特征等间隔分箱</span></span><br><span class="line">est = KBinsDiscretizer(n_bins=<span class="number">100</span>, encode=<span class="string">&#x27;ordinal&#x27;</span>, strategy=<span class="string">&#x27;uniform&#x27;</span>)</span><br><span class="line">criteo_data[dense_features] = est.fit_transform(criteo_data[dense_features])</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-2-处理分类型特征"><a href="#3-2-处理分类型特征" class="headerlink" title="3.2 处理分类型特征"></a>3.2 处理分类型特征</h3><p>在机器学习中，大多数算法，譬如逻辑回归，支持向量机SVM，k近邻算法等都只能够处理数值型数据，不能处理文字，在sklearn当中，除了专用来处理文字的算法，其他算法在fit的时候全部要求输入数组或矩阵，也不能够导入文字型数据（其实手写决策树和普斯贝叶斯可以处理文字，但是sklearn中规定必须导入数值型）。</p>
+<p>然而在现实中，许多标签和特征在数据收集完毕的时候，都不是以数字来表现的。比如说，学历的取值可以是[“小学”，“初中”，“高中”，“大学”]，付费方式可能包含[“支付宝”，“现金”，“微信”]等等。在这种情况下，为了让数据适应算法和库，我们必须将数据进行编码，即是说，将文字型数据转换为数值型</p>
+<p>文字型数据 转换成数字</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> LabelEncoder, OrdinalEncoder, KBinsDiscretizer</span><br><span class="line"><span class="comment"># 离散型特征转换成连续数字，为了在与参数计算时使用索引的方式计算，而不是向量乘积</span></span><br><span class="line">criteo_data[features] = OrdinalEncoder().fit_transform(criteo_data[features])</span><br></pre></td></tr></table></figure>
+
+<p>处理后的效果</p>
+<p>[][qzetZn.md.png]</p>
+<p><img src="https://s1.ax1x.com/2022/04/07/qzetZn.md.png"></p>
+<h2 id="4-划分标签和特征"><a href="#4-划分标签和特征" class="headerlink" title="4. 划分标签和特征"></a>4. 划分标签和特征</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 标签和数据换个位置 然后 去除col_names </span></span><br><span class="line">data = data_df[features + [<span class="string">&#x27;label&#x27;</span>]].values</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-划分训练，验证，测试集"><a href="#5-划分训练，验证，测试集" class="headerlink" title="5. 划分训练，验证，测试集"></a>5. 划分训练，验证，测试集</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 这里的意思是 大白话</span></span><br><span class="line"><span class="comment"># 通过数字来区分 特征与特征的不同 </span></span><br><span class="line"><span class="comment"># 这里的特征 啊 </span></span><br><span class="line"><span class="comment"># 不同于俺以前理解的数字 </span></span><br><span class="line"><span class="comment"># 其表示的感觉就是 0123 男，女，外星人，不是人 这个样子的分类</span></span><br><span class="line"><span class="comment"># 这里 加1的作用 哇 刚刚想明白的 从0-540 一共 541个数</span></span><br><span class="line">field_dims = (self.data.<span class="built_in">max</span>(axis=<span class="number">0</span>).astype(<span class="built_in">int</span>) + <span class="number">1</span>).tolist()[:-<span class="number">1</span>]</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-1-数据划分"><a href="#5-1-数据划分" class="headerlink" title="5.1 数据划分"></a>5.1 数据划分</h3><pre><code>    train, valid_test = train_test_split(self.data, train_size=train_size, random_state=2021)
+    valid_size = valid_size / (test_size + valid_size)
+    valid, test = train_test_split(valid_test, train_size=valid_size, random_state=2021)
+    # 上面划分 是简单的 
+    device = self.device
+    # 这里 想 重点说一下两个[:, :-1] [:, -1]区分
+    # 举个例子 一个社会 有很多家庭 每个家庭 有很多人
+    # 前一个: 取 哪个家庭
+    # 后一个 : 取 那些人
+    # [:, :-1] 这个的意思是 取 所有家庭内 除了最后一个以外的所有人
+    # [:, -1] 意思是 取 所有家庭内 最后一个人
+    train_X = torch.tensor(train[:, :-1], dtype=torch.long).to(device)
+    valid_X = torch.tensor(valid[:, :-1], dtype=torch.long).to(device)
+    test_X = torch.tensor(test[:, :-1], dtype=torch.long).to(device)
+    train_y = torch.tensor(train[:, -1], dtype=torch.float).unsqueeze(1).to(device)
+    valid_y = torch.tensor(valid[:, -1], dtype=torch.float).unsqueeze(1).to(device)
+    test_y = torch.tensor(test[:, -1], dtype=torch.float).unsqueeze(1).to(device)
+</code></pre>
 
         </div>
         
@@ -265,13 +334,10 @@
             const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
             const twitterBase   = "https://twitter.com/intent/tweet?";
             const hostUrl       = "http://example.com/2022/04/06/criteo%E6%95%B0%E6%8D%AE%E9%9B%86%E7%9A%84%E5%A4%84%E7%90%86/";
-            const title         = "「criteo数据集的处理」";
-            const excerpt       = `目前项目涉及三个数据集（criteo，amazon，movielen）
-其中 criteo数据集肯定是使用的最多的啦 
-这里 对于数据的梳理 （对于数据的处理 我觉得也较通用）
-特地 整理一个文档
-0. 观察数据（其实很重要）
-数据 ...`;
+            const title         = "「criteo数据集的处理 生动」";
+            const excerpt       = `之前 写过一篇 太烂了 在重新写一篇生动的
+数据预处理与特征工程：https://blog.csdn.net/qq_37334135/article/details/86825190
+目前项目涉及三个数据集（criteo，amazon...`;
             let _URL;
             switch (dest) {
                 case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
@@ -293,7 +359,7 @@
                     
                 </div>
                 <div class="pull-date">
-                <span>最后编辑：2022-04-06</span>
+                <span>最后编辑：2022-04-07</span>
                 </div>
             </div>
         </footer>
@@ -388,7 +454,7 @@
         
           
           
-            <a class="list-group-item" href="/2022/04/06/criteo%E6%95%B0%E6%8D%AE%E9%9B%86%E7%9A%84%E5%A4%84%E7%90%86/"><i class="fa  fa-book"></i> criteo数据集的处理</a>
+            <a class="list-group-item" href="/2022/04/06/criteo%E6%95%B0%E6%8D%AE%E9%9B%86%E7%9A%84%E5%A4%84%E7%90%86/"><i class="fa  fa-book"></i> criteo数据集的处理 生动</a>
             
           
         
