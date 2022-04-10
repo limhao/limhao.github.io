@@ -24,7 +24,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/null">
 <meta property="article:published_time" content="2022-04-04T06:17:53.421Z">
-<meta property="article:modified_time" content="2022-04-04T14:06:12.492Z">
+<meta property="article:modified_time" content="2022-04-07T07:51:12.727Z">
 <meta property="article:author" content="limhao">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/null">
@@ -162,7 +162,7 @@
                     <i class="fa fa-edit"></i> 
                     
                     
-                        ~3.15K
+                        ~3.20K
                     
                     字
                 </li>
@@ -172,7 +172,7 @@
         <div class="kratos-post-content">
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>本文最后编辑于 <time datetime="1649081172492"></time> 前，其中的内容可能需要更新。</p></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1649317872727"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
             <hr />
@@ -201,7 +201,8 @@
 <p>​                                                            <a target="_blank" rel="noopener" href="https://imgtu.com/i/qbDHHS"><img src="https://s1.ax1x.com/2022/04/04/qbDHHS.png" alt="qbDHHS.png"></a></p>
 <h3 id="2-1-attention归一化处理"><a href="#2-1-attention归一化处理" class="headerlink" title="2.1 attention归一化处理"></a>2.1 attention归一化处理</h3><p>​    一般来说，做attention的时候，需要对所有的分数通过softmax做归一化，这样做有两个好处，一是保证权重非负，二是保证权重之和为1。但是在DIN的论文中强调，不对点击序列的attention分数做归一化，直接将分数与对应商品的embedding向量做加权和，目的在于保留用户的兴趣强度。例如，用户的点击序列中90%是衣服，10%是电子产品，有一件T恤和一部手机需要预测CTR，那么T恤会激活大部分的用户行为，使得根据T恤计算出来的用户行为向量在数值上更大，相对手机而言。 </p>
 <h3 id="2-2-DIN的创新点"><a href="#2-2-DIN的创新点" class="headerlink" title="2.2 DIN的创新点"></a>2.2 DIN的创新点</h3><p>​    DIN的论文中还提出了两个小的改进点。一个是对L2正则化的改进，在进行SGD优化的时候，每个mini-batch都只会输入部分训练数据，反向传播只针对部分非零特征参数进行训练，添加上L2之后，需要对整个网络的参数包括所有特征的embedding向量进行训练，这个计算量非常大且不可接受。论文中提出，在每个mini-batch中只对该batch的特征embedding参数进行L2正则化。第二个是提出了一个激活函数Dice。对于Relu或者PRelu来说，rectified point(梯度发生变化的点)都在0值，Dice对每个特征以mini-batch为单位计算均值和方差，然后将rectified point调整到均值位置。 </p>
-<h2 id="3-DIEN"><a href="#3-DIEN" class="headerlink" title="3. DIEN"></a>3. DIEN</h2><p> <img src="https://pic1.zhimg.com/80/v2-9d1799d057e900f85fdade42e285eb70_720w.jpg" alt="img"> </p>
+<h2 id="3-DIEN"><a href="#3-DIEN" class="headerlink" title="3. DIEN"></a>3. DIEN</h2><p>DIN在捕捉连续行为之间的依赖关系很弱，行为-》利益，其中隐性利益很难通过行为充分反映</p>
+<p> <img src="https://pic1.zhimg.com/80/v2-9d1799d057e900f85fdade42e285eb70_720w.jpg" alt="img"> </p>
 <p>DIEN，全称是Deep Interest Evolution Network，即用户兴趣进化网络。这个算法中用两层架构来抽取和使用用户兴趣特征：</p>
 <ul>
 <li>兴趣抽取层Interest Extractor Layer: 从用户行为序列中提取信息</li>
@@ -328,7 +329,7 @@ https://zhuanlan.zhihu....`;
                     
                 </div>
                 <div class="pull-date">
-                <span>最后编辑：2022-04-04</span>
+                <span>最后编辑：2022-04-07</span>
                 </div>
             </div>
         </footer>
@@ -379,7 +380,7 @@ https://zhuanlan.zhihu....`;
                 文章
             </span>
             <span class="count">
-                16
+                20
             </span>
         </a>
         <a class="meta-item" href="/categories/">
@@ -417,34 +418,42 @@ https://zhuanlan.zhihu....`;
         
           
           
+            <a class="list-group-item" href="/2022/04/10/Capsule%20%E8%83%B6%E5%9B%8A%E7%BD%91%E7%BB%9C/"><i class="fa  fa-book"></i> Capsule 网络</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2022/04/10/%E5%A4%9A%E7%A7%8D%E5%A4%9A%E6%A0%B7%E7%9A%84attention/"><i class="fa  fa-book"></i> attention 不同对比</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2022/04/10/attention%20%E6%9C%BA%E5%88%B6/"><i class="fa  fa-book"></i> attention机制 简单理解</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2022/04/08/Amazon%E6%95%B0%E6%8D%AE%E9%9B%86%E7%9A%84%E5%A4%84%E7%90%86/"><i class="fa  fa-book"></i> Amazon数据集的处理 生动</a>
+            
+          
+        
+          
+          
             <a class="list-group-item" href="/2022/04/06/%E5%90%84%E7%A7%8D%E6%85%A2/"><i class="fa  fa-book"></i> 各种慢</a>
             
           
         
           
-          
-            <a class="list-group-item" href="/2022/04/06/criteo%E6%95%B0%E6%8D%AE%E9%9B%86%E7%9A%84%E5%A4%84%E7%90%86/"><i class="fa  fa-book"></i> criteo数据集的处理 生动</a>
             
           
-        
-          
-          
-            <a class="list-group-item" href="/2022/04/04/%E4%BB%8Edin%E5%88%B0dien%20%E6%8E%A8%E8%8D%90%E6%A8%A1%E5%9E%8B%EF%BC%88%E6%96%87%E7%8C%AE%E9%83%A8%E5%88%86%EF%BC%89/"><i class="fa  fa-book"></i> 从din到dien 推荐模型（文献部分）</a>
             
           
-        
-          
-          
-            <a class="list-group-item" href="/2022/04/03/RNN%E7%B1%BB%E6%A8%A1%E5%9E%8B/"><i class="fa  fa-book"></i> RNN模型</a>
             
           
-        
-          
-          
-            <a class="list-group-item" href="/2022/03/28/Recommender-System-Pytorch%20%E9%A1%B9%E7%9B%AE%20%E7%BD%91%E7%BB%9C%E5%87%BD%E6%95%B0/"><i class="fa  fa-book"></i> Recommender-System-Pytorch 项目 网络参数指南</a>
             
-          
-        
           
             
           

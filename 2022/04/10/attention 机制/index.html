@@ -4,7 +4,7 @@
   <!-- 元数据 -->
   <meta charset="utf-8">
   <link rel="icon" href="">
-  <title>深度推荐系统 下 | limhao博客</title>
+  <title>attention机制 简单理解 | limhao博客</title>
   <meta name="author" content="limhao" />
   <meta http-equiv="Cache-Control" content="no-transform" />
   <meta http-equiv="Cache-Control" content="no-siteapp" />
@@ -15,16 +15,16 @@
   
     <meta name="keywords" content="" />
   
-  <meta name="description" content="1. 深度学习推荐模型（2）2.4 FM与深度学习模型2.4.1 FNN - 用FM的隐向量完成embedding层初始化   FNN相较于deep crossing模型的区别  对于embedding进行了改进，在模型初始化时引入了有价值的先验信息    在训练时特征被划分了不同的特征域，每个特征域有对应的embedding层  2.4.2 deepFM用FM代替wide部分 ​">
+  <meta name="description" content="在反复回卷的attention中，本人感觉心里憔悴 一定得总结一个俺能看懂的文章 最近发现了这样的一篇 感谢：https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;77307258 https:&#x2F;&#x2F;jalammar.github.io&#x2F;illustrated-transformer&#x2F; https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;91839581 阿里妹导读：曾被 paper 中各">
 <meta property="og:type" content="article">
-<meta property="og:title" content="深度推荐系统 下">
-<meta property="og:url" content="http://example.com/2022/03/19/%E6%B7%B1%E5%BA%A6%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F(2)/index.html">
+<meta property="og:title" content="attention机制 简单理解">
+<meta property="og:url" content="http://example.com/2022/04/10/attention%20%E6%9C%BA%E5%88%B6/index.html">
 <meta property="og:site_name" content="limhao博客">
-<meta property="og:description" content="1. 深度学习推荐模型（2）2.4 FM与深度学习模型2.4.1 FNN - 用FM的隐向量完成embedding层初始化   FNN相较于deep crossing模型的区别  对于embedding进行了改进，在模型初始化时引入了有价值的先验信息    在训练时特征被划分了不同的特征域，每个特征域有对应的embedding层  2.4.2 deepFM用FM代替wide部分 ​">
+<meta property="og:description" content="在反复回卷的attention中，本人感觉心里憔悴 一定得总结一个俺能看懂的文章 最近发现了这样的一篇 感谢：https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;77307258 https:&#x2F;&#x2F;jalammar.github.io&#x2F;illustrated-transformer&#x2F; https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;91839581 阿里妹导读：曾被 paper 中各">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/null">
-<meta property="article:published_time" content="2022-03-19T07:31:56.636Z">
-<meta property="article:modified_time" content="2022-03-19T11:04:44.220Z">
+<meta property="article:published_time" content="2022-04-10T07:05:28.523Z">
+<meta property="article:modified_time" content="2022-04-10T13:26:59.930Z">
 <meta property="article:author" content="limhao">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/null">
@@ -152,17 +152,17 @@
     <div class="kratos-hentry kratos-post-inner clearfix">
         <header class="kratos-entry-header">
             
-                <h1 class="kratos-entry-title text-center">深度推荐系统 下</h1>
+                <h1 class="kratos-entry-title text-center">attention机制 简单理解</h1>
             
             
             <ul class="kratos-post-meta text-center">
-                <li><i class="fa fa-calendar"></i> 2022-03-19</li>
+                <li><i class="fa fa-calendar"></i> 2022-04-10</li>
                 <li><i class="fa fa-user"></i> 作者 limhao</li>
                 <li>
                     <i class="fa fa-edit"></i> 
                     
                     
-                        1156
+                        ~2.97K
                     
                     字
                 </li>
@@ -172,37 +172,78 @@
         <div class="kratos-post-content">
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>本文最后编辑于 <time datetime="1647687884220"></time> 前，其中的内容可能需要更新。</p></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1649597219930"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
             <hr />
-            <h1 id="1-深度学习推荐模型（2）"><a href="#1-深度学习推荐模型（2）" class="headerlink" title="1. 深度学习推荐模型（2）"></a>1. 深度学习推荐模型（2）</h1><h2 id="2-4-FM与深度学习模型"><a href="#2-4-FM与深度学习模型" class="headerlink" title="2.4 FM与深度学习模型"></a>2.4 FM与深度学习模型</h2><h3 id="2-4-1-FNN-用FM的隐向量完成embedding层初始化"><a href="#2-4-1-FNN-用FM的隐向量完成embedding层初始化" class="headerlink" title="2.4.1 FNN - 用FM的隐向量完成embedding层初始化"></a>2.4.1 FNN - 用FM的隐向量完成embedding层初始化</h3><p> <img src="https://img-blog.csdnimg.cn/20200907211121461.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Jvc2VmdW45Ng==,size_16,color_FFFFFF,t_70#pic_center" alt="img"> </p>
-<p>FNN相较于deep crossing模型的区别</p>
-<ol>
-<li>对于embedding进行了改进，在模型初始化时引入了有价值的先验信息  <img src="https://img-blog.csdnimg.cn/20200907212020610.png#pic_center" alt="img"> </li>
-<li>在训练时特征被划分了不同的特征域，每个特征域有对应的embedding层</li>
-</ol>
-<h3 id="2-4-2-deepFM"><a href="#2-4-2-deepFM" class="headerlink" title="2.4.2 deepFM"></a>2.4.2 deepFM</h3><p>用FM代替wide部分</p>
-<p>​                         <img src="https://img-blog.csdnimg.cn/20190430101250605.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzE4MjkzMjEz,size_16,color_FFFFFF,t_70" alt="img"> </p>
-<p>​    FM与深度模型的组合有两种，一种是二者并行，另一种是二者串行。DeepFM就是并行的一种结构。并行就是FM将输入部分计算完之后单独拿出来，得到一组特征表示，然后再利用深度模型（多层全连接）对输入部分进行告阶的特征组合。最后把二者的特征进行concact，得到一组特征，最后对这组特征进行分类或者回归。其实这只是特征的一种组合方式，目的就是为了得到特征的高阶表示。</p>
-<h3 id="2-4-3-总结"><a href="#2-4-3-总结" class="headerlink" title="2.4.3 总结"></a>2.4.3 总结</h3><p>特征工程在这条路上已经穷尽了可能性的尝试，模型的提升空间会非常小。但是很重要</p>
-<h2 id="2-5-注意力机制的应用"><a href="#2-5-注意力机制的应用" class="headerlink" title="2.5 注意力机制的应用"></a>2.5 注意力机制的应用</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/wuzhongqiang/article/details/109532346">https://blog.csdn.net/wuzhongqiang/article/details/109532346</a></p>
+            <p>在反复回卷的attention中，本人感觉心里憔悴</p>
+<p>一定得总结一个俺能看懂的文章 最近发现了这样的一篇</p>
+<p>感谢：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/77307258">https://zhuanlan.zhihu.com/p/77307258</a></p>
+<p><a target="_blank" rel="noopener" href="https://jalammar.github.io/illustrated-transformer/">https://jalammar.github.io/illustrated-transformer/</a></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/91839581">https://zhuanlan.zhihu.com/p/91839581</a></p>
+<p>阿里妹导读：曾被 paper 中各种各样的  Attention  搞得晕晕乎乎，尽管零零散散地整理过一些关于Attention 的笔记，重点和线索依然比较凌乱。今天，阿里巴巴工程师楠易，将  Attention  的知识系统性地梳理、回顾、总结，不求深刻，但求浅显，希望能帮助对 Attention 有疑惑的同学。 </p>
+<h2 id="0-什么是attention"><a href="#0-什么是attention" class="headerlink" title="0. 什么是attention"></a>0. 什么是attention</h2><p> Attention（注意力）机制如果浅层的理解，跟他的名字非常匹配。他的核心逻辑就是「<strong>从关注全部到关注重点</strong>」 </p>
+<h2 id="1-attention-分类"><a href="#1-attention-分类" class="headerlink" title="1. attention 分类"></a>1. attention 分类</h2><p>涉及所有的 attention 都继承于这个抽象类。这里我写了两个抽象类，一个叫 alignment-based，一个叫 memroy-based。 </p>
+<h3 id="1-1-alignment-based-模型"><a href="#1-1-alignment-based-模型" class="headerlink" title="1.1 alignment-based 模型"></a>1.1 alignment-based 模型</h3><p> <img src="https://pic4.zhimg.com/80/v2-6017c6880074b716b82f890a9d82a0cb_720w.jpg" alt="img"> </p>
+<p>c 为 context y1 y2 —–yn 为输入 input 输出为z</p>
+<h3 id="1-2-拆分-attention-model"><a href="#1-2-拆分-attention-model" class="headerlink" title="1.2 拆分 attention model"></a>1.2 拆分 attention model</h3><p>分为三部曲</p>
 <ul>
-<li>Attention机制的本质</li>
+<li>score function ：度量环境变量与当前输入向量的相似性；在当前环境下，应该关注哪些信息</li>
 </ul>
-<p>attention机制的本质是从人类视觉注意力机制中获得灵感(可以说很‘以人为本’了)。大致是我们视觉在感知东西的时候，一般不会是一个场景从到头看到尾每次全部都看，而往往是根据需求观察注意特定的一部分。而且当我们发现一个场景经常在某部分出现自己想观察的东西时，我们就会进行学习在将来再出现类似场景时把注意力放到该部分上。这可以说就是注意力机制的本质内容了。至于它本身包含的‘自上而下’和‘自下而上’方式就不在过多的讨论。</p>
+<p>​                                      <img src="https://pic4.zhimg.com/80/v2-1c4d2c6c1a23f7cb5659b0704bfce8b3_720w.jpg" alt="img"> </p>
 <ul>
-<li>Attention机制的理解</li>
+<li>alignment function：计算attention weight （权重） 通常使用softmax进行归一化</li>
 </ul>
-<p>Attention机制其实就是一系列注意力分配系数，也就是一系列权重参数罢了。</p>
-<h3 id="2-5-1-AFM-引入注意力机制的FM"><a href="#2-5-1-AFM-引入注意力机制的FM" class="headerlink" title="2.5.1 AFM - 引入注意力机制的FM"></a>2.5.1 AFM - 引入注意力机制的FM</h3><p> 注意力网络的作用是为每一个交叉特征提供权重<img src="https://img-blog.csdnimg.cn/20190523195800742.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzE4MjkzMjEz,size_16,color_FFFFFF,t_70" alt="img"> </p>
-<h3 id="2-5-2-DIN"><a href="#2-5-2-DIN" class="headerlink" title="2.5.2 DIN"></a>2.5.2 DIN</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Blank_spaces/article/details/106485534">https://blog.csdn.net/Blank_spaces/article/details/106485534</a> </p>
-<p>basemodel</p>
-<pre><code> 基本模型是获得一个固定长度的用户的表示向量，但不管候选广告是什么，此表示向量对于给定用户均保持不变。这样，维度受限的用户表示向量将成为表达用户多样化兴趣的瓶颈 
-</code></pre>
-<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X3BuZy9xUDhKUm5XNlQzckNpYTFJNEo3N25ydlRKTGxrTmJ5RXlZYm9JWmthY2ljUDYwc2c5OHBBVmp3OFN6VDRhRXZnb2t1aWJlSVpHUUFsSFY5RUlKR0dvSEJIQS82NDA?x-oss-process=image/format,png" alt="img"> </p>
-<p><strong>DIN通过给定一个候选广告，然后去注意与该广告相关的局部兴趣的表示来模拟此过程</strong>。DIN不会通过使用同一向量来表达所有用户的不同兴趣，而是通过考虑<strong>历史行为的相关性</strong>来自适应地计算用户兴趣的表示向量（对于给定的广告）。 <img src="https://img-blog.csdnimg.cn/0a782443f8c240b8b52aa7b2be9df66a.png#pic_center" alt="img"> </p>
-<p>注意力在其上面的形式是激活单元来生成注意力得分</p>
+<p>​                                                      <img src="https://pic4.zhimg.com/80/v2-f53c61bfacd07a77936b3c56426fb5ab_720w.jpg" alt="img"> </p>
+<ul>
+<li>generate  context vector function : 根据 attention weight 得到输出向量</li>
+</ul>
+<p>​                                                              <img src="https://pic4.zhimg.com/80/v2-6d296780ac57b31444b2a18b4977425f_720w.jpg" alt="img"> </p>
+<p>在整体视角下，就像下图这个样子：</p>
+<p>​               <img src="https://pic2.zhimg.com/80/v2-9133c00e4e268755777573d58b38e511_720w.jpg" alt="img"> </p>
+<h3 id="1-3-memory-based-模型-长得很像transform"><a href="#1-3-memory-based-模型-长得很像transform" class="headerlink" title="1.3 memory-based 模型 长得很像transform"></a>1.3 memory-based 模型 长得很像transform</h3><p>​              <img src="https://pic2.zhimg.com/80/v2-3472f353bb0e6f86d0b6fa32b8566ab1_720w.jpg" alt="img"> </p>
+<p>另一种视角是 <strong>QKV</strong>模型，假设输入为 q，Memory 中以（k，v）形式存储需要的上下文。感觉在 Q&amp;A 任务中，这种设置比较合理，transformer 是采用的这种建模方式。k 是 question，v 是 answer，q 是新来的 question，看看历史 memory 中 q 和哪个 k 更相似，然后依葫芦画瓢，根据相似 k 对应的 v，合成当前 question 的 answer </p>
+<h3 id="1-4-建模方式"><a href="#1-4-建模方式" class="headerlink" title="1.4 建模方式"></a>1.4 建模方式</h3><p>三步</p>
+<ul>
+<li>address memory （score function）： 在memory找相似的东西</li>
+</ul>
+<p>​                                                  <img src="https://pic4.zhimg.com/80/v2-bf9de3d064a66206c502a3d1c1ef8fc7_720w.jpg" alt="img"> </p>
+<ul>
+<li>normalize（alignment function） ：</li>
+</ul>
+<p>​                                           <img src="https://pic3.zhimg.com/80/v2-e628407913facefed900899105af5432_720w.jpg" alt="img"> </p>
+<ul>
+<li>read content（ gen context vector function ）：</li>
+</ul>
+<p>​                                           <img src="https://pic4.zhimg.com/80/v2-d8e95020b11509d5dfb44b9753bc25db_720w.jpg" alt="img"> </p>
+<h2 id="2-attention-细节"><a href="#2-attention-细节" class="headerlink" title="2. attention 细节"></a>2. attention 细节</h2><p>在attention机制中，其建模方式主要就是以下的三类 按人话说 </p>
+<ul>
+<li>找相关  度量环境向量与当前输入向量的相似性；找到当前环境下，应该 focus 哪些输入信息（ score-function ）</li>
+<li>算权重  计算 attention weight，通常都使用 softmax 进行归一化 （ alignment function ）</li>
+<li>出结果 根据 attention weight 得到输出向量 （ generate context vector function ）</li>
+</ul>
+<h3 id="2-1-score-function-的区别"><a href="#2-1-score-function-的区别" class="headerlink" title="2.1 score function 的区别"></a>2.1 score function 的区别</h3><p>score function 在本质上是度量两个向量的相似度。找出相关的部分</p>
+<ul>
+<li>两个向量在一个空间</li>
+</ul>
+<p> 使用 dot 点乘方式（或者 scaled dot product，scaled 背后的原因是为了减小数值，softmax 的梯度大一些，学得更快一些），简单好使。 </p>
+<ul>
+<li>不在同一个空间</li>
+</ul>
+<p> 需要一些变换（在一个空间也可以变换），additive 对输入分别进行线性变换后然后相加，multiplicative 是直接通过矩阵乘法来变换 </p>
+<h3 id="2-2-alignment-function-区别"><a href="#2-2-alignment-function-区别" class="headerlink" title="2.2 alignment function 区别"></a>2.2 alignment function 区别</h3><p>在 soft attention 中，又划分了 global&#x2F;local attention 。</p>
+<p>global attention 是所有输入向量作为加权集合，使用 softmax 作为 alignment function，local 是部分输入向量才能进入这个池子。</p>
+<ul>
+<li>local的目的</li>
+</ul>
+<p> 背后逻辑是要减小噪音，进一步缩小重点关注区域。 </p>
+<ul>
+<li>如何缩小关注区域</li>
+</ul>
+<p>local-m 基于的假设生硬简单，就直接 pass了。local-p 有一个预估操作，预计当前时刻应该关注输入序列（总长度为S）的什么位置 pt（引入了两个参数向量，vp，wp），然后在 alignment function 中做了一点儿调整，在 softmax 算出来的attention wieght 的基础上，加了一个以 pt 为中心的高斯分布来调整 alignment 的结果。 </p>
+<p>在应用中 发现  从global&#x2F;local 视角的分类来看，更常用的依然还是 global attention，因为复杂化的local attention 带来的效果增益感觉并不大 </p>
+<h3 id="2-3-generate-context-vector-function"><a href="#2-3-generate-context-vector-function" class="headerlink" title="2.3  generate context vector function"></a>2.3  generate context vector function</h3><p>soft&#x2F;hard attention</p>
+<p>最直观的一种理解是，hard attention 是一个随机采样，采样集合是输入向量的集合，采样的概率分布是alignment function 产出的 attention weight。因此，hard attention 的输出是某一个特定的输入向量。soft attention 是一个带权求和的过程，求和集合是输入向量的集合，对应权重是 alignment function 产出的 attention weight。hard &#x2F; soft attention 中，soft attention 是更常用的（后文提及的所有 attention 都在这个范畴），因为它可导，可直接嵌入到模型中进行训练，hard attention 文中 suggests a Monte Carlo based sampling approximation of gradient。 </p>
 
         </div>
         
@@ -256,7 +297,7 @@
     <script type="text/javascript">
         $(()=>{
             new QRCode("wechat-qr", {
-                text: "http://example.com/2022/03/19/%E6%B7%B1%E5%BA%A6%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F(2)/",
+                text: "http://example.com/2022/04/10/attention%20%E6%9C%BA%E5%88%B6/",
                 width: 150,
                 height: 150,
                 correctLevel : QRCode.CorrectLevel.H
@@ -268,12 +309,12 @@
             const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
             const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
             const twitterBase   = "https://twitter.com/intent/tweet?";
-            const hostUrl       = "http://example.com/2022/03/19/%E6%B7%B1%E5%BA%A6%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F(2)/";
-            const title         = "「深度推荐系统 下」";
-            const excerpt       = `1. 深度学习推荐模型（2）2.4 FM与深度学习模型2.4.1 FNN - 用FM的隐向量完成embedding层初始化  
-FNN相较于deep crossing模型的区别
-
-对于embedding进行了改进，在模型初始化时引入了...`;
+            const hostUrl       = "http://example.com/2022/04/10/attention%20%E6%9C%BA%E5%88%B6/";
+            const title         = "「attention机制 简单理解」";
+            const excerpt       = `在反复回卷的attention中，本人感觉心里憔悴
+一定得总结一个俺能看懂的文章 最近发现了这样的一篇
+感谢：https://zhuanlan.zhihu.com/p/77307258
+https://jalammar.github....`;
             let _URL;
             switch (dest) {
                 case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
@@ -295,7 +336,7 @@ FNN相较于deep crossing模型的区别
                     
                 </div>
                 <div class="pull-date">
-                <span>最后编辑：2022-03-19</span>
+                <span>最后编辑：2022-04-10</span>
                 </div>
             </div>
         </footer>
@@ -304,12 +345,12 @@ FNN相较于deep crossing模型的区别
         <nav class="navigation post-navigation clearfix" role="navigation">
             
             <div class="nav-previous clearfix">
-                <a title=" 训练集和数据集数据探索" href="/2022/03/18/数据分析/">&lt; 上一篇</a>
+                <a title=" Amazon数据集的处理 生动" href="/2022/04/08/Amazon数据集的处理/">&lt; 上一篇</a>
             </div>
             
             
             <div class="nav-next clearfix">
-                <a title=" kaggle入门" href="/2022/03/20/kaggle入门/">下一篇 &gt;</a>
+                <a title=" attention 不同对比" href="/2022/04/10/多种多样的attention/">下一篇 &gt;</a>
             </div>
             
         </nav>

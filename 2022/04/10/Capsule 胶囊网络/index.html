@@ -4,7 +4,7 @@
   <!-- 元数据 -->
   <meta charset="utf-8">
   <link rel="icon" href="">
-  <title>深度推荐系统 下 | limhao博客</title>
+  <title>Capsule 网络 | limhao博客</title>
   <meta name="author" content="limhao" />
   <meta http-equiv="Cache-Control" content="no-transform" />
   <meta http-equiv="Cache-Control" content="no-siteapp" />
@@ -15,16 +15,16 @@
   
     <meta name="keywords" content="" />
   
-  <meta name="description" content="1. 深度学习推荐模型（2）2.4 FM与深度学习模型2.4.1 FNN - 用FM的隐向量完成embedding层初始化   FNN相较于deep crossing模型的区别  对于embedding进行了改进，在模型初始化时引入了有价值的先验信息    在训练时特征被划分了不同的特征域，每个特征域有对应的embedding层  2.4.2 deepFM用FM代替wide部分 ​">
+  <meta name="description" content="0. 简单总结为了改善CNN对旋转不具备不变性，学习不到3D空间信息和CNN只关注要检测的目标是否存在，而不关注这些组件之间的位置和相对的空间关系。   CNN 自己的处理  虽然max pooling在很多任务上提高了原始CNN的准确率，但是我们也可以看到max pooling丢失了很多有价值的信息，并没有很好地理解内容   Capsule尝试去解决这些问题   Capsule可以学习到物体之间">
 <meta property="og:type" content="article">
-<meta property="og:title" content="深度推荐系统 下">
-<meta property="og:url" content="http://example.com/2022/03/19/%E6%B7%B1%E5%BA%A6%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F(2)/index.html">
+<meta property="og:title" content="Capsule 网络">
+<meta property="og:url" content="http://example.com/2022/04/10/Capsule%20%E8%83%B6%E5%9B%8A%E7%BD%91%E7%BB%9C/index.html">
 <meta property="og:site_name" content="limhao博客">
-<meta property="og:description" content="1. 深度学习推荐模型（2）2.4 FM与深度学习模型2.4.1 FNN - 用FM的隐向量完成embedding层初始化   FNN相较于deep crossing模型的区别  对于embedding进行了改进，在模型初始化时引入了有价值的先验信息    在训练时特征被划分了不同的特征域，每个特征域有对应的embedding层  2.4.2 deepFM用FM代替wide部分 ​">
+<meta property="og:description" content="0. 简单总结为了改善CNN对旋转不具备不变性，学习不到3D空间信息和CNN只关注要检测的目标是否存在，而不关注这些组件之间的位置和相对的空间关系。   CNN 自己的处理  虽然max pooling在很多任务上提高了原始CNN的准确率，但是我们也可以看到max pooling丢失了很多有价值的信息，并没有很好地理解内容   Capsule尝试去解决这些问题   Capsule可以学习到物体之间">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/null">
-<meta property="article:published_time" content="2022-03-19T07:31:56.636Z">
-<meta property="article:modified_time" content="2022-03-19T11:04:44.220Z">
+<meta property="article:published_time" content="2022-04-10T14:19:13.807Z">
+<meta property="article:modified_time" content="2022-04-10T14:33:49.201Z">
 <meta property="article:author" content="limhao">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/null">
@@ -152,17 +152,17 @@
     <div class="kratos-hentry kratos-post-inner clearfix">
         <header class="kratos-entry-header">
             
-                <h1 class="kratos-entry-title text-center">深度推荐系统 下</h1>
+                <h1 class="kratos-entry-title text-center">Capsule 网络</h1>
             
             
             <ul class="kratos-post-meta text-center">
-                <li><i class="fa fa-calendar"></i> 2022-03-19</li>
+                <li><i class="fa fa-calendar"></i> 2022-04-10</li>
                 <li><i class="fa fa-user"></i> 作者 limhao</li>
                 <li>
                     <i class="fa fa-edit"></i> 
                     
                     
-                        1156
+                        356
                     
                     字
                 </li>
@@ -172,38 +172,21 @@
         <div class="kratos-post-content">
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>本文最后编辑于 <time datetime="1647687884220"></time> 前，其中的内容可能需要更新。</p></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1649601229201"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
             <hr />
-            <h1 id="1-深度学习推荐模型（2）"><a href="#1-深度学习推荐模型（2）" class="headerlink" title="1. 深度学习推荐模型（2）"></a>1. 深度学习推荐模型（2）</h1><h2 id="2-4-FM与深度学习模型"><a href="#2-4-FM与深度学习模型" class="headerlink" title="2.4 FM与深度学习模型"></a>2.4 FM与深度学习模型</h2><h3 id="2-4-1-FNN-用FM的隐向量完成embedding层初始化"><a href="#2-4-1-FNN-用FM的隐向量完成embedding层初始化" class="headerlink" title="2.4.1 FNN - 用FM的隐向量完成embedding层初始化"></a>2.4.1 FNN - 用FM的隐向量完成embedding层初始化</h3><p> <img src="https://img-blog.csdnimg.cn/20200907211121461.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Jvc2VmdW45Ng==,size_16,color_FFFFFF,t_70#pic_center" alt="img"> </p>
-<p>FNN相较于deep crossing模型的区别</p>
+            <h2 id="0-简单总结"><a href="#0-简单总结" class="headerlink" title="0. 简单总结"></a>0. 简单总结</h2><p>为了改善CNN对旋转不具备不变性，学习不到3D空间信息和CNN只关注要检测的目标是否存在，而不关注这些组件之间的位置和相对的空间关系。 </p>
+<ul>
+<li>CNN 自己的处理</li>
+</ul>
+<p>虽然max pooling在很多任务上提高了原始CNN的准确率，但是我们也可以看到max pooling丢失了很多有价值的信息，并没有很好地理解内容 </p>
+<p> <strong>Capsule尝试去解决这些问题</strong> </p>
 <ol>
-<li>对于embedding进行了改进，在模型初始化时引入了有价值的先验信息  <img src="https://img-blog.csdnimg.cn/20200907212020610.png#pic_center" alt="img"> </li>
-<li>在训练时特征被划分了不同的特征域，每个特征域有对应的embedding层</li>
+<li>Capsule可以学习到物体之间的位置关系，例如它可以学习到眉毛下面是眼睛，鼻子下面是嘴唇，可以减轻前面的目标组件乱序问题 </li>
+<li>Capsule可以对3D空间的关系进行明确建模，capsule可以学习到上面和下面的图片是同一个类别，只是视图的角度不一样。Capsule可以更好地在神经网络的内部知识表达中建立层次关系。</li>
 </ol>
-<h3 id="2-4-2-deepFM"><a href="#2-4-2-deepFM" class="headerlink" title="2.4.2 deepFM"></a>2.4.2 deepFM</h3><p>用FM代替wide部分</p>
-<p>​                         <img src="https://img-blog.csdnimg.cn/20190430101250605.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzE4MjkzMjEz,size_16,color_FFFFFF,t_70" alt="img"> </p>
-<p>​    FM与深度模型的组合有两种，一种是二者并行，另一种是二者串行。DeepFM就是并行的一种结构。并行就是FM将输入部分计算完之后单独拿出来，得到一组特征表示，然后再利用深度模型（多层全连接）对输入部分进行告阶的特征组合。最后把二者的特征进行concact，得到一组特征，最后对这组特征进行分类或者回归。其实这只是特征的一种组合方式，目的就是为了得到特征的高阶表示。</p>
-<h3 id="2-4-3-总结"><a href="#2-4-3-总结" class="headerlink" title="2.4.3 总结"></a>2.4.3 总结</h3><p>特征工程在这条路上已经穷尽了可能性的尝试，模型的提升空间会非常小。但是很重要</p>
-<h2 id="2-5-注意力机制的应用"><a href="#2-5-注意力机制的应用" class="headerlink" title="2.5 注意力机制的应用"></a>2.5 注意力机制的应用</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/wuzhongqiang/article/details/109532346">https://blog.csdn.net/wuzhongqiang/article/details/109532346</a></p>
-<ul>
-<li>Attention机制的本质</li>
-</ul>
-<p>attention机制的本质是从人类视觉注意力机制中获得灵感(可以说很‘以人为本’了)。大致是我们视觉在感知东西的时候，一般不会是一个场景从到头看到尾每次全部都看，而往往是根据需求观察注意特定的一部分。而且当我们发现一个场景经常在某部分出现自己想观察的东西时，我们就会进行学习在将来再出现类似场景时把注意力放到该部分上。这可以说就是注意力机制的本质内容了。至于它本身包含的‘自上而下’和‘自下而上’方式就不在过多的讨论。</p>
-<ul>
-<li>Attention机制的理解</li>
-</ul>
-<p>Attention机制其实就是一系列注意力分配系数，也就是一系列权重参数罢了。</p>
-<h3 id="2-5-1-AFM-引入注意力机制的FM"><a href="#2-5-1-AFM-引入注意力机制的FM" class="headerlink" title="2.5.1 AFM - 引入注意力机制的FM"></a>2.5.1 AFM - 引入注意力机制的FM</h3><p> 注意力网络的作用是为每一个交叉特征提供权重<img src="https://img-blog.csdnimg.cn/20190523195800742.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzE4MjkzMjEz,size_16,color_FFFFFF,t_70" alt="img"> </p>
-<h3 id="2-5-2-DIN"><a href="#2-5-2-DIN" class="headerlink" title="2.5.2 DIN"></a>2.5.2 DIN</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Blank_spaces/article/details/106485534">https://blog.csdn.net/Blank_spaces/article/details/106485534</a> </p>
-<p>basemodel</p>
-<pre><code> 基本模型是获得一个固定长度的用户的表示向量，但不管候选广告是什么，此表示向量对于给定用户均保持不变。这样，维度受限的用户表示向量将成为表达用户多样化兴趣的瓶颈 
-</code></pre>
-<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X3BuZy9xUDhKUm5XNlQzckNpYTFJNEo3N25ydlRKTGxrTmJ5RXlZYm9JWmthY2ljUDYwc2c5OHBBVmp3OFN6VDRhRXZnb2t1aWJlSVpHUUFsSFY5RUlKR0dvSEJIQS82NDA?x-oss-process=image/format,png" alt="img"> </p>
-<p><strong>DIN通过给定一个候选广告，然后去注意与该广告相关的局部兴趣的表示来模拟此过程</strong>。DIN不会通过使用同一向量来表达所有用户的不同兴趣，而是通过考虑<strong>历史行为的相关性</strong>来自适应地计算用户兴趣的表示向量（对于给定的广告）。 <img src="https://img-blog.csdnimg.cn/0a782443f8c240b8b52aa7b2be9df66a.png#pic_center" alt="img"> </p>
-<p>注意力在其上面的形式是激活单元来生成注意力得分</p>
-
+<h2 id="1-capsule的结构"><a href="#1-capsule的结构" class="headerlink" title="1. capsule的结构"></a>1. capsule的结构</h2>
         </div>
         
             <div class="kratos-copyright text-center clearfix">
@@ -256,7 +239,7 @@
     <script type="text/javascript">
         $(()=>{
             new QRCode("wechat-qr", {
-                text: "http://example.com/2022/03/19/%E6%B7%B1%E5%BA%A6%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F(2)/",
+                text: "http://example.com/2022/04/10/Capsule%20%E8%83%B6%E5%9B%8A%E7%BD%91%E7%BB%9C/",
                 width: 150,
                 height: 150,
                 correctLevel : QRCode.CorrectLevel.H
@@ -268,12 +251,13 @@
             const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
             const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
             const twitterBase   = "https://twitter.com/intent/tweet?";
-            const hostUrl       = "http://example.com/2022/03/19/%E6%B7%B1%E5%BA%A6%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F(2)/";
-            const title         = "「深度推荐系统 下」";
-            const excerpt       = `1. 深度学习推荐模型（2）2.4 FM与深度学习模型2.4.1 FNN - 用FM的隐向量完成embedding层初始化  
-FNN相较于deep crossing模型的区别
+            const hostUrl       = "http://example.com/2022/04/10/Capsule%20%E8%83%B6%E5%9B%8A%E7%BD%91%E7%BB%9C/";
+            const title         = "「Capsule 网络」";
+            const excerpt       = `0. 简单总结为了改善CNN对旋转不具备不变性，学习不到3D空间信息和CNN只关注要检测的目标是否存在，而不关注这些组件之间的位置和相对的空间关系。 
 
-对于embedding进行了改进，在模型初始化时引入了...`;
+CNN 自己的处理
+
+虽然max pooling在很多任务上提高了原始CNN的准...`;
             let _URL;
             switch (dest) {
                 case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
@@ -295,7 +279,7 @@ FNN相较于deep crossing模型的区别
                     
                 </div>
                 <div class="pull-date">
-                <span>最后编辑：2022-03-19</span>
+                <span>最后编辑：2022-04-10</span>
                 </div>
             </div>
         </footer>
@@ -304,13 +288,9 @@ FNN相较于deep crossing模型的区别
         <nav class="navigation post-navigation clearfix" role="navigation">
             
             <div class="nav-previous clearfix">
-                <a title=" 训练集和数据集数据探索" href="/2022/03/18/数据分析/">&lt; 上一篇</a>
+                <a title=" attention 不同对比" href="/2022/04/10/多种多样的attention/">&lt; 上一篇</a>
             </div>
             
-            
-            <div class="nav-next clearfix">
-                <a title=" kaggle入门" href="/2022/03/20/kaggle入门/">下一篇 &gt;</a>
-            </div>
             
         </nav>
     
