@@ -24,7 +24,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/null">
 <meta property="article:published_time" content="2022-03-19T07:31:56.636Z">
-<meta property="article:modified_time" content="2022-04-14T13:56:37.476Z">
+<meta property="article:modified_time" content="2022-05-04T01:11:48.803Z">
 <meta property="article:author" content="limhao">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/null">
@@ -172,32 +172,32 @@
         <div class="kratos-post-content">
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>本文最后编辑于 <time datetime="1649944597476"></time> 前，其中的内容可能需要更新。</p></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1651626708803"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
             <hr />
-            <h1 id="1-深度学习推荐模型（2）"><a href="#1-深度学习推荐模型（2）" class="headerlink" title="1. 深度学习推荐模型（2）"></a>1. 深度学习推荐模型（2）</h1><h2 id="2-4-FM与深度学习模型"><a href="#2-4-FM与深度学习模型" class="headerlink" title="2.4 FM与深度学习模型"></a>2.4 FM与深度学习模型</h2><h3 id="2-4-1-FNN-用FM的隐向量完成embedding层初始化"><a href="#2-4-1-FNN-用FM的隐向量完成embedding层初始化" class="headerlink" title="2.4.1 FNN - 用FM的隐向量完成embedding层初始化"></a>2.4.1 FNN - 用FM的隐向量完成embedding层初始化</h3><p> <img src="https://img-blog.csdnimg.cn/20200907211121461.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Jvc2VmdW45Ng==,size_16,color_FFFFFF,t_70#pic_center" alt="img"> </p>
+            <h1 id="1-深度学习推荐模型（2）"><a href="#1-深度学习推荐模型（2）" class="headerlink" title="1. 深度学习推荐模型（2）"></a>1. 深度学习推荐模型（2）</h1><h2 id="2-4-FM与深度学习模型"><a href="#2-4-FM与深度学习模型" class="headerlink" title="2.4 FM与深度学习模型"></a>2.4 FM与深度学习模型</h2><h3 id="2-4-1-FNN-用FM的隐向量完成embedding层初始化"><a href="#2-4-1-FNN-用FM的隐向量完成embedding层初始化" class="headerlink" title="2.4.1 FNN - 用FM的隐向量完成embedding层初始化"></a>2.4.1 FNN - 用FM的隐向量完成embedding层初始化</h3><p> <img src="https://img-blog.csdnimg.cn/20200907211121461.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Jvc2VmdW45Ng==,size_16,color_FFFFFF,t_70#pic_center"> </p>
 <p>FNN相较于deep crossing模型的区别</p>
 <ol>
-<li>对于embedding进行了改进，在模型初始化时引入了有价值的先验信息  <img src="https://img-blog.csdnimg.cn/20200907212020610.png#pic_center" alt="img"> </li>
+<li>对于embedding进行了改进，在模型初始化时引入了有价值的先验信息  <img src="https://img-blog.csdnimg.cn/20200907212020610.png#pic_center"> </li>
 <li>在训练时特征被划分了不同的特征域，每个特征域有对应的embedding层</li>
 </ol>
 <h3 id="2-4-2-deepFM（啊哈哈-大怨种来啦）"><a href="#2-4-2-deepFM（啊哈哈-大怨种来啦）" class="headerlink" title="2.4.2 deepFM（啊哈哈 大怨种来啦）"></a>2.4.2 deepFM（啊哈哈 大怨种来啦）</h3><p>究竟是怎样的大佬 看得懂我下面这句话 反正我是看不懂的</p>
 <p><strong>强调</strong> 红色为 权重1连接 就是是啥就是啥</p>
 <p><strong>用FM代替wide部分</strong></p>
-<h4 id="FM部分"><a href="#FM部分" class="headerlink" title="FM部分"></a>FM部分</h4><p> <img src="https://pic1.zhimg.com/80/v2-377bb06437566dfa268c303b19f36a54_1440w.jpg" alt="img"> </p>
+<h4 id="FM部分"><a href="#FM部分" class="headerlink" title="FM部分"></a>FM部分</h4><p> <img src="https://pic1.zhimg.com/80/v2-377bb06437566dfa268c303b19f36a54_1440w.jpg"> </p>
 <p>这个FM layer 在图上面 直观的看啊 有 一个+ 和 好多个 * 这个+ 是 FM层 的线性部分</p>
 <p>这个*呢 就是 FM层的 特征组合部分（这里应该是 vi 点积 vj）</p>
 <p>其输出公式为</p>
-<p> <img src="https://pic2.zhimg.com/80/v2-309f6d48a026e27b318f4650568c5069_1440w.png" alt="img"> </p>
-<h4 id="deep-部分"><a href="#deep-部分" class="headerlink" title="deep 部分"></a>deep 部分</h4><p> <img src="https://pic3.zhimg.com/80/v2-96a840f72719c295f27b3673da40b372_1440w.jpg" alt="img"> </p>
+<p> <img src="https://pic2.zhimg.com/80/v2-309f6d48a026e27b318f4650568c5069_1440w.png"> </p>
+<h4 id="deep-部分"><a href="#deep-部分" class="headerlink" title="deep 部分"></a>deep 部分</h4><p> <img src="https://pic3.zhimg.com/80/v2-96a840f72719c295f27b3673da40b372_1440w.jpg"> </p>
 <p>这个deep部分啊 </p>
 <p>就是多层感知机嘛 没啥难的</p>
-<p>​                         <img src="https://img-blog.csdnimg.cn/20190430101250605.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzE4MjkzMjEz,size_16,color_FFFFFF,t_70" alt="img"> </p>
+<p>​                         <img src="https://img-blog.csdnimg.cn/20190430101250605.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzE4MjkzMjEz,size_16,color_FFFFFF,t_70"> </p>
 <p>​    FM与深度模型的组合有两种，一种是二者并行，另一种是二者串行。DeepFM就是并行的一种结构。并行就是FM将输入部分计算完之后单独拿出来，得到一组特征表示，然后再利用深度模型（多层全连接）对输入部分进行高阶的特征组合。最后把二者的特征进行concact，得到一组特征，最后对这组特征进行分类或者回归。其实这只是特征的一种组合方式，目的就是为了得到特征的高阶表示。</p>
 <p>输出公式</p>
-<p> <img src="https://pic2.zhimg.com/80/v2-3a431f5787105e2463cd8d16295c8275_1440w.png" alt="img"> </p>
-<h4 id="细节（权重共用）-下面解释好好的看"><a href="#细节（权重共用）-下面解释好好的看" class="headerlink" title="细节（权重共用） 下面解释好好的看"></a>细节（权重共用） 下面解释好好的看</h4><p> <img src="https://pic3.zhimg.com/80/v2-6696b1cdd7b0da3aa2b04763cd6965e2_1440w.jpg" alt="img"> </p>
+<p> <img src="https://pic2.zhimg.com/80/v2-3a431f5787105e2463cd8d16295c8275_1440w.png"> </p>
+<h4 id="细节（权重共用）-下面解释好好的看"><a href="#细节（权重共用）-下面解释好好的看" class="headerlink" title="细节（权重共用） 下面解释好好的看"></a>细节（权重共用） 下面解释好好的看</h4><p> <img src="https://pic3.zhimg.com/80/v2-6696b1cdd7b0da3aa2b04763cd6965e2_1440w.jpg"> </p>
 <p>这里的第二点如何理解呢，假设我们的k&#x3D;5，首先，对于输入的一条记录，同一个field 只有一个位置是1，那么在由输入得到dense vector的过程中，输入层只有一个神经元起作用，得到的dense vector其实就是输入层到embedding层该神经元相连的五条线的权重，即vi1，vi2，vi3，vi4，vi5。这五个值组合起来就是我们在FM中所提到的Vi。在FM部分和DNN部分，这一块是共享权重的，对同一个特征来说，得到的Vi是相同的。</p>
 <h3 id="2-4-3-总结"><a href="#2-4-3-总结" class="headerlink" title="2.4.3 总结"></a>2.4.3 总结</h3><p>特征工程在这条路上已经穷尽了可能性的尝试，模型的提升空间会非常小。但是很重要</p>
 <h2 id="2-5-注意力机制的应用"><a href="#2-5-注意力机制的应用" class="headerlink" title="2.5 注意力机制的应用"></a>2.5 注意力机制的应用</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/wuzhongqiang/article/details/109532346">https://blog.csdn.net/wuzhongqiang/article/details/109532346</a></p>
@@ -209,13 +209,13 @@
 <li>Attention机制的理解</li>
 </ul>
 <p>Attention机制其实就是一系列注意力分配系数，也就是一系列权重参数罢了。</p>
-<h3 id="2-5-1-AFM-引入注意力机制的FM"><a href="#2-5-1-AFM-引入注意力机制的FM" class="headerlink" title="2.5.1 AFM - 引入注意力机制的FM"></a>2.5.1 AFM - 引入注意力机制的FM</h3><p> 注意力网络的作用是为每一个交叉特征提供权重<img src="https://img-blog.csdnimg.cn/20190523195800742.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzE4MjkzMjEz,size_16,color_FFFFFF,t_70" alt="img"> </p>
+<h3 id="2-5-1-AFM-引入注意力机制的FM"><a href="#2-5-1-AFM-引入注意力机制的FM" class="headerlink" title="2.5.1 AFM - 引入注意力机制的FM"></a>2.5.1 AFM - 引入注意力机制的FM</h3><p> 注意力网络的作用是为每一个交叉特征提供权重<img src="https://img-blog.csdnimg.cn/20190523195800742.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzE4MjkzMjEz,size_16,color_FFFFFF,t_70"> </p>
 <h3 id="2-5-2-DIN"><a href="#2-5-2-DIN" class="headerlink" title="2.5.2 DIN"></a>2.5.2 DIN</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Blank_spaces/article/details/106485534">https://blog.csdn.net/Blank_spaces/article/details/106485534</a> </p>
 <p>basemodel</p>
 <pre><code> 基本模型是获得一个固定长度的用户的表示向量，但不管候选广告是什么，此表示向量对于给定用户均保持不变。这样，维度受限的用户表示向量将成为表达用户多样化兴趣的瓶颈 
 </code></pre>
-<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X3BuZy9xUDhKUm5XNlQzckNpYTFJNEo3N25ydlRKTGxrTmJ5RXlZYm9JWmthY2ljUDYwc2c5OHBBVmp3OFN6VDRhRXZnb2t1aWJlSVpHUUFsSFY5RUlKR0dvSEJIQS82NDA?x-oss-process=image/format,png" alt="img"> </p>
-<p><strong>DIN通过给定一个候选广告，然后去注意与该广告相关的局部兴趣的表示来模拟此过程</strong>。DIN不会通过使用同一向量来表达所有用户的不同兴趣，而是通过考虑<strong>历史行为的相关性</strong>来自适应地计算用户兴趣的表示向量（对于给定的广告）。 <img src="https://img-blog.csdnimg.cn/0a782443f8c240b8b52aa7b2be9df66a.png#pic_center" alt="img"> </p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X3BuZy9xUDhKUm5XNlQzckNpYTFJNEo3N25ydlRKTGxrTmJ5RXlZYm9JWmthY2ljUDYwc2c5OHBBVmp3OFN6VDRhRXZnb2t1aWJlSVpHUUFsSFY5RUlKR0dvSEJIQS82NDA?x-oss-process=image/format,png"> </p>
+<p><strong>DIN通过给定一个候选广告，然后去注意与该广告相关的局部兴趣的表示来模拟此过程</strong>。DIN不会通过使用同一向量来表达所有用户的不同兴趣，而是通过考虑<strong>历史行为的相关性</strong>来自适应地计算用户兴趣的表示向量（对于给定的广告）。 <img src="https://img-blog.csdnimg.cn/0a782443f8c240b8b52aa7b2be9df66a.png#pic_center"> </p>
 <p>注意力在其上面的形式是激活单元来生成注意力得分</p>
 
         </div>
@@ -309,7 +309,7 @@ FNN相较于deep crossing模型的区别
                     
                 </div>
                 <div class="pull-date">
-                <span>最后编辑：2022-04-14</span>
+                <span>最后编辑：2022-05-04</span>
                 </div>
             </div>
         </footer>

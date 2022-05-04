@@ -24,7 +24,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/null">
 <meta property="article:published_time" content="2022-04-03T13:18:49.397Z">
-<meta property="article:modified_time" content="2022-04-04T02:26:43.470Z">
+<meta property="article:modified_time" content="2022-05-04T01:09:27.689Z">
 <meta property="article:author" content="limhao">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/null">
@@ -172,13 +172,13 @@
         <div class="kratos-post-content">
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>本文最后编辑于 <time datetime="1649039203470"></time> 前，其中的内容可能需要更新。</p></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1651626567689"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
             <hr />
             <p>感谢：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/32085405">https://zhuanlan.zhihu.com/p/32085405</a></p>
 <h2 id="0-RNN"><a href="#0-RNN" class="headerlink" title="0. RNN"></a>0. RNN</h2><p> 先简单介绍一下一般的RNN。 </p>
-<p> <img src="https://pic4.zhimg.com/80/v2-f716c816d46792b867a6815c278f11cb_720w.jpg" alt="img"> </p>
+<p> <img src="https://pic4.zhimg.com/80/v2-f716c816d46792b867a6815c278f11cb_720w.jpg"> </p>
 <p>这里：</p>
 <p>!(<a target="_blank" rel="noopener" href="https://www.zhihu.com/equation?tex=x">https://www.zhihu.com/equation?tex=x</a>) 为当前状态下数据的输入， <img src="https://www.zhihu.com/equation?tex=h"> 表示接收到的上一个节点的输入。</p>
 <p><img src="https://www.zhihu.com/equation?tex=y"> 为当前节点状态下的输出，而 <img src="https://www.zhihu.com/equation?tex=h%27"> 为传递到下一个节点的输出。</p>
@@ -186,21 +186,21 @@
 <p>而 <strong>y</strong> 则常常使用 <strong>h’</strong> 投入到一个线性层（主要是进行维度映射）然后使用softmax进行分类得到需要的数据。</p>
 <p>对这里的<strong>y</strong>如何通过 <strong>h’</strong> 计算得到往往看具体模型的使用方式。</p>
 <p>通过序列形式的输入，我们能够得到如下形式的RNN。</p>
-<p> <img src="https://pic2.zhimg.com/80/v2-71652d6a1eee9def631c18ea5e3c7605_720w.jpg" alt="img"> </p>
+<p> <img src="https://pic2.zhimg.com/80/v2-71652d6a1eee9def631c18ea5e3c7605_720w.jpg"> </p>
 <h2 id="1-LSTM"><a href="#1-LSTM" class="headerlink" title="1. LSTM"></a>1. LSTM</h2><p> 长短期记忆（Long short-term memory, LSTM）是一种特殊的RNN，主要是为了解决长序列训练过程中的梯度消失和梯度爆炸问题。简单来说，就是相比普通的RNN，LSTM能够在更长的序列中有更好的表现。 </p>
-<p> <img src="https://pic4.zhimg.com/80/v2-e4f9851cad426dfe4ab1c76209546827_720w.jpg" alt="img"> </p>
+<p> <img src="https://pic4.zhimg.com/80/v2-e4f9851cad426dfe4ab1c76209546827_720w.jpg"> </p>
 <p>相比RNN只有一个传递状态 <img src="https://www.zhihu.com/equation?tex=h%5Et+"> ，LSTM有两个传输状态，一个 <img src="https://www.zhihu.com/equation?tex=c%5Et"> （cell state），和一个 <img src="https://www.zhihu.com/equation?tex=h%5Et"> （hidden state）。（Tips：RNN中的 <img src="https://www.zhihu.com/equation?tex=h%5Et"> 对于LSTM中的 <img src="https://www.zhihu.com/equation?tex=c%5Et"> ）</p>
 <p>其中对于传递下去的 <img src="https://www.zhihu.com/equation?tex=c%5Et"> 改变得很慢，通常输出的 <img src="https://www.zhihu.com/equation?tex=c%5Et"> 是上一个状态传过来的 <img src="https://www.zhihu.com/equation?tex=c%5E%7Bt-1%7D"> 加上一些数值。</p>
 <p>而 <img src="https://www.zhihu.com/equation?tex=h%5Et"> 则在不同节点下往往会有很大的区别。</p>
 <h3 id="1-1-LSTM-结构深入"><a href="#1-1-LSTM-结构深入" class="headerlink" title="1.1 LSTM 结构深入"></a>1.1 LSTM 结构深入</h3><p>下面具体对LSTM的内部结构来进行剖析。</p>
 <p>首先使用LSTM的当前输入 <img src="https://www.zhihu.com/equation?tex=x%5Et"> 和上一个状态传递下来的 <img src="https://www.zhihu.com/equation?tex=h%5E%7Bt-1%7D"> 拼接训练得到四个状态。</p>
-<p> <img src="https://pic4.zhimg.com/80/v2-15c5eb554f843ec492579c6d87e1497b_720w.jpg" alt="img"> </p>
+<p> <img src="https://pic4.zhimg.com/80/v2-15c5eb554f843ec492579c6d87e1497b_720w.jpg"> </p>
 <p> <img src="https://pic1.zhimg.com/80/v2-d044fd0087e1df5d2a1089b441db9970_720w.jpg" alt="img"> </p>
 <p> 其中， <img src="https://www.zhihu.com/equation?tex=z%5Ef+"> ， <img src="https://www.zhihu.com/equation?tex=z%5Ei"> ，<img src="https://www.zhihu.com/equation?tex=z%5Eo"> 是由拼接向量乘以权重矩阵之后，再通过一个 <img src="https://www.zhihu.com/equation?tex=sigmoid+"> 激活函数转换成0到1之间的数值，来作为一种门控状态。而 <img src="https://www.zhihu.com/equation?tex=z"> 则是将结果通过一个 <img src="https://www.zhihu.com/equation?tex=tanh"> 激活函数将转换成-1到1之间的值（这里使用 <img src="https://www.zhihu.com/equation?tex=tanh"> 是因为这里是将其做为输入数据，而不是门控信号） </p>
 <p> <strong>下面开始进一步介绍这四个状态在LSTM内部的使用。（敲黑板）</strong> </p>
-<p> <img src="https://pic2.zhimg.com/v2-556c74f0e025a47fea05dc0f76ea775d_b.jpg" alt="img"> </p>
+<p> <img src="https://pic2.zhimg.com/v2-556c74f0e025a47fea05dc0f76ea775d_b.jpg"> </p>
 <p>其经典图片是这样的</p>
-<p> <img src="https://pic4.zhimg.com/v2-561a4eeb23e5bdd3a0bb08d818511aa3_b.jpg" alt="img"> </p>
+<p> <img src="https://pic4.zhimg.com/v2-561a4eeb23e5bdd3a0bb08d818511aa3_b.jpg"> </p>
 <h3 id="1-2-主要的阶段"><a href="#1-2-主要的阶段" class="headerlink" title="1.2 主要的阶段"></a>1.2 主要的阶段</h3><p>LSTM内部主要有三个阶段：</p>
 <ol>
 <li>忘记阶段。这个阶段主要是对上一个节点传进来的输入进行<strong>选择性</strong>忘记。简单来说就是会 “忘记不重要的，记住重要的”。</li>
@@ -224,13 +224,13 @@
 <h3 id="2-1-输入输出"><a href="#2-1-输入输出" class="headerlink" title="2.1 输入输出"></a>2.1 输入输出</h3><p>GRU的输入输出结构与普通的RNN是一样的。</p>
 <p>有一个当前的输入 <img src="https://www.zhihu.com/equation?tex=x%5Et"> ，和上一个节点传递下来的隐状态（hidden state） <img src="https://www.zhihu.com/equation?tex=h%5E%7Bt-1%7D"> ，这个隐状态包含了之前节点的相关信息。</p>
 <p>结合 <img src="https://www.zhihu.com/equation?tex=x%5Et+"> 和 <img src="https://www.zhihu.com/equation?tex=h%5E%7Bt-1%7D">，GRU会得到当前隐藏节点的输出 <img src="https://www.zhihu.com/equation?tex=y%5Et+"> 和传递给下一个节点的隐状态 <img src="https://www.zhihu.com/equation?tex=h%5Et"> 。</p>
-<p> <img src="https://pic2.zhimg.com/80/v2-49244046a83e30ef2383b94644bf0f31_720w.jpg" alt="img"> </p>
+<p> <img src="https://pic2.zhimg.com/80/v2-49244046a83e30ef2383b94644bf0f31_720w.jpg"> </p>
 <h3 id="2-2-内部结构"><a href="#2-2-内部结构" class="headerlink" title="2.2 内部结构"></a>2.2 内部结构</h3><p> 通过上一个传输下来的状态 <img src="https://www.zhihu.com/equation?tex=h%5E%7Bt-1%7D"> 和当前节点的输入 <img src="https://www.zhihu.com/equation?tex=x%5Et"> 来获取两个门控状态。 其中 <img src="https://www.zhihu.com/equation?tex=r+"> 控制重置的门控（reset gate）， <img src="https://www.zhihu.com/equation?tex=z"> 为控制更新的门控（update gate）。 </p>
-<p> <img src="https://pic3.zhimg.com/80/v2-7fff5d817530dada1b279c7279d73b8a_720w.jpg" alt="img"> </p>
+<p> <img src="https://pic3.zhimg.com/80/v2-7fff5d817530dada1b279c7279d73b8a_720w.jpg"> </p>
 <p> 得到门控信号之后，首先使用重置门控来得到<strong>“重置”</strong>之后的数据 <img src="https://www.zhihu.com/equation?tex=%7Bh%5E%7Bt-1%7D%7D%27+=+h%5E%7Bt-1%7D+%5Codot+r+"> ，再将 <img src="https://www.zhihu.com/equation?tex=%7Bh%5E%7Bt-1%7D%7D%27"> 与输入 <img src="https://www.zhihu.com/equation?tex=x%5Et+"> 进行拼接，再通过一个<a href="https://link.zhihu.com/?target=https://baike.baidu.com/item/tanh">tanh</a>激活函数来将数据放缩到**-1~1**的范围内。即得到如下图2-3所示的 <img src="https://www.zhihu.com/equation?tex=h%27"> 。 </p>
-<p> <img src="https://pic4.zhimg.com/80/v2-390781506bbebbef799f1a12acd7865b_720w.jpg" alt="img"> </p>
+<p> <img src="https://pic4.zhimg.com/80/v2-390781506bbebbef799f1a12acd7865b_720w.jpg"> </p>
 <p> 这里的 <img src="https://www.zhihu.com/equation?tex=h%27+"> 主要是包含了当前输入的 <img src="https://www.zhihu.com/equation?tex=x%5Et"> 数据。有针对性地对 <img src="https://www.zhihu.com/equation?tex=h%27"> 添加到当前的隐藏状态，相当于”记忆了当前时刻的状态“。 </p>
-<p> <img src="https://pic3.zhimg.com/80/v2-5b805241ab36e126c4b06b903f148ffa_720w.jpg" alt="img"> </p>
+<p> <img src="https://pic3.zhimg.com/80/v2-5b805241ab36e126c4b06b903f148ffa_720w.jpg"> </p>
 <p>最后介绍GRU最关键的一个步骤，我们可以称之为<strong>”更新记忆“</strong>阶段。</p>
 <p>在这个阶段，我们同时进行了遗忘了记忆两个步骤。我们使用了先前得到的更新门控 <img src="https://www.zhihu.com/equation?tex=z"> （update gate）。</p>
 <p><strong>更新表达式</strong>： <img src="https://www.zhihu.com/equation?tex=h%5Et+=+(1-z)+%5Codot+h%5E%7Bt-1%7D+++z%5Codot+h%27"></p>
@@ -342,7 +342,7 @@
                     
                 </div>
                 <div class="pull-date">
-                <span>最后编辑：2022-04-04</span>
+                <span>最后编辑：2022-05-04</span>
                 </div>
             </div>
         </footer>

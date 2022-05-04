@@ -15,16 +15,16 @@
   
     <meta name="keywords" content="" />
   
-  <meta name="description" content="在反复回卷的attention中，本人感觉心里憔悴 一定得总结一个俺能看懂的文章 最近发现了这样的一篇 感谢：https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;77307258 https:&#x2F;&#x2F;jalammar.github.io&#x2F;illustrated-transformer&#x2F; https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;91839581 阿里妹导读：曾被 paper 中各">
+  <meta name="description" content="在反复回卷的attention中，本人感觉心里憔悴 一定得总结一个俺能看懂的文章 最近发现了这样的一篇 感谢： https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;77307258 https:&#x2F;&#x2F;jalammar.github.io&#x2F;illustrated-transformer&#x2F; https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;91839581 阿里妹导读：曾被 paper 中">
 <meta property="og:type" content="article">
 <meta property="og:title" content="attention机制 简单理解">
 <meta property="og:url" content="http://example.com/2022/04/10/attention%20%E6%9C%BA%E5%88%B6/index.html">
 <meta property="og:site_name" content="limhao博客">
-<meta property="og:description" content="在反复回卷的attention中，本人感觉心里憔悴 一定得总结一个俺能看懂的文章 最近发现了这样的一篇 感谢：https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;77307258 https:&#x2F;&#x2F;jalammar.github.io&#x2F;illustrated-transformer&#x2F; https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;91839581 阿里妹导读：曾被 paper 中各">
+<meta property="og:description" content="在反复回卷的attention中，本人感觉心里憔悴 一定得总结一个俺能看懂的文章 最近发现了这样的一篇 感谢： https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;77307258 https:&#x2F;&#x2F;jalammar.github.io&#x2F;illustrated-transformer&#x2F; https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;91839581 阿里妹导读：曾被 paper 中">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/null">
 <meta property="article:published_time" content="2022-04-10T07:05:28.523Z">
-<meta property="article:modified_time" content="2022-04-10T13:26:59.930Z">
+<meta property="article:modified_time" content="2022-05-04T01:05:28.606Z">
 <meta property="article:author" content="limhao">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/null">
@@ -172,50 +172,51 @@
         <div class="kratos-post-content">
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>本文最后编辑于 <time datetime="1649597219930"></time> 前，其中的内容可能需要更新。</p></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1651626328606"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
             <hr />
             <p>在反复回卷的attention中，本人感觉心里憔悴</p>
 <p>一定得总结一个俺能看懂的文章 最近发现了这样的一篇</p>
-<p>感谢：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/77307258">https://zhuanlan.zhihu.com/p/77307258</a></p>
+<p>感谢：</p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/77307258">https://zhuanlan.zhihu.com/p/77307258</a></p>
 <p><a target="_blank" rel="noopener" href="https://jalammar.github.io/illustrated-transformer/">https://jalammar.github.io/illustrated-transformer/</a></p>
 <p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/91839581">https://zhuanlan.zhihu.com/p/91839581</a></p>
 <p>阿里妹导读：曾被 paper 中各种各样的  Attention  搞得晕晕乎乎，尽管零零散散地整理过一些关于Attention 的笔记，重点和线索依然比较凌乱。今天，阿里巴巴工程师楠易，将  Attention  的知识系统性地梳理、回顾、总结，不求深刻，但求浅显，希望能帮助对 Attention 有疑惑的同学。 </p>
 <h2 id="0-什么是attention"><a href="#0-什么是attention" class="headerlink" title="0. 什么是attention"></a>0. 什么是attention</h2><p> Attention（注意力）机制如果浅层的理解，跟他的名字非常匹配。他的核心逻辑就是「<strong>从关注全部到关注重点</strong>」 </p>
 <h2 id="1-attention-分类"><a href="#1-attention-分类" class="headerlink" title="1. attention 分类"></a>1. attention 分类</h2><p>涉及所有的 attention 都继承于这个抽象类。这里我写了两个抽象类，一个叫 alignment-based，一个叫 memroy-based。 </p>
-<h3 id="1-1-alignment-based-模型"><a href="#1-1-alignment-based-模型" class="headerlink" title="1.1 alignment-based 模型"></a>1.1 alignment-based 模型</h3><p> <img src="https://pic4.zhimg.com/80/v2-6017c6880074b716b82f890a9d82a0cb_720w.jpg" alt="img"> </p>
+<h3 id="1-1-alignment-based-模型"><a href="#1-1-alignment-based-模型" class="headerlink" title="1.1 alignment-based 模型"></a>1.1 alignment-based 模型</h3><p> <img src="https://pic4.zhimg.com/80/v2-6017c6880074b716b82f890a9d82a0cb_720w.jpg"> </p>
 <p>c 为 context y1 y2 —–yn 为输入 input 输出为z</p>
 <h3 id="1-2-拆分-attention-model"><a href="#1-2-拆分-attention-model" class="headerlink" title="1.2 拆分 attention model"></a>1.2 拆分 attention model</h3><p>分为三部曲</p>
 <ul>
 <li>score function ：度量环境变量与当前输入向量的相似性；在当前环境下，应该关注哪些信息</li>
 </ul>
-<p>​                                      <img src="https://pic4.zhimg.com/80/v2-1c4d2c6c1a23f7cb5659b0704bfce8b3_720w.jpg" alt="img"> </p>
+<p>​                                      <img src="https://pic4.zhimg.com/80/v2-1c4d2c6c1a23f7cb5659b0704bfce8b3_720w.jpg"> </p>
 <ul>
 <li>alignment function：计算attention weight （权重） 通常使用softmax进行归一化</li>
 </ul>
-<p>​                                                      <img src="https://pic4.zhimg.com/80/v2-f53c61bfacd07a77936b3c56426fb5ab_720w.jpg" alt="img"> </p>
+<p>​                                                      <img src="https://pic4.zhimg.com/80/v2-f53c61bfacd07a77936b3c56426fb5ab_720w.jpg"> </p>
 <ul>
 <li>generate  context vector function : 根据 attention weight 得到输出向量</li>
 </ul>
-<p>​                                                              <img src="https://pic4.zhimg.com/80/v2-6d296780ac57b31444b2a18b4977425f_720w.jpg" alt="img"> </p>
+<p>​                                                             <img src="https://pic4.zhimg.com/80/v2-6d296780ac57b31444b2a18b4977425f_720w.jpg"> </p>
 <p>在整体视角下，就像下图这个样子：</p>
-<p>​               <img src="https://pic2.zhimg.com/80/v2-9133c00e4e268755777573d58b38e511_720w.jpg" alt="img"> </p>
-<h3 id="1-3-memory-based-模型-长得很像transform"><a href="#1-3-memory-based-模型-长得很像transform" class="headerlink" title="1.3 memory-based 模型 长得很像transform"></a>1.3 memory-based 模型 长得很像transform</h3><p>​              <img src="https://pic2.zhimg.com/80/v2-3472f353bb0e6f86d0b6fa32b8566ab1_720w.jpg" alt="img"> </p>
+<p>​               <img src="https://pic2.zhimg.com/80/v2-9133c00e4e268755777573d58b38e511_720w.jpg"> </p>
+<h3 id="1-3-memory-based-模型-长得很像transform"><a href="#1-3-memory-based-模型-长得很像transform" class="headerlink" title="1.3 memory-based 模型 长得很像transform"></a>1.3 memory-based 模型 长得很像transform</h3><p>​              <img src="https://pic2.zhimg.com/80/v2-3472f353bb0e6f86d0b6fa32b8566ab1_720w.jpg"> </p>
 <p>另一种视角是 <strong>QKV</strong>模型，假设输入为 q，Memory 中以（k，v）形式存储需要的上下文。感觉在 Q&amp;A 任务中，这种设置比较合理，transformer 是采用的这种建模方式。k 是 question，v 是 answer，q 是新来的 question，看看历史 memory 中 q 和哪个 k 更相似，然后依葫芦画瓢，根据相似 k 对应的 v，合成当前 question 的 answer </p>
 <h3 id="1-4-建模方式"><a href="#1-4-建模方式" class="headerlink" title="1.4 建模方式"></a>1.4 建模方式</h3><p>三步</p>
 <ul>
 <li>address memory （score function）： 在memory找相似的东西</li>
 </ul>
-<p>​                                                  <img src="https://pic4.zhimg.com/80/v2-bf9de3d064a66206c502a3d1c1ef8fc7_720w.jpg" alt="img"> </p>
+<p>​                                                  <img src="https://pic4.zhimg.com/80/v2-bf9de3d064a66206c502a3d1c1ef8fc7_720w.jpg"> </p>
 <ul>
 <li>normalize（alignment function） ：</li>
 </ul>
-<p>​                                           <img src="https://pic3.zhimg.com/80/v2-e628407913facefed900899105af5432_720w.jpg" alt="img"> </p>
+<p>​                                           <img src="https://pic3.zhimg.com/80/v2-e628407913facefed900899105af5432_720w.jpg"> </p>
 <ul>
 <li>read content（ gen context vector function ）：</li>
 </ul>
-<p>​                                           <img src="https://pic4.zhimg.com/80/v2-d8e95020b11509d5dfb44b9753bc25db_720w.jpg" alt="img"> </p>
+<p>​                                           <img src="https://pic4.zhimg.com/80/v2-d8e95020b11509d5dfb44b9753bc25db_720w.jpg"> </p>
 <h2 id="2-attention-细节"><a href="#2-attention-细节" class="headerlink" title="2. attention 细节"></a>2. attention 细节</h2><p>在attention机制中，其建模方式主要就是以下的三类 按人话说 </p>
 <ul>
 <li>找相关  度量环境向量与当前输入向量的相似性；找到当前环境下，应该 focus 哪些输入信息（ score-function ）</li>
@@ -313,8 +314,9 @@
             const title         = "「attention机制 简单理解」";
             const excerpt       = `在反复回卷的attention中，本人感觉心里憔悴
 一定得总结一个俺能看懂的文章 最近发现了这样的一篇
-感谢：https://zhuanlan.zhihu.com/p/77307258
-https://jalammar.github....`;
+感谢：
+https://zhuanlan.zhihu.com/p/77307258
+https://jalammar.github...`;
             let _URL;
             switch (dest) {
                 case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
@@ -336,7 +338,7 @@ https://jalammar.github....`;
                     
                 </div>
                 <div class="pull-date">
-                <span>最后编辑：2022-04-10</span>
+                <span>最后编辑：2022-05-04</span>
                 </div>
             </div>
         </footer>
@@ -345,7 +347,7 @@ https://jalammar.github....`;
         <nav class="navigation post-navigation clearfix" role="navigation">
             
             <div class="nav-previous clearfix">
-                <a title=" Amazon数据集的处理 生动" href="/2022/04/08/Amazon数据集的处理/">&lt; 上一篇</a>
+                <a title=" Amazon数据集的处理 生动（没写完）" href="/2022/04/08/Amazon数据集的处理/">&lt; 上一篇</a>
             </div>
             
             

@@ -24,7 +24,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/null">
 <meta property="article:published_time" content="2022-03-28T12:43:29.890Z">
-<meta property="article:modified_time" content="2022-04-06T12:26:26.530Z">
+<meta property="article:modified_time" content="2022-05-04T01:10:04.339Z">
 <meta property="article:author" content="limhao">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/null">
@@ -172,7 +172,7 @@
         <div class="kratos-post-content">
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>本文最后编辑于 <time datetime="1649247986530"></time> 前，其中的内容可能需要更新。</p></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1651626604339"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
             <hr />
@@ -203,7 +203,7 @@
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">from</span> torch <span class="keyword">import</span> nn</span><br><span class="line"> </span><br><span class="line"><span class="built_in">input</span> = torch.LongTensor([[<span class="number">1</span>, <span class="number">2</span>, <span class="number">6</span>, <span class="number">4</span>], [<span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>]])</span><br><span class="line">em = nn.Embedding(<span class="number">10</span>, <span class="number">3</span>, padding_idx=<span class="number">6</span>)</span><br><span class="line">output = em(<span class="built_in">input</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;output:&quot;</span>,output)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;output.shape:&quot;</span>,output.shape)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;em.weight.shape:&quot;</span>,em.weight.shape)</span><br></pre></td></tr></table></figure>
 
-<p> <img src="https://img-blog.csdnimg.cn/20200524013059410.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lpemhpc2h1aXhpb25n,size_16,color_FFFFFF,t_70" alt="img"> </p>
+<p> <img src="https://img-blog.csdnimg.cn/20200524013059410.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lpemhpc2h1aXhpb25n,size_16,color_FFFFFF,t_70"> </p>
 <p> 可以看出 “6” 所对应映射的向量被填充了0。 </p>
 <h2 id="网络初始化"><a href="#网络初始化" class="headerlink" title="网络初始化"></a>网络初始化</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/dss_dssssd/article/details/83959474">https://blog.csdn.net/dss_dssssd/article/details/83959474</a></p>
 <h3 id="1-初始化函数"><a href="#1-初始化函数" class="headerlink" title="1. 初始化函数"></a>1. 初始化函数</h3><ol>
@@ -217,7 +217,7 @@
 </li>
 </ol>
 <p>基本思想是通过网络层时，<strong>输入和输出的方差相同</strong>，包括前向传播和后向传播。具体看以下博文：</p>
-<p> <img src="https://img-blog.csdnimg.cn/20181111153036310.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Rzc19kc3Nzc2Q=,size_16,color_FFFFFF,t_70" alt="img"> </p>
+<p> <img src="https://img-blog.csdnimg.cn/20181111153036310.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Rzc19kc3Nzc2Q=,size_16,color_FFFFFF,t_70"> </p>
 <ol>
 <li><p>为什么需要Xavier 初始化？<br>如果初始化值很小，那么随着层数的传递，方差就会趋于0，此时输入值 也变得越来越小，在sigmoid上就是在0附近，接近于线性，失去了非线性<br>如果初始值很大，那么随着层数的传递，方差会迅速增加，此时输入值变得很大，而sigmoid在大输入值写倒数趋近于0，反向传播时会遇到梯度消失的问题</p>
 </li>
@@ -329,7 +329,7 @@ embedding操作0. 官方操作下面是官方例子
                     
                 </div>
                 <div class="pull-date">
-                <span>最后编辑：2022-04-06</span>
+                <span>最后编辑：2022-05-04</span>
                 </div>
             </div>
         </footer>

@@ -24,7 +24,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/null">
 <meta property="article:published_time" content="2022-04-06T12:25:47.026Z">
-<meta property="article:modified_time" content="2022-04-07T07:15:46.093Z">
+<meta property="article:modified_time" content="2022-05-04T01:07:12.583Z">
 <meta property="article:author" content="limhao">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/null">
@@ -172,7 +172,7 @@
         <div class="kratos-post-content">
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>本文最后编辑于 <time datetime="1649315746093"></time> 前，其中的内容可能需要更新。</p></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1651626432583"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
             <hr />
@@ -235,7 +235,7 @@
 <li>分段</li>
 </ul>
 <p> 分段使用的类 <strong>preprocessing.KBinsDiscretizer</strong>，相对麻烦点，给出下面的参数列表 </p>
-<p> <img src="https://img-blog.csdnimg.cn/20190209155408360.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM3MzM0MTM1,size_16,color_FFFFFF,t_70" alt="img"> </p>
+<p> <img src="https://img-blog.csdnimg.cn/20190209155408360.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM3MzM0MTM1,size_16,color_FFFFFF,t_70"> </p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> LabelEncoder, OrdinalEncoder, KBinsDiscretizer</span><br><span class="line"><span class="comment"># 连续型特征等间隔分箱</span></span><br><span class="line">est = KBinsDiscretizer(n_bins=<span class="number">100</span>, encode=<span class="string">&#x27;ordinal&#x27;</span>, strategy=<span class="string">&#x27;uniform&#x27;</span>)</span><br><span class="line">criteo_data[dense_features] = est.fit_transform(criteo_data[dense_features])</span><br></pre></td></tr></table></figure>
 
 <h3 id="3-2-处理分类型特征"><a href="#3-2-处理分类型特征" class="headerlink" title="3.2 处理分类型特征"></a>3.2 处理分类型特征</h3><p>在机器学习中，大多数算法，譬如逻辑回归，支持向量机SVM，k近邻算法等都只能够处理数值型数据，不能处理文字，在sklearn当中，除了专用来处理文字的算法，其他算法在fit的时候全部要求输入数组或矩阵，也不能够导入文字型数据（其实手写决策树和普斯贝叶斯可以处理文字，但是sklearn中规定必须导入数值型）。</p>
@@ -342,7 +342,7 @@
                     
                 </div>
                 <div class="pull-date">
-                <span>最后编辑：2022-04-07</span>
+                <span>最后编辑：2022-05-04</span>
                 </div>
             </div>
         </footer>

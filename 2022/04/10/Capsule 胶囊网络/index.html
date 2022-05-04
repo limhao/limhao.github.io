@@ -24,7 +24,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/null">
 <meta property="article:published_time" content="2022-04-10T14:19:13.807Z">
-<meta property="article:modified_time" content="2022-04-11T02:20:16.618Z">
+<meta property="article:modified_time" content="2022-05-04T01:02:25.374Z">
 <meta property="article:author" content="limhao">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/null">
@@ -172,7 +172,7 @@
         <div class="kratos-post-content">
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>本文最后编辑于 <time datetime="1649643616618"></time> 前，其中的内容可能需要更新。</p></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1651626145374"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
             <hr />
@@ -192,23 +192,23 @@
 <h2 id="1-capsule的结构"><a href="#1-capsule的结构" class="headerlink" title="1. capsule的结构"></a>1. capsule的结构</h2><p>​    capsule 是向量，其可以理解为object的某个类别，其模长表示某个entity存在的概率，其方向表示某个entity属性</p>
 <p>其计算的方式 为以下四步：</p>
 <ol>
-<li><p>对输入向量做乘法，其中 <img src="https://juejin.cn/equation?tex=v_1" alt="v_1"> 和 <img src="https://juejin.cn/equation?tex=v_2" alt="v_2"> 分别来自与前面的 capsule 的输出，在单个 capsule 内部，对  <img src="https://juejin.cn/equation?tex=v_1" alt="v_1"> 和 <img src="https://juejin.cn/equation?tex=v_2" alt="v_2">  分别乘上  <img src="https://juejin.cn/equation?tex=w_1" alt="w_1"> 和 <img src="https://juejin.cn/equation?tex=w_2" alt="w_2">  得到了 新的  <img src="https://juejin.cn/equation?tex=u_1" alt="u_1"> 和 <img src="https://juejin.cn/equation?tex=u_2" alt="u_2">  。</p>
+<li><p>对输入向量做乘法，其中 <img src="https://juejin.cn/equation?tex=v_1"> 和 <img src="https://juejin.cn/equation?tex=v_2"> 分别来自与前面的 capsule 的输出，在单个 capsule 内部，对  <img src="https://juejin.cn/equation?tex=v_1"> 和 <img src="https://juejin.cn/equation?tex=v_2">  分别乘上  <img src="https://juejin.cn/equation?tex=w_1"> 和 <img src="https://juejin.cn/equation?tex=w_2">  得到了 新的  <img src="https://juejin.cn/equation?tex=u_1"> 和 <img src="https://juejin.cn/equation?tex=u_2">  。</p>
 </li>
-<li><p>对输入向量进行标量加权，令<img src="https://juejin.cn/equation?tex=u_1" alt="u_1">与<img src="https://juejin.cn/equation?tex=c_1" alt="c_1">相乘，<img src="https://juejin.cn/equation?tex=u_2" alt="u_2">与<img src="https://juejin.cn/equation?tex=c_2" alt="c_2">相乘，其中<img src="https://juejin.cn/equation?tex=c_1" alt="c_1">和<img src="https://juejin.cn/equation?tex=c_2" alt="c_2">均为标量，且<img src="https://juejin.cn/equation?tex=c_1%20+%20C_2%20=%201" alt="c_1 + C_2 = 1">。</p>
+<li><p>对输入向量进行标量加权，令<img src="https://juejin.cn/equation?tex=u_1">与<img src="https://juejin.cn/equation?tex=c_1">相乘，<img src="https://juejin.cn/equation?tex=u_2">与<img src="https://juejin.cn/equation?tex=c_2">相乘，其中<img src="https://juejin.cn/equation?tex=c_1">和<img src="https://juejin.cn/equation?tex=c_2">均为标量，且<img src="https://juejin.cn/equation?tex=c_1%20+%20C_2%20=%201" alt="c_1 + C_2 = 1">。</p>
 </li>
-<li><p>对得到向量求和，得到<img src="https://juejin.cn/equation?tex=s=c_1%20u_1%20+c_2u_2" alt="s=c_1 u_1 +c_2u_2">。</p>
+<li><p>对得到向量求和，得到<img src="https://juejin.cn/equation?tex=s=c_1%20u_1%20+c_2u_2">。</p>
 </li>
-<li><p>向量到向量的非线性化，将得到的结果向量 <img src="https://juejin.cn/equation?tex=s" alt="s"> 进行转换，即通过函数 <img src="https://juejin.cn/equation?tex=Squash(s)=%20%5Ccfrac%7B%7C%7Cs%7C%7C%5E2%7D%7B1+%7C%7Cs%7C%7C%5E2%7D%20%5Ccfrac%7Bs%7D%7B%7C%7Cs%7C%7C%7D" alt="Squash(s)= \cfrac{||s||^2}{1+||s||^2} \cfrac{s}{||s||}">得到结果 <img src="https://juejin.cn/equation?tex=s" alt="s">，作为这个capsule 的输出，且这个结果 <img src="https://juejin.cn/equation?tex=v" alt="v"> 可以作为下一个 capsule 的输入</p>
+<li><p>向量到向量的非线性化，将得到的结果向量 <img src="https://juejin.cn/equation?tex=s"> 进行转换，即通过函数 <img src="https://juejin.cn/equation?tex=Squash(s)=%20%5Ccfrac%7B%7C%7Cs%7C%7C%5E2%7D%7B1+%7C%7Cs%7C%7C%5E2%7D%20%5Ccfrac%7Bs%7D%7B%7C%7Cs%7C%7C%7D" alt="Squash(s)= \cfrac{||s||^2}{1+||s||^2} \cfrac{s}{||s||}">得到结果 <img src="https://juejin.cn/equation?tex=s">，作为这个capsule 的输出，且这个结果 <img src="https://juejin.cn/equation?tex=v"> 可以作为下一个 capsule 的输入</p>
 </li>
 </ol>
-<p> <img src="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2019/11/4/16e359ecb29a13e4~tplv-t2oaga2asx-zoom-in-crop-mark:1304:0:0:0.awebp" alt="img"> </p>
+<p> <img src="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2019/11/4/16e359ecb29a13e4~tplv-t2oaga2asx-zoom-in-crop-mark:1304:0:0:0.awebp"> </p>
 <h2 id="2-细节（训练方式）"><a href="#2-细节（训练方式）" class="headerlink" title="2. 细节（训练方式）"></a>2. 细节（训练方式）</h2><p>动态寻路算法</p>
-<p>鬼都看不懂下面这个<img src="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2019/11/4/16e359ecb2e9c973~tplv-t2oaga2asx-zoom-in-crop-mark:1304:0:0:0.awebp" alt="img"> </p>
+<p>鬼都看不懂下面这个<img src="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2019/11/4/16e359ecb2e9c973~tplv-t2oaga2asx-zoom-in-crop-mark:1304:0:0:0.awebp"> </p>
 <ul>
 <li>直观理解</li>
 </ul>
-<p>其中两个高层胶囊的输出用紫色向量 <img src="https://juejin.cn/equation?tex=v_1%20v_2" alt="v_1 v_2"> 表示，橙色向量表示接受自某个低层胶囊的输入，其他黑色向量表示接受其他低层胶囊的输入。左边的紫色输出 <img src="https://juejin.cn/equation?tex=v_1" alt="v_1"> 和橙色输入 <img src="https://juejin.cn/equation?tex=u_1" alt="u_1"> 指向相反的方向，所以它们并不相似，这意味着它们点积是负数，更新路由系数的时候将会减少<img src="https://juejin.cn/equation?tex=c_1%5E1" alt="c_1^1">。右边的紫色输出 <img src="https://juejin.cn/equation?tex=v_2" alt="v_2"> 和橙色输入 <img src="https://juejin.cn/equation?tex=u_2" alt="u_2"> 指向相同方向，它们是相似的，因此更新参数的时候路由系数 <img src="https://juejin.cn/equation?tex=c_1%5E2" alt="c_1^2"> 会增加。在所有高层胶囊及其所有输入上重复应用该过程，得到一个路由参数集合，达到来自低层胶囊的输出和高层胶囊输出的最佳匹配。</p>
-<p> <img src="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2019/11/4/16e359ecb8feb633~tplv-t2oaga2asx-zoom-in-crop-mark:1304:0:0:0.awebp" alt="img"> </p>
+<p>其中两个高层胶囊的输出用紫色向量 <img src="https://juejin.cn/equation?tex=v_1%20v_2"> 表示，橙色向量表示接受自某个低层胶囊的输入，其他黑色向量表示接受其他低层胶囊的输入。左边的紫色输出 <img src="https://juejin.cn/equation?tex=v_1"> 和橙色输入 <img src="https://juejin.cn/equation?tex=u_1"> 指向相反的方向，所以它们并不相似，这意味着它们点积是负数，更新路由系数的时候将会减少<img src="https://juejin.cn/equation?tex=c_1%5E1">。右边的紫色输出 <img src="https://juejin.cn/equation?tex=v_2"> 和橙色输入 <img src="https://juejin.cn/equation?tex=u_2"> 指向相同方向，它们是相似的，因此更新参数的时候路由系数 <img src="https://juejin.cn/equation?tex=c_1%5E2"> 会增加。在所有高层胶囊及其所有输入上重复应用该过程，得到一个路由参数集合，达到来自低层胶囊的输出和高层胶囊输出的最佳匹配。</p>
+<p> <img src="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2019/11/4/16e359ecb8feb633~tplv-t2oaga2asx-zoom-in-crop-mark:1304:0:0:0.awebp"> </p>
 
         </div>
         
@@ -300,7 +300,7 @@ https://zhuanlan.zhihu.com/p/90073690
                     
                 </div>
                 <div class="pull-date">
-                <span>最后编辑：2022-04-11</span>
+                <span>最后编辑：2022-05-04</span>
                 </div>
             </div>
         </footer>
