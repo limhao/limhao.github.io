@@ -15,16 +15,16 @@
   
     <meta name="keywords" content="" />
   
-  <meta name="description" content="0. 前言​    在阅读别人编写的源码的过程中，对于他人能够灵活操作torch向量 感觉十分的神奇，于是乎俺也来写一个文档作为一个手册的使用不就好了嘛。（先统计） 1. 我看到的操作torch.div1234567891011121314x &#x3D; torch.tensor([ 0.3810,  1.2774, -0.2972, -0.3719,  0.4637])torch.div(x, 0.5)">
+  <meta name="description" content="0. 前言​    在阅读别人编写的源码的过程中，对于他人能够灵活操作torch向量 感觉十分的神奇，于是乎俺也来写一个文档作为一个手册的使用不就好了嘛。（先统计） 1. 基本数据形式读Caser论文有感！其对于数据的操控 我作为一个单纯的研究生感到大受震撼  4d数据结构深度学习框架，数据为4D 用NCHW或NHWC表示  N - Batch C - Channel H - Height W -">
 <meta property="og:type" content="article">
 <meta property="og:title" content="pytorch 张量操作">
 <meta property="og:url" content="http://example.com/2022/04/26/pytorch-%E5%BC%A0%E9%87%8F%E6%93%8D%E4%BD%9C/index.html">
 <meta property="og:site_name" content="limhao博客">
-<meta property="og:description" content="0. 前言​    在阅读别人编写的源码的过程中，对于他人能够灵活操作torch向量 感觉十分的神奇，于是乎俺也来写一个文档作为一个手册的使用不就好了嘛。（先统计） 1. 我看到的操作torch.div1234567891011121314x &#x3D; torch.tensor([ 0.3810,  1.2774, -0.2972, -0.3719,  0.4637])torch.div(x, 0.5)">
+<meta property="og:description" content="0. 前言​    在阅读别人编写的源码的过程中，对于他人能够灵活操作torch向量 感觉十分的神奇，于是乎俺也来写一个文档作为一个手册的使用不就好了嘛。（先统计） 1. 基本数据形式读Caser论文有感！其对于数据的操控 我作为一个单纯的研究生感到大受震撼  4d数据结构深度学习框架，数据为4D 用NCHW或NHWC表示  N - Batch C - Channel H - Height W -">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/null">
 <meta property="article:published_time" content="2022-04-26T12:53:22.333Z">
-<meta property="article:modified_time" content="2022-04-27T02:30:55.924Z">
+<meta property="article:modified_time" content="2022-05-11T06:38:53.336Z">
 <meta property="article:author" content="limhao">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/null">
@@ -162,7 +162,7 @@
                     <i class="fa fa-edit"></i> 
                     
                     
-                        ~1.53K
+                        ~2.77K
                     
                     字
                 </li>
@@ -172,15 +172,35 @@
         <div class="kratos-post-content">
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>本文最后编辑于 <time datetime="1651026655924"></time> 前，其中的内容可能需要更新。</p></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1652251133336"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
             <hr />
-            <h3 id="0-前言"><a href="#0-前言" class="headerlink" title="0. 前言"></a>0. 前言</h3><p>​    在阅读别人编写的源码的过程中，对于他人能够灵活操作torch向量 感觉十分的神奇，于是乎俺也来写一个文档作为一个手册的使用不就好了嘛。（先统计）</p>
-<h3 id="1-我看到的操作"><a href="#1-我看到的操作" class="headerlink" title="1. 我看到的操作"></a>1. 我看到的操作</h3><h4 id="torch-div"><a href="#torch-div" class="headerlink" title="torch.div"></a>torch.div</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">x = torch.tensor([ <span class="number">0.3810</span>,  <span class="number">1.2774</span>, -<span class="number">0.2972</span>, -<span class="number">0.3719</span>,  <span class="number">0.4637</span>])</span><br><span class="line">torch.div(x, <span class="number">0.5</span>)</span><br><span class="line">tensor([ <span class="number">0.7620</span>,  <span class="number">2.5548</span>, -<span class="number">0.5944</span>, -<span class="number">0.7438</span>,  <span class="number">0.9274</span>])</span><br><span class="line"></span><br><span class="line">a = torch.tensor([[-<span class="number">0.3711</span>, -<span class="number">1.9353</span>, -<span class="number">0.4605</span>, -<span class="number">0.2917</span>],</span><br><span class="line">                   [ <span class="number">0.1815</span>, -<span class="number">1.0111</span>,  <span class="number">0.9805</span>, -<span class="number">1.5923</span>],</span><br><span class="line">                   [ <span class="number">0.1062</span>,  <span class="number">1.4581</span>,  <span class="number">0.7759</span>, -<span class="number">1.2344</span>],</span><br><span class="line">                  [-<span class="number">0.1830</span>, -<span class="number">0.0313</span>,  <span class="number">1.1908</span>, -<span class="number">1.4757</span>]])</span><br><span class="line">b = torch.tensor([ <span class="number">0.8032</span>,  <span class="number">0.2930</span>, -<span class="number">0.8113</span>, -<span class="number">0.2308</span>])</span><br><span class="line">torch.div(a, b)</span><br><span class="line">tensor([[-<span class="number">0.4620</span>, -<span class="number">6.6051</span>,  <span class="number">0.5676</span>,  <span class="number">1.2639</span>],</span><br><span class="line">        [ <span class="number">0.2260</span>, -<span class="number">3.4509</span>, -<span class="number">1.2086</span>,  <span class="number">6.8990</span>],</span><br><span class="line">        [ <span class="number">0.1322</span>,  <span class="number">4.9764</span>, -<span class="number">0.9564</span>,  <span class="number">5.3484</span>],</span><br><span class="line">        [-<span class="number">0.2278</span>, -<span class="number">0.1068</span>, -<span class="number">1.4678</span>,  <span class="number">6.3938</span>]])</span><br></pre></td></tr></table></figure>
+            <h2 id="0-前言"><a href="#0-前言" class="headerlink" title="0. 前言"></a>0. 前言</h2><p>​    在阅读别人编写的源码的过程中，对于他人能够灵活操作torch向量 感觉十分的神奇，于是乎俺也来写一个文档作为一个手册的使用不就好了嘛。（先统计）</p>
+<h2 id="1-基本数据形式"><a href="#1-基本数据形式" class="headerlink" title="1. 基本数据形式"></a>1. 基本数据形式</h2><p>读Caser论文有感！其对于数据的操控 我作为一个单纯的研究生感到大受震撼 </p>
+<h3 id="4d数据结构"><a href="#4d数据结构" class="headerlink" title="4d数据结构"></a>4d数据结构</h3><p>深度学习框架，数据为4D 用NCHW或NHWC表示</p>
+<ul>
+<li>N - Batch</li>
+<li>C - Channel</li>
+<li>H - Height</li>
+<li>W - Width</li>
+</ul>
+<p>在pytorch 为 NCHW </p>
+<p>在tensorflow 缺省NHWC GPU支持NCHW</p>
+<p>tensor.size </p>
+<p>[N,C,H,W]</p>
+<h3 id="1-1-有些数据-这样子的-N-H-W"><a href="#1-1-有些数据-这样子的-N-H-W" class="headerlink" title="1.1 有些数据 这样子的[N,H,W]"></a>1.1 有些数据 这样子的[N,H,W]</h3><p>当然 在我推荐领域 channel 也不存在rgb 这么丰富的颜色</p>
+<p>直接看代码 给channel 设置成1 就好</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">torch.unsqueeze(<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-2-还有些数据-是这个亚子-w-h"><a href="#1-2-还有些数据-是这个亚子-w-h" class="headerlink" title="1.2 还有些数据 是这个亚子 [w,h]"></a>1.2 还有些数据 是这个亚子 [w,h]</h3><p>那就这个亚子吧 因为 加batch（一般不为1） 所以 我也没啥好的方法来着</p>
+<h3 id="1-3-有些数据-是最后这个样子-N-H-N-W"><a href="#1-3-有些数据-是最后这个样子-N-H-N-W" class="headerlink" title="1.3 有些数据 是最后这个样子 [N,H] [N,W]"></a>1.3 有些数据 是最后这个样子 [N,H] [N,W]</h3><p>那这个样子呢 是存在补救空间的 嗯嗯！</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">torch.unsqueeze(你想添加的维度)</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-我看到的操作"><a href="#2-我看到的操作" class="headerlink" title="2. 我看到的操作"></a>2. 我看到的操作</h2><h3 id="torch-div"><a href="#torch-div" class="headerlink" title="torch.div"></a>torch.div</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">x = torch.tensor([ <span class="number">0.3810</span>,  <span class="number">1.2774</span>, -<span class="number">0.2972</span>, -<span class="number">0.3719</span>,  <span class="number">0.4637</span>])</span><br><span class="line">torch.div(x, <span class="number">0.5</span>)</span><br><span class="line">tensor([ <span class="number">0.7620</span>,  <span class="number">2.5548</span>, -<span class="number">0.5944</span>, -<span class="number">0.7438</span>,  <span class="number">0.9274</span>])</span><br><span class="line"></span><br><span class="line">a = torch.tensor([[-<span class="number">0.3711</span>, -<span class="number">1.9353</span>, -<span class="number">0.4605</span>, -<span class="number">0.2917</span>],</span><br><span class="line">                   [ <span class="number">0.1815</span>, -<span class="number">1.0111</span>,  <span class="number">0.9805</span>, -<span class="number">1.5923</span>],</span><br><span class="line">                   [ <span class="number">0.1062</span>,  <span class="number">1.4581</span>,  <span class="number">0.7759</span>, -<span class="number">1.2344</span>],</span><br><span class="line">                  [-<span class="number">0.1830</span>, -<span class="number">0.0313</span>,  <span class="number">1.1908</span>, -<span class="number">1.4757</span>]])</span><br><span class="line">b = torch.tensor([ <span class="number">0.8032</span>,  <span class="number">0.2930</span>, -<span class="number">0.8113</span>, -<span class="number">0.2308</span>])</span><br><span class="line">torch.div(a, b)</span><br><span class="line">tensor([[-<span class="number">0.4620</span>, -<span class="number">6.6051</span>,  <span class="number">0.5676</span>,  <span class="number">1.2639</span>],</span><br><span class="line">        [ <span class="number">0.2260</span>, -<span class="number">3.4509</span>, -<span class="number">1.2086</span>,  <span class="number">6.8990</span>],</span><br><span class="line">        [ <span class="number">0.1322</span>,  <span class="number">4.9764</span>, -<span class="number">0.9564</span>,  <span class="number">5.3484</span>],</span><br><span class="line">        [-<span class="number">0.2278</span>, -<span class="number">0.1068</span>, -<span class="number">1.4678</span>,  <span class="number">6.3938</span>]])</span><br></pre></td></tr></table></figure>
 
 <p>可以看出来 这玩意是要对其的</p>
-<h4 id="squeeze"><a href="#squeeze" class="headerlink" title="squeeze()"></a>squeeze()</h4><p>当其中没有参数的时候，其缺省值是将里面维度为1的进行压缩</p>
+<h3 id="squeeze"><a href="#squeeze" class="headerlink" title="squeeze()"></a>squeeze()</h3><p>当其中没有参数的时候，其缺省值是将里面维度为1的进行压缩</p>
 <p>感谢：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_40714949/article/details/112770987">https://blog.csdn.net/qq_40714949/article/details/112770987</a></p>
 <p><strong>压缩 原来是压缩 维度为1的操作啊</strong></p>
 <p>首先 先说明白 维度一维 线</p>
@@ -188,16 +208,37 @@
 <p>三维 正方体</p>
 <p><strong>在程序中 就是 0，1，2 来表示上面的三维</strong></p>
 <p>本人自己的操作</p>
-<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/LbWnJJ"><img src="https://s1.ax1x.com/2022/04/27/LbWnJJ.png" alt="LbWnJJ.png"></a></p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/LbWnJJ"><img src="https://s1.ax1x.com/2022/04/27/LbWnJJ.png"></a></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 现在压缩函数 squeeze 其实和zip 联想 想一想哈哈哈</span></span><br><span class="line"><span class="comment"># 输入</span></span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"></span><br><span class="line">x = torch.rand(<span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">1</span>)</span><br><span class="line"><span class="built_in">print</span>(x.size())</span><br><span class="line">x = x.squeeze()</span><br><span class="line"><span class="built_in">print</span>(x.size())</span><br><span class="line"><span class="comment"># 输出</span></span><br><span class="line">torch.Size([<span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">1</span>])</span><br><span class="line">torch.Size([<span class="number">3</span>, <span class="number">2</span>, <span class="number">2</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 此外，也可以指定尝试将哪一个维度进行压缩。如果被指定的维度其维数为1，则压缩，反之不对该维度操作：</span></span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"></span><br><span class="line">x = torch.rand(<span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">1</span>)</span><br><span class="line"><span class="built_in">print</span>(x.size())</span><br><span class="line">x = x.squeeze(<span class="number">0</span>)</span><br><span class="line"><span class="built_in">print</span>(x.size())</span><br><span class="line">x = x.squeeze(<span class="number">2</span>)</span><br><span class="line"><span class="built_in">print</span>(x.size())</span><br><span class="line"><span class="comment"># 输出</span></span><br><span class="line">torch.Size([<span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">1</span>])</span><br><span class="line">torch.Size([<span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">1</span>])</span><br><span class="line">torch.Size([<span class="number">3</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">1</span>])</span><br></pre></td></tr></table></figure>
 
-<h4 id="unsqueeze"><a href="#unsqueeze" class="headerlink" title="unsqueeze()"></a>unsqueeze()</h4><p>这个函数必须在其中填入dim&#x3D;？这个参数</p>
+<h3 id="unsqueeze"><a href="#unsqueeze" class="headerlink" title="unsqueeze()"></a>unsqueeze()</h3><p>我的很直接的说法就是 这玩意是拿来扩维的</p>
+<p>这个函数必须在其中填入dim&#x3D;？这个参数</p>
 <p>如果单纯从数字角度来考虑这个事情，那就很简单</p>
 <p>例如 </p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line">x = torch.rand(<span class="number">3</span>,<span class="number">2</span>)</span><br><span class="line"><span class="comment"># 在维度2的位置增加维数1</span></span><br><span class="line">x = torch.unsqueeze(<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
 
-<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/Lb5VXR"><img src="https://s1.ax1x.com/2022/04/27/Lb5VXR.png" alt="Lb5VXR.png"></a></p>
-<p>​    </p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/Lb5VXR"><img src="https://s1.ax1x.com/2022/04/27/Lb5VXR.png"></a></p>
+<pre><code>### torch.cat
+</code></pre>
+<p>我觉得我在代码中的注释 很好的解释了这个问题</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 输出在一维进行拼接 </span></span><br><span class="line"><span class="comment"># 意思就是在二维进行拼接</span></span><br><span class="line"><span class="comment"># 我的脑子突然有冒出个有意思的想法</span></span><br><span class="line"><span class="comment"># concat这个操作不是拼接嘛</span></span><br><span class="line"><span class="comment"># 一个一个的对象 凭借成一对一对的（最近的情况哈哈）</span></span><br><span class="line"><span class="comment"># 既然是拼接 那么带我们对应拼接的维度 就应该有所增加</span></span><br><span class="line"><span class="comment"># 这里的 tensor 为 4个 [1,4] 的向量</span></span><br><span class="line"><span class="comment"># concat（0） 的话 就会成为 [4, 4] </span></span><br><span class="line"><span class="comment"># concat（1） 的话 就会变成 [1,16]</span></span><br><span class="line">out_hs = torch.cat(out_hs, <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="torch-view"><a href="#torch-view" class="headerlink" title="torch.view"></a>torch.view</h3><p>感谢： <a target="_blank" rel="noopener" href="https://blog.csdn.net/Flag_ing/article/details/109129752">https://blog.csdn.net/Flag_ing/article/details/109129752</a></p>
+<p>网上的看不懂啊</p>
+<p>网上的看不懂啊</p>
+<p>网上的看不懂啊</p>
+<p>可能是我水平差了</p>
+<p>我用我的大白话来讲明白这个事儿</p>
+<p>​    日常我们输入卷积层的数据形式 为 4D，view这个小妖精呢，我的感觉就像是捏泥巴。我脑子响起了东北玩神曲 <img src="https://img0.baidu.com/it/u=2634558474,2858767346&fm=253&fmt=auto&app=138&f=JPEG?w=430&h=268">      </p>
+<p>给大家看看有意思的</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/Oa1psU"><img src="https://s1.ax1x.com/2022/05/11/Oa1psU.png"></a></p>
+<p>注意看两次的size 打印 </p>
+<p>我对于这个玩意的感觉就是将数字打散 然后重新组合起来</p>
+<p>十分有趣</p>
+<h3 id="torch-baddbmm"><a href="#torch-baddbmm" class="headerlink" title="torch.baddbmm"></a>torch.baddbmm</h3><p>感谢： <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_41289353/article/details/123644925">https://blog.csdn.net/qq_41289353/article/details/123644925</a></p>
+<p><img src="C:\Users\warma\AppData\Roaming\Typora\typora-user-images\1652250868273.png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">M = torch.randn(<span class="number">10</span>, <span class="number">3</span>, <span class="number">5</span>)</span><br><span class="line">batch1 = torch.randn(<span class="number">10</span>, <span class="number">3</span>, <span class="number">4</span>)</span><br><span class="line">batch2 = torch.randn(<span class="number">10</span>, <span class="number">4</span>, <span class="number">5</span>)</span><br><span class="line">torch.baddbmm(M, batch1, batch2).size()</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">output:torch.Size([10, 3, 5])</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+
 
         </div>
         
@@ -266,7 +307,7 @@
             const hostUrl       = "http://example.com/2022/04/26/pytorch-%E5%BC%A0%E9%87%8F%E6%93%8D%E4%BD%9C/";
             const title         = "「pytorch 张量操作」";
             const excerpt       = `0. 前言​    在阅读别人编写的源码的过程中，对于他人能够灵活操作torch向量 感觉十分的神奇，于是乎俺也来写一个文档作为一个手册的使用不就好了嘛。（先统计）
-1. 我看到的操作torch.div1234567891011121...`;
+1. 基本数据形式读Caser论文有感！其对于数据的操控 我作为一个...`;
             let _URL;
             switch (dest) {
                 case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
@@ -288,7 +329,7 @@
                     
                 </div>
                 <div class="pull-date">
-                <span>最后编辑：2022-04-27</span>
+                <span>最后编辑：2022-05-11</span>
                 </div>
             </div>
         </footer>
