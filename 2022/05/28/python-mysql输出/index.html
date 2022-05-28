@@ -4,7 +4,7 @@
   <!-- 元数据 -->
   <meta charset="utf-8">
   <link rel="icon" href="">
-  <title>各种慢 | limhao博客</title>
+  <title>python mysql输出 | limhao博客</title>
   <meta name="author" content="limhao" />
   <meta http-equiv="Cache-Control" content="no-transform" />
   <meta http-equiv="Cache-Control" content="no-siteapp" />
@@ -15,16 +15,16 @@
   
     <meta name="keywords" content="" />
   
-  <meta name="description" content="一个常用的各种慢的解决复制帖 pip慢 -i https:&#x2F;&#x2F;pypi.tuna.tsinghua.edu.cn&#x2F;simple  conda 慢添加清华镜像源，代码如下所示： 1234conda config --add channels https:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;anaconda&#x2F;pkgs&#x2F;free&#x2F;conda config --set show_">
+  <meta name="description" content="这个文章会有点长  从安装到mysql基础 到 python 操作 mysql  OK 现在开始 mysql安装和卸载 8.0.26安装感谢：https:&#x2F;&#x2F;blog.csdn.net&#x2F;a802976&#x2F;article&#x2F;details&#x2F;119255644 文章没什么大问题 注意 安装配置的问题  下载安装包（没错）  安装配置（有一些很注意的东西）    解压  编写MySQL配置文件 在解压目录下">
 <meta property="og:type" content="article">
-<meta property="og:title" content="各种慢">
-<meta property="og:url" content="http://example.com/2022/04/06/%E5%90%84%E7%A7%8D%E6%85%A2/index.html">
+<meta property="og:title" content="python mysql输出">
+<meta property="og:url" content="http://example.com/2022/05/28/python-mysql%E8%BE%93%E5%87%BA/index.html">
 <meta property="og:site_name" content="limhao博客">
-<meta property="og:description" content="一个常用的各种慢的解决复制帖 pip慢 -i https:&#x2F;&#x2F;pypi.tuna.tsinghua.edu.cn&#x2F;simple  conda 慢添加清华镜像源，代码如下所示： 1234conda config --add channels https:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;anaconda&#x2F;pkgs&#x2F;free&#x2F;conda config --set show_">
+<meta property="og:description" content="这个文章会有点长  从安装到mysql基础 到 python 操作 mysql  OK 现在开始 mysql安装和卸载 8.0.26安装感谢：https:&#x2F;&#x2F;blog.csdn.net&#x2F;a802976&#x2F;article&#x2F;details&#x2F;119255644 文章没什么大问题 注意 安装配置的问题  下载安装包（没错）  安装配置（有一些很注意的东西）    解压  编写MySQL配置文件 在解压目录下">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/null">
-<meta property="article:published_time" content="2022-04-06T13:34:45.459Z">
-<meta property="article:modified_time" content="2022-04-06T13:35:23.132Z">
+<meta property="article:published_time" content="2022-05-28T12:08:29.860Z">
+<meta property="article:modified_time" content="2022-05-28T12:45:35.673Z">
 <meta property="article:author" content="limhao">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/null">
@@ -152,17 +152,17 @@
     <div class="kratos-hentry kratos-post-inner clearfix">
         <header class="kratos-entry-header">
             
-                <h1 class="kratos-entry-title text-center">各种慢</h1>
+                <h1 class="kratos-entry-title text-center">python mysql输出</h1>
             
             
             <ul class="kratos-post-meta text-center">
-                <li><i class="fa fa-calendar"></i> 2022-04-06</li>
+                <li><i class="fa fa-calendar"></i> 2022-05-28</li>
                 <li><i class="fa fa-user"></i> 作者 limhao</li>
                 <li>
                     <i class="fa fa-edit"></i> 
                     
                     
-                        396
+                        1256
                     
                     字
                 </li>
@@ -172,15 +172,40 @@
         <div class="kratos-post-content">
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>本文最后编辑于 <time datetime="1649252123132"></time> 前，其中的内容可能需要更新。</p></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1653741935673"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
             <hr />
-            <p>一个常用的各种慢的解决复制帖</p>
-<h1 id="pip慢"><a href="#pip慢" class="headerlink" title="pip慢"></a>pip慢</h1><p> -i <a target="_blank" rel="noopener" href="https://pypi.tuna.tsinghua.edu.cn/simple">https://pypi.tuna.tsinghua.edu.cn/simple</a> </p>
-<h1 id="conda-慢"><a href="#conda-慢" class="headerlink" title="conda 慢"></a>conda 慢</h1><p>添加清华镜像源，代码如下所示：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/</span><br><span class="line">conda config --<span class="built_in">set</span> show_channel_urls yes</span><br><span class="line">conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge/</span><br><span class="line">conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/msys2/</span><br></pre></td></tr></table></figure>
+            <p>这个文章会有点长 </p>
+<p>从安装到mysql基础 到 python 操作 mysql </p>
+<p>OK 现在开始</p>
+<h2 id="mysql安装和卸载-8-0-26"><a href="#mysql安装和卸载-8-0-26" class="headerlink" title="mysql安装和卸载 8.0.26"></a>mysql安装和卸载 8.0.26</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>感谢：<a target="_blank" rel="noopener" href="https://blog.csdn.net/a802976/article/details/119255644">https://blog.csdn.net/a802976/article/details/119255644</a></p>
+<p>文章没什么大问题 注意 安装配置的问题</p>
+<ul>
+<li><p>下载安装包（没错）</p>
+</li>
+<li><p>安装配置（有一些很注意的东西）</p>
+</li>
+</ul>
+<p> 解压<img src="https://img-blog.csdnimg.cn/770ef7859e5c43fd83ca557cda7e7dca.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2E4MDI5NzY=,size_16,color_FFFFFF,t_70" alt="img"> </p>
+<p><strong>编写MySQL</strong>配置文件</p>
+<p>在解压目录下新建my.ini文件</p>
+<p>  <img src="https://img-blog.csdnimg.cn/648a35f4427e48bd9ccb9c4a944befaa.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2E4MDI5NzY=,size_16,color_FFFFFF,t_70" alt="img"> </p>
+<p> 将下面文本拷贝进my.ini文件中 </p>
+<p>注意 下面的 两个地址basedir 和 datadir 这个很重要</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line"><span class="comment"># 设置3306端口</span></span><br><span class="line">port=<span class="number">3306</span></span><br><span class="line"><span class="comment"># 设置mysql的安装目录   ----------是你的文件路径-------------</span></span><br><span class="line">basedir=D:\mysql-<span class="number">8.0</span><span class="number">.26</span>-winx64\mysql-<span class="number">8.0</span><span class="number">.26</span>-winx64</span><br><span class="line"><span class="comment"># 设置mysql数据库的数据的存放目录  ---------是你的文件路径data文件夹自行创建</span></span><br><span class="line"><span class="comment">#datadir=E:\mysql\mysql\data</span></span><br><span class="line"><span class="comment"># 允许最大连接数</span></span><br><span class="line">max_connections=<span class="number">200</span></span><br><span class="line"><span class="comment"># 允许连接失败的次数。</span></span><br><span class="line">max_connect_errors=<span class="number">10</span></span><br><span class="line"><span class="comment"># 服务端使用的字符集默认为utf8mb4</span></span><br><span class="line">character-<span class="built_in">set</span>-server=utf8mb4</span><br><span class="line"><span class="comment"># 创建新表时将使用的默认存储引擎</span></span><br><span class="line">default-storage-engine=INNODB</span><br><span class="line"><span class="comment"># 默认使用“mysql_native_password”插件认证</span></span><br><span class="line"><span class="comment">#mysql_native_password</span></span><br><span class="line">default_authentication_plugin=mysql_native_password</span><br><span class="line">[mysql]</span><br><span class="line"><span class="comment"># 设置mysql客户端默认字符集</span></span><br><span class="line">default-character-<span class="built_in">set</span>=utf8mb4</span><br><span class="line">[client]</span><br><span class="line"><span class="comment"># 设置mysql客户端连接服务端时默认使用的端口</span></span><br><span class="line">port=<span class="number">3306</span></span><br><span class="line">default-character-<span class="built_in">set</span>=utf8mb4</span><br></pre></td></tr></table></figure>
 
+<ul>
+<li>配置环境变量 （没错）</li>
+</ul>
+<h3 id="卸载"><a href="#卸载" class="headerlink" title="卸载"></a>卸载</h3><p>感谢：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_42369926/article/details/81042133">https://blog.csdn.net/weixin_42369926/article/details/81042133</a></p>
+<p>教程完全无误 很不错</p>
+<h2 id="mysql-教程"><a href="#mysql-教程" class="headerlink" title="mysql 教程"></a>mysql 教程</h2><p>感谢：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45851945/article/details/114287877">https://blog.csdn.net/weixin_45851945/article/details/114287877</a></p>
+<p>这边找到了一个很好的工具网站</p>
+<p>可以通过 json 转 mysql</p>
+<p><a target="_blank" rel="noopener" href="https://www.json.cn/jsonzhuansql/">https://www.json.cn/jsonzhuansql/</a></p>
+<h2 id="Python之pymysql详解"><a href="#Python之pymysql详解" class="headerlink" title="Python之pymysql详解"></a>Python之pymysql详解</h2><p>pymysql 是个python 操作数据库的工具 然后 我连了下数据库 发现能用 很不错</p>
+<p>感谢 ： <a target="_blank" rel="noopener" href="https://blog.csdn.net/linwow/article/details/90269246">https://blog.csdn.net/linwow/article/details/90269246</a></p>
 
         </div>
         
@@ -234,7 +259,7 @@
     <script type="text/javascript">
         $(()=>{
             new QRCode("wechat-qr", {
-                text: "http://example.com/2022/04/06/%E5%90%84%E7%A7%8D%E6%85%A2/",
+                text: "http://example.com/2022/05/28/python-mysql%E8%BE%93%E5%87%BA/",
                 width: 150,
                 height: 150,
                 correctLevel : QRCode.CorrectLevel.H
@@ -246,12 +271,12 @@
             const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
             const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
             const twitterBase   = "https://twitter.com/intent/tweet?";
-            const hostUrl       = "http://example.com/2022/04/06/%E5%90%84%E7%A7%8D%E6%85%A2/";
-            const title         = "「各种慢」";
-            const excerpt       = `一个常用的各种慢的解决复制帖
-pip慢 -i https://pypi.tuna.tsinghua.edu.cn/simple 
-conda 慢添加清华镜像源，代码如下所示：
-1234conda config --add channe...`;
+            const hostUrl       = "http://example.com/2022/05/28/python-mysql%E8%BE%93%E5%87%BA/";
+            const title         = "「python mysql输出」";
+            const excerpt       = `这个文章会有点长 
+从安装到mysql基础 到 python 操作 mysql 
+OK 现在开始
+mysql安装和卸载 8.0.26安装感谢：https://blog.csdn.net/a802976/article/details/...`;
             let _URL;
             switch (dest) {
                 case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
@@ -273,7 +298,7 @@ conda 慢添加清华镜像源，代码如下所示：
                     
                 </div>
                 <div class="pull-date">
-                <span>最后编辑：2022-04-06</span>
+                <span>最后编辑：2022-05-28</span>
                 </div>
             </div>
         </footer>
@@ -282,13 +307,9 @@ conda 慢添加清华镜像源，代码如下所示：
         <nav class="navigation post-navigation clearfix" role="navigation">
             
             <div class="nav-previous clearfix">
-                <a title=" criteo数据集的处理 生动" href="/2022/04/06/criteo数据集的处理/">&lt; 上一篇</a>
+                <a title=" 会议总结" href="/2022/05/28/会议总结/">&lt; 上一篇</a>
             </div>
             
-            
-            <div class="nav-next clearfix">
-                <a title=" Amazon数据集的处理 生动（没写完）" href="/2022/04/08/Amazon数据集的处理/">下一篇 &gt;</a>
-            </div>
             
         </nav>
     
