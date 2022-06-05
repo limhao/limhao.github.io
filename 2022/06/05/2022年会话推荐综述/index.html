@@ -24,7 +24,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/null">
 <meta property="article:published_time" content="2022-06-05T11:45:38.441Z">
-<meta property="article:modified_time" content="2022-06-05T12:04:50.183Z">
+<meta property="article:modified_time" content="2022-06-05T14:23:07.163Z">
 <meta property="article:author" content="limhao">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/null">
@@ -162,7 +162,7 @@
                     <i class="fa fa-edit"></i> 
                     
                     
-                        420
+                        711
                     
                     字
                 </li>
@@ -172,7 +172,7 @@
         <div class="kratos-post-content">
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>本文最后编辑于 <time datetime="1654430690183"></time> 前，其中的内容可能需要更新。</p></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1654438987163"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
             <hr />
@@ -191,12 +191,27 @@
 <li><p>讨论了SBRS研究中存在的问题和前景</p>
 </li>
 </ol>
-<h2 id="1-顺序推荐和会话推荐的区别"><a href="#1-顺序推荐和会话推荐的区别" class="headerlink" title="1. 顺序推荐和会话推荐的区别"></a>1. 顺序推荐和会话推荐的区别</h2><p><a target="_blank" rel="noopener" href="https://imgtu.com/i/XwZ25D"><img src="https://s1.ax1x.com/2022/06/05/XwZ25D.md.png"></a></p>
+<h2 id="1-序列推荐和会话推荐的区别"><a href="#1-序列推荐和会话推荐的区别" class="headerlink" title="1. 序列推荐和会话推荐的区别"></a>1. 序列推荐和会话推荐的区别</h2><p><a target="_blank" rel="noopener" href="https://imgtu.com/i/XwZ25D"><img src="https://s1.ax1x.com/2022/06/05/XwZ25D.md.png"></a></p>
 <p>作者对于Boundary解释</p>
 <p>是指在事务事件中启动和结束特定会话的开始-结束交互对 </p>
 <p>会话 可以分为 有序会话 和 无序对话</p>
 <p>这个session 内 交互 内item 是不是按顺序分布的来区分是否为 无序有序</p>
 <p>对于边界间隔 session 有很多个 而 序列 只有单一一个</p>
+<p>对于 其 嵌入的主要关系  </p>
+<p>基于 会话的 是 共现关系 而 基于 序列的 是 顺序依赖关系</p>
+<h2 id="2-会话推荐"><a href="#2-会话推荐" class="headerlink" title="2. 会话推荐"></a>2. 会话推荐</h2><h3 id="2-1-目的"><a href="#2-1-目的" class="headerlink" title="2.1 目的"></a>2.1 目的</h3><p>会话推荐需要注意<strong>attention</strong></p>
+<ol>
+<li>SBRS旨在通过学习会话内或会话间的依赖关系，预测给定已知部分的会话的未知部分（例如，一个项目或一批项目），或给定历史会话的未来会话（例如，下一个篮子）。 </li>
+<li>原则上，SBRS不一定依赖会话内的顺序信息，但对于有序会话，可以利用自然存在的顺序依赖性进行建议。</li>
+</ol>
+<h3 id="2-2-框架"><a href="#2-2-框架" class="headerlink" title="2.2 框架"></a>2.2 框架</h3><p>主要工作分为三个子领域</p>
+<p>其子领域 可以分为  </p>
+<ol>
+<li>下一次交互推荐</li>
+<li>下一次部分会话推荐（即 下一个会话出现了一部分 预测剩余的部分）</li>
+<li>下一次会话推荐</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/XwNnOK"><img src="https://s1.ax1x.com/2022/06/05/XwNnOK.md.png"></a></p>
 
         </div>
         
