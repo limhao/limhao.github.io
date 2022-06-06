@@ -24,7 +24,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/null">
 <meta property="article:published_time" content="2022-06-05T11:45:38.441Z">
-<meta property="article:modified_time" content="2022-06-06T02:11:08.917Z">
+<meta property="article:modified_time" content="2022-06-06T02:49:46.926Z">
 <meta property="article:author" content="limhao">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/null">
@@ -162,7 +162,7 @@
                     <i class="fa fa-edit"></i> 
                     
                     
-                        1085
+                        ~2.05K
                     
                     字
                 </li>
@@ -172,7 +172,7 @@
         <div class="kratos-post-content">
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>本文最后编辑于 <time datetime="1654481468917"></time> 前，其中的内容可能需要更新。</p></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1654483786926"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
             <hr />
@@ -220,7 +220,35 @@
 <p>一个表征通常被指定为一个潜在的向量</p>
 <p>通过这里 可以看出 不同于 序列推荐的 ui 组合 </p>
 <p>在会话推荐中 更倾向于 UVO 这样的三元组组合 </p>
-<h3 id="2-5-SBRS问题陈述"><a href="#2-5-SBRS问题陈述" class="headerlink" title="2.5  SBRS问题陈述"></a>2.5  SBRS问题陈述</h3>
+<h3 id="2-5-SBRS问题陈述"><a href="#2-5-SBRS问题陈述" class="headerlink" title="2.5  SBRS问题陈述"></a>2.5  SBRS问题陈述</h3><p>一个RS可以被看作是一个系统[8, 9]，它由多个基本实体组成，包括用户。物品和它们的行为，例如，用户与物品的互动。这些基本实体和行为构成了会话的核心成分，也就是SBRS的核心实体。因此，我们首先介绍这些实体和行为的定义和属性，然后在此基础上定义SBRS问题。基于它们的定义。这些定义和属性将被进一步用于SBRS的特征和这些定义和属性将进一步用于SBRSs的特征和分类，等等。</p>
+<h4 id="2-5-1-用户表示（与序列推荐有些不同）"><a href="#2-5-1-用户表示（与序列推荐有些不同）" class="headerlink" title="2.5.1 用户表示（与序列推荐有些不同）"></a>2.5.1 用户表示（与序列推荐有些不同）</h4><p>在SBRS中，用户是对物品（如产品）采取行动的主体，如点击、购买。并接受推荐结果。让u表示一个用户，每个用户都有一个唯一的ID和一组描述她的属性，例如，一个用户的性别，它有多个值。如：男性和女性。一个用户的属性可能会影响她对项目的操作，并进一步影响相应的会话。</p>
+<p>除了可以明显观察到的显性属性外，还有一些隐性属性，它们反映了用户的内部状态。例如她的情绪和意图，也可能对她的行为产生重大影响。所有的用户共同组成了用户集，即U &#x3D; {u1,u2,. . . ,u |U |}。需要注意的是，一个会话的用户信息可能并不总是可用的，原因有二：</p>
+<p>(1)由于隐私保护，它不会被记录下来；</p>
+<p>(2)一些用户在与在线平台互动时不会登录 如amazon.com。因此，会话成为匿名的</p>
+<h4 id="2-5-2-item表示"><a href="#2-5-2-item表示" class="headerlink" title="2.5.2 item表示"></a>2.5.2 item表示</h4><p> v表示一个项目，该项目与唯一ID和一组属性相关联，以提供项目的描述信息，例如项目的类别和价格。数据集中的所有项目构成项目集，即V&#x3D;{v1，v2，…，V | V |}  没什么好说的 很简单</p>
+<h4 id="2-5-3-动作表示"><a href="#2-5-3-动作表示" class="headerlink" title="2.5.3 动作表示"></a>2.5.3 动作表示</h4><p> 用户通常在会话中对某个项目执行操作，例如单击某个项目。让a表示一个动作，该动作与一个唯一ID和一组属性相关联，以提供其属性信息，例如动作的类型，并具有多个值，例如单击、查看和购买。请注意，某些操作可能与特定项目无关，例如搜索操作或目录导航操作。但如参考文献中所述，它们仍可能为SBRS提供有用的信息 </p>
+<h4 id="2-5-4-交互"><a href="#2-5-4-交互" class="headerlink" title="2.5.4 交互"></a>2.5.4 交互</h4><table>
+<thead>
+<tr>
+<th>user</th>
+<th>交互</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>available</td>
+<td>o &#x3D; &lt;u, v, a&gt;</td>
+</tr>
+<tr>
+<td>no available</td>
+<td>o &#x3D; &lt;v, a&gt;</td>
+</tr>
+<tr>
+<td>no available and action only one</td>
+<td>o &#x3D; <v></td>
+</tr>
+</tbody></table>
+<p>综述 3.5</p>
+
         </div>
         
             <div class="kratos-copyright text-center clearfix">
