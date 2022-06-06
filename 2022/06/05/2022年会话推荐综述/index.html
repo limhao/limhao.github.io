@@ -24,7 +24,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/null">
 <meta property="article:published_time" content="2022-06-05T11:45:38.441Z">
-<meta property="article:modified_time" content="2022-06-06T07:10:29.473Z">
+<meta property="article:modified_time" content="2022-06-06T13:30:03.534Z">
 <meta property="article:author" content="limhao">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/null">
@@ -162,7 +162,7 @@
                     <i class="fa fa-edit"></i> 
                     
                     
-                        ~2.44K
+                        ~3.14K
                     
                     字
                 </li>
@@ -172,7 +172,7 @@
         <div class="kratos-post-content">
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>本文最后编辑于 <time datetime="1654499429473"></time> 前，其中的内容可能需要更新。</p></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1654522203534"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
             <hr />
@@ -271,14 +271,20 @@
 <td>在现实世界中，一些会话只包含一种类型的操作，例如购买，而其他会话可能包含多种类型的操作，例如单击、购买。会话中动作类型的数量决定会话内依赖关系是否是同质的（基于单个动作）或异构（基于多种类型的操作），这对于准确的建议很重要</td>
 </tr>
 <tr>
-<td></td>
-<td></td>
+<td>user information</td>
+<td>用户信息在连接同一用户在不同时间发生的会话方面起着重要作用，因此其可用性决定了为特定用户跨多个会话建模长期个性化偏好的可能性。用户信息的属性是指会话中用户信息的可用性。实际上，SBRS最初被提议用于处理用户信息不可用的匿名会话</td>
 </tr>
 <tr>
-<td></td>
-<td></td>
+<td>session-data structure</td>
+<td>是指与会话相关的层次结构组成的多层次结构。交互层由每个会话中的交互组成，而会话层则由当前用户的多个历史会话组成。（即区分会话和交互）</td>
 </tr>
 </tbody></table>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/X0j4u4"><img src="https://s1.ax1x.com/2022/06/06/X0j4u4.md.png"></a></p>
+<p>这个图 可以看出 会话的第五个属性 ： 会话的层次结构</p>
+<h3 id="2-6-问题定义"><a href="#2-6-问题定义" class="headerlink" title="2.6 问题定义"></a>2.6 问题定义</h3><h4 id="2-6-1-输入"><a href="#2-6-1-输入" class="headerlink" title="2.6.1 输入"></a>2.6.1 输入</h4><p>(1) 当前会话的已知部分（即已发生的交互的列表），这是SBRS的输入。它只为下一个交互（项目）建立会话内的依赖关系，或下一个部分会话的建议（参见第2.2节）。<br> (2) 已知的历史会话列表，它是主要为下一个会话（如abasket）推荐建立会话间依赖关系模型<br> (3) 前两者的组合，这是SBRSs的输入为下一次交互的推荐建立会话内和会话间依赖关系的模型。或下一个部分会话建议。</p>
+<p><strong>在特定情况下，当前会话或历史会话的输入部分可以是匿名或非匿名、有序或无序的，并具有单一或多种类型的操作。根据我们的观察，大多数现有的SBRS假设输入会话是有序的，并且具有单一类型的操作</strong></p>
+<h4 id="2-6-2-输出"><a href="#2-6-2-输出" class="headerlink" title="2.6.2 输出"></a>2.6.2 输出</h4><p> SBRS的目标是根据给定的会话上下文，即已知的会话信息，提出建议 </p>
+<p>（1）在下一次交互建议中，输出是备选交互（项目）的列表，按最佳匹配排序为会话中的下一次交互（项目）；<br>（2） 在下一部分会话建议中，输出是完成当前会话的交互（项目）列表；<br>（3）在下一次会议建议中，输出是组成下一次会议的补充互动（项目）列表</p>
 
         </div>
         
