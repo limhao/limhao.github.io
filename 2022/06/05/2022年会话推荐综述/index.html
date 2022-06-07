@@ -24,7 +24,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/null">
 <meta property="article:published_time" content="2022-06-05T11:45:38.441Z">
-<meta property="article:modified_time" content="2022-06-06T13:30:03.534Z">
+<meta property="article:modified_time" content="2022-06-07T13:32:08.560Z">
 <meta property="article:author" content="limhao">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/null">
@@ -162,7 +162,7 @@
                     <i class="fa fa-edit"></i> 
                     
                     
-                        ~3.14K
+                        ~5.29K
                     
                     字
                 </li>
@@ -172,7 +172,7 @@
         <div class="kratos-post-content">
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>本文最后编辑于 <time datetime="1654522203534"></time> 前，其中的内容可能需要更新。</p></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1654608728560"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
             <hr />
@@ -285,7 +285,121 @@
 <p><strong>在特定情况下，当前会话或历史会话的输入部分可以是匿名或非匿名、有序或无序的，并具有单一或多种类型的操作。根据我们的观察，大多数现有的SBRS假设输入会话是有序的，并且具有单一类型的操作</strong></p>
 <h4 id="2-6-2-输出"><a href="#2-6-2-输出" class="headerlink" title="2.6.2 输出"></a>2.6.2 输出</h4><p> SBRS的目标是根据给定的会话上下文，即已知的会话信息，提出建议 </p>
 <p>（1）在下一次交互建议中，输出是备选交互（项目）的列表，按最佳匹配排序为会话中的下一次交互（项目）；<br>（2） 在下一部分会话建议中，输出是完成当前会话的交互（项目）列表；<br>（3）在下一次会议建议中，输出是组成下一次会议的补充互动（项目）列表</p>
-
+<h3 id="2-7-挑战"><a href="#2-7-挑战" class="headerlink" title="2.7 挑战"></a>2.7 挑战</h3><p>针对2.5.5 对于会话提出的5个属性 提出了相对应的5个挑战</p>
+<h4 id="2-7-1-会话长度"><a href="#2-7-1-会话长度" class="headerlink" title="2.7.1 会话长度"></a>2.7.1 会话长度</h4><p>根据会话长度，会话大致可分为三种类型：长会话、中会话和短会话，而长会话、中会话和短会话的具体定义可能因特定数据集而异 </p>
+<table>
+<thead>
+<tr>
+<th>会话</th>
+<th>描述</th>
+<th>挑战</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>长会话</td>
+<td>一个长会话包含相对较多的交互，例如超过10次。总的来说，通过更多的互动，长时间的会话可以提供更多的上下文信息，以获得更准确的建议。然而，由于用户行为的不确定性，长会话更有可能包含与其中其他交互无关的随机交互。这会带来嘈杂的信息，从而降低建议的性能</td>
+<td>第一个挑战是如何有效地减少不相关交互中的噪声信息。另一个挑战是如何有效地学习复杂的依赖关系以获得更好的推荐性能</td>
+</tr>
+<tr>
+<td>中会话</td>
+<td>中等会话通常包含中等数量的交互，例如4到9次。根据我们对电子商务行业交易记录生成的会话数据的观察，中间会话是最常见的情况。与长会话和短会话相比，中等会话不太可能包含太多不相关的交互，而它通常包含基于会话的推荐（SBR）所需的上下文信息。</td>
+<td>即如何有效地提取相关和准确的上下文信息以获得准确的建议。</td>
+</tr>
+<tr>
+<td>短对话</td>
+<td>一个简短的会话包含非常有限的交互，例如，通常少于4次，导致可供推荐的信息有限。例如，在由两个交互组成的脱机匿名会话中，可以用来推荐第二个交互（项目）的唯一上下文信息是会话中的第一个交互。一种极端情况是建议会话的第一次交互。</td>
+<td>如何在有限的背景信息下有效地提出建议</td>
+</tr>
+</tbody></table>
+<h4 id="2-7-2-内部顺序-（会话内是否存在顺序）"><a href="#2-7-2-内部顺序-（会话内是否存在顺序）" class="headerlink" title="2.7.2  内部顺序 （会话内是否存在顺序）"></a>2.7.2  内部顺序 （会话内是否存在顺序）</h4><table>
+<thead>
+<tr>
+<th>内部顺序</th>
+<th>描述</th>
+<th>挑战</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>无序对话</td>
+<td>无序会话包含的交互之间没有任何时间顺序，也就是说，会话中的交互发生得早或晚没有区别。因此，通常使用的序列模型不适用。与顺序依赖相比，基于共现的依赖通常相对较弱且模糊，更难学习。此外，交互之间大多数基于共现的依赖关系都是集体依赖关系，即会话中的多个上下文交互协同导致下一个交互的发生，而下一个交互更难捕获。</td>
+<td>如何有效地学习交互之间相对较弱和模糊的依赖关系，尤其是那些集体依赖关系</td>
+</tr>
+<tr>
+<td>有序对话</td>
+<td>有序会话包含多个具有严格顺序的交互，它们之间通常存在强的顺序依赖关系</td>
+<td>长顺序会话中有效学习级联的长期顺序依赖是一个挑战</td>
+</tr>
+<tr>
+<td>灵活安排</td>
+<td>灵活排序的会话既不是完全无序的，也不是完全有序的，即会话的某些部分是有序的，而其他部分不是 须仔细考虑和准确了解灵活排序会话中的复杂依赖关系</td>
+<td>来自于如何有效地学习复杂和混合的依赖关系，即有序交互之间的顺序依赖关系和无序交互之间的非顺序依赖关系</td>
+</tr>
+</tbody></table>
+<h4 id="2-7-3-动作类型"><a href="#2-7-3-动作类型" class="headerlink" title="2.7.3 动作类型"></a>2.7.3 动作类型</h4><table>
+<thead>
+<tr>
+<th>动作类型</th>
+<th>描述</th>
+<th>挑战</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>单一动作</td>
+<td>单一类型的操作会话仅包括一种类型的操作，例如单击项目，因此只有一种类型的依赖关系来自同一类型的操作，这相对容易学习</td>
+<td>很好学习</td>
+</tr>
+<tr>
+<td>多种动作</td>
+<td>一个多类型的动作会话包括多种类型的动作[54]，从而导致多种类型的交互。在多类型操作会话中存在复杂的依赖关系。具体来说，依赖性不仅存在于同一类型的交互上（例如，点击项目），还存在于不同类型的交互上（例如，点击和购买）。</td>
+<td>如何有效准确地了解行动内和行动间类型的依赖关系，以获得准确的建议</td>
+</tr>
+</tbody></table>
+<h4 id="2-7-4-用户信息"><a href="#2-7-4-用户信息" class="headerlink" title="2.7.4 用户信息"></a>2.7.4 用户信息</h4><table>
+<thead>
+<tr>
+<th>用户信息</th>
+<th>描述</th>
+<th>挑战</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>不匿名</td>
+<td>非匿名会话包含与相关用户信息的非匿名交互，从而支持同一用户在不同时间生成的不同会话之间的连接。这使得了解用户的长期偏好以及其在会话中的演变成为可能</td>
+<td>准确地了解个性化的长期偏好，而不是多个非匿名会话，这是一个相当具有挑战性的问题</td>
+</tr>
+<tr>
+<td>匿名</td>
+<td>在匿名会话中，由于缺少连接同一用户生成的多个会话的用户信息，因此几乎不可能为当前会话收集以前的历史会话。因此，只有来自当前会话的上下文信息才能用于建议。</td>
+<td>利用有限的上下文信息精确捕获用户的个性化偏好以提供准确的推荐是一个挑战</td>
+</tr>
+</tbody></table>
+<h4 id="2-7-5-会话数据结构"><a href="#2-7-5-会话数据结构" class="headerlink" title="2.7.5 会话数据结构"></a>2.7.5 会话数据结构</h4><table>
+<thead>
+<tr>
+<th>数据结构</th>
+<th>描述</th>
+<th>挑战</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>单级会话</td>
+<td>单级会话数据集通常是一组匿名会话，其中每个会话由多个没有属性信息或历史会话信息的交互组成。在这种情况下，建议只能使用单级依赖项，即会话内的交互依赖项。因此，由于缺乏其他级别的辅助信息，基于单级别会话数据构建的SBRS很容易受到冷启动或数据稀疏问题的影响</td>
+<td>即当只有交互依赖关系可用时，如何克服冷启动和稀疏性问题以获得准确的建议</td>
+</tr>
+<tr>
+<td>多级会话</td>
+<td>多级会话数据涉及至少两个级别的层次结构，即交互级别加属性级别和&#x2F;或会话级别。在这种情况下，每个级别内和不同级别之间的依赖关系都会影响后续的建议。例如，多个项目的类别（属性级别）可能会影响这些项目是否会在一个会话中一起购买（交互级别）</td>
+<td>如何全面了解级别内和级别间的依赖关系以获得有效和准确的建议，成为构建在多级会话数据上的SBRS面临的一个关键挑战</td>
+</tr>
+</tbody></table>
+<h2 id="3-SBRS方法的分类和比较"><a href="#3-SBRS方法的分类和比较" class="headerlink" title="3  SBRS方法的分类和比较"></a>3  SBRS方法的分类和比较</h2><p>分类部分 这里写了个大概 还得仔细去看</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/XDgb1x"><img src="https://s1.ax1x.com/2022/06/07/XDgb1x.md.png"></a></p>
+<p>三大方法为 常规SRS方法 潜在特征方法 深度神经网络方法</p>
+<h3 id="3-1-常规方法"><a href="#3-1-常规方法" class="headerlink" title="3.1 常规方法"></a>3.1 常规方法</h3><p><a target="_blank" rel="noopener" href="https://imgtu.com/i/XD2d81"><img src="https://s1.ax1x.com/2022/06/07/XD2d81.md.png"></a></p>
+<h3 id="3-2-SBRSs的潜在表示方法"><a href="#3-2-SBRSs的潜在表示方法" class="headerlink" title="3.2  SBRSs的潜在表示方法"></a>3.2  SBRSs的潜在表示方法</h3><p> SBRSs的潜在表示方法首先使用浅层模型为会话内的每个交互构建低维潜在表示。学习到的信息表示对这些交互之间的依赖关系进行编码，然后将用于后续基于会话的建议 </p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/XD4aXq"><img src="https://s1.ax1x.com/2022/06/07/XD4aXq.md.png"></a></p>
+<h3 id="3-3-SBRSs的深度神经网络方法"><a href="#3-3-SBRSs的深度神经网络方法" class="headerlink" title="3.3  SBRSs的深度神经网络方法"></a>3.3  SBRSs的深度神经网络方法</h3><p><a target="_blank" rel="noopener" href="https://imgtu.com/i/XD5VbV"><img src="https://s1.ax1x.com/2022/06/07/XD5VbV.md.png"></a></p>
+<h2 id="4-SBRS应用程序、算法和数据集"><a href="#4-SBRS应用程序、算法和数据集" class="headerlink" title="4.  SBRS应用程序、算法和数据集"></a>4.  SBRS应用程序、算法和数据集</h2><h3 id="4-1-SBRS应用"><a href="#4-1-SBRS应用" class="headerlink" title="4.1 SBRS应用"></a>4.1 SBRS应用</h3>
         </div>
         
             <div class="kratos-copyright text-center clearfix">
@@ -380,7 +494,7 @@ SBRS的统一问题陈述，其中SBR...`;
                     
                 </div>
                 <div class="pull-date">
-                <span>最后编辑：2022-06-06</span>
+                <span>最后编辑：2022-06-07</span>
                 </div>
             </div>
         </footer>
