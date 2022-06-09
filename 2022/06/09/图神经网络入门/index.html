@@ -4,7 +4,7 @@
   <!-- 元数据 -->
   <meta charset="utf-8">
   <link rel="icon" href="">
-  <title>python mysql输出 | limhao博客</title>
+  <title>图神经网络入门 | limhao博客</title>
   <meta name="author" content="limhao" />
   <meta http-equiv="Cache-Control" content="no-transform" />
   <meta http-equiv="Cache-Control" content="no-siteapp" />
@@ -15,16 +15,16 @@
   
     <meta name="keywords" content="" />
   
-  <meta name="description" content="这个文章会有点长  从安装到mysql基础 到 python 操作 mysql  OK 现在开始 mysql安装和卸载 8.0.26安装感谢：https:&#x2F;&#x2F;blog.csdn.net&#x2F;a802976&#x2F;article&#x2F;details&#x2F;119255644 文章没什么大问题 注意 安装配置的问题  下载安装包（没错）  安装配置（有一些很注意的东西）    解压  编写MySQL配置文件 在解压目录下">
+  <meta name="description" content="感谢：https:&#x2F;&#x2F;distill.pub&#x2F;2021&#x2F;gnn-intro&#x2F; 博客 https:&#x2F;&#x2F;www.bilibili.com&#x2F;video&#x2F;BV1iT4y1d7zP 李沐介绍视频 0. 前言首先，让我们确定什么是图。图代表了一组实体（结点）之间的关系（边）。  V  node 节点     E  link 连接 U  master node  整个图 1. 描述（抽象）为了进一步描述每个节点">
 <meta property="og:type" content="article">
-<meta property="og:title" content="python mysql输出">
-<meta property="og:url" content="http://example.com/2022/05/28/python-mysql%E8%BE%93%E5%87%BA/index.html">
+<meta property="og:title" content="图神经网络入门">
+<meta property="og:url" content="http://example.com/2022/06/09/%E5%9B%BE%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%85%A5%E9%97%A8/index.html">
 <meta property="og:site_name" content="limhao博客">
-<meta property="og:description" content="这个文章会有点长  从安装到mysql基础 到 python 操作 mysql  OK 现在开始 mysql安装和卸载 8.0.26安装感谢：https:&#x2F;&#x2F;blog.csdn.net&#x2F;a802976&#x2F;article&#x2F;details&#x2F;119255644 文章没什么大问题 注意 安装配置的问题  下载安装包（没错）  安装配置（有一些很注意的东西）    解压  编写MySQL配置文件 在解压目录下">
+<meta property="og:description" content="感谢：https:&#x2F;&#x2F;distill.pub&#x2F;2021&#x2F;gnn-intro&#x2F; 博客 https:&#x2F;&#x2F;www.bilibili.com&#x2F;video&#x2F;BV1iT4y1d7zP 李沐介绍视频 0. 前言首先，让我们确定什么是图。图代表了一组实体（结点）之间的关系（边）。  V  node 节点     E  link 连接 U  master node  整个图 1. 描述（抽象）为了进一步描述每个节点">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/null">
-<meta property="article:published_time" content="2022-05-28T12:08:29.860Z">
-<meta property="article:modified_time" content="2022-05-28T12:45:35.673Z">
+<meta property="article:published_time" content="2022-06-09T06:42:51.894Z">
+<meta property="article:modified_time" content="2022-06-09T08:22:07.241Z">
 <meta property="article:author" content="limhao">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/null">
@@ -152,17 +152,17 @@
     <div class="kratos-hentry kratos-post-inner clearfix">
         <header class="kratos-entry-header">
             
-                <h1 class="kratos-entry-title text-center">python mysql输出</h1>
+                <h1 class="kratos-entry-title text-center">图神经网络入门</h1>
             
             
             <ul class="kratos-post-meta text-center">
-                <li><i class="fa fa-calendar"></i> 2022-05-28</li>
+                <li><i class="fa fa-calendar"></i> 2022-06-09</li>
                 <li><i class="fa fa-user"></i> 作者 limhao</li>
                 <li>
                     <i class="fa fa-edit"></i> 
                     
                     
-                        1256
+                        ~1.93K
                     
                     字
                 </li>
@@ -172,40 +172,78 @@
         <div class="kratos-post-content">
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>本文最后编辑于 <time datetime="1653741935673"></time> 前，其中的内容可能需要更新。</p></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1654762927241"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
             <hr />
-            <p>这个文章会有点长 </p>
-<p>从安装到mysql基础 到 python 操作 mysql </p>
-<p>OK 现在开始</p>
-<h2 id="mysql安装和卸载-8-0-26"><a href="#mysql安装和卸载-8-0-26" class="headerlink" title="mysql安装和卸载 8.0.26"></a>mysql安装和卸载 8.0.26</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>感谢：<a target="_blank" rel="noopener" href="https://blog.csdn.net/a802976/article/details/119255644">https://blog.csdn.net/a802976/article/details/119255644</a></p>
-<p>文章没什么大问题 注意 安装配置的问题</p>
-<ul>
-<li><p>下载安装包（没错）</p>
+            <p>感谢：<a target="_blank" rel="noopener" href="https://distill.pub/2021/gnn-intro/">https://distill.pub/2021/gnn-intro/</a> 博客</p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1iT4y1d7zP">https://www.bilibili.com/video/BV1iT4y1d7zP</a> 李沐介绍视频</p>
+<h2 id="0-前言"><a href="#0-前言" class="headerlink" title="0. 前言"></a>0. 前言</h2><p>首先，让我们确定什么是图。图代表了一组实体（结点）之间的关系（边）。</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/Xsdi8O"><img src="https://s1.ax1x.com/2022/06/09/Xsdi8O.md.png"></a></p>
+<p>V  node 节点    </p>
+<p>E  link 连接</p>
+<p>U  master node  整个图</p>
+<h2 id="1-描述（抽象）"><a href="#1-描述（抽象）" class="headerlink" title="1. 描述（抽象）"></a>1. 描述（抽象）</h2><p>为了进一步描述每个节点、边或整个图，我们将图中的每一部分信息进行储存。</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/XswTpT"><img src="https://s1.ax1x.com/2022/06/09/XswTpT.md.png"></a></p>
+<p>在存储方面 我们存下了点，边，整个图的信息 进行存储</p>
+<p>图 也分为有向图和无向图</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/Xs03Hs"><img src="https://s1.ax1x.com/2022/06/09/Xs03Hs.md.png"></a></p>
+<h2 id="2-图的实例化讲解"><a href="#2-图的实例化讲解" class="headerlink" title="2. 图的实例化讲解"></a>2. 图的实例化讲解</h2><p>作者 使用了两个反直觉的数据类型用图来表示</p>
+<h3 id="2-1-图像"><a href="#2-1-图像" class="headerlink" title="2.1 图像"></a>2.1 图像</h3><p>我们通常认为图像是具有图像通道的矩形网格，将它们表示为数组（例如244x244x3的浮点）。另一种思考图像的方式是具有规则结构的图，其中每个像素代表一个节点，并通过边连接到相邻的像素。每个非边界像素正好有8个邻居，每个节点存储的信息是一个代表像素RGB值的3维矢量。</p>
+<p>通过邻接矩阵来可视化图形的连通性的一种方法。我们对节点进行排序，在这种情况下，在一个简单的5x5的笑脸图像中，每个节点都有25个像素，如果两个节点共享一条边，就用一个条目来填充n×n的矩阵。请注意，下面这三种表示方法都是对同一份数据的不同看法。</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/Xs0OxS"><img src="https://s1.ax1x.com/2022/06/09/Xs0OxS.md.png"></a></p>
+<p>图像的三种表示方法</p>
+<h3 id="2-2-文本"><a href="#2-2-文本" class="headerlink" title="2.2 文本"></a>2.2 文本</h3><p>我们可以通过为每个字符、词或标记关联索引来数字化文本，并将文本表示为这些索引的序列。这就形成了一个简单的有向图，其中每个字符或索引都是一个节点，并通过一条边与后面的节点相连。</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/XshsyR"><img src="https://s1.ax1x.com/2022/06/09/XshsyR.md.png"></a></p>
+<p>当然，在实践中，这通常不是文本和图像的编码方式：这些图表示是多余的，因为所有图像和所有文本都会有非常规则的结构。例如，图像的邻接矩阵有一个带状结构，因为所有的节点（像素）都是以网格方式连接的。文本的邻接矩阵只是一条对角线，因为每个词只与前一个词和后一个词相连接</p>
+<h2 id="3-什么样子的问题会用到图结构"><a href="#3-什么样子的问题会用到图结构" class="headerlink" title="3. 什么样子的问题会用到图结构"></a>3. 什么样子的问题会用到图结构</h2><h3 id="3-1-图级"><a href="#3-1-图级" class="headerlink" title="3.1 图级"></a>3.1 图级</h3><p>看起来很弱智的 找圈圈个数</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/XsHz5t"><img src="https://s1.ax1x.com/2022/06/09/XsHz5t.md.png"></a></p>
+<h3 id="3-2-节点级"><a href="#3-2-节点级" class="headerlink" title="3.2 节点级"></a>3.2 节点级</h3><p>​    节点级任务关注的是预测图中每个节点的身份或角色。<br>​    节点级预测问题的一个典型例子是Zach的空手道俱乐部。<br>​     该数据集是一个单一的社会网络图，由在政治裂痕后宣誓效忠于两个空手道俱乐部之一的个人组成。正如故事所言，Hi先生（教练）和John H（管理员）之间的争执在空手道俱乐部中造成了分裂。节点代表空手道练习者个人，边则代表这些成员在空手道之外的互动关系。预测问题是对一个给定的成员在争斗后是否会效忠于Hi先生或John H进行分类。在这种情况下，一个节点与教官或管理员之间的距离与这个标签高度相关</p>
+<p>[<img src="https://s1.ax1x.com/2022/06/09/XsbhQS.md.png">]</p>
+<p>​    按照图像的类比，节点级预测问题类似于图像分割，我们试图标记图像中每个像素的作用。对于文本，类似的任务是预测句子中每个词的语音部分（如名词、动词、副词等）。</p>
+<h3 id="3-3-边级"><a href="#3-3-边级" class="headerlink" title="3.3 边级"></a>3.3 边级</h3><p><a target="_blank" rel="noopener" href="https://imgtu.com/i/Xsqnwd"><img src="https://s1.ax1x.com/2022/06/09/Xsqnwd.md.png"></a></p>
+<p>通过语义分割 分析出实体对象 然后对实体对象之间的关系 使用机器学习进行预测 之后用图来进行表示</p>
+<h2 id="4-图的表示"><a href="#4-图的表示" class="headerlink" title="4. 图的表示"></a>4. 图的表示</h2><p><a target="_blank" rel="noopener" href="https://imgtu.com/i/XsLtgK"><img src="https://s1.ax1x.com/2022/06/09/XsLtgK.md.png" alt="XsLtgK.md.png"></a></p>
+<p>自己的看法</p>
+<ol>
+<li><p>dim &#x3D; 0 的位置上 每个节点一一对应</p>
 </li>
-<li><p>安装配置（有一些很注意的东西）</p>
+<li><p>节点有节点 自己的分类 边也是一样</p>
 </li>
-</ul>
-<p> 解压<img src="https://img-blog.csdnimg.cn/770ef7859e5c43fd83ca557cda7e7dca.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2E4MDI5NzY=,size_16,color_FFFFFF,t_70" alt="img"> </p>
-<p><strong>编写MySQL</strong>配置文件</p>
-<p>在解压目录下新建my.ini文件</p>
-<p>  <img src="https://img-blog.csdnimg.cn/648a35f4427e48bd9ccb9c4a944befaa.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2E4MDI5NzY=,size_16,color_FFFFFF,t_70" alt="img"> </p>
-<p> 将下面文本拷贝进my.ini文件中 </p>
-<p>注意 下面的 两个地址basedir 和 datadir 这个很重要</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line"><span class="comment"># 设置3306端口</span></span><br><span class="line">port=<span class="number">3306</span></span><br><span class="line"><span class="comment"># 设置mysql的安装目录   ----------是你的文件路径-------------</span></span><br><span class="line">basedir=D:\mysql-<span class="number">8.0</span><span class="number">.26</span>-winx64\mysql-<span class="number">8.0</span><span class="number">.26</span>-winx64</span><br><span class="line"><span class="comment"># 设置mysql数据库的数据的存放目录  ---------是你的文件路径data文件夹自行创建</span></span><br><span class="line"><span class="comment">#datadir=E:\mysql\mysql\data</span></span><br><span class="line"><span class="comment"># 允许最大连接数</span></span><br><span class="line">max_connections=<span class="number">200</span></span><br><span class="line"><span class="comment"># 允许连接失败的次数。</span></span><br><span class="line">max_connect_errors=<span class="number">10</span></span><br><span class="line"><span class="comment"># 服务端使用的字符集默认为utf8mb4</span></span><br><span class="line">character-<span class="built_in">set</span>-server=utf8mb4</span><br><span class="line"><span class="comment"># 创建新表时将使用的默认存储引擎</span></span><br><span class="line">default-storage-engine=INNODB</span><br><span class="line"><span class="comment"># 默认使用“mysql_native_password”插件认证</span></span><br><span class="line"><span class="comment">#mysql_native_password</span></span><br><span class="line">default_authentication_plugin=mysql_native_password</span><br><span class="line">[mysql]</span><br><span class="line"><span class="comment"># 设置mysql客户端默认字符集</span></span><br><span class="line">default-character-<span class="built_in">set</span>=utf8mb4</span><br><span class="line">[client]</span><br><span class="line"><span class="comment"># 设置mysql客户端连接服务端时默认使用的端口</span></span><br><span class="line">port=<span class="number">3306</span></span><br><span class="line">default-character-<span class="built_in">set</span>=utf8mb4</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>配置环境变量 （没错）</li>
-</ul>
-<h3 id="卸载"><a href="#卸载" class="headerlink" title="卸载"></a>卸载</h3><p>感谢：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_42369926/article/details/81042133">https://blog.csdn.net/weixin_42369926/article/details/81042133</a></p>
-<p>教程完全无误 很不错</p>
-<h2 id="mysql-教程"><a href="#mysql-教程" class="headerlink" title="mysql 教程"></a>mysql 教程</h2><p>感谢：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45851945/article/details/114287877">https://blog.csdn.net/weixin_45851945/article/details/114287877</a></p>
-<p>这边找到了一个很好的工具网站</p>
-<p>可以通过 json 转 mysql</p>
-<p><a target="_blank" rel="noopener" href="https://www.json.cn/jsonzhuansql/">https://www.json.cn/jsonzhuansql/</a></p>
-<h2 id="Python之pymysql详解"><a href="#Python之pymysql详解" class="headerlink" title="Python之pymysql详解"></a>Python之pymysql详解</h2><p>pymysql 是个python 操作数据库的工具 然后 我连了下数据库 发现能用 很不错</p>
-<p>感谢 ： <a target="_blank" rel="noopener" href="https://blog.csdn.net/linwow/article/details/90269246">https://blog.csdn.net/linwow/article/details/90269246</a></p>
+<li><p>如果想表示一个图两个节点是否相互连接 可以使用【node，node】来表示</p>
+</li>
+<li><p>global 也有其自己的分类表示</p>
+</li>
+</ol>
+<h3 id="4-1-网络表示"><a href="#4-1-网络表示" class="headerlink" title="4.1 网络表示"></a>4.1 网络表示</h3><p><img src="https://s1.ax1x.com/2022/06/09/XsXwtA.md.png"></p>
+<p>这个GNN在图的每个分量上使用一个单独的多层感知器（MLP）（或你最喜欢的可微分模型）；我们称之为GNN层。对于每个节点向量，我们应用MLP并得到一个学习的节点向量。我们对每条边做同样的工作，学习每条边的嵌入，也对全局背景向量做同样的工作，为整个图学习一个单一的嵌入。</p>
+<h3 id="4-2-通过池化信息-来完成图预测（简单gnn模型）"><a href="#4-2-通过池化信息-来完成图预测（简单gnn模型）" class="headerlink" title="4.2 通过池化信息 来完成图预测（简单gnn模型）"></a>4.2 通过池化信息 来完成图预测（简单gnn模型）</h3><p>可能 我们知道了边的信息 如果通过边的信息来 计算 节点的信息 对节点进行预测<br>池化分两步</p>
+<ol>
+<li><p>收集节点的边信息</p>
+</li>
+<li><p>通过汇总这些信息来进行预测</p>
+</li>
+</ol>
+<p><img src="https://s1.ax1x.com/2022/06/09/XsXTXT.png"></p>
+<p>所以 如果我们只知道 边的信息 使用池化来路由（或传递）信息到它需要去的地方。该模型看起来像这样。（这个机制貌似叫 消息传递）</p>
+<p><img src="https://s1.ax1x.com/2022/06/09/XsvAqU.md.png"></p>
+<p>使用点信息来 信息传递出 边的总类</p>
+<p><img src="https://s1.ax1x.com/2022/06/09/Xsv2Js.md.png"></p>
+<p>使用点信息来算出 图的种类</p>
+<p>对点的信息进行汇聚 然后 就像cnn 一样 对这个图的信息进行处理</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/Xsx3pn"><img src="https://s1.ax1x.com/2022/06/09/Xsx3pn.md.png" alt="Xsx3pn.md.png"></a></p>
+<h3 id="4-3-通过信息传递-完成-图的更新"><a href="#4-3-通过信息传递-完成-图的更新" class="headerlink" title="4.3 通过信息传递 完成 图的更新"></a>4.3 通过信息传递 完成 图的更新</h3><p>信息传递分为三步</p>
+<ol>
+<li><p>收集每个节点 所有相邻节点的嵌入 g函数</p>
+</li>
+<li><p>通过聚合函数 聚合消息</p>
+</li>
+<li><p>所有汇集的消息 通过一个更新函数（通常学习神经网络）</p>
+</li>
+</ol>
+<p>正如池化可以应用于节点或边一样，消息传递也可以在节点或边之间发生。</p>
+<p>这些步骤是利用图的连接性的关键。我们将在GNN层中建立更详细的消息传递变体，以产生表现力和力量不断增强的GNN模型。</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/XyS3LV"><img src="https://s1.ax1x.com/2022/06/09/XyS3LV.md.png" alt="XyS3LV.md.png"></a></p>
 
         </div>
         
@@ -259,7 +297,7 @@
     <script type="text/javascript">
         $(()=>{
             new QRCode("wechat-qr", {
-                text: "http://example.com/2022/05/28/python-mysql%E8%BE%93%E5%87%BA/",
+                text: "http://example.com/2022/06/09/%E5%9B%BE%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%85%A5%E9%97%A8/",
                 width: 150,
                 height: 150,
                 correctLevel : QRCode.CorrectLevel.H
@@ -271,12 +309,11 @@
             const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
             const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
             const twitterBase   = "https://twitter.com/intent/tweet?";
-            const hostUrl       = "http://example.com/2022/05/28/python-mysql%E8%BE%93%E5%87%BA/";
-            const title         = "「python mysql输出」";
-            const excerpt       = `这个文章会有点长 
-从安装到mysql基础 到 python 操作 mysql 
-OK 现在开始
-mysql安装和卸载 8.0.26安装感谢：https://blog.csdn.net/a802976/article/details/...`;
+            const hostUrl       = "http://example.com/2022/06/09/%E5%9B%BE%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%85%A5%E9%97%A8/";
+            const title         = "「图神经网络入门」";
+            const excerpt       = `感谢：https://distill.pub/2021/gnn-intro/ 博客
+https://www.bilibili.com/video/BV1iT4y1d7zP 李沐介绍视频
+0. 前言首先，让我们确定什么是图。图代表了一组...`;
             let _URL;
             switch (dest) {
                 case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
@@ -298,7 +335,7 @@ mysql安装和卸载 8.0.26安装感谢：https://blog.csdn.net/a802976/article/
                     
                 </div>
                 <div class="pull-date">
-                <span>最后编辑：2022-05-28</span>
+                <span>最后编辑：2022-06-09</span>
                 </div>
             </div>
         </footer>
@@ -307,13 +344,9 @@ mysql安装和卸载 8.0.26安装感谢：https://blog.csdn.net/a802976/article/
         <nav class="navigation post-navigation clearfix" role="navigation">
             
             <div class="nav-previous clearfix">
-                <a title=" 会议总结" href="/2022/05/28/会议总结/">&lt; 上一篇</a>
+                <a title=" 2022年会话推荐综述" href="/2022/06/05/2022年会话推荐综述/">&lt; 上一篇</a>
             </div>
             
-            
-            <div class="nav-next clearfix">
-                <a title=" 快速傅里叶变换" href="/2022/06/03/快速傅里叶变换/">下一篇 &gt;</a>
-            </div>
             
         </nav>
     
