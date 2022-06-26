@@ -4,7 +4,7 @@
   <!-- 元数据 -->
   <meta charset="utf-8">
   <link rel="icon" href="">
-  <title>python中axis=0和axis=1的理解 | limhao博客</title>
+  <title>研究的艺术 | limhao博客</title>
   <meta name="author" content="limhao" />
   <meta http-equiv="Cache-Control" content="no-transform" />
   <meta http-equiv="Cache-Control" content="no-siteapp" />
@@ -15,16 +15,16 @@
   
     <meta name="keywords" content="" />
   
-  <meta name="description" content="原文链接：https:&#x2F;&#x2F;blog.csdn.net&#x2F;leilei7407&#x2F;article&#x2F;details&#x2F;104461215 axis的重点在于方向，而不是行和列。1表示横轴，方向从左到右；0表示纵轴，方向从上到下。 即axis&#x3D;1为横向，axis&#x3D;0为纵向，而不是行和列，具体到各种用法而言也是如此。当axis&#x3D;1时，如果是求平均，那么是从左到右横向求平均；如果是拼">
+  <meta name="description" content="研究读者知道什么 想要知道什么 研究是什么东西 收集信息（提出解决方案） 回答一个疑问 解决一个问题  为什么要写作 会记住  帮助理解 测试你的想法  通过写作来看你的想法是不是对的 为什么要用论文格式对于 对方的方便 以及更好的理解 和读者进行连接写作是一个想象中的对话作者自己定义的角色 和 给读者假定一个角色 而且 角色定好 就没有变了 理解作者角色 我找到一些有趣的信息 给你们看看 我找到">
 <meta property="og:type" content="article">
-<meta property="og:title" content="python中axis&#x3D;0和axis&#x3D;1的理解">
-<meta property="og:url" content="http://example.com/2022/03/25/axis%E7%90%86%E8%A7%A3/index.html">
+<meta property="og:title" content="研究的艺术">
+<meta property="og:url" content="http://example.com/2022/06/26/%E7%A0%94%E7%A9%B6%E7%9A%84%E8%89%BA%E6%9C%AF/index.html">
 <meta property="og:site_name" content="limhao博客">
-<meta property="og:description" content="原文链接：https:&#x2F;&#x2F;blog.csdn.net&#x2F;leilei7407&#x2F;article&#x2F;details&#x2F;104461215 axis的重点在于方向，而不是行和列。1表示横轴，方向从左到右；0表示纵轴，方向从上到下。 即axis&#x3D;1为横向，axis&#x3D;0为纵向，而不是行和列，具体到各种用法而言也是如此。当axis&#x3D;1时，如果是求平均，那么是从左到右横向求平均；如果是拼">
+<meta property="og:description" content="研究读者知道什么 想要知道什么 研究是什么东西 收集信息（提出解决方案） 回答一个疑问 解决一个问题  为什么要写作 会记住  帮助理解 测试你的想法  通过写作来看你的想法是不是对的 为什么要用论文格式对于 对方的方便 以及更好的理解 和读者进行连接写作是一个想象中的对话作者自己定义的角色 和 给读者假定一个角色 而且 角色定好 就没有变了 理解作者角色 我找到一些有趣的信息 给你们看看 我找到">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/null">
-<meta property="article:published_time" content="2022-03-25T01:45:41.345Z">
-<meta property="article:modified_time" content="2022-03-25T01:49:03.301Z">
+<meta property="article:published_time" content="2022-06-26T02:28:16.575Z">
+<meta property="article:modified_time" content="2022-06-26T03:28:31.868Z">
 <meta property="article:author" content="limhao">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/null">
@@ -152,17 +152,17 @@
     <div class="kratos-hentry kratos-post-inner clearfix">
         <header class="kratos-entry-header">
             
-                <h1 class="kratos-entry-title text-center">python中axis=0和axis=1的理解</h1>
+                <h1 class="kratos-entry-title text-center">研究的艺术</h1>
             
             
             <ul class="kratos-post-meta text-center">
-                <li><i class="fa fa-calendar"></i> 2022-03-25</li>
+                <li><i class="fa fa-calendar"></i> 2022-06-26</li>
                 <li><i class="fa fa-user"></i> 作者 limhao</li>
                 <li>
                     <i class="fa fa-edit"></i> 
                     
                     
-                        610
+                        391
                     
                     字
                 </li>
@@ -172,23 +172,43 @@
         <div class="kratos-post-content">
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>本文最后编辑于 <time datetime="1648172943301"></time> 前，其中的内容可能需要更新。</p></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1656214111868"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
             <hr />
-            <p>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/leilei7407/article/details/104461215">https://blog.csdn.net/leilei7407/article/details/104461215</a></p>
-<p>axis的重点在于方向，而不是行和列。1表示横轴，方向从左到右；0表示纵轴，方向从上到下。</p>
-<p>即axis&#x3D;1为横向，axis&#x3D;0为纵向，而不是行和列，具体到各种用法而言也是如此。<br>当axis&#x3D;1时，如果是求平均，那么是从左到右横向求平均；如果是拼接，那么也是左右横向拼接；如果是drop，那么也是横向发生变化，体现为列的减少</p>
-<ul>
-<li>axis &#x3D; 0 纵向处理</li>
-<li>axis &#x3D; 1 横向处理</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">df_1= pd.DataFrame([[<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>], [<span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>], [<span class="number">3</span>, <span class="number">3</span>, <span class="number">3</span>, <span class="number">3</span>]], \</span><br><span class="line">columns=[<span class="string">&quot;col1&quot;</span>, <span class="string">&quot;col2&quot;</span>, <span class="string">&quot;col3&quot;</span>, <span class="string">&quot;col4&quot;</span>])  <span class="comment">#\代表与下面的代码是连接着的</span></span><br><span class="line"><span class="built_in">print</span>(df_1)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;-------&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(df_1.mean(axis=<span class="number">1</span>))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;----------&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(df_1.drop(<span class="string">&#x27;col1&#x27;</span>,axis=<span class="number">1</span>))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-<p> <img src="https://img-blog.csdnimg.cn/20200223154620381.png" alt="img"> </p>
-
+            <h2 id="研究"><a href="#研究" class="headerlink" title="研究"></a>研究</h2><p>读者知道什么 想要知道什么</p>
+<h3 id="研究是什么东西"><a href="#研究是什么东西" class="headerlink" title="研究是什么东西"></a>研究是什么东西</h3><ol>
+<li>收集信息（提出解决方案）</li>
+<li>回答一个疑问</li>
+<li>解决一个问题</li>
+</ol>
+<h3 id="为什么要写作"><a href="#为什么要写作" class="headerlink" title="为什么要写作"></a>为什么要写作</h3><ol>
+<li>会记住 </li>
+<li>帮助理解</li>
+<li>测试你的想法</li>
+</ol>
+<p>通过写作来看你的想法是不是对的</p>
+<h3 id="为什么要用论文格式"><a href="#为什么要用论文格式" class="headerlink" title="为什么要用论文格式"></a>为什么要用论文格式</h3><p>对于 对方的方便 以及更好的理解</p>
+<h2 id="和读者进行连接"><a href="#和读者进行连接" class="headerlink" title="和读者进行连接"></a>和读者进行连接</h2><h3 id="写作是一个想象中的对话"><a href="#写作是一个想象中的对话" class="headerlink" title="写作是一个想象中的对话"></a>写作是一个想象中的对话</h3><p>作者自己定义的角色 和 给读者假定一个角色</p>
+<p>而且 角色定好 就没有变了</p>
+<h3 id="理解作者角色"><a href="#理解作者角色" class="headerlink" title="理解作者角色"></a>理解作者角色</h3><ol>
+<li>我找到一些有趣的信息 给你们看看</li>
+<li>我找到一个解决方案 在实际问题上</li>
+<li>我找到一个重要问题的答案</li>
+</ol>
+<h3 id="对应读者角色"><a href="#对应读者角色" class="headerlink" title="对应读者角色"></a>对应读者角色</h3><ol>
+<li>娱乐我 （追求新奇的信息）</li>
+<li>帮助我解决实际问题（直接跳干货位置）</li>
+<li>帮助我更好的理解（大部分的研究者）</li>
+</ol>
+<p>怎么去问问题 怎么去找答案</p>
+<p>你的研究 是否让人感兴趣</p>
+<h3 id="预测读者的回应"><a href="#预测读者的回应" class="headerlink" title="预测读者的回应"></a>预测读者的回应</h3><ol>
+<li>我的观点是不是跟所有人的观点是对立的</li>
+<li>会不会做标准的一些问句 来反对解决方案</li>
+<li>是不是特别关心我是怎么一步一步的解决问题</li>
+</ol>
+<h2 id="去讲故事"><a href="#去讲故事" class="headerlink" title="去讲故事"></a>去讲故事</h2><h2 id="去写故事"><a href="#去写故事" class="headerlink" title="去写故事"></a>去写故事</h2>
         </div>
         
             <div class="kratos-copyright text-center clearfix">
@@ -241,7 +261,7 @@
     <script type="text/javascript">
         $(()=>{
             new QRCode("wechat-qr", {
-                text: "http://example.com/2022/03/25/axis%E7%90%86%E8%A7%A3/",
+                text: "http://example.com/2022/06/26/%E7%A0%94%E7%A9%B6%E7%9A%84%E8%89%BA%E6%9C%AF/",
                 width: 150,
                 height: 150,
                 correctLevel : QRCode.CorrectLevel.H
@@ -253,11 +273,21 @@
             const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
             const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
             const twitterBase   = "https://twitter.com/intent/tweet?";
-            const hostUrl       = "http://example.com/2022/03/25/axis%E7%90%86%E8%A7%A3/";
-            const title         = "「python中axis=0和axis=1的理解」";
-            const excerpt       = `原文链接：https://blog.csdn.net/leilei7407/article/details/104461215
-axis的重点在于方向，而不是行和列。1表示横轴，方向从左到右；0表示纵轴，方向从上到下。
-即axis&#...`;
+            const hostUrl       = "http://example.com/2022/06/26/%E7%A0%94%E7%A9%B6%E7%9A%84%E8%89%BA%E6%9C%AF/";
+            const title         = "「研究的艺术」";
+            const excerpt       = `研究读者知道什么 想要知道什么
+研究是什么东西
+收集信息（提出解决方案）
+回答一个疑问
+解决一个问题
+
+为什么要写作
+会记住 
+帮助理解
+测试你的想法
+
+通过写作来看你的想法是不是对的
+为什么要用论文格式对于 对方的方便 以及更好的理...`;
             let _URL;
             switch (dest) {
                 case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
@@ -279,7 +309,7 @@ axis的重点在于方向，而不是行和列。1表示横轴，方向从左到
                     
                 </div>
                 <div class="pull-date">
-                <span>最后编辑：2022-03-25</span>
+                <span>最后编辑：2022-06-26</span>
                 </div>
             </div>
         </footer>
@@ -288,12 +318,12 @@ axis的重点在于方向，而不是行和列。1表示横轴，方向从左到
         <nav class="navigation post-navigation clearfix" role="navigation">
             
             <div class="nav-previous clearfix">
-                <a title=" 信用卡交易数据解读与探索（数据合并）" href="/2022/03/21/信用卡交易数据解读/">&lt; 上一篇</a>
+                <a title=" 虚拟机和mobasterm连接" href="/2022/06/24/虚拟机和mobasterm连接/">&lt; 上一篇</a>
             </div>
             
             
             <div class="nav-next clearfix">
-                <a title=" 软著申请流程" href="/2022/03/27/软著申请/">下一篇 &gt;</a>
+                <a title=" (无标题)" href="/2022/06/26/模型调参/">下一篇 &gt;</a>
             </div>
             
         </nav>
