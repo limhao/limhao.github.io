@@ -15,16 +15,16 @@
   
     <meta name="keywords" content="" />
   
-  <meta name="description" content="模型调参前言 开始一个好的基线 改一个值 重新训练模型 重复很多次 去获得直觉  什么超参数很重要 模型对于超参数 的敏感程度（Adam比SGD 调参要简单很多） 超参数的范围在哪里 结果会好 做好笔记 需要认真的管理 （训练日志和超参数）execl 或着 word tensorboardweight&amp;bias 重现很难（硬件，库，代码，随机性）  自动调参 HPO 超参数优化 更加泛化">
+  <meta name="description" content="模型调参看的是 李沐的视频 https:&#x2F;&#x2F;www.bilibili.com&#x2F;video&#x2F;BV1FM4y1c7yG https:&#x2F;&#x2F;www.bilibili.com&#x2F;video&#x2F;BV1vQ4y1e7LF 前言 开始一个好的基线 改一个值 重新训练模型 重复很多次 去获得直觉  什么超参数很重要 模型对于超参数 的敏感程度（Adam比SGD 调参要简单很多） 超参数的范围在哪里 结果会好 做好笔记">
 <meta property="og:type" content="article">
 <meta property="og:title" content="limhao博客">
 <meta property="og:url" content="http://example.com/2022/06/26/%E6%A8%A1%E5%9E%8B%E8%B0%83%E5%8F%82/index.html">
 <meta property="og:site_name" content="limhao博客">
-<meta property="og:description" content="模型调参前言 开始一个好的基线 改一个值 重新训练模型 重复很多次 去获得直觉  什么超参数很重要 模型对于超参数 的敏感程度（Adam比SGD 调参要简单很多） 超参数的范围在哪里 结果会好 做好笔记 需要认真的管理 （训练日志和超参数）execl 或着 word tensorboardweight&amp;bias 重现很难（硬件，库，代码，随机性）  自动调参 HPO 超参数优化 更加泛化">
+<meta property="og:description" content="模型调参看的是 李沐的视频 https:&#x2F;&#x2F;www.bilibili.com&#x2F;video&#x2F;BV1FM4y1c7yG https:&#x2F;&#x2F;www.bilibili.com&#x2F;video&#x2F;BV1vQ4y1e7LF 前言 开始一个好的基线 改一个值 重新训练模型 重复很多次 去获得直觉  什么超参数很重要 模型对于超参数 的敏感程度（Adam比SGD 调参要简单很多） 超参数的范围在哪里 结果会好 做好笔记">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/null">
 <meta property="article:published_time" content="2022-06-26T10:33:20.696Z">
-<meta property="article:modified_time" content="2022-06-26T10:33:20.776Z">
+<meta property="article:modified_time" content="2022-06-26T13:55:39.900Z">
 <meta property="article:author" content="limhao">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/null">
@@ -160,7 +160,7 @@
                     <i class="fa fa-edit"></i> 
                     
                     
-                        227
+                        1124
                     
                     字
                 </li>
@@ -170,12 +170,15 @@
         <div class="kratos-post-content">
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>本文最后编辑于 <time datetime="1656239600776"></time> 前，其中的内容可能需要更新。</p></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1656251739900"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
             <hr />
             <hr>
-<h2 id="模型调参"><a href="#模型调参" class="headerlink" title="模型调参"></a>模型调参</h2><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><ol>
+<h2 id="模型调参"><a href="#模型调参" class="headerlink" title="模型调参"></a>模型调参</h2><p>看的是 李沐的视频</p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1FM4y1c7yG">https://www.bilibili.com/video/BV1FM4y1c7yG</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1vQ4y1e7LF">https://www.bilibili.com/video/BV1vQ4y1e7LF</a></p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><ol>
 <li>开始一个好的基线</li>
 <li>改一个值 重新训练模型</li>
 <li>重复很多次 去获得直觉</li>
@@ -192,6 +195,73 @@
 <li>NAS HPO的小一点版本 专注于神经网络</li>
 </ol>
 <p><a target="_blank" rel="noopener" href="https://imgtu.com/i/jAaJ1I"><img src="https://s1.ax1x.com/2022/06/26/jAaJ1I.png"></a></p>
+<h2 id="HPO-哈哈哈"><a href="#HPO-哈哈哈" class="headerlink" title="HPO 哈哈哈"></a>HPO 哈哈哈</h2><p>搜索空间</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/jEe2l9"><img src="https://s1.ax1x.com/2022/06/26/jEe2l9.md.png"></a></p>
+<h3 id="算法1-黑盒算法"><a href="#算法1-黑盒算法" class="headerlink" title="算法1 黑盒算法"></a>算法1 黑盒算法</h3><p>遍历！ 找到最好的 也是最傻的算法</p>
+<h3 id="算法2-多准确度（加速）"><a href="#算法2-多准确度（加速）" class="headerlink" title="算法2 多准确度（加速）"></a>算法2 多准确度（加速）</h3><p>目前再用的算法</p>
+<ol>
+<li>小数据集</li>
+<li>缩小模型规模 层 通道数</li>
+<li>快点停止</li>
+</ol>
+<h3 id="搜索策略（黑盒子）"><a href="#搜索策略（黑盒子）" class="headerlink" title="搜索策略（黑盒子）"></a>搜索策略（黑盒子）</h3><p>第一个暴力穷举（贵）</p>
+<p>第二个随机取（有效） 写代码很简单</p>
+<p>第三个 贝叶斯 （李沐说这个大研究方向 咱不研究 咱不用）</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/jEe6W4"><img src="https://s1.ax1x.com/2022/06/26/jEe6W4.md.png"></a></p>
+<h3 id="搜索策略-（多准确度）深度学习较多"><a href="#搜索策略-（多准确度）深度学习较多" class="headerlink" title="搜索策略 （多准确度）深度学习较多"></a>搜索策略 （多准确度）深度学习较多</h3><h4 id="sh算法"><a href="#sh算法" class="headerlink" title="sh算法"></a>sh算法</h4><ol>
+<li>节省花销对于多超参数</li>
+<li>随机选取n个参数 去训练m个epoch</li>
+</ol>
+<p>算法过程</p>
+<ol>
+<li>类似一种 递归的思想在其中</li>
+<li>选取n&#x2F;2的超参数进行训练 训练m次epoch</li>
+<li>选取n&#x2F;4的超参数训练 训练2m次epoch</li>
+</ol>
+<p>m n 的选取 取决于 你的预算花销</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/jEe2l9"><img src="https://s1.ax1x.com/2022/06/26/jEe2l9.md.png"></a></p>
+<h4 id="hyperband-用的较多"><a href="#hyperband-用的较多" class="headerlink" title="hyperband 用的较多"></a>hyperband 用的较多</h4><p>多跑几个sh算法</p>
+<p>在每次跑完后</p>
+<p>减小n 增大m</p>
+<p>每次都是用不同的m 和 n </p>
+<p>影响是 对于 m n的选取 没那么打的影响</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/jEegSJ"><img src="https://s1.ax1x.com/2022/06/26/jEegSJ.md.png" alt="jEegSJ.md.png"></a></p>
+<h2 id="Neural-Architecture-Search-NAS-神经结构搜索"><a href="#Neural-Architecture-Search-NAS-神经结构搜索" class="headerlink" title="Neural Architecture Search (NAS)神经结构搜索"></a>Neural Architecture Search (NAS)神经结构搜索</h2><p><a target="_blank" rel="noopener" href="https://imgtu.com/i/jElGBd"><img src="https://s1.ax1x.com/2022/06/26/jElGBd.md.png"></a></p>
+<p>这里只关心 神经网络的参数</p>
+<h3 id="强化学习-nas"><a href="#强化学习-nas" class="headerlink" title="强化学习 nas"></a>强化学习 nas</h3><p>代价非常贵</p>
+<p>模型优美</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/jElJHA"><img src="https://s1.ax1x.com/2022/06/26/jElJHA.md.png"></a></p>
+<h3 id="one-shot方法"><a href="#one-shot方法" class="headerlink" title="one-shot方法"></a>one-shot方法</h3><p>学习模型架构 外加超参数</p>
+<p>因为 这个东西看起来就很大</p>
+<p>所以 关注点在于</p>
+<ol>
+<li>只关心架构之间的排名关系</li>
+<li>用一个近似的指标 ： 只训练很少的epoch 来验证</li>
+</ol>
+<h4 id="one-shot方法-–-可微架构搜索"><a href="#one-shot方法-–-可微架构搜索" class="headerlink" title="one-shot方法 – 可微架构搜索"></a>one-shot方法 – 可微架构搜索</h4><p><a target="_blank" rel="noopener" href="https://imgtu.com/i/jElNNt"><img src="https://s1.ax1x.com/2022/06/26/jElNNt.png"></a></p>
+<ol>
+<li>多种候选层方法 在每一层</li>
+<li>在layer层 中 所有的候选层方法 都会有个输出</li>
+<li>对于这个输出 添加一个大于0 且 相加为1 的权重系数相乘</li>
+<li>最后 学习 得到 在候选层 中权重最大的给保留下来</li>
+</ol>
+<p>通过学习 来判断最好的那一条路径</p>
+<p>使用DARTS 这个方法 可以在三个GPU天 完成sota效果</p>
+<h3 id="简单实用-effientNet"><a href="#简单实用-effientNet" class="headerlink" title="简单实用 effientNet"></a>简单实用 effientNet</h3><p>调参不多 cnn优化</p>
+<ol>
+<li><p>更多层</p>
+</li>
+<li><p>更多输出通道</p>
+</li>
+<li><p>输入图像更大</p>
+</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/jEltAI"><img src="https://s1.ax1x.com/2022/06/26/jEltAI.md.png"></a></p>
+<h2 id="目前研究方向"><a href="#目前研究方向" class="headerlink" title="目前研究方向"></a>目前研究方向</h2><ol>
+<li>可解释性</li>
+<li>调整参数 能使用在边缘设备都能跑</li>
+<li>整个流程更加的自动化</li>
+</ol>
 
         </div>
         
@@ -260,16 +330,12 @@
             const hostUrl       = "http://example.com/2022/06/26/%E6%A8%A1%E5%9E%8B%E8%B0%83%E5%8F%82/";
             const title         = "「」";
             const excerpt       = `
-模型调参前言
+模型调参看的是 李沐的视频
+https://www.bilibili.com/video/BV1FM4y1c7yG
+https://www.bilibili.com/video/BV1vQ4y1e7LF
+前言
 开始一个好的基线
-改一个值 重新训练模型
-重复很多次 去获得直觉
-
-什么超参数很重要
-模型对于超参数 的敏感程度（Adam比SGD 调参要简单很多）
-超参数的范围在哪里 结果会好
-做好笔记
-需要认真的管理 （训练日志和...`;
+改一...`;
             let _URL;
             switch (dest) {
                 case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
