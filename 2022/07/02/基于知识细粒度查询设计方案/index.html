@@ -4,7 +4,7 @@
   <!-- 元数据 -->
   <meta charset="utf-8">
   <link rel="icon" href="">
-  <title>colab使用 | limhao博客</title>
+  <title>基于知识细粒度查询设计方案(使用手册) | limhao博客</title>
   <meta name="author" content="limhao" />
   <meta http-equiv="Cache-Control" content="no-transform" />
   <meta http-equiv="Cache-Control" content="no-siteapp" />
@@ -15,16 +15,16 @@
   
     <meta name="keywords" content="" />
   
-  <meta name="description" content="首先说第一句话 这玩意真难用 不能上传压缩包 然后网上解压（可能我还没找到解决方法） 可能是我水平不太行  感谢我的师兄 李子杰师兄 给予我账号 和 验证码（每次如一日的验证码给予） 在使用的时候 主要出现了三个问题  不会运行.py 文件 不会运行google硬盘的.ipynb文件(我的解决方法相当暴力) 文件上传（文件夹上传）  问题1 文件上传和py文件运行https:&#x2F;&#x2F;blog.csdn">
+  <meta name="description" content="作者：谢昊 班级：计算机应用技术 1. 使用说明本系统涉及的环境有点多，本设计将从爬虫获取，知识点提取，知识点展示来说明。 2. 爬虫获取项目爬虫功能是一个代码开源的软件来完成对应的功能（图片要换）  软件设计清晰 且帮助文档完善 下载网址为：https:&#x2F;&#x2F;www.xuewuzhi.cn&#x2F;downloader 3. 知识点提取知识点提取 是基于mooc视频中的视频提取（换图） 举个例子 在 py">
 <meta property="og:type" content="article">
-<meta property="og:title" content="colab使用">
-<meta property="og:url" content="http://example.com/2022/05/07/colab%E4%BD%BF%E7%94%A8/index.html">
+<meta property="og:title" content="基于知识细粒度查询设计方案(使用手册)">
+<meta property="og:url" content="http://example.com/2022/07/02/%E5%9F%BA%E4%BA%8E%E7%9F%A5%E8%AF%86%E7%BB%86%E7%B2%92%E5%BA%A6%E6%9F%A5%E8%AF%A2%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88/index.html">
 <meta property="og:site_name" content="limhao博客">
-<meta property="og:description" content="首先说第一句话 这玩意真难用 不能上传压缩包 然后网上解压（可能我还没找到解决方法） 可能是我水平不太行  感谢我的师兄 李子杰师兄 给予我账号 和 验证码（每次如一日的验证码给予） 在使用的时候 主要出现了三个问题  不会运行.py 文件 不会运行google硬盘的.ipynb文件(我的解决方法相当暴力) 文件上传（文件夹上传）  问题1 文件上传和py文件运行https:&#x2F;&#x2F;blog.csdn">
+<meta property="og:description" content="作者：谢昊 班级：计算机应用技术 1. 使用说明本系统涉及的环境有点多，本设计将从爬虫获取，知识点提取，知识点展示来说明。 2. 爬虫获取项目爬虫功能是一个代码开源的软件来完成对应的功能（图片要换）  软件设计清晰 且帮助文档完善 下载网址为：https:&#x2F;&#x2F;www.xuewuzhi.cn&#x2F;downloader 3. 知识点提取知识点提取 是基于mooc视频中的视频提取（换图） 举个例子 在 py">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/null">
-<meta property="article:published_time" content="2022-05-07T02:49:27.418Z">
-<meta property="article:modified_time" content="2022-05-11T02:15:50.212Z">
+<meta property="article:published_time" content="2022-07-02T12:17:08.173Z">
+<meta property="article:modified_time" content="2022-07-02T14:38:11.796Z">
 <meta property="article:author" content="limhao">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/null">
@@ -152,17 +152,17 @@
     <div class="kratos-hentry kratos-post-inner clearfix">
         <header class="kratos-entry-header">
             
-                <h1 class="kratos-entry-title text-center">colab使用</h1>
+                <h1 class="kratos-entry-title text-center">基于知识细粒度查询设计方案(使用手册)</h1>
             
             
             <ul class="kratos-post-meta text-center">
-                <li><i class="fa fa-calendar"></i> 2022-05-07</li>
+                <li><i class="fa fa-calendar"></i> 2022-07-02</li>
                 <li><i class="fa fa-user"></i> 作者 limhao</li>
                 <li>
                     <i class="fa fa-edit"></i> 
                     
                     
-                        567
+                        ~1.72K
                     
                     字
                 </li>
@@ -172,46 +172,73 @@
         <div class="kratos-post-content">
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>本文最后编辑于 <time datetime="1652235350212"></time> 前，其中的内容可能需要更新。</p></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1656772691796"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
             <hr />
-            <p>首先说第一句话</p>
-<p>这玩意真难用</p>
-<p>不能上传压缩包 然后网上解压（可能我还没找到解决方法）</p>
-<p>可能是我水平不太行 </p>
-<p>感谢我的师兄 李子杰师兄 给予我账号 和 验证码（每次如一日的验证码给予）</p>
-<p>在使用的时候 主要出现了三个问题</p>
-<ol>
-<li>不会运行.py 文件</li>
-<li>不会运行google硬盘的.ipynb文件(我的解决方法相当暴力)</li>
-<li>文件上传（文件夹上传）</li>
-</ol>
-<h2 id="问题1-文件上传和py文件运行"><a href="#问题1-文件上传和py文件运行" class="headerlink" title="问题1 文件上传和py文件运行"></a>问题1 文件上传和py文件运行</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/little_yueyue/article/details/117793421">https://blog.csdn.net/little_yueyue/article/details/117793421</a></p>
-<p>上传google drive </p>
-<ol>
-<li>打开<a target="_blank" rel="noopener" href="https://www.google.com/drive/">Google drive</a>并登陆</li>
-<li>在空白处右键，可在drive中上传文件\文件夹 （时间比较长）</li>
-<li>打开colab </li>
-<li>新建笔记本 挂载 Google Drive</li>
-</ol>
-<p> <img src="https://img-blog.csdnimg.cn/20200907110730200.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzU0MzIxMA==,size_16,color_FFFFFF,t_70#pic_center"> </p>
-<ol start="5">
-<li>进入文件所在目录（当然这里的path 是需要改的啦）</li>
-</ol>
-<p> <img src="https://img-blog.csdnimg.cn/20200907111224746.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzU0MzIxMA==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"> </p>
-<ol start="6">
-<li>运行目录下的.py文件（执行系统命令，需要在命令前加感叹号）</li>
-</ol>
-<p>​                                              <img src="https://img-blog.csdnimg.cn/20200907111327784.png#pic_center"> </p>
-<h2 id="问题二-不会运行google硬盘的-ipynb文件-优雅的方法来了！！！！"><a href="#问题二-不会运行google硬盘的-ipynb文件-优雅的方法来了！！！！" class="headerlink" title="问题二 不会运行google硬盘的.ipynb文件 优雅的方法来了！！！！"></a>问题二 不会运行google硬盘的.ipynb文件 优雅的方法来了！！！！</h2><p>怎么理解的呢 当然是 在跑colab跑王老师的代码的时候 自己做琢磨出来的</p>
-<p>第一步 打开文件</p>
-<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/OU0BV0"><img src="https://s1.ax1x.com/2022/05/11/OU0BV0.png"></a></p>
-<p>第二步 打开笔记本</p>
-<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/OU0r5T"><img src="https://s1.ax1x.com/2022/05/11/OU0r5T.png"></a></p>
-<p>第三步 选你想要</p>
-<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/OU0DaV"><img src="https://s1.ax1x.com/2022/05/11/OU0DaV.png"></a></p>
+            <p>作者：谢昊</p>
+<p>班级：计算机应用技术</p>
+<h2 id="1-使用说明"><a href="#1-使用说明" class="headerlink" title="1. 使用说明"></a>1. 使用说明</h2><p>本系统涉及的环境有点多，本设计将从爬虫获取，知识点提取，知识点展示来说明。</p>
+<h2 id="2-爬虫获取"><a href="#2-爬虫获取" class="headerlink" title="2. 爬虫获取"></a>2. 爬虫获取</h2><p>项目爬虫功能是一个代码开源的软件来完成对应的功能（图片要换）</p>
+<p><img src="C:\Users\warma\AppData\Roaming\Typora\typora-user-images\1656764768642.png" alt="1656764768642"></p>
+<p>软件设计清晰 且帮助文档完善</p>
+<p>下载网址为：<a target="_blank" rel="noopener" href="https://www.xuewuzhi.cn/downloader">https://www.xuewuzhi.cn/downloader</a></p>
+<h2 id="3-知识点提取"><a href="#3-知识点提取" class="headerlink" title="3. 知识点提取"></a>3. 知识点提取</h2><p>知识点提取 是基于mooc视频中的视频提取（换图）</p>
+<p>举个例子 在 python程序语言设计中RGB色彩体系这个课中，存在下列两个小的知识点。但是视频并没有对其进行区分。（没有划分出知识点的起始结束时间）</p>
+<p><img src="C:\Users\warma\AppData\Roaming\Typora\typora-user-images\1656765274670.png" alt="1656765274670"></p>
+<p><img src="C:\Users\warma\Desktop\博客pic\知识点2.png" alt="1656765317720"></p>
+<p>对于该功能的讲解 打算分成三个部分来说明</p>
+<h3 id="3-1-视频关键帧提取"><a href="#3-1-视频关键帧提取" class="headerlink" title="3.1 视频关键帧提取"></a>3.1 视频关键帧提取</h3><p>视频的关键帧提取使用的是 基于ffmpeg的pyav库来进行存取</p>
+<p>输入：视频</p>
+<p>输出：视频关键帧图片（名称含有视频关键帧时间）</p>
+<p>关键代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">extract_video</span>(<span class="params">filename</span>):</span><br><span class="line">	container = av.<span class="built_in">open</span>(filename)</span><br><span class="line">	<span class="comment"># Signal that we only want to look at keyframes.</span></span><br><span class="line">	stream = container.streams.video[<span class="number">0</span>]</span><br><span class="line">	stream.codec_context.skip_frame = <span class="string">&#x27;NONKEY&#x27;</span></span><br><span class="line">	<span class="comment"># default 不能用</span></span><br><span class="line">	<span class="comment"># stream.codec_context.skip_frame = &#x27;DEFAULT&#x27;</span></span><br><span class="line">	<span class="keyword">for</span> frame <span class="keyword">in</span> container.decode(stream):</span><br><span class="line">		<span class="comment"># 这里应该能管到时间戳</span></span><br><span class="line">		frame.to_image().save(</span><br><span class="line">			<span class="string">&#x27;&#123;&#125;.png&#x27;</span>.<span class="built_in">format</span>((frame.pts/<span class="number">100000</span>), <span class="string">&#x27;.1f&#x27;</span>),</span><br><span class="line">			quality=<span class="number">80</span>,</span><br><span class="line">		)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
+<h4 id="3-1-1-使用方式（插入图片）"><a href="#3-1-1-使用方式（插入图片）" class="headerlink" title="3.1.1 使用方式（插入图片）"></a>3.1.1 使用方式（插入图片）</h4><p>项目文件为 video_pic</p>
+<p>将我们下载好的视频总集 放入video文件夹内</p>
+<p>然后修改好 我们要提取的文件夹名称</p>
+<p>run 就生成了对应视频总集文件的png</p>
+<h3 id="3-2-图片信息提取"><a href="#3-2-图片信息提取" class="headerlink" title="3.2 图片信息提取"></a>3.2 图片信息提取</h3><p>图片信息的提取，使用了百度提供的ocr服务，基本手敲了300行代码</p>
+<p><strong>这个为项目的难点和核心点</strong></p>
+<p>输入：视频关键帧图片</p>
+<p>输出：含有课程名称，课件名，知识点（topic），知识点内容（content），起始时间，终止时间的json文件</p>
+<p>工作流程：</p>
+<ol>
+<li>先将一个课件名内的图片按时间戳顺序整理</li>
+<li>ocr遍历课件内的图片<ol>
+<li><p>图片ocr处理 得到图片文字内容</p>
+<ol>
+<li>ocr会返回含有文字的条数 如果条数小于3 则跳过</li>
+<li>文字进行垃圾词清理</li>
+<li>判断文字条数是不是为 0 为0跳过</li>
+<li>和上一个content进行比较 如果存在相同的字段 则不存 若有不同 则添加字段(topic相同)</li>
+</ol>
+</li>
+<li><p>当topic 发生改变时候</p>
+<ol>
+<li>将存下上一次topic改变的时间，和这一次topic的修改时间记为起始时间和结束时间</li>
+<li>记下原topic的名称，和content</li>
+<li>存为json存取</li>
+</ol>
+</li>
+<li><p>当遍历到最后一个图片时</p>
+<ol>
+<li>将存下上一次topic改变的时间，和这一次topic的修改时间记为起始时间和结束时间</li>
+<li>记下原topic的名称，和content</li>
+<li>存为json存取</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h4 id="3-2-1-使用方式"><a href="#3-2-1-使用方式" class="headerlink" title="3.2.1 使用方式"></a>3.2.1 使用方式</h4><p>通过百度智能云 获得对应的api_key 和 secret_key</p>
+<p><a target="_blank" rel="noopener" href="https://cloud.baidu.com/doc/OCR/s/dk3iqnq51">https://cloud.baidu.com/doc/OCR/s/dk3iqnq51</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">API_KEY = <span class="string">&#x27;ZOYegM165651651zf13suG2&#x27;</span></span><br><span class="line"></span><br><span class="line">SECRET_KEY = <span class="string">&#x27;6HjW4xdUWw9MXoaVT6514896161WpZw&#x27;</span></span><br><span class="line"></span><br><span class="line">OCR_URL = <span class="string">&#x27;https://aip.baidubce.com/rest/2.0/ocr/v1/general_basic&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>填入自己要获取课程知识点的课程名称</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">className = <span class="string">&quot;python语言程序设计&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-3"><a href="#3-3" class="headerlink" title="3.3"></a>3.3</h3>
         </div>
         
             <div class="kratos-copyright text-center clearfix">
@@ -264,7 +291,7 @@
     <script type="text/javascript">
         $(()=>{
             new QRCode("wechat-qr", {
-                text: "http://example.com/2022/05/07/colab%E4%BD%BF%E7%94%A8/",
+                text: "http://example.com/2022/07/02/%E5%9F%BA%E4%BA%8E%E7%9F%A5%E8%AF%86%E7%BB%86%E7%B2%92%E5%BA%A6%E6%9F%A5%E8%AF%A2%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88/",
                 width: 150,
                 height: 150,
                 correctLevel : QRCode.CorrectLevel.H
@@ -276,16 +303,15 @@
             const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
             const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
             const twitterBase   = "https://twitter.com/intent/tweet?";
-            const hostUrl       = "http://example.com/2022/05/07/colab%E4%BD%BF%E7%94%A8/";
-            const title         = "「colab使用」";
-            const excerpt       = `首先说第一句话
-这玩意真难用
-不能上传压缩包 然后网上解压（可能我还没找到解决方法）
-可能是我水平不太行 
-感谢我的师兄 李子杰师兄 给予我账号 和 验证码（每次如一日的验证码给予）
-在使用的时候 主要出现了三个问题
+            const hostUrl       = "http://example.com/2022/07/02/%E5%9F%BA%E4%BA%8E%E7%9F%A5%E8%AF%86%E7%BB%86%E7%B2%92%E5%BA%A6%E6%9F%A5%E8%AF%A2%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88/";
+            const title         = "「基于知识细粒度查询设计方案(使用手册)」";
+            const excerpt       = `作者：谢昊
+班级：计算机应用技术
+1. 使用说明本系统涉及的环境有点多，本设计将从爬虫获取，知识点提取，知识点展示来说明。
+2. 爬虫获取项目爬虫功能是一个代码开源的软件来完成对应的功能（图片要换）
 
-不会运行.py...`;
+软件设计清晰 且帮助文档完善
+下...`;
             let _URL;
             switch (dest) {
                 case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
@@ -307,7 +333,7 @@
                     
                 </div>
                 <div class="pull-date">
-                <span>最后编辑：2022-05-11</span>
+                <span>最后编辑：2022-07-02</span>
                 </div>
             </div>
         </footer>
@@ -316,13 +342,9 @@
         <nav class="navigation post-navigation clearfix" role="navigation">
             
             <div class="nav-previous clearfix">
-                <a title=" 深度框架 4D数据格式" href="/2022/05/04/深度框架-数据格式/">&lt; 上一篇</a>
+                <a title=" (无标题)" href="/2022/07/01/研究的艺术-第二部分/">&lt; 上一篇</a>
             </div>
             
-            
-            <div class="nav-next clearfix">
-                <a title=" 专利的撰写" href="/2022/05/07/专利的撰写/">下一篇 &gt;</a>
-            </div>
             
         </nav>
     
