@@ -150,314 +150,54 @@
 
     
     
-        <article class="kratos-hentry kratos-entry-border-new clearfix">
-            <div class="kratos-status">
+        <article class="kratos-hentry clearfix">
+            <div class="kratos-entry-border-new clearfix">
                 
-                    <i class="fa fa-refresh"></i>
-                
-                <div class="kratos-status-inner">
-                    <div class="kratos-status-content">
+                <div class="kratos-entry-thumb-new">
+                    <a href="/2022/07/16/%E7%9F%A5%E8%AF%86%E8%BF%BD%E8%B8%AA%E7%BB%BC%E8%BF%B0/">
                         
-                            <p>title: 知识追踪综述</p>
-<h2 id="0-说点废话（讲一下怎么找到这个文章的）"><a href="#0-说点废话（讲一下怎么找到这个文章的）" class="headerlink" title="0 说点废话（讲一下怎么找到这个文章的）"></a>0 说点废话（讲一下怎么找到这个文章的）</h2><p>2022年7月16日</p>
-<p>在床上百无聊耐的看视频 突然看到这样的东西</p>
-<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/jI9blT"><img src="https://s1.ax1x.com/2022/07/17/jI9blT.png"></a></p>
-<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1EY411K7wt">https://www.bilibili.com/video/BV1EY411K7wt</a></p>
-<p>嗯嗯 我就去这个网站试了试</p>
-<p><a target="_blank" rel="noopener" href="https://openknowledgemaps.org/">https://openknowledgemaps.org/</a></p>
-<p>查了查 我留下的二课题 知识追踪（cool）</p>
-<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/jI9j0J"><img src="https://s1.ax1x.com/2022/07/17/jI9j0J.md.png"></a></p>
-<p>发现了一篇 2022-4-1 号的 中文的一篇综述 就很开心</p>
-<h2 id="1-前言-知识追踪是啥"><a href="#1-前言-知识追踪是啥" class="headerlink" title="1. 前言-知识追踪是啥"></a>1. 前言-知识追踪是啥</h2><p>​    KT算法将学生的知识掌握程度随着时间的推移建模预测，从而能够准确地预测学生在未来互动中的表现据此有针对性地为学生订制不同的学习路线，提升学习效率.学生通过在线学习平台进行学习交互，形成答题行为时间序列，KT算法通过对学习者和序列联合建模，预测其对于新知识的认知概率分布，进一步推理出学习者的技能和认知水平。</p>
-<h2 id="2-kt问题定义以及数据集"><a href="#2-kt问题定义以及数据集" class="headerlink" title="2. kt问题定义以及数据集"></a>2. kt问题定义以及数据集</h2><h3 id="2-1-定义"><a href="#2-1-定义" class="headerlink" title="2.1 定义"></a>2.1 定义</h3><p><a target="_blank" rel="noopener" href="https://imgtu.com/i/jI9q6U"><img src="https://s1.ax1x.com/2022/07/17/jI9q6U.md.png"></a></p>
-<h3 id="2-2-数据集"><a href="#2-2-数据集" class="headerlink" title="2.2 数据集"></a>2.2 数据集</h3><p>ASSISTments Data是KT领域最为经典的数据集，其中ASSISTments2009数据集 是绝大多数KT模型的标准数据集；EdNet［8］ 发布于2019年，是KT领域最新的数据集，提供了超过1亿条 学习者交互记录；Synathetic是 DKT模型所附带的数据集，包括了超过 20万条学习记录信息；其他数据集包括：Junyi15，algebra 2006 2007及Statics2011等.</p>
-<table>
-<thead>
-<tr>
-<th>dataset</th>
-<th>Website</th>
-<th>Field</th>
-<th>Records&#x2F;k</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>ASSISTments2009</td>
-<td><a target="_blank" rel="noopener" href="https://sites.google.com/site/assistmentsdata/datasets">https://sites.google.com/site/assistmentsdata/datasets</a></td>
-<td>Math</td>
-<td>32</td>
-</tr>
-<tr>
-<td>ASSISTments2017</td>
-<td><a target="_blank" rel="noopener" href="https://sites.google.com/view/assistmentsdatamining/dataset">https://sites.google.com/view/assistmentsdatamining/dataset</a></td>
-<td>Math</td>
-<td>94</td>
-</tr>
-<tr>
-<td>Ednet</td>
-<td><a target="_blank" rel="noopener" href="https://github.com/riiid/ednet">https://github.com/riiid/ednet</a></td>
-<td>English</td>
-<td>13 000</td>
-</tr>
-<tr>
-<td>Junyi15</td>
-<td><a target="_blank" rel="noopener" href="https://pslcdatashop.web.cmu.edu/DatasetInfo?datasetId=1275">https://pslcdatashop.web.cmu.edu/DatasetInfo?datasetId=1275</a></td>
-<td>Math</td>
-<td>2 500</td>
-</tr>
-<tr>
-<td>algebra 2006 2007</td>
-<td><a target="_blank" rel="noopener" href="https://pslcdatashop.web.cmu.edu/KDDCup/downloads.jsp">https://pslcdatashop.web.cmu.edu/KDDCup/downloads.jsp</a></td>
-<td>Math</td>
-<td>180</td>
-</tr>
-<tr>
-<td>Synathetic</td>
-<td><a target="_blank" rel="noopener" href="https://github.com/chrispiech/DeepKnowledgeTracing/tree/master/data/synthetic">https://github.com/chrispiech/DeepKnowledgeTracing/tree/master/data/synthetic</a></td>
-<td>Math</td>
-<td>1 435</td>
-</tr>
-<tr>
-<td>Statics2011</td>
-<td><a target="_blank" rel="noopener" href="https://pslcdatashop.web.cmu.edu/DatasetInfo?datasetId=507">https://pslcdatashop.web.cmu.edu/DatasetInfo?datasetId=507</a></td>
-<td>Engineering</td>
-<td>19</td>
-</tr>
-</tbody></table>
-<h2 id="KT过程分析"><a href="#KT过程分析" class="headerlink" title="KT过程分析"></a>KT过程分析</h2><h3 id="知识关系–-使用图来表示知识关系"><a href="#知识关系–-使用图来表示知识关系" class="headerlink" title="知识关系– 使用图来表示知识关系"></a>知识关系– 使用图来表示知识关系</h3><table>
-<thead>
-<tr>
-<th>论文名</th>
-<th>方法</th>
-<th>效果</th>
-<th>年份</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Graph ⁃ based knowledge tracing：modeling student proficiency using graph neural network</td>
-<td>构建知识图谱并进行KT 的方法，方法基于图结构</td>
-<td>提高了模型预测的可解释性</td>
-<td>2019</td>
-</tr>
-<tr>
-<td>HGKT：introducing hierarchical exercise graph for knowledge tracing</td>
-<td>引入了问题模式的概念，构造了一个分层的练习图，可以对学习依赖关系进行建模，并采用两种注意机制</td>
-<td>突出学习者的重要历史状态</td>
-<td>2022</td>
-</tr>
-<tr>
-<td>Modeling relational data with graph convolutional networks</td>
-<td>基于关系图卷积神经网络（CNN）的知识图谱构建方法</td>
-<td></td>
-<td>2018</td>
-</tr>
-<tr>
-<td>Peer ⁃inspired student performance prediction in interactive online question pools with graph neural network</td>
-<td>在 R-GCN 的基础上，利用学生互动过程，构建了“学生—互动—问题”网络，提出了 R2GCN 模型</td>
-<td>适用于异构情况下的网络学习</td>
-<td>2020</td>
-</tr>
-<tr>
-<td>Machine learning and knowledge discovery in databases</td>
-<td>提出了一种端到端的DKT框架，能够利用“高阶问题—技能”关系</td>
-<td>缓解数据稀疏性和多知识点问题</td>
-<td>2021</td>
-</tr>
-</tbody></table>
-<h3 id="因素关系处理"><a href="#因素关系处理" class="headerlink" title="因素关系处理"></a>因素关系处理</h3><p>DKT方面，由于问题与概念的不平等性，使得大多数KT方法都把模型中的知识点数量等价于问题数量，从而丢了问题所具有的个性化特性.如果缺乏对于问题的甄别，则无法确定问题的信度，进而损失模型的预测精度.</p>
-<h4 id="项目反应理论（IRT）"><a href="#项目反应理论（IRT）" class="headerlink" title="项目反应理论（IRT）"></a>项目反应理论（IRT）</h4><p>项目反应理论（IRT）该理论假设学习者的学习能力不随时间和实践变化。（该理论认为 只有答会高水平的题目 才能证明学生是高水平的）</p>
-<p>举个例子：</p>
-<p>考生答对的题目难度是判断考生能力的标准。某考生答对10道难度为1的题目，获得的<a target="_blank" rel="noopener" href="https://www.zhihu.com/search?q=%E8%83%BD%E5%8A%9B%E5%80%BC&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra=%7B%22sourceType%22:%22answer%22,%22sourceId%22:%22537050095%22%7D">能力值</a>依然是1，另一考生答对1道难度为8的题目，能力值则为8 </p>
-<p>其中rasch模型 使用难度描述 输入模型的问题</p>
-<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/jI9LXF"><img src="https://s1.ax1x.com/2022/07/17/jI9LXF.png" alt="jI9LXF.png"></a></p>
-<p>其中，<em>θ</em> 代表学习者的学习能力；<em>b</em> 代表问题的难度 .Rasch 模型在可解释性、问题区分性等方面性能优越，GHOSH等通过在深度模型中使用Rasch编码，提高了DKT的可解释性，取得了卓越的预测性能.</p>
-<h4 id="深度技术下-IRT模型"><a href="#深度技术下-IRT模型" class="headerlink" title="深度技术下 IRT模型"></a>深度技术下 IRT模型</h4><table>
-<thead>
-<tr>
-<th>模型名</th>
-<th>论文名</th>
-<th>干啥</th>
-<th>年份</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Deep ⁃IRT</td>
-<td>Deep ⁃ IRT：make deep learning based knowledge tracing explainable using item response theory</td>
-<td>它是 IRT 模型与 DKVMN 模型的结合 .</td>
-<td>2022</td>
-</tr>
-<tr>
-<td>DKVMN</td>
-<td>Dynamic key ⁃ value memory networks for knowledge tracing</td>
-<td>在知识追踪中使用了内存机制</td>
-<td>2017</td>
-</tr>
-<tr>
-<td>EKPT</td>
-<td>Learning or forgetting？A dynamic approach for tracking the knowledge proficiency of student</td>
-<td>提出知识熟练度追踪（KPT）模型和练习关联的知识熟练度（EKPT）模型，应用于知识估计、分数预 测和诊断结果可视化三个重要任务.</td>
-<td>2020</td>
-</tr>
-<tr>
-<td>KTMs</td>
-<td>Knowledge tracing machines：factorization machines for knowledge tracing</td>
-<td>综合IRT，AFM，PFA等模型，提出了知识追踪机（KTMs）框架，KTMs利用所有特征的稀疏权值集，对学习者答题结果的概率进行建模.</td>
-<td>2019</td>
-</tr>
-</tbody></table>
-<h3 id="学习认知机制和遗忘机制"><a href="#学习认知机制和遗忘机制" class="headerlink" title="学习认知机制和遗忘机制"></a>学习认知机制和遗忘机制</h3><h4 id="认知机制"><a href="#认知机制" class="headerlink" title="认知机制"></a>认知机制</h4><p>WANG等［27］提出了一种通用的神经认知诊断框架，摒弃人工特征，将神经网络集成到复杂的非线性交互模型中，解决认知诊断问题，并且结合CNN，提出了Neural CDM+模型，通过自动提取系统中的知识点信息，补充知识点相关度矩阵，避免了主观性甚至错误.</p>
-<h4 id="遗忘机制"><a href="#遗忘机制" class="headerlink" title="遗忘机制"></a>遗忘机制</h4><p>DKT模型使用RNN一定程度上实现了对记忆过程模拟，但是仍然没有真正意义上模拟人类思维习惯.</p>
-<table>
-<thead>
-<tr>
-<th>模型</th>
-<th>论文名</th>
-<th>方法</th>
-<th>年份</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>LPKT</td>
-<td>Learning Process-consistent Knowledge Tracing</td>
-<td>加了个遗忘层 主要是sigmoid</td>
-<td>2021</td>
-</tr>
-<tr>
-<td>DKVMN</td>
-<td>Dynamic key ⁃ value memory networks for knowledge tracing</td>
-<td>过类似于计算机内存管理的方式，建立知识记忆遗忘矩阵，在模型可解释性上取得了很大的进步</td>
-<td>2017</td>
-</tr>
-<tr>
-<td>CKT</td>
-<td>Context-aware attentive knowledge tracing</td>
-<td>基于Transformer的模型框架 上引入了注意力衰减机制，模拟全局遗忘行为，从而取得了较好的模型效果</td>
-<td>2020</td>
-</tr>
-</tbody></table>
-<h2 id="KT方法"><a href="#KT方法" class="headerlink" title="KT方法"></a>KT方法</h2><h3 id="传统kt方法"><a href="#传统kt方法" class="headerlink" title="传统kt方法"></a>传统kt方法</h3><p><a target="_blank" rel="noopener" href="https://imgtu.com/i/jI9HpV"><img src="https://s1.ax1x.com/2022/07/17/jI9HpV.png"></a></p>
-<h4 id="BKT"><a href="#BKT" class="headerlink" title="BKT"></a>BKT</h4><p>特点</p>
-<ol>
-<li><p>标准BKT模型建模过程中将知识点设置为“永不忘记”，并且假设一个题目只对应一个知识点（按道理来说 一个题目是对应多个知识点的）</p>
-</li>
-<li><p>在其中有几种概率 </p>
-<p>2.1 <em>P</em> ( <em>L</em>)是初始知识状态下学生掌握相关知识点的概率</p>
-<p>2.2 <em>P</em> (<em>T</em> )为经过练习后学生掌握目标知识点的概率</p>
-<p>2.3 <em>P</em> (<em>G</em>)表示学生猜对答案的概率（有趣）</p>
-<p>2.4 <em>P</em> ( <em>S</em>)为学生掌握知识点但做错题目的概率</p>
-<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/jI9Xm4"><img src="https://s1.ax1x.com/2022/07/17/jI9Xm4.md.png"></a></p>
-</li>
-</ol>
-<h3 id="DKT"><a href="#DKT" class="headerlink" title="DKT"></a>DKT</h3><h4 id="基于RNN的KT"><a href="#基于RNN的KT" class="headerlink" title="基于RNN的KT"></a>基于RNN的KT</h4><p>整体来讲，基于RNN结构的追踪模型在性能和可用性方面大幅度超越了传统模型，但是在解释性上略显不足.</p>
-<table>
-<thead>
-<tr>
-<th>模型</th>
-<th>论文</th>
-<th>方法</th>
-<th>年份</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>DKT-DSC</td>
-<td>Deep knowledge tracing and dynamic student classification for knowledge tracing</td>
-<td>通过在每个时间间隔内将学生分组，预测学生的学习效果</td>
-<td>2018</td>
-</tr>
-<tr>
-<td>.。。</td>
-<td>Incorporating features learned by an enhanced deep knowledge tracing model for stem&#x2F;non-stem job prediction</td>
-<td>采用DKT进行知识状态预测，证明了DKT模型在实际工作中的有效性.</td>
-<td>2019</td>
-</tr>
-<tr>
-<td>EERNN</td>
-<td>Exercise⁃enhanced sequential modeling for student performance prediction</td>
-<td>通过追踪学生的练习记录和相应练习的文本内容，提出了一个通用的练习增强循环神经网络（EERNN）框架</td>
-<td>2018</td>
-</tr>
-</tbody></table>
-<h4 id="基于注意力的DKT"><a href="#基于注意力的DKT" class="headerlink" title="基于注意力的DKT"></a>基于注意力的DKT</h4><p>通过注意力机制，可以在过去的交互序列中寻找到与当前问题相关的重信息，从而做出更为准确的预测，并且证明了基于 Transformer的模型比基于 RNN的模型在运算速度上快了一个数量级.</p>
-<table>
-<thead>
-<tr>
-<th>模型</th>
-<th>论文</th>
-<th>效果</th>
-<th>年份</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>transformer</td>
-<td>A self ⁃ attentive model for knowledge tracing</td>
-<td>必然伴随着对过去相关练习交互的回忆</td>
-<td>2019</td>
-</tr>
-<tr>
-<td>双向transformer</td>
-<td>Towards an appropriate query，key，and value computation for knowledge tracing</td>
-<td>将练习序列和回答序列分别进行编码，从而寻找到了更为合适的 Query</td>
-<td>2020</td>
-</tr>
-<tr>
-<td>Saint+</td>
-<td>Saint+：integrating temporal features for EdNet correctness prediction</td>
-<td>将经过时间、滞后时间两个特征编码与学生答题响应的编码进行结合，从而增强了 模型的预测精度.</td>
-<td>2021</td>
-</tr>
-</tbody></table>
-<h4 id="基于hawkes过程的DKT"><a href="#基于hawkes过程的DKT" class="headerlink" title="基于hawkes过程的DKT"></a>基于hawkes过程的DKT</h4><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/guanlily123/article/details/100145889">https://blog.csdn.net/guanlily123/article/details/100145889</a></p>
-<p>.Hawkes过程则假设过去事件会在一定程度上提高未来事件发生的概率，并且这种影响会随着时间指数衰减，这种思想比较符合认知遗忘规律下的学习者能力.</p>
-<table>
-<thead>
-<tr>
-<th>模型</th>
-<th>论文</th>
-<th>效果</th>
-<th>年份</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>LSTM</td>
-<td>The neural Hawkes process：a neurally self⁃modulating multivariate point process</td>
-<td>利用Hawkes过程对长短期记忆（LSTM）节点的时间效应（遗忘效应）进行衰减处理.KT领域的学习者交互过程可以被看作是一系列的连续事件流，但是泊松过程假定事件相互独立，并不符合多知识点状态下学习者交互的逻辑</td>
-<td>2017</td>
-</tr>
-<tr>
-<td>Hawkes Process</td>
-<td>Temporal cross⁃effects in knowledge tracing</td>
-<td>定事件相互独立，并不符合多知识点状态下学习者交互的逻辑忘效应）进行衰减处理.KT领域的学习者交互过程可以被看作是一系列的连续事件流，但是泊松过程假 深入研究了不同知识点之间的时间交叉效应，并且提高了深度模型的可解释性</td>
-<td>2021</td>
-</tr>
-</tbody></table>
-<h2 id="展望"><a href="#展望" class="headerlink" title="展望"></a>展望</h2><p>本文作者对比讨论了目前主流的KT模型，分析了主流模型的优缺点.目前的研究主要针对知识点与题目间的关系进行建模，很少有研究从模型效果评价指标、学习潜力预测、深度记忆过程模拟等方面进行知识状态追踪和预测，同时也较少有对多知识点关系建模方法进行知识状态追踪的研究.通过分析KT领域目前主流的模型，梳理出KT领域未来的发展方向，从数据表征、认知建模、建模方法、解释及反馈方面对KT领域进行展望. </p>
-<p>1）数据处理及数据表征.KT模型在运用输入数据方面越来越需要预处理、预训练操作.预训练模型在序列任务上表现出了良好的性能，采用可解释性较强的算法预处理输入数据变得越来越重要.比如使用Rasch编码预处理输入数据后，再进行注意力运算和模型预测，在模型性能和可解释性方面都取得了很好的效果 .在数据特征方面，引入学习者生物特征、更加丰富的习题特征都是未来重要的突破方向，KT模型应该向更高维度、更普适、更泛化的方向发展，如何对学习者的非结构性学习数据进行追踪也是重要的发展方向. </p>
-<p>2）认知建模 .认知诊断和 KT分别应用于学习者静态数据分析和动态数据分析，但 KT模型内不应缺乏对学习者认知能力的建模.对于问题维度、知识点维度的建模不足以拟合学习者的知识状态变化，应在此基础上进一步对认知维度进行建模，从而在更高的维度上追踪学习者的状态变化情况. </p>
-<p>3）模型方法及可解释性 .自从 DKT被提出以来，KT领域内的模型基本以深度模型为主，但越来越多的工作表明 DKT无法做到真正的动态自适应 KT.基于 RNN 的模型在数据拟合能力上逐步被以注意 力机制为核心的Transformer类模型超越，未来KT领域建模方法应该在注意力方向、图谱方向进一步发展.人脑记忆的形成过程中，人自身的注意力是重要的一环，这也是基于注意力机制模型结合遗忘建模取得不错效果的关键原因.知识图谱作为非结构化知识表征的重要手段，在KT领域有更进一步的潜力， 并且对于认知能力研究也可以加入图谱技术，从而在可解释性KT方向取得突破.</p>
+                            <img class="kratos-entry-thumb-new-img">
+                        
+                    </a>
+                </div>
+                <div class="kratos-post-inner-new">
+                    <header class="kratos-entry-header-new">
+                            
+                        <h2 class="kratos-entry-title-new"><a href="/2022/07/16/%E7%9F%A5%E8%AF%86%E8%BF%BD%E8%B8%AA%E7%BB%BC%E8%BF%B0/">知识追踪综述</a>
+                    </header>
+                    <div class="kratos-entry-content-new">
+                        <p>
+                            
+                                0 说点废话（讲一下怎么找到这个文章的）2022年7月16日
+在床上百无聊耐的看视频 突然看到这样的东西
 
-                        
+https://www.bilibili.com/video/BV1EY411K7wt
+嗯嗯 我就去这个网站试了试
+https...
+                            
+                        </p>
                     </div>
                 </div>
-            </div>
-            
                 <footer class="kratos-post-meta-new">
                     <span class="pull-left">
-                        <a><i class="fa fa-calendar"></i></a><a>2022-07-16</a>
-                        
+                        <a>
+                            <i class="fa fa-calendar"></i>
+                            2022-07-16
+                        </a>
+                        <a>
+                            
+                        </a>
                         
                             <!-- 当前仅支持valine/waline自带的统计功能 -->
                             
                         
                         
                     </span>
-                    
-                    
-                        <span class="pull-right">
-                            <a class="read-more" href="/2022/07/16/%E7%9F%A5%E8%AF%86%E8%BF%BD%E8%B8%AA%E7%BB%BC%E8%BF%B0/" title="留言">留言<i class="fa fa-chevron-circle-right"></i></a>
-                        </span>
-                    
-
+                    <span class="pull-right">
+                        <a class="read-more" href="/2022/07/16/%E7%9F%A5%E8%AF%86%E8%BF%BD%E8%B8%AA%E7%BB%BC%E8%BF%B0/" title="阅读全文">阅读全文<i class="fa fa-chevron-circle-right"></i></a>
+                    </span>
                 </footer>
-            
+            </div>
         </article>
     
 
@@ -1027,6 +767,9 @@ https://www.lfd.uci.edu/~gohlke/pythonlibs/#lxml...
         
           
           
+            <a class="list-group-item" href="/2022/07/16/%E7%9F%A5%E8%AF%86%E8%BF%BD%E8%B8%AA%E7%BB%BC%E8%BF%B0/"><i class="fa  fa-book"></i> 知识追踪综述</a>
+            
+          
         
           
           
@@ -1053,11 +796,7 @@ https://www.lfd.uci.edu/~gohlke/pythonlibs/#lxml...
           
         
           
-          
-            <a class="list-group-item" href="/2022/07/02/%E5%9F%BA%E4%BA%8E%E7%9F%A5%E8%AF%86%E7%BB%86%E7%B2%92%E5%BA%A6%E6%9F%A5%E8%AF%A2%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88/"><i class="fa  fa-book"></i> 基于知识细粒度查询设计方案(使用手册)</a>
             
-          
-        
           
             
           
