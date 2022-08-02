@@ -4,7 +4,7 @@
   <!-- 元数据 -->
   <meta charset="utf-8">
   <link rel="icon" href="">
-  <title>图神经网络入门 | limhao博客</title>
+  <title>图推荐系统综述 | limhao博客</title>
   <meta name="author" content="limhao" />
   <meta http-equiv="Cache-Control" content="no-transform" />
   <meta http-equiv="Cache-Control" content="no-siteapp" />
@@ -15,16 +15,16 @@
   
     <meta name="keywords" content="" />
   
-  <meta name="description" content="感谢：https:&#x2F;&#x2F;distill.pub&#x2F;2021&#x2F;gnn-intro&#x2F; 博客 https:&#x2F;&#x2F;www.bilibili.com&#x2F;video&#x2F;BV1iT4y1d7zP 李沐介绍视频 0. 前言首先，让我们确定什么是图。图代表了一组实体（结点）之间的关系（边）。  V  node 节点     E  link 连接 U  master node  整个图 1. 描述（抽象）为了进一步描述每个节点">
+  <meta name="description" content="说些废话图推荐是目前的项目需要 最近一个小伙给我又发了一篇新的 文章 需要好好读一下 2022&#x2F;8&#x2F;1 因为下午不能游泳 我心情很不开心  前言论文名：Graph Neural Networks for Recommender Systems: Challenges, Methods, and Directions 链接：  论文链接 https:&#x2F;&#x2F;arxiv.org&#x2F;abs">
 <meta property="og:type" content="article">
-<meta property="og:title" content="图神经网络入门">
-<meta property="og:url" content="http://example.com/2022/06/09/%E5%9B%BE%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%85%A5%E9%97%A8/index.html">
+<meta property="og:title" content="图推荐系统综述">
+<meta property="og:url" content="http://example.com/2022/08/01/%E5%9B%BE%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E7%BB%BC%E8%BF%B0/index.html">
 <meta property="og:site_name" content="limhao博客">
-<meta property="og:description" content="感谢：https:&#x2F;&#x2F;distill.pub&#x2F;2021&#x2F;gnn-intro&#x2F; 博客 https:&#x2F;&#x2F;www.bilibili.com&#x2F;video&#x2F;BV1iT4y1d7zP 李沐介绍视频 0. 前言首先，让我们确定什么是图。图代表了一组实体（结点）之间的关系（边）。  V  node 节点     E  link 连接 U  master node  整个图 1. 描述（抽象）为了进一步描述每个节点">
+<meta property="og:description" content="说些废话图推荐是目前的项目需要 最近一个小伙给我又发了一篇新的 文章 需要好好读一下 2022&#x2F;8&#x2F;1 因为下午不能游泳 我心情很不开心  前言论文名：Graph Neural Networks for Recommender Systems: Challenges, Methods, and Directions 链接：  论文链接 https:&#x2F;&#x2F;arxiv.org&#x2F;abs">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/null">
-<meta property="article:published_time" content="2022-06-09T06:42:51.894Z">
-<meta property="article:modified_time" content="2022-06-09T08:22:07.241Z">
+<meta property="article:published_time" content="2022-08-01T09:12:20.467Z">
+<meta property="article:modified_time" content="2022-08-02T02:17:35.045Z">
 <meta property="article:author" content="limhao">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/null">
@@ -152,17 +152,17 @@
     <div class="kratos-hentry kratos-post-inner clearfix">
         <header class="kratos-entry-header">
             
-                <h1 class="kratos-entry-title text-center">图神经网络入门</h1>
+                <h1 class="kratos-entry-title text-center">图推荐系统综述</h1>
             
             
             <ul class="kratos-post-meta text-center">
-                <li><i class="fa fa-calendar"></i> 2022-06-09</li>
+                <li><i class="fa fa-calendar"></i> 2022-08-01</li>
                 <li><i class="fa fa-user"></i> 作者 limhao</li>
                 <li>
                     <i class="fa fa-edit"></i> 
                     
                     
-                        ~1.93K
+                        ~3.48K
                     
                     字
                 </li>
@@ -172,79 +172,141 @@
         <div class="kratos-post-content">
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>本文最后编辑于 <time datetime="1654762927241"></time> 前，其中的内容可能需要更新。</p></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1659406655045"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
             <hr />
-            <p>感谢：<a target="_blank" rel="noopener" href="https://distill.pub/2021/gnn-intro/">https://distill.pub/2021/gnn-intro/</a> 博客</p>
-<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1iT4y1d7zP">https://www.bilibili.com/video/BV1iT4y1d7zP</a> 李沐介绍视频</p>
-<h2 id="0-前言"><a href="#0-前言" class="headerlink" title="0. 前言"></a>0. 前言</h2><p>首先，让我们确定什么是图。图代表了一组实体（结点）之间的关系（边）。</p>
-<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/Xsdi8O"><img src="https://s1.ax1x.com/2022/06/09/Xsdi8O.md.png"></a></p>
-<p>V  node 节点    </p>
-<p>E  link 连接</p>
-<p>U  master node  整个图</p>
-<h2 id="1-描述（抽象）"><a href="#1-描述（抽象）" class="headerlink" title="1. 描述（抽象）"></a>1. 描述（抽象）</h2><p>为了进一步描述每个节点、边或整个图，我们将图中的每一部分信息进行储存。</p>
-<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/XswTpT"><img src="https://s1.ax1x.com/2022/06/09/XswTpT.md.png"></a></p>
-<p>在存储方面 我们存下了点，边，整个图的信息 进行存储</p>
-<p>图 也分为有向图和无向图</p>
-<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/Xs03Hs"><img src="https://s1.ax1x.com/2022/06/09/Xs03Hs.md.png"></a></p>
-<h2 id="2-图的实例化讲解"><a href="#2-图的实例化讲解" class="headerlink" title="2. 图的实例化讲解"></a>2. 图的实例化讲解</h2><p>作者 使用了两个反直觉的数据类型用图来表示</p>
-<h3 id="2-1-图像"><a href="#2-1-图像" class="headerlink" title="2.1 图像"></a>2.1 图像</h3><p>我们通常认为图像是具有图像通道的矩形网格，将它们表示为数组（例如244x244x3的浮点）。另一种思考图像的方式是具有规则结构的图，其中每个像素代表一个节点，并通过边连接到相邻的像素。每个非边界像素正好有8个邻居，每个节点存储的信息是一个代表像素RGB值的3维矢量。</p>
-<p>通过邻接矩阵来可视化图形的连通性的一种方法。我们对节点进行排序，在这种情况下，在一个简单的5x5的笑脸图像中，每个节点都有25个像素，如果两个节点共享一条边，就用一个条目来填充n×n的矩阵。请注意，下面这三种表示方法都是对同一份数据的不同看法。</p>
-<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/Xs0OxS"><img src="https://s1.ax1x.com/2022/06/09/Xs0OxS.md.png"></a></p>
-<p>图像的三种表示方法</p>
-<h3 id="2-2-文本"><a href="#2-2-文本" class="headerlink" title="2.2 文本"></a>2.2 文本</h3><p>我们可以通过为每个字符、词或标记关联索引来数字化文本，并将文本表示为这些索引的序列。这就形成了一个简单的有向图，其中每个字符或索引都是一个节点，并通过一条边与后面的节点相连。</p>
-<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/XshsyR"><img src="https://s1.ax1x.com/2022/06/09/XshsyR.md.png"></a></p>
-<p>当然，在实践中，这通常不是文本和图像的编码方式：这些图表示是多余的，因为所有图像和所有文本都会有非常规则的结构。例如，图像的邻接矩阵有一个带状结构，因为所有的节点（像素）都是以网格方式连接的。文本的邻接矩阵只是一条对角线，因为每个词只与前一个词和后一个词相连接</p>
-<h2 id="3-什么样子的问题会用到图结构"><a href="#3-什么样子的问题会用到图结构" class="headerlink" title="3. 什么样子的问题会用到图结构"></a>3. 什么样子的问题会用到图结构</h2><h3 id="3-1-图级"><a href="#3-1-图级" class="headerlink" title="3.1 图级"></a>3.1 图级</h3><p>看起来很弱智的 找圈圈个数</p>
-<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/XsHz5t"><img src="https://s1.ax1x.com/2022/06/09/XsHz5t.md.png"></a></p>
-<h3 id="3-2-节点级"><a href="#3-2-节点级" class="headerlink" title="3.2 节点级"></a>3.2 节点级</h3><p>​    节点级任务关注的是预测图中每个节点的身份或角色。<br>​    节点级预测问题的一个典型例子是Zach的空手道俱乐部。<br>​     该数据集是一个单一的社会网络图，由在政治裂痕后宣誓效忠于两个空手道俱乐部之一的个人组成。正如故事所言，Hi先生（教练）和John H（管理员）之间的争执在空手道俱乐部中造成了分裂。节点代表空手道练习者个人，边则代表这些成员在空手道之外的互动关系。预测问题是对一个给定的成员在争斗后是否会效忠于Hi先生或John H进行分类。在这种情况下，一个节点与教官或管理员之间的距离与这个标签高度相关</p>
-<p>[<img src="https://s1.ax1x.com/2022/06/09/XsbhQS.md.png">]</p>
-<p>​    按照图像的类比，节点级预测问题类似于图像分割，我们试图标记图像中每个像素的作用。对于文本，类似的任务是预测句子中每个词的语音部分（如名词、动词、副词等）。</p>
-<h3 id="3-3-边级"><a href="#3-3-边级" class="headerlink" title="3.3 边级"></a>3.3 边级</h3><p><a target="_blank" rel="noopener" href="https://imgtu.com/i/Xsqnwd"><img src="https://s1.ax1x.com/2022/06/09/Xsqnwd.md.png"></a></p>
-<p>通过语义分割 分析出实体对象 然后对实体对象之间的关系 使用机器学习进行预测 之后用图来进行表示</p>
-<h2 id="4-图的表示"><a href="#4-图的表示" class="headerlink" title="4. 图的表示"></a>4. 图的表示</h2><p><a target="_blank" rel="noopener" href="https://imgtu.com/i/XsLtgK"><img src="https://s1.ax1x.com/2022/06/09/XsLtgK.md.png" alt="XsLtgK.md.png"></a></p>
-<p>自己的看法</p>
+            <h2 id="说些废话"><a href="#说些废话" class="headerlink" title="说些废话"></a>说些废话</h2><p>图推荐是目前的项目需要</p>
+<p>最近一个小伙给我又发了一篇新的 文章</p>
+<p>需要好好读一下</p>
+<p>2022&#x2F;8&#x2F;1 因为下午不能游泳 我心情很不开心 </p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>论文名：Graph Neural Networks for Recommender Systems: Challenges, Methods, and Directions</p>
+<p>链接：</p>
 <ol>
-<li><p>dim &#x3D; 0 的位置上 每个节点一一对应</p>
+<li>论文链接 <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2109.12843">https://arxiv.org/abs/2109.12843</a></li>
+<li>代码链接 <a target="_blank" rel="noopener" href="https://github.com/tsinghua-fib-lab/GNN-Recommender-Systems">https://github.com/tsinghua-fib-lab/GNN-Recommender-Systems</a></li>
+<li>文章介绍链接：（知乎） 目前没有</li>
+</ol>
+<p>相关知识：</p>
+<pre><code>1. 图推荐系统
+ 2. 图表示计算方法
+ 3. 信息提取
+</code></pre>
+<h2 id="1-相关背景"><a href="#1-相关背景" class="headerlink" title="1. 相关背景"></a>1. 相关背景</h2><ul>
+<li>现有的方法<ol>
+<li>谱模型</li>
+<li>空间模型</li>
+</ol>
 </li>
-<li><p>节点有节点 自己的分类 边也是一样</p>
+<li>动机 <ol>
+<li>高阶连通性</li>
+<li>数据结构特征</li>
+<li>增强的监督信号</li>
+</ol>
 </li>
-<li><p>如果想表示一个图两个节点是否相互连接 可以使用【node，node】来表示</p>
+<li>挑战（）<ol>
+<li>图构造（ 适当地构造成图，节点表示元素，边表示关系 ）</li>
+<li>嵌入传播&#x2F;聚合</li>
+<li>模型优化（ 包括优化目标、损失函数、数据采样等 ）</li>
+<li>计算效率及有效部署（ 由于GNN的嵌入传播操作引入了大量计算，图神经网络在推荐系统中的有效部署是另一个关键挑战 ）</li>
+</ol>
 </li>
-<li><p>global 也有其自己的分类表示</p>
+</ul>
+<h2 id="2-标准系统及我为什么需要图数据"><a href="#2-标准系统及我为什么需要图数据" class="headerlink" title="2. 标准系统及我为什么需要图数据"></a>2. 标准系统及我为什么需要图数据</h2><p>图！</p>
+<h3 id="2-1-结构数据"><a href="#2-1-结构数据" class="headerlink" title="2.1 结构数据"></a>2.1 结构数据</h3><p>数据形式</p>
+<p>从在线平台收集的数据有多种形式，包括用户项目交互（评级、点击、购买等）、用户档案（性别、年龄、收入等）、项目属性（品牌、类别、价格等）等 </p>
+<p>传统的推荐系统无法利用这些多形式的数据，通常只关注一个或几个特定的数据源，由于忽略了许多信息，这导致了次优性能。通过将所有数据表示为图上的节点和边，GNN提供了一种利用可用数据的统一方法。同时，GNN在学习表示方面表现出强大的能力，因此可以获得对用户、项目和其他特征的高质量嵌入，这对推荐性能至关重要 </p>
+<h3 id="2-2-高阶连通性"><a href="#2-2-高阶连通性" class="headerlink" title="2.2 高阶连通性"></a>2.2 高阶连通性</h3><p>在传统方法中，由于训练数据主要是仅包含直接连接项的交互记录，因此只能隐式捕获协同过滤效果。换句话说，只考虑一阶连通性。缺少高阶连通性可能会在很大程度上损害推荐性能。相反，基于GNN的模型可以有效地捕捉高阶连通性。 </p>
+<h3 id="2-3-监控信号（解决数据的稀疏问题）"><a href="#2-3-监控信号（解决数据的稀疏问题）" class="headerlink" title="2.3 监控信号（解决数据的稀疏问题）"></a>2.3 监控信号（解决数据的稀疏问题）</h3><p>监督信号在收集的数据中通常是稀疏的，而基于GNN的模型可以在表示学习过程中利用半监督信号来缓解这一问题。以电子商务平台为例；与其他行为相比，目标行为purchase相当稀少。因此，仅使用目标行为的推荐系统可能会获得较差的性能。通过在图上编码半监督信号，基于GNN的模型可以有效地结合多种非目标行为，例如搜索和添加到购物车，这可以显著提高推荐性能 </p>
+<h2 id="3-挑战"><a href="#3-挑战" class="headerlink" title="3. 挑战"></a>3. 挑战</h2><h3 id="3-1-图构建"><a href="#3-1-图构建" class="headerlink" title="3.1 图构建"></a>3.1 图构建</h3><p>数据输入为观察到的用户项交互数据，输出为缺失用户项交互的预测。因此，可以构造一个以用户&#x2F;项目为节点、交互为边的二部图。此外，CF任务转向图上的用户项链接预测。 </p>
+<h4 id="节点"><a href="#节点" class="headerlink" title="节点"></a>节点</h4><p> 图神经网络学习的主要目标之一是为节点分配表示。这导致节点的定义在很大程度上决定了GNN模型的规模，其中大多数参数由 layer-0嵌入占据。注意，边缘嵌入通常不考虑或基于节点嵌入计算。另一方面，确定是否区分不同类型的节点也是一个具有挑战性的问题。例如，在协同过滤任务中，可以对用户节点和项目节点进行不同的建模，也可以将其视为同一类节点。另一个挑战点是处理具体的输入，例如一些数字特征，如项目价格，这些特征总是连续的数字。为了在图中表示这些特征，一种可能的解决方案是将其离散化为分类特征，然后可以将其表示为节点 </p>
+<h4 id="边"><a href="#边" class="headerlink" title="边"></a>边</h4><p>边的定义在进一步传播和聚合以及模型优化中高度影响图的质量。在一些琐碎的任务中，推荐系统的数据输入可以被视为一种关系数据，例如用户-项目交互或用户-用户-社会关系。在一些复杂任务中，其他关系也可以表示为边。例如，在bundle推荐中，bundle由几个项组成。连接束和项目的边缘可以反映隶属关系。好的边设计在构造图时应该充分考虑图的密度。过于密集的图意味着存在度数极高的节点。这将使嵌入传播由大量邻居进行。这将进一步使传播的嵌入不可区分和无用。为了处理过于密集的边，对图进行采样、过滤或剪枝是很有希望的解决方案。当然，过于稀疏的图也会导致嵌入传播的效用较差，因为传播将仅在一小部分节点上进行。 </p>
+<h3 id="3-2-网络设计（传播和聚合的设计）"><a href="#3-2-网络设计（传播和聚合的设计）" class="headerlink" title="3.2 网络设计（传播和聚合的设计）"></a>3.2 网络设计（传播和聚合的设计）</h3><p>使GNN不同于传统的图学习方法的是传播层。对于传播，如何选择路径是建立推荐系统高阶相似性模型的关键。此外，传播也可以是参数化的，为不同的节点分配不同的权重。 </p>
+<p><strong>在传播中，也有各种聚合函数的选择，包括均值池、LSTM、max、min等</strong>。由于在所有推荐任务或不同数据集中没有一个选项可以表现最好，因此设计一个特定且适当的选项至关重要。此外，传播&#x2F;聚集的不同选择严重影响计算效率。例如，均值池在基于GNN的推荐模型中被广泛使用，因为它可以高效地计算，<strong>特别是对于包含高度节点的图</strong>，例如非常流行的项目（可以连接大量用户）。此外，可以堆叠传播&#x2F;聚合层，以帮助节点访问更高跳数的邻居。太浅的层使高阶图结构无法很好地建模，太深的层使节点嵌入过度平滑。这两种情况中的任何一种都会导致推荐性能较差。 </p>
+<p>总结一下 </p>
+<ol>
+<li><p>网路设计分为 传播和聚合</p>
+</li>
+<li><p>可以堆叠传播&#x2F;聚合层 来帮助节点访问更高的邻居层</p>
 </li>
 </ol>
-<h3 id="4-1-网络表示"><a href="#4-1-网络表示" class="headerlink" title="4.1 网络表示"></a>4.1 网络表示</h3><p><img src="https://s1.ax1x.com/2022/06/09/XsXwtA.md.png"></p>
-<p>这个GNN在图的每个分量上使用一个单独的多层感知器（MLP）（或你最喜欢的可微分模型）；我们称之为GNN层。对于每个节点向量，我们应用MLP并得到一个学习的节点向量。我们对每条边做同样的工作，学习每条边的嵌入，也对全局背景向量做同样的工作，为整个图学习一个单一的嵌入。</p>
-<h3 id="4-2-通过池化信息-来完成图预测（简单gnn模型）"><a href="#4-2-通过池化信息-来完成图预测（简单gnn模型）" class="headerlink" title="4.2 通过池化信息 来完成图预测（简单gnn模型）"></a>4.2 通过池化信息 来完成图预测（简单gnn模型）</h3><p>可能 我们知道了边的信息 如果通过边的信息来 计算 节点的信息 对节点进行预测<br>池化分两步</p>
-<ol>
-<li><p>收集节点的边信息</p>
-</li>
-<li><p>通过汇总这些信息来进行预测</p>
-</li>
-</ol>
-<p><img src="https://s1.ax1x.com/2022/06/09/XsXTXT.png"></p>
-<p>所以 如果我们只知道 边的信息 使用池化来路由（或传递）信息到它需要去的地方。该模型看起来像这样。（这个机制貌似叫 消息传递）</p>
-<p><img src="https://s1.ax1x.com/2022/06/09/XsvAqU.md.png"></p>
-<p>使用点信息来 信息传递出 边的总类</p>
-<p><img src="https://s1.ax1x.com/2022/06/09/Xsv2Js.md.png"></p>
-<p>使用点信息来算出 图的种类</p>
-<p>对点的信息进行汇聚 然后 就像cnn 一样 对这个图的信息进行处理</p>
-<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/Xsx3pn"><img src="https://s1.ax1x.com/2022/06/09/Xsx3pn.md.png" alt="Xsx3pn.md.png"></a></p>
-<h3 id="4-3-通过信息传递-完成-图的更新"><a href="#4-3-通过信息传递-完成-图的更新" class="headerlink" title="4.3 通过信息传递 完成 图的更新"></a>4.3 通过信息传递 完成 图的更新</h3><p>信息传递分为三步</p>
-<ol>
-<li><p>收集每个节点 所有相邻节点的嵌入 g函数</p>
-</li>
-<li><p>通过聚合函数 聚合消息</p>
-</li>
-<li><p>所有汇集的消息 通过一个更新函数（通常学习神经网络）</p>
-</li>
-</ol>
-<p>正如池化可以应用于节点或边一样，消息传递也可以在节点或边之间发生。</p>
-<p>这些步骤是利用图的连接性的关键。我们将在GNN层中建立更详细的消息传递变体，以产生表现力和力量不断增强的GNN模型。</p>
-<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/XyS3LV"><img src="https://s1.ax1x.com/2022/06/09/XyS3LV.md.png" alt="XyS3LV.md.png"></a></p>
-
+<h3 id="3-3-模型优化"><a href="#3-3-模型优化" class="headerlink" title="3.3 模型优化"></a>3.3 模型优化</h3><p>为了优化基于图神经网络的推荐模型，推荐系统中的传统损失函数总是转向图学习损失。例如，优化中的对数损耗可以视为逐点链路预测损耗。类似地，BPR损耗[126]通常用于图上的链路预测任务。另一个方面是数据采样。在基于GNN的推荐中，要对正项目或负项目进行采样，采样方式在很大程度上取决于图结构。例如，在社交推荐中，在图上执行随机游走可以生成弱正项目（例如朋友互动的项目）。此外，有时，基于GNN的推荐可能涉及多个任务，例如不同类型边缘上的链路预测任务。那么在这种情况下，如何平衡每项任务并使它们相互促进是一个挑战。</p>
+<h3 id="3-4-计算效率"><a href="#3-4-计算效率" class="headerlink" title="3.4 计算效率"></a>3.4 计算效率</h3><p>为了保证基于GNN的推荐模型的应用价值，应认真考虑其计算效率。与传统的非GNN推荐方法（如NCF或FM）相比，GNN模型的计算成本要高得多。特别是对于谱GNN模型，如GCN，每个GCN层都涉及复杂的矩阵运算。随着GCN层的多层堆叠，计算成本进一步增加。因此，PinSage等空间GNN模型更容易在大规模工业应用中实现。通过在邻域之间采样或剪枝图结构，只要我们能够承受推荐性能的下降，就可以始终保持效率。</p>
+<h2 id="4-论文总结"><a href="#4-论文总结" class="headerlink" title="4. 论文总结"></a>4. 论文总结</h2><h3 id="分阶段的顶会"><a href="#分阶段的顶会" class="headerlink" title="分阶段的顶会"></a>分阶段的顶会</h3><table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>模型名</th>
+<th>论文名</th>
+<th>年</th>
+<th>会议</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Matching</td>
+<td>GCMC</td>
+<td>Graph convolutional matrix completion</td>
+<td>18</td>
+<td></td>
+</tr>
+<tr>
+<td>Matching</td>
+<td>PinSage</td>
+<td>Graph convolutional neural networks for web-scale recommender systems</td>
+<td>18</td>
+<td></td>
+</tr>
+<tr>
+<td>Matching</td>
+<td>NGCF</td>
+<td>Neural graph collaborative filtering</td>
+<td>19</td>
+<td></td>
+</tr>
+<tr>
+<td>Matching</td>
+<td>LightGCN</td>
+<td>Lightgcn: Simplifying and powering graph convolution network for recommendation</td>
+<td>20</td>
+<td></td>
+</tr>
+<tr>
+<td>Ranking</td>
+<td>Fi-GNN</td>
+<td>Fi-gnn: Modeling feature interactions via graph neural networks for ctr prediction.</td>
+<td>19</td>
+<td></td>
+</tr>
+<tr>
+<td>Ranking</td>
+<td>PUP</td>
+<td>Incorporating Price into Recommendation with Graph Convolutional Networks</td>
+<td>20</td>
+<td></td>
+</tr>
+<tr>
+<td>Ranking</td>
+<td>L0-SIGN</td>
+<td>Detecting Beneficial Feature Interactions for Recommender Systems</td>
+<td>21</td>
+<td></td>
+</tr>
+<tr>
+<td>Ranking</td>
+<td>DG-ENN</td>
+<td>Beyond clicks: Modeling multi-relational item graph for session-based target behavior prediction</td>
+<td>21</td>
+<td></td>
+</tr>
+<tr>
+<td>Re-ranking</td>
+<td>IRGPR</td>
+<td>Personalized Re-ranking with Item Relationships for E-commerce</td>
+<td>20</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id="5-总结"><a href="#5-总结" class="headerlink" title="5. 总结"></a>5. 总结</h2><h2 id="6-自己的想法"><a href="#6-自己的想法" class="headerlink" title="6. 自己的想法"></a>6. 自己的想法</h2>
         </div>
         
             <div class="kratos-copyright text-center clearfix">
@@ -297,7 +359,7 @@
     <script type="text/javascript">
         $(()=>{
             new QRCode("wechat-qr", {
-                text: "http://example.com/2022/06/09/%E5%9B%BE%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%85%A5%E9%97%A8/",
+                text: "http://example.com/2022/08/01/%E5%9B%BE%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E7%BB%BC%E8%BF%B0/",
                 width: 150,
                 height: 150,
                 correctLevel : QRCode.CorrectLevel.H
@@ -309,11 +371,13 @@
             const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
             const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
             const twitterBase   = "https://twitter.com/intent/tweet?";
-            const hostUrl       = "http://example.com/2022/06/09/%E5%9B%BE%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%85%A5%E9%97%A8/";
-            const title         = "「图神经网络入门」";
-            const excerpt       = `感谢：https://distill.pub/2021/gnn-intro/ 博客
-https://www.bilibili.com/video/BV1iT4y1d7zP 李沐介绍视频
-0. 前言首先，让我们确定什么是图。图代表了一组...`;
+            const hostUrl       = "http://example.com/2022/08/01/%E5%9B%BE%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E7%BB%BC%E8%BF%B0/";
+            const title         = "「图推荐系统综述」";
+            const excerpt       = `说些废话图推荐是目前的项目需要
+最近一个小伙给我又发了一篇新的 文章
+需要好好读一下
+2022&#x2F;8&#x2F;1 因为下午不能游泳 我心情很不开心 
+前言论文名：Graph Neural Networks for Recom...`;
             let _URL;
             switch (dest) {
                 case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
@@ -335,7 +399,7 @@ https://www.bilibili.com/video/BV1iT4y1d7zP 李沐介绍视频
                     
                 </div>
                 <div class="pull-date">
-                <span>最后编辑：2022-06-09</span>
+                <span>最后编辑：2022-08-02</span>
                 </div>
             </div>
         </footer>
@@ -344,13 +408,9 @@ https://www.bilibili.com/video/BV1iT4y1d7zP 李沐介绍视频
         <nav class="navigation post-navigation clearfix" role="navigation">
             
             <div class="nav-previous clearfix">
-                <a title=" 2022年会话推荐综述" href="/2022/06/05/2022年会话推荐综述/">&lt; 上一篇</a>
+                <a title=" saint+ saint的时间正确使用版本" href="/2022/08/01/saint+-saint的时间正确使用版本/">&lt; 上一篇</a>
             </div>
             
-            
-            <div class="nav-next clearfix">
-                <a title=" 模型过拟合处理" href="/2022/06/09/过拟合处理/">下一篇 &gt;</a>
-            </div>
             
         </nav>
     
