@@ -4,7 +4,7 @@
   <!-- 元数据 -->
   <meta charset="utf-8">
   <link rel="icon" href="">
-  <title>VKT 视觉知识追踪 | limhao博客</title>
+  <title>core 在一致表示空间内基于会话的简单有效的推荐 | limhao博客</title>
   <meta name="author" content="limhao" />
   <meta http-equiv="Cache-Control" content="no-transform" />
   <meta http-equiv="Cache-Control" content="no-siteapp" />
@@ -15,16 +15,16 @@
   
     <meta name="keywords" content="" />
   
-  <meta name="description" content="说些废话这个文章 是 我在看 知识追踪 的 paperwithcode 时候 偶然 发现一篇文章  前言论文名：Visual Knowledge Tracing 链接：  论文链接 https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;2207.10157 代码链接 https:&#x2F;&#x2F;github.com&#x2F;nkondapa&#x2F;visualknowledgetracing 文章介绍链接：（知乎）https:&#x2F;&#x2F;p">
+  <meta name="description" content="说些废话看到题目  目的解决我的两个疑问  什么是一直表示空间 简单有效  前言论文名：CORE: Simple and Effective Session-based Recommendationwithin Consistent Representation Space 链接：  论文链接 https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;2204.11067 代码链接 https:&#x2F;&#x2F;github">
 <meta property="og:type" content="article">
-<meta property="og:title" content="VKT 视觉知识追踪">
-<meta property="og:url" content="http://example.com/2022/07/29/VKT-%E8%A7%86%E8%A7%89%E7%9F%A5%E8%AF%86%E8%BF%BD%E8%B8%AA/index.html">
+<meta property="og:title" content="core 在一致表示空间内基于会话的简单有效的推荐">
+<meta property="og:url" content="http://example.com/2022/08/02/core-%E5%9C%A8%E4%B8%80%E8%87%B4%E8%A1%A8%E7%A4%BA%E7%A9%BA%E9%97%B4%E5%86%85%E5%9F%BA%E4%BA%8E%E4%BC%9A%E8%AF%9D%E7%9A%84%E7%AE%80%E5%8D%95%E6%9C%89%E6%95%88%E7%9A%84%E6%8E%A8%E8%8D%90/index.html">
 <meta property="og:site_name" content="limhao博客">
-<meta property="og:description" content="说些废话这个文章 是 我在看 知识追踪 的 paperwithcode 时候 偶然 发现一篇文章  前言论文名：Visual Knowledge Tracing 链接：  论文链接 https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;2207.10157 代码链接 https:&#x2F;&#x2F;github.com&#x2F;nkondapa&#x2F;visualknowledgetracing 文章介绍链接：（知乎）https:&#x2F;&#x2F;p">
+<meta property="og:description" content="说些废话看到题目  目的解决我的两个疑问  什么是一直表示空间 简单有效  前言论文名：CORE: Simple and Effective Session-based Recommendationwithin Consistent Representation Space 链接：  论文链接 https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;2204.11067 代码链接 https:&#x2F;&#x2F;github">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/null">
-<meta property="article:published_time" content="2022-07-29T12:14:13.301Z">
-<meta property="article:modified_time" content="2022-07-31T08:44:10.847Z">
+<meta property="article:published_time" content="2022-08-02T03:11:21.347Z">
+<meta property="article:modified_time" content="2022-08-03T08:56:42.341Z">
 <meta property="article:author" content="limhao">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/null">
@@ -152,17 +152,17 @@
     <div class="kratos-hentry kratos-post-inner clearfix">
         <header class="kratos-entry-header">
             
-                <h1 class="kratos-entry-title text-center">VKT 视觉知识追踪</h1>
+                <h1 class="kratos-entry-title text-center">core 在一致表示空间内基于会话的简单有效的推荐</h1>
             
             
             <ul class="kratos-post-meta text-center">
-                <li><i class="fa fa-calendar"></i> 2022-07-29</li>
+                <li><i class="fa fa-calendar"></i> 2022-08-02</li>
                 <li><i class="fa fa-user"></i> 作者 limhao</li>
                 <li>
                     <i class="fa fa-edit"></i> 
                     
                     
-                        ~2.76K
+                        ~1.92K
                     
                     字
                 </li>
@@ -172,82 +172,93 @@
         <div class="kratos-post-content">
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>本文最后编辑于 <time datetime="1659257050847"></time> 前，其中的内容可能需要更新。</p></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1659517002341"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
             <hr />
-            <h2 id="说些废话"><a href="#说些废话" class="headerlink" title="说些废话"></a>说些废话</h2><p>这个文章 是 我在看 知识追踪 的 paperwithcode 时候 偶然 发现一篇文章</p>
-<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/vFbd7d"><img src="https://s1.ax1x.com/2022/07/31/vFbd7d.md.jpg"></a></p>
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>论文名：Visual Knowledge Tracing</p>
+            <h2 id="说些废话"><a href="#说些废话" class="headerlink" title="说些废话"></a>说些废话</h2><p>看到题目 </p>
+<p>目的解决我的两个疑问</p>
+<ol>
+<li>什么是一直表示空间</li>
+<li>简单有效</li>
+</ol>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>论文名：CORE: Simple and Effective Session-based Recommendation<br>within Consistent Representation Space</p>
 <p>链接：</p>
 <ol>
-<li>论文链接 <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2207.10157">https://arxiv.org/abs/2207.10157</a></li>
-<li>代码链接 <a target="_blank" rel="noopener" href="https://github.com/nkondapa/visualknowledgetracing">https://github.com/nkondapa/visualknowledgetracing</a></li>
-<li>文章介绍链接：（知乎）<a target="_blank" rel="noopener" href="https://paperswithcode.com/dataset/visual-knowledge-tracing">https://paperswithcode.com/dataset/visual-knowledge-tracing</a></li>
-<li>数据集下载：<a target="_blank" rel="noopener" href="https://data.caltech.edu/records/20234">https://data.caltech.edu/records/20234</a></li>
+<li>论文链接 <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2204.11067">https://arxiv.org/abs/2204.11067</a></li>
+<li>代码链接 <a target="_blank" rel="noopener" href="https://github.com/RUCAIBox/CORE">https://github.com/RUCAIBox/CORE</a></li>
+<li>文章介绍链接：（知乎）无</li>
 </ol>
 <p>相关知识：</p>
 <ol>
-<li>视觉分类</li>
-<li>人类类别表示 </li>
-<li>度量学习</li>
-<li>联合估计</li>
+<li>会话推荐</li>
+<li>推荐系统</li>
 </ol>
-<h2 id="1-相关背景"><a href="#1-相关背景" class="headerlink" title="1. 相关背景"></a>1. 相关背景</h2><p>​     人类学习者成功的关键是我们能够从我们周围的世界中提取信息丰富和可概括的表示，以及我们在相对稀疏的反馈下更新这些表示的能力。</p>
-<p>​    其目的是解决三个疑问。</p>
-<p>​    （i）使人类学习的表征如此有效的属性是什么，</p>
-<p>​    （ii）这些表征是如何学习的</p>
-<p>​    （iii）我们可以预测人类在学习过程中的分类行为吗？</p>
-<p>​    最终的目的是了解人类为什么学习如此有效</p>
-<p>**我们的目标是估计人类学习者使用的图像分类函数，该函数已提供一系列图像和相应的地面真值类标签作为训练数据 **</p>
-<h3 id="1-1-相关工作"><a href="#1-1-相关工作" class="headerlink" title="1.1 相关工作"></a>1.1 相关工作</h3><ol>
-<li>度量学习：  该工作试图从稀疏的人类注释中学习人类对齐的视觉表示 </li>
-<li>提出了 更具挑战性的视觉知识跟踪设置，其中假设学习者在学习过程中是非平稳的，即他们用于执行手头的分类任务的视觉特征可能会随着时间而变化<br><a target="_blank" rel="noopener" href="https://imgtu.com/i/vF8M3d"><img src="https://s1.ax1x.com/2022/07/31/vF8M3d.png"></a></li>
-<li>提出了一种基于递归神经网络的视觉知识跟踪方法。经过训练后，我们的模型能够预测训练期间未观察到的人类学习者的分类行为。所提出的模型利用以前学习者反应的历史、图像和基本真理类标签来预测他们未来的反应。</li>
+<h2 id="1-相关背景"><a href="#1-相关背景" class="headerlink" title="1. 相关背景"></a>1. 相关背景</h2><p>非线性编码器学习的会话嵌入通常与项目嵌入不在同一表示空间中，这导致在推荐项目时出现不一致的预测问题 </p>
+<h3 id="1-1-核心思想"><a href="#1-1-核心思想" class="headerlink" title="1.1 核心思想"></a>1.1 核心思想</h3><p>设计了一种表示一致性编码器，将输入项嵌入的线性组合作为会话嵌入，保证会话和项位于相同的表示空间 </p>
+<p>使用了一个稳健的距离测量 来使 相近的在一块 其他的偏离</p>
+<h3 id="1-2-挑战"><a href="#1-2-挑战" class="headerlink" title="1.2 挑战"></a>1.2 挑战</h3><ol>
+<li>考虑到会话和项目嵌入共享一致的表示空间，如何设计更合适的编码器，以便我们能够利用深度非线性神经网络的巨大能力 </li>
+<li>一旦表示空间统一，项目嵌入直接涉及分数计算和模型优化，如何测量嵌入之间的距离以避免项目嵌入的过度拟合</li>
 </ol>
-<h4 id="度量学习"><a href="#度量学习" class="headerlink" title="度量学习"></a>度量学习</h4><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/xiaopihaierletian/article/details/53463253">https://blog.csdn.net/xiaopihaierletian/article/details/53463253</a></p>
-<p> 我们可以在特定的任务通过选择合适的特征并手动构建距离函数。然而这种方法会需要很大的人工投入，也可能对数据的改变非常不鲁棒。度量学习作为一个理想的替代，可以根据不同的任务来自主学习出针对某个特定任务的度量距离函数。 </p>
-<p> 如果注释者正在学习感兴趣的视觉概念，则违反了这一假设。在这项工作中，我们解决了这种非平稳设置，并表明通过这样做，我们可以更准确地预测真实人类学习者的视觉分类行为。 </p>
-<h4 id="人类类别表征"><a href="#人类类别表征" class="headerlink" title="人类类别表征"></a>人类类别表征</h4><p>人类会根据任务的不同 使用多种不同的类别学习系统</p>
-<p>目前的共识是，根据手头任务的具体性质，人类可能会使用多种不同的类别学习系统[5,3]。例如，在基于规则的任务中，最优策略可能很容易表达，因此可以通过一组规则进行有效编码。然而，在实践中，感知任务（如细粒度视觉分类）可能更难用这种方式表示[8]。 </p>
-<p> 在更具挑战性的环境中，在学习分类任务的过程中，我们的学习者不是静态的。</p>
-<h4 id="知识追踪"><a href="#知识追踪" class="headerlink" title="知识追踪"></a>知识追踪</h4><p>洒洒水</p>
-<h4 id="机器教学"><a href="#机器教学" class="headerlink" title="机器教学"></a>机器教学</h4><p>机器教育人类（机器飞升）</p>
-<p>机器教学算法通过生成向新手学习者展示的教学示例序列来解决教学问题，以提高他们完成给定任务的能力。 </p>
-<h3 id="1-2-核心思想"><a href="#1-2-核心思想" class="headerlink" title="1.2 核心思想"></a>1.2 核心思想</h3><h3 id="1-3-贡献"><a href="#1-3-贡献" class="headerlink" title="1.3 贡献"></a>1.3 贡献</h3><p>（i）一个新的视觉知识跟踪模型，该模型联合估计了非平稳人类学习者使用的视觉特征和每时间步分类函数。<br>（ii）从参与学习具有挑战性的视觉分类任务的人那里收集的三个基准评估数据集的一组新注释。<br>（iii）详细比较了这些数据集上的几种视觉知识跟踪方法。 </p>
-<h2 id="2-实证分析"><a href="#2-实证分析" class="headerlink" title="2. 实证分析"></a>2. 实证分析</h2><p>没有 </p>
-<h2 id="3-问题描述"><a href="#3-问题描述" class="headerlink" title="3. 问题描述"></a>3. 问题描述</h2><p>具体来说，在每个训练时间步，向学习者k呈现图像x，他们提供其响应r，并以正确的类标签y的形式给出反馈。</p>
-<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/vF8QgA"><img src="https://s1.ax1x.com/2022/07/31/vF8QgA.png"></a></p>
-<p>相反，为了克服这种有限的信息设置，我们跨多个学习者训练模型φ，允许该模型发现所有学习者共享的知识状态和学习规则。 </p>
-<h2 id="4-方法（基本为论文方法部分）"><a href="#4-方法（基本为论文方法部分）" class="headerlink" title="4. 方法（基本为论文方法部分）"></a>4. 方法（基本为论文方法部分）</h2><p>跟踪模型φ</p>
+<h2 id="2-实证分析"><a href="#2-实证分析" class="headerlink" title="2. 实证分析"></a>2. 实证分析</h2><p><a target="_blank" rel="noopener" href="https://imgtu.com/i/vZMphF"><img src="https://s1.ax1x.com/2022/08/03/vZMphF.png"></a></p>
+<p>看 实证分析的右侧</p>
+<p>匿名用户 点击a 最后 甚至会跑到item b 那里去（离大谱）</p>
+<p>事实证明 一致空间 从某种程度来说 也增加了可解释性</p>
+<h2 id="3-问题描述"><a href="#3-问题描述" class="headerlink" title="3. 问题描述"></a>3. 问题描述</h2><p>会话推荐</p>
+<h2 id="4-方法（基本为论文方法部分）"><a href="#4-方法（基本为论文方法部分）" class="headerlink" title="4. 方法（基本为论文方法部分）"></a>4. 方法（基本为论文方法部分）</h2><p><a target="_blank" rel="noopener" href="https://imgtu.com/i/vZMStU"><img src="https://s1.ax1x.com/2022/08/03/vZMStU.png"></a></p>
+<p>输入 有三</p>
 <ol>
-<li>特征提取 f CNN</li>
-<li>分类函数ψ</li>
-<li>softmax<br> 特点</li>
-<li>特征提取器在实验的时间间隔内保持不变<strong>（针对所有学习者使用相同的底层提取器，且随时间间隔内保持不变）</strong> 并且他们只是在对不同视觉特征的相对重要性上有所不同 </li>
-<li>但是 学习者使用的分类函数 不保持静态</li>
+<li><p>会话</p>
+</li>
+<li><p>下一个item</p>
+</li>
+<li><p>其他的item</p>
+</li>
 </ol>
-<h3 id="分类器"><a href="#分类器" class="headerlink" title="分类器"></a>分类器</h3><ul>
-<li><p>简单静态分类器</p>
-<img src="https://s1.ax1x.com/2022/07/31/vF8n4e.png" style="zoom:67%;" /></li>
+<p>通过session对话 计算出 每一个session的权重 然后 加和</p>
+<p>其训练过程 就是 让 我们 训练出来的一致表示下的item 与 next item 靠经</p>
+<p>与 其他地 other item 拉远（这个好好看一下）我看过一篇类似的文章</p>
+<h3 id="4-1-DNN"><a href="#4-1-DNN" class="headerlink" title="4.1 DNN"></a>4.1 DNN</h3><ul>
+<li>mean pooling<br>平均池化</li>
+<li>transformer<br>通过transformer 来 进行权重的捕获<br><a target="_blank" rel="noopener" href="https://imgtu.com/i/vZKzkT"><img src="https://s1.ax1x.com/2022/08/03/vZKzkT.png"></a><br><a target="_blank" rel="noopener" href="https://imgtu.com/i/vZKv7V"><img src="https://s1.ax1x.com/2022/08/03/vZKv7V.png"></a><h3 id="4-2-用于解码的鲁棒距离测量"><a href="#4-2-用于解码的鲁棒距离测量" class="headerlink" title="4.2 用于解码的鲁棒距离测量"></a>4.2 用于解码的鲁棒距离测量</h3></li>
 </ul>
-<p>我们探索的第一个模型是最简单的。在这里，我们假设所有学习者使用相同的分类器，该分类器不会随时间变化。在此设置中，ψ是一个多类线性分类器，具有权重矩阵w和每类偏差b<br>该模型类似于传统的度量学习方法，它不试图捕捉与个体偏差或时间变化相关的任何注释者特定差异。在训练时，我们只需为所有学习者估计一组参数。该模型不考虑响应历史 </p>
+<p>由于会话被编码为项目嵌入的线性组合，并通过测量嵌入空间中到项目的距离来解码，因此项目嵌入直接涉及嵌入之间的距离计算，导致过度拟合的高风险。因此，我们寻求一种稳健的方法来测量统一表示空间中的距离，以防止过度拟合。 </p>
+<p>说实话 有点看不太懂证明</p>
+<p>论文名字：Improved Deep Metric Learning with Multi-class N-pair Loss Objective</p>
+<p>看论文 貌似是一个优化方法</p>
+<p>本文使用了三种方法来 避免过拟合</p>
+<ol>
+<li><p>使用了一个可控的超参数 来替换 固定裕度2</p>
+</li>
+<li><p>dropout 很平常</p>
+</li>
+<li><p>受对比学习启发 使用了 cos 计算测量距离 24</p>
+</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/vZKj00"><img src="https://s1.ax1x.com/2022/08/03/vZKj00.png" alt="vZKj00.png"></a></p>
+<p>   where h′ denotes the item embeddings with dropout.</p>
+<h2 id="5-实验"><a href="#5-实验" class="headerlink" title="5. 实验"></a>5. 实验</h2><p>作者做了两个消融实验来证明自己的效果好</p>
 <ul>
-<li>时间敏感追踪模型<img src="https://s1.ax1x.com/2022/07/31/vF8mND.png" style="zoom: 67%;" />
-静态跟踪模型的一个明显局限性是，它没有考虑到学习者可能会随着时间的推移而变化的事实，即他们可能在早期的新分类任务中表现得更差，但随着时间的流逝，随着示例图像序列及其相关的基本真理类标签的显示，他们可能会有所改善。一种更先进的模型捕捉到了这种时间演变，即每个时间步长都有不同的分类器，
-在每一个时间步，使用不同的偏差和权重 w b  i.e. wt 不等于 wt−1.
-### 跟踪模型</li>
+<li><p>将REC编码器（Representation-Consistent Encoding）替换为sasrec编码器</p>
+</li>
+<li><p>将RDM（Robust Distance Measuring for Decoding）替换成 传统点积</p>
+</li>
+<li><p>又做了一个添加模块的实验 真不错啊</p>
+<p><img src="https://s1.ax1x.com/2022/08/03/vZMP1J.png">](<a target="_blank" rel="noopener" href="https://imgtu.com/i/vZMP1J">https://imgtu.com/i/vZMP1J</a>)</p>
+</li>
 </ul>
-<h4 id="以前的问题"><a href="#以前的问题" class="headerlink" title="以前的问题"></a>以前的问题</h4><p>即单个学习者可能从不同的能力水平开始，并根据他们所获得的信息以不同的方式更新其内部知识状态。[34]表明，递归网络可用于跟踪参与学习数学测验问题的人类学习者的技能习得。 </p>
-<p>作者使用了 DKT 作为基础 设计了一个新的基于视觉的DKT模型</p>
-<h4 id="直接响应模型"><a href="#直接响应模型" class="headerlink" title="直接响应模型"></a>直接响应模型</h4><p>特征提取 CNN</p>
-<p>分类函数 lstm<br><a target="_blank" rel="noopener" href="https://imgtu.com/i/vF8eAO"><img src="https://s1.ax1x.com/2022/07/31/vF8eAO.png"></a><br>该模型假设学习者在时间t的知识状态由他们之前看到的图像和他们过去的分类响应定义。递归模型可以通过调节学习者的隐藏状态为其生成独特的转换。在这种情况下，在共享特征提取器将图像转换为特征向量后，模型根据学习者的隐藏状态通过一系列非线性变换修改特征向量。最后一个线性层将特征向量转换为预测响应。注意，该模型还以当前查询图像z&#x3D;f（x）和相应的真值类标签y为条件 </p>
-<h4 id="分类器预测模型"><a href="#分类器预测模型" class="headerlink" title="分类器预测模型"></a>分类器预测模型</h4><p><a target="_blank" rel="noopener" href="https://imgtu.com/i/vF8K9H"><img src="https://s1.ax1x.com/2022/07/31/vF8K9H.png"></a><br>与之前的直接预测递归模型不同，我们现在明确表示单个学习者使用的独立的分类函数。</p>
-<h2 id="5-总结"><a href="#5-总结" class="headerlink" title="5. 总结"></a>5. 总结</h2><p>在这项工作中，我们探索了视觉知识跟踪的问题，即预测人类学习者使用的内部、可能随时间变化的图像分类功能的任务。为此，我们提出了一系列复杂度从基本静态线性分类器到递归模型的模型，这些模型在预测学习者未来行为时考虑了学习者先前的反应历史。我们从参与视觉学习任务的人那里收集了三个具有挑战性的视觉分类任务的新注释，以便对这些不同模型的性能进行基准测试。 </p>
-<h2 id="6-自己的想法"><a href="#6-自己的想法" class="headerlink" title="6. 自己的想法"></a>6. 自己的想法</h2><ol>
-<li>找出开放性问题 </li>
-<li>知识追踪来说 有个学习的权重分配。相近的权重相对较高，离的较远的权重分配的较低</li>
-<li>这个是一个特别新的工作 论文出来估计才两个星期 需要好好阅读</li>
+<p>作者 用图来表示空间一致性<br><a target="_blank" rel="noopener" href="https://imgtu.com/i/vZMCp4"><img src="https://s1.ax1x.com/2022/08/03/vZMCp4.png"></a></p>
+<p>超参数设计<br><a target="_blank" rel="noopener" href="https://imgtu.com/i/vZMic9"><img src="https://s1.ax1x.com/2022/08/03/vZMic9.png"></a></p>
+<h2 id="6-总结"><a href="#6-总结" class="headerlink" title="6. 总结"></a>6. 总结</h2><p>在本文中，我们提出了一种简单有效的一致表示空间中基于会话的推荐框架CORE，该框架在整个编码和解码过程中统一了表示空间，以克服不一致预测问题。与在项目嵌入上堆叠多个非线性层不同，我们建议只对项目嵌入应用加权和，将一致表示空间中的会话编码为项目。此外，我们从多个方面提出了稳健的距离测量技术，以防止所提出框架中项目嵌入的过度拟合。在五个公共数据集上的大量实验表明了所提出方法的有效性和效率，以及所提出的技术如何帮助现有方法。在未来的工作中，我们将考虑从理论和经验两方面研究所提出的表示一致性编码器的表达能力。此外，我们将探讨如何在拟议的框架中引入边特征和有用的归纳偏差 </p>
+<h2 id="7-自己的想法"><a href="#7-自己的想法" class="headerlink" title="7. 自己的想法"></a>7. 自己的想法</h2><p>本文的方法简单且有效 </p>
+<p>对其十分感兴趣的是 一个先有鸡还是先有蛋的问题</p>
+<p>即 先想到这个方法 然后跑个实验 给他取了一个漂亮的名字 然后讲了个故事。 </p>
+<p>还是说 一开始就想到了表示空间一致这个问题 然后 去跑了这个实验 发现有效。</p>
+<p>这个真的是个问题。</p>
+<ol>
+<li>sine 中 提取 拉取相近兴趣 拉远 不相关 兴趣 是不是可以思考一下</li>
+<li>我之前 看到过一篇序列推荐 是 把序列不重要的item替换 然后 做对比学习(其中拉近拉远的操作)就跟这个差不多 我等会去看看</li>
 </ol>
 
         </div>
@@ -302,7 +313,7 @@
     <script type="text/javascript">
         $(()=>{
             new QRCode("wechat-qr", {
-                text: "http://example.com/2022/07/29/VKT-%E8%A7%86%E8%A7%89%E7%9F%A5%E8%AF%86%E8%BF%BD%E8%B8%AA/",
+                text: "http://example.com/2022/08/02/core-%E5%9C%A8%E4%B8%80%E8%87%B4%E8%A1%A8%E7%A4%BA%E7%A9%BA%E9%97%B4%E5%86%85%E5%9F%BA%E4%BA%8E%E4%BC%9A%E8%AF%9D%E7%9A%84%E7%AE%80%E5%8D%95%E6%9C%89%E6%95%88%E7%9A%84%E6%8E%A8%E8%8D%90/",
                 width: 150,
                 height: 150,
                 correctLevel : QRCode.CorrectLevel.H
@@ -314,14 +325,15 @@
             const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
             const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
             const twitterBase   = "https://twitter.com/intent/tweet?";
-            const hostUrl       = "http://example.com/2022/07/29/VKT-%E8%A7%86%E8%A7%89%E7%9F%A5%E8%AF%86%E8%BF%BD%E8%B8%AA/";
-            const title         = "「VKT 视觉知识追踪」";
-            const excerpt       = `说些废话这个文章 是 我在看 知识追踪 的 paperwithcode 时候 偶然 发现一篇文章
+            const hostUrl       = "http://example.com/2022/08/02/core-%E5%9C%A8%E4%B8%80%E8%87%B4%E8%A1%A8%E7%A4%BA%E7%A9%BA%E9%97%B4%E5%86%85%E5%9F%BA%E4%BA%8E%E4%BC%9A%E8%AF%9D%E7%9A%84%E7%AE%80%E5%8D%95%E6%9C%89%E6%95%88%E7%9A%84%E6%8E%A8%E8%8D%90/";
+            const title         = "「core 在一致表示空间内基于会话的简单有效的推荐」";
+            const excerpt       = `说些废话看到题目 
+目的解决我的两个疑问
 
-前言论文名：Visual Knowledge Tracing
-链接：
+什么是一直表示空间
+简单有效
 
-论文链接 https://arxiv.org/abs/2207...`;
+前言论文名：CORE: Simple and Effective Session-based Recommendationwithin Consistent ...`;
             let _URL;
             switch (dest) {
                 case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
@@ -343,7 +355,7 @@
                     
                 </div>
                 <div class="pull-date">
-                <span>最后编辑：2022-07-31</span>
+                <span>最后编辑：2022-08-03</span>
                 </div>
             </div>
         </footer>
@@ -352,13 +364,9 @@
         <nav class="navigation post-navigation clearfix" role="navigation">
             
             <div class="nav-previous clearfix">
-                <a title=" 论文分析的板子" href="/2022/07/29/论文分析的板子/">&lt; 上一篇</a>
+                <a title=" 图推荐系统综述" href="/2022/08/01/图推荐系统综述/">&lt; 上一篇</a>
             </div>
             
-            
-            <div class="nav-next clearfix">
-                <a title=" saint+ saint的时间正确使用版本" href="/2022/08/01/saint+-saint的时间正确使用版本/">下一篇 &gt;</a>
-            </div>
             
         </nav>
     
