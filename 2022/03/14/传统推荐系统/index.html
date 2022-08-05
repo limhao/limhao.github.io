@@ -15,16 +15,16 @@
   
     <meta name="keywords" content="" />
   
-  <meta name="description" content="1. 推荐系统技术架构数据+模型 1.1 数据部分通过特征工程，将客户端或服务端采集到的数据进行特征处理 1.2 模型部分主题 一般由召回层，排序层，补充数据与算法层组成 2. 传统推荐模型（粗略整理）2.1 协同过滤分为 用户过滤和物品过滤 2.1.1 用户过滤（没人用）公式一 余弦相似度  公式二 皮尔逊相关系数（减少了用户评分的影响） 2.1.2 物品过滤 基于历史数据，构建用户-物品共现矩">
+  <meta name="description" content="0. 说一些废话这个文章 是大概阅读了 深度推荐系统 写出来的文章  很单纯 那时候 的文章  和热门印象很深的是 FM 和 MF 弄混了 1. 推荐系统技术架构数据+模型 1.1 数据部分通过特征工程，将客户端或服务端采集到的数据进行特征处理 1.2 模型部分主题 一般由召回层，排序层，补充数据与算法层组成 2. 传统推荐模型（粗略整理）2.1 协同过滤分为 用户过滤和物品过滤 2.1.1 用户">
 <meta property="og:type" content="article">
 <meta property="og:title" content="传统推荐系统">
 <meta property="og:url" content="http://example.com/2022/03/14/%E4%BC%A0%E7%BB%9F%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/index.html">
 <meta property="og:site_name" content="limhao博客">
-<meta property="og:description" content="1. 推荐系统技术架构数据+模型 1.1 数据部分通过特征工程，将客户端或服务端采集到的数据进行特征处理 1.2 模型部分主题 一般由召回层，排序层，补充数据与算法层组成 2. 传统推荐模型（粗略整理）2.1 协同过滤分为 用户过滤和物品过滤 2.1.1 用户过滤（没人用）公式一 余弦相似度  公式二 皮尔逊相关系数（减少了用户评分的影响） 2.1.2 物品过滤 基于历史数据，构建用户-物品共现矩">
+<meta property="og:description" content="0. 说一些废话这个文章 是大概阅读了 深度推荐系统 写出来的文章  很单纯 那时候 的文章  和热门印象很深的是 FM 和 MF 弄混了 1. 推荐系统技术架构数据+模型 1.1 数据部分通过特征工程，将客户端或服务端采集到的数据进行特征处理 1.2 模型部分主题 一般由召回层，排序层，补充数据与算法层组成 2. 传统推荐模型（粗略整理）2.1 协同过滤分为 用户过滤和物品过滤 2.1.1 用户">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/null">
 <meta property="article:published_time" content="2022-03-14T13:48:48.181Z">
-<meta property="article:modified_time" content="2022-04-14T07:28:40.430Z">
+<meta property="article:modified_time" content="2022-08-05T02:37:48.730Z">
 <meta property="article:author" content="limhao">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/null">
@@ -162,7 +162,7 @@
                     <i class="fa fa-edit"></i> 
                     
                     
-                        ~1.97K
+                        ~2.04K
                     
                     字
                 </li>
@@ -172,11 +172,14 @@
         <div class="kratos-post-content">
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>本文最后编辑于 <time datetime="1649921320430"></time> 前，其中的内容可能需要更新。</p></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1659667068730"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
             <hr />
-            <h1 id="1-推荐系统技术架构"><a href="#1-推荐系统技术架构" class="headerlink" title="1. 推荐系统技术架构"></a>1. 推荐系统技术架构</h1><p>数据+模型</p>
+            <h1 id="0-说一些废话"><a href="#0-说一些废话" class="headerlink" title="0. 说一些废话"></a>0. 说一些废话</h1><p>这个文章 是大概阅读了 深度推荐系统 写出来的文章 </p>
+<p>很单纯 那时候 的文章 </p>
+<p>和热门印象很深的是 FM 和 MF 弄混了</p>
+<h1 id="1-推荐系统技术架构"><a href="#1-推荐系统技术架构" class="headerlink" title="1. 推荐系统技术架构"></a>1. 推荐系统技术架构</h1><p>数据+模型</p>
 <h2 id="1-1-数据部分"><a href="#1-1-数据部分" class="headerlink" title="1.1 数据部分"></a>1.1 数据部分</h2><p>通过特征工程，将客户端或服务端采集到的数据进行特征处理</p>
 <h2 id="1-2-模型部分"><a href="#1-2-模型部分" class="headerlink" title="1.2 模型部分"></a>1.2 模型部分</h2><p>主题 一般由召回层，排序层，补充数据与算法层组成</p>
 <h1 id="2-传统推荐模型（粗略整理）"><a href="#2-传统推荐模型（粗略整理）" class="headerlink" title="2. 传统推荐模型（粗略整理）"></a>2. 传统推荐模型（粗略整理）</h1><h2 id="2-1-协同过滤"><a href="#2-1-协同过滤" class="headerlink" title="2.1 协同过滤"></a>2.1 协同过滤</h2><p>分为 用户过滤和物品过滤</p>
@@ -196,39 +199,39 @@
 </ol>
 <h2 id="2-2-矩阵分解算法–狗都不用"><a href="#2-2-矩阵分解算法–狗都不用" class="headerlink" title="2.2 矩阵分解算法–狗都不用"></a>2.2 矩阵分解算法–狗都不用</h2><p>通过分解协同过滤生成的共现矩阵 得到用户和物品的隐向量</p>
 <h3 id="2-2-1-矩阵分解的求解方法"><a href="#2-2-1-矩阵分解的求解方法" class="headerlink" title="2.2.1 矩阵分解的求解方法"></a>2.2.1 矩阵分解的求解方法</h3><p>梯度下降 目标函数</p>
-<p>  <img src="https://img-blog.csdnimg.cn/20201106135820874.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM4NDE1NzU4,size_16,color_FFFFFF,t_70#pic_center" alt="img"> </p>
+<p>  <img src="https://img-blog.csdnimg.cn/20201106135820874.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM4NDE1NzU4,size_16,color_FFFFFF,t_70#pic_center"> </p>
 <h2 id="2-3-特征交叉"><a href="#2-3-特征交叉" class="headerlink" title="2.3 特征交叉"></a>2.3 特征交叉</h2><p>单一特征的表达性 没有特征组合起来的表达性好 且 单一特征会损失一定量的信息</p>
 <h3 id="2-3-1-POLY2模型"><a href="#2-3-1-POLY2模型" class="headerlink" title="2.3.1 POLY2模型"></a>2.3.1 POLY2模型</h3><p>暴力将特征n个 变成了$ n^2 $  会将数据更加稀疏 增加训练复杂度</p>
 <h3 id="2-3-2-FM模型-隐向量特征交叉（嗯嗯嗯！）"><a href="#2-3-2-FM模型-隐向量特征交叉（嗯嗯嗯！）" class="headerlink" title="2.3.2 FM模型-隐向量特征交叉（嗯嗯嗯！）"></a>2.3.2 FM模型-隐向量特征交叉（嗯嗯嗯！）</h3><p>感谢：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/109402085">https://zhuanlan.zhihu.com/p/109402085</a></p>
 <h4 id="个人的愚蠢回忆"><a href="#个人的愚蠢回忆" class="headerlink" title="个人的愚蠢回忆"></a>个人的愚蠢回忆</h4><p>说实话 有些东西一定要好好折磨一下 才能有新的收获 ！ 比如这个</p>
-<p> <img src="https://www.zhihu.com/equation?tex=Y_%7Bfm%7D+=+w_%7B0%7D++++%5Csum_%7Bi%7D%5E%7Bn%7D%7Bw_%7Bi%7D*x_%7Bi%7D%7D+++%5Csum_%7Bi%7D%5E%7Bn-1%7D%5Csum_%7Bj=i+1%7D%5E%7Bn%7D%7Bw_%7Bij%7Dx_%7Bi%7Dx_%7Bj%7D%7D" alt="img">  </p>
+<p> <img src="https://www.zhihu.com/equation?tex=Y_%7Bfm%7D+=+w_%7B0%7D++++%5Csum_%7Bi%7D%5E%7Bn%7D%7Bw_%7Bi%7D*x_%7Bi%7D%7D+++%5Csum_%7Bi%7D%5E%7Bn-1%7D%5Csum_%7Bj=i+1%7D%5E%7Bn%7D%7Bw_%7Bij%7Dx_%7Bi%7Dx_%7Bj%7D%7D">  </p>
 <p>本人大白话讲一遍，啊啊啊 上面的式子太暴力，脑子思考一下就发现权重项太多，我在上面的这篇文献中发现这么一句：**对于任何正定实矩阵 <img src="https://www.zhihu.com/equation?tex=W_%7Bn*n%7D" alt="[公式]"> 只要k足够大，都存在k维向量组成的矩阵 <img src="https://www.zhihu.com/equation?tex=V_%7Bn*k%7D" alt="[公式]"> 使得 <img src="https://www.zhihu.com/equation?tex=VV%5E%7BT%7D=W" alt="[公式]"> ** </p>
 <p>在这个公式下 这个V啊 就是辅助向量。</p>
-<p> <img src="https://pic2.zhimg.com/80/v2-385de3b62d1aedccef72b5df8edea1f5_1440w.jpg" alt="img"> </p>
+<p> <img src="https://pic2.zhimg.com/80/v2-385de3b62d1aedccef72b5df8edea1f5_1440w.jpg"> </p>
 <p>这个可爱的V呢 满足 （我想到了2077）</p>
-<p> <img src="https://pic4.zhimg.com/80/v2-354d09c9fb1318f63a6fec84414f3753_1440w.jpg" alt="img"> </p>
+<p> <img src="https://pic4.zhimg.com/80/v2-354d09c9fb1318f63a6fec84414f3753_1440w.jpg"> </p>
 <p>隐向量 就是为每个特征 学习一个隐权重向量（latent vector）</p>
 <p>交互使用两个向量取内积就好 </p>
 <p>优势 1. 权重参数减少到nk</p>
 <p>​         2. 训练复杂度降低到nk级别 </p>
-<p> <img src="https://img-blog.csdnimg.cn/20201014121556609.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI3NzgyNTAz,size_16,color_FFFFFF,t_70#pic_center" alt="img"> </p>
+<p> <img src="https://img-blog.csdnimg.cn/20201014121556609.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI3NzgyNTAz,size_16,color_FFFFFF,t_70#pic_center"> </p>
 <h3 id="2-3-3-FFM模型-特征域感知概念（可笑-咱把东西想简单了）"><a href="#2-3-3-FFM模型-特征域感知概念（可笑-咱把东西想简单了）" class="headerlink" title="2.3.3 FFM模型 特征域感知概念（可笑 咱把东西想简单了）"></a>2.3.3 FFM模型 特征域感知概念（可笑 咱把东西想简单了）</h3><p>数据还是上一次的数据</p>
 <p>FFM模型中引入了类别的概念，即field </p>
 <p>在上面的广告点击案例中，“Day&#x3D;26&#x2F;11&#x2F;15”、“Day&#x3D;1&#x2F;7&#x2F;14”、“Day&#x3D;19&#x2F;2&#x2F;15”这三个特征都是代表日期的，可以放到同一个field中。同理，Country也可以放到一个field中。简单来说，同一个categorical特征经过One-Hot编码生成的数值特征都可以放到同一个field，包括用户国籍，广告类型，日期等等</p>
-<p><img src="https://s1.ax1x.com/2022/04/13/LQSy5T.png" alt="LQSy5T.png"></p>
+<p><img src="https://s1.ax1x.com/2022/04/13/LQSy5T.png"></p>
 <p>在FFM中，每一维特征 xi，针对<strong>其它特征</strong>的每一种field fj，都会学习一个隐向量 v_i,fj。因此，隐向量不仅与特征相关，也与field相关。也就是说，“Day&#x3D;26&#x2F;11&#x2F;15”这个特征与“Country”特征和“Ad_type”特征进行关联的时候使用不同的隐向量，这与“Country”和“Ad_type”的内在差异相符，也是FFM中“field-aware”的由来</p>
 <p>训练过程中，需要学习n个特征在f个域上的k维隐向量，参数 n * k * f 复杂度为 k$ n^2 $  远多于FM模型的 nk个。此外，由于隐向量与field相关，FFM二次项并不能够化简，其预测复杂度是 O(kn^2)。 </p>
-<p> <img src="https://private.codecogs.com/gif.latex?y(X)=w_%7B0%7D+%5Csum_%7Bi=1%7D%5E%7Bn%7Dw_%7B_i%7Dx_%7B_i%7D+%5Csum_%7Bi=1%7D%5E%7Bn-1%7D%5Csum_%7Bj=i+1%7D%5E%7Bn%7D%5Cleft%20%5Clangle%20V_%7Bi,fj%7D,V_%7Bj,fi%7D%20%5Cright%20%5Crangle%20x_%7Bi%7Dx_%7Bj%7D" alt="img"> </p>
+<p> <img src="https://private.codecogs.com/gif.latex?y(X)=w_%7B0%7D+%5Csum_%7Bi=1%7D%5E%7Bn%7Dw_%7B_i%7Dx_%7B_i%7D+%5Csum_%7Bi=1%7D%5E%7Bn-1%7D%5Csum_%7Bj=i+1%7D%5E%7Bn%7D%5Cleft%20%5Clangle%20V_%7Bi,fj%7D,V_%7Bj,fi%7D%20%5Cright%20%5Crangle%20x_%7Bi%7Dx_%7Bj%7D"> </p>
 <h4 id="数据的处理"><a href="#数据的处理" class="headerlink" title="数据的处理"></a>数据的处理</h4><p>像Country，day 这样的categorical特征 可以通过 one-hot进行生成 如果是 像price这样的数值特征，则并不需要对其进行单独编码，但需要为其生成一个field。</p>
 <h4 id="个人的纯真理解（一眼顶真）-敲散说明白"><a href="#个人的纯真理解（一眼顶真）-敲散说明白" class="headerlink" title="个人的纯真理解（一眼顶真） 敲散说明白"></a>个人的纯真理解（一眼顶真） 敲散说明白</h4><p>假如说 我这里有4个field 一共有10个feature。</p>
 <p>动动小脑就晓得 假如说 field1 对应 feat1到feat4</p>
 <p>则对应 feat1到feat4 要生成对应的 field2到field4的权重（这个就是场感知啊！！！）</p>
 <p>脑瓜子随便一想 哇靠 真复杂</p>
-<h2 id="2-4-GBDT-LR-特征工程模型化"><a href="#2-4-GBDT-LR-特征工程模型化" class="headerlink" title="2.4 GBDT+LR 特征工程模型化"></a>2.4 GBDT+LR 特征工程模型化</h2><p> <a target="_blank" rel="noopener" href="https://imgtu.com/i/bzM4SA"><img src="https://s1.ax1x.com/2022/03/16/bzM4SA.png" alt="bzM4SA.png"></a> </p>
+<h2 id="2-4-GBDT-LR-特征工程模型化"><a href="#2-4-GBDT-LR-特征工程模型化" class="headerlink" title="2.4 GBDT+LR 特征工程模型化"></a>2.4 GBDT+LR 特征工程模型化</h2><p> <a target="_blank" rel="noopener" href="https://imgtu.com/i/bzM4SA"><img src="https://s1.ax1x.com/2022/03/16/bzM4SA.png"></a> </p>
 <p>原始特征向量x，通过树分裂 将转化的特征类似于one-hot的向量来表示原始的特征，特征组合能力特别强</p>
 <p>但是容易产生过拟合，以及这样的过程丢失了大量特征数值信息。</p>
-<h2 id="2-5-MLR-深度学习开始的曙光"><a href="#2-5-MLR-深度学习开始的曙光" class="headerlink" title="2.5 MLR 深度学习开始的曙光"></a>2.5 MLR 深度学习开始的曙光</h2><h3 id="2-5-1-MLR与LR的区别"><a href="#2-5-1-MLR与LR的区别" class="headerlink" title="2.5.1 MLR与LR的区别"></a>2.5.1 MLR与LR的区别</h3><p> 普通的LR模型 无法拟合我们所需的曲线  但是MLR模型正常拟合出来了<img src="https://pic2.zhimg.com/80/v2-6a2252e81dd47f6fd7a5d30faa87a8e5_720w.jpg" alt="img"> </p>
-<h3 id="2-5-2-目标公式"><a href="#2-5-2-目标公式" class="headerlink" title="2.5.2 目标公式"></a>2.5.2 目标公式</h3><p> <img src="https://www.zhihu.com/equation?tex=p(y=1+%7C+x)=%5Csum_%7Bi=1%7D%5E%7Bm%7D+%5Cfrac%7B%5Cexp+%5Cleft(u_%7Bi%7D%5E%7BT%7D+x%5Cright)%7D%7B%5Csum_%7Bj=1%7D%5E%7Bm%7D+%5Cexp+%5Cleft(u_%7Bj%7D%5E%7BT%7D+x%5Cright)%7D+%5Ccdot+%5Cfrac%7B1%7D%7B1+%5Cexp+%5Cleft(-w_%7Bi%7D%5E%7BT%7D+x%5Cright)%7D+%5C%5C" alt="img"> </p>
+<h2 id="2-5-MLR-深度学习开始的曙光"><a href="#2-5-MLR-深度学习开始的曙光" class="headerlink" title="2.5 MLR 深度学习开始的曙光"></a>2.5 MLR 深度学习开始的曙光</h2><h3 id="2-5-1-MLR与LR的区别"><a href="#2-5-1-MLR与LR的区别" class="headerlink" title="2.5.1 MLR与LR的区别"></a>2.5.1 MLR与LR的区别</h3><p> 普通的LR模型 无法拟合我们所需的曲线  但是MLR模型正常拟合出来了<img src="https://pic2.zhimg.com/80/v2-6a2252e81dd47f6fd7a5d30faa87a8e5_720w.jpg"> </p>
+<h3 id="2-5-2-目标公式"><a href="#2-5-2-目标公式" class="headerlink" title="2.5.2 目标公式"></a>2.5.2 目标公式</h3><p> <img src="https://www.zhihu.com/equation?tex=p(y=1+%7C+x)=%5Csum_%7Bi=1%7D%5E%7Bm%7D+%5Cfrac%7B%5Cexp+%5Cleft(u_%7Bi%7D%5E%7BT%7D+x%5Cright)%7D%7B%5Csum_%7Bj=1%7D%5E%7Bm%7D+%5Cexp+%5Cleft(u_%7Bj%7D%5E%7BT%7D+x%5Cright)%7D+%5Ccdot+%5Cfrac%7B1%7D%7B1+%5Cexp+%5Cleft(-w_%7Bi%7D%5E%7BT%7D+x%5Cright)%7D+%5C%5C"> </p>
 <p>如果m为1 则为普通的LR模型</p>
 <p>当m越大 模型的拟合能力越强 而同样 需要的训练样本也变得更大 （阿里巴巴 经验12）</p>
 <h3 id="2-5-3-优点"><a href="#2-5-3-优点" class="headerlink" title="2.5.3 优点"></a>2.5.3 优点</h3><ol>
@@ -302,10 +305,11 @@
             const twitterBase   = "https://twitter.com/intent/tweet?";
             const hostUrl       = "http://example.com/2022/03/14/%E4%BC%A0%E7%BB%9F%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/";
             const title         = "「传统推荐系统」";
-            const excerpt       = `1. 推荐系统技术架构数据+模型
-1.1 数据部分通过特征工程，将客户端或服务端采集到的数据进行特征处理
-1.2 模型部分主题 一般由召回层，排序层，补充数据与算法层组成
-2. 传统推荐模型（粗略整理）2.1 协同过滤分为 用户过滤和...`;
+            const excerpt       = `0. 说一些废话这个文章 是大概阅读了 深度推荐系统 写出来的文章 
+很单纯 那时候 的文章 
+和热门印象很深的是 FM 和 MF 弄混了
+1. 推荐系统技术架构数据+模型
+1.1 数据部分通过特征工程，将客户端或服务端采集到的数据进...`;
             let _URL;
             switch (dest) {
                 case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
@@ -327,7 +331,7 @@
                     
                 </div>
                 <div class="pull-date">
-                <span>最后编辑：2022-04-14</span>
+                <span>最后编辑：2022-08-05</span>
                 </div>
             </div>
         </footer>
@@ -378,7 +382,7 @@
                 文章
             </span>
             <span class="count">
-                60
+                59
             </span>
         </a>
         <a class="meta-item" href="/categories/">
@@ -444,8 +448,6 @@
             
           
         
-          
-            
           
             
           
