@@ -4,7 +4,7 @@
   <!-- 元数据 -->
   <meta charset="utf-8">
   <link rel="icon" href="">
-  <title>RNN模型 | limhao博客</title>
+  <title>sine 论文阅读 | limhao博客</title>
   <meta name="author" content="limhao" />
   <meta http-equiv="Cache-Control" content="no-transform" />
   <meta http-equiv="Cache-Control" content="no-siteapp" />
@@ -15,16 +15,16 @@
   
     <meta name="keywords" content="" />
   
-  <meta name="description" content="感谢：https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;32085405  文章 写的怪好的 但是 在博客的体现并不怎么好看 如果想看 去看md文档 0. RNN先简单介绍一下一般的RNN。     这里： x为当前状态下数据的输入， h表示接收到的上一个节点的输入。 y为当前节点状态下的输出，而**h’**为传递到下一个节点的输出。 通过上图的公式可以看到，输出 h’ 与 x 和 h 的">
+  <meta name="description" content="说些废话目前 论文分析要求 很重 而且 我心很杂 需要一套班子 前言论文名：SINE Sparse-Interest Network for Sequential Recommendation 链接：  论文链接 https:&#x2F;&#x2F;arxiv.org&#x2F;pdf&#x2F;2102.09267.pdf  代码链接  https:&#x2F;&#x2F;github.com&#x2F;benedekrozemberczki&#x2F;SINE  文章介绍">
 <meta property="og:type" content="article">
-<meta property="og:title" content="RNN模型">
-<meta property="og:url" content="http://example.com/2022/04/03/RNN%E7%B1%BB%E6%A8%A1%E5%9E%8B/index.html">
+<meta property="og:title" content="sine 论文阅读">
+<meta property="og:url" content="http://example.com/2022/08/06/sine-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/index.html">
 <meta property="og:site_name" content="limhao博客">
-<meta property="og:description" content="感谢：https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;32085405  文章 写的怪好的 但是 在博客的体现并不怎么好看 如果想看 去看md文档 0. RNN先简单介绍一下一般的RNN。     这里： x为当前状态下数据的输入， h表示接收到的上一个节点的输入。 y为当前节点状态下的输出，而**h’**为传递到下一个节点的输出。 通过上图的公式可以看到，输出 h’ 与 x 和 h 的">
+<meta property="og:description" content="说些废话目前 论文分析要求 很重 而且 我心很杂 需要一套班子 前言论文名：SINE Sparse-Interest Network for Sequential Recommendation 链接：  论文链接 https:&#x2F;&#x2F;arxiv.org&#x2F;pdf&#x2F;2102.09267.pdf  代码链接  https:&#x2F;&#x2F;github.com&#x2F;benedekrozemberczki&#x2F;SINE  文章介绍">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/null">
-<meta property="article:published_time" content="2022-04-03T13:18:49.397Z">
-<meta property="article:modified_time" content="2022-08-05T02:56:25.695Z">
+<meta property="article:published_time" content="2022-08-06T02:28:39.021Z">
+<meta property="article:modified_time" content="2022-08-06T04:31:12.939Z">
 <meta property="article:author" content="limhao">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/null">
@@ -152,17 +152,17 @@
     <div class="kratos-hentry kratos-post-inner clearfix">
         <header class="kratos-entry-header">
             
-                <h1 class="kratos-entry-title text-center">RNN模型</h1>
+                <h1 class="kratos-entry-title text-center">sine 论文阅读</h1>
             
             
             <ul class="kratos-post-meta text-center">
-                <li><i class="fa fa-calendar"></i> 2022-04-03</li>
+                <li><i class="fa fa-calendar"></i> 2022-08-06</li>
                 <li><i class="fa fa-user"></i> 作者 limhao</li>
                 <li>
                     <i class="fa fa-edit"></i> 
                     
                     
-                        ~2.77K
+                        1298
                     
                     字
                 </li>
@@ -172,84 +172,67 @@
         <div class="kratos-post-content">
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>本文最后编辑于 <time datetime="1659668185695"></time> 前，其中的内容可能需要更新。</p></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1659760272939"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
             <hr />
-            <p>感谢：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/32085405">https://zhuanlan.zhihu.com/p/32085405</a></p>
-<p> 文章 写的怪好的 但是 在博客的体现并不怎么好看 如果想看 去看md文档</p>
-<h2 id="0-RNN"><a href="#0-RNN" class="headerlink" title="0. RNN"></a>0. RNN</h2><p>先简单介绍一下一般的RNN。 </p>
-<p> <img src="https://pic4.zhimg.com/80/v2-f716c816d46792b867a6815c278f11cb_720w.jpg"> </p>
-<p>这里：</p>
-<p>x为当前状态下数据的输入， h表示接收到的上一个节点的输入。</p>
-<p>y为当前节点状态下的输出，而**h’**为传递到下一个节点的输出。</p>
-<p>通过上图的公式可以看到，输出 <strong>h’</strong> 与 <strong>x</strong> 和 <strong>h</strong> 的值都相关。</p>
-<p>而 <strong>y</strong> 则常常使用 <strong>h’</strong> 投入到一个线性层（主要是进行维度映射）然后使用softmax进行分类得到需要的数据。</p>
-<p>对这里的<strong>y</strong>如何通过 <strong>h’</strong> 计算得到往往看具体模型的使用方式。</p>
-<p>通过序列形式的输入，我们能够得到如下形式的RNN。</p>
-<p> <img src="https://pic2.zhimg.com/80/v2-71652d6a1eee9def631c18ea5e3c7605_720w.jpg"> </p>
-<h2 id="1-LSTM"><a href="#1-LSTM" class="headerlink" title="1. LSTM"></a>1. LSTM</h2><p> 长短期记忆（Long short-term memory, LSTM）是一种特殊的RNN，主要是为了解决长序列训练过程中的梯度消失和梯度爆炸问题。简单来说，就是相比普通的RNN，LSTM能够在更长的序列中有更好的表现。 </p>
-<p> <img src="https://pic4.zhimg.com/80/v2-e4f9851cad426dfe4ab1c76209546827_720w.jpg"> </p>
-<p>相比RNN只有一个传递状态 <img src="https://www.zhihu.com/equation?tex=h%5Et+"> ，LSTM有两个传输状态，一个 <img src="https://www.zhihu.com/equation?tex=c%5Et"> （cell state），和一个 <img src="https://www.zhihu.com/equation?tex=h%5Et"> （hidden state）。（Tips：RNN中的 <img src="https://www.zhihu.com/equation?tex=h%5Et"> 对于LSTM中的 <img src="https://www.zhihu.com/equation?tex=c%5Et"> ）</p>
-<p>其中对于传递下去的 <img src="https://www.zhihu.com/equation?tex=c%5Et"> 改变得很慢，通常输出的 <img src="https://www.zhihu.com/equation?tex=c%5Et"> 是上一个状态传过来的 <img src="https://www.zhihu.com/equation?tex=c%5E%7Bt-1%7D"> 加上一些数值。</p>
-<p>而 <img src="https://www.zhihu.com/equation?tex=h%5Et"> 则在不同节点下往往会有很大的区别。</p>
-<h3 id="1-1-LSTM-结构深入"><a href="#1-1-LSTM-结构深入" class="headerlink" title="1.1 LSTM 结构深入"></a>1.1 LSTM 结构深入</h3><p>下面具体对LSTM的内部结构来进行剖析。</p>
-<p>首先使用LSTM的当前输入 <img src="https://www.zhihu.com/equation?tex=x%5Et"> 和上一个状态传递下来的 <img src="https://www.zhihu.com/equation?tex=h%5E%7Bt-1%7D"> 拼接训练得到四个状态。</p>
-<p> <img src="https://pic4.zhimg.com/80/v2-15c5eb554f843ec492579c6d87e1497b_720w.jpg"> </p>
-<p> <img src="https://pic1.zhimg.com/80/v2-d044fd0087e1df5d2a1089b441db9970_720w.jpg" alt="img"> </p>
-<p> 其中， <img src="https://www.zhihu.com/equation?tex=z%5Ef+"> ， <img src="https://www.zhihu.com/equation?tex=z%5Ei"> ，<img src="https://www.zhihu.com/equation?tex=z%5Eo"> 是由拼接向量乘以权重矩阵之后，再通过一个 <img src="https://www.zhihu.com/equation?tex=sigmoid+"> 激活函数转换成0到1之间的数值，来作为一种门控状态。而 <img src="https://www.zhihu.com/equation?tex=z"> 则是将结果通过一个 <img src="https://www.zhihu.com/equation?tex=tanh"> 激活函数将转换成-1到1之间的值（这里使用 <img src="https://www.zhihu.com/equation?tex=tanh"> 是因为这里是将其做为输入数据，而不是门控信号） </p>
-<p> <strong>下面开始进一步介绍这四个状态在LSTM内部的使用。（敲黑板）</strong> </p>
-<p> <img src="https://pic2.zhimg.com/v2-556c74f0e025a47fea05dc0f76ea775d_b.jpg"> </p>
-<p>其经典图片是这样的</p>
-<p> <img src="https://pic4.zhimg.com/v2-561a4eeb23e5bdd3a0bb08d818511aa3_b.jpg"> </p>
-<h3 id="1-2-主要的阶段"><a href="#1-2-主要的阶段" class="headerlink" title="1.2 主要的阶段"></a>1.2 主要的阶段</h3><p>LSTM内部主要有三个阶段：</p>
+            <h2 id="说些废话"><a href="#说些废话" class="headerlink" title="说些废话"></a>说些废话</h2><p>目前 论文分析要求 很重 而且 我心很杂 需要一套班子</p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>论文名：SINE Sparse-Interest Network for Sequential Recommendation</p>
+<p>链接：</p>
 <ol>
-<li>忘记阶段。这个阶段主要是对上一个节点传进来的输入进行<strong>选择性</strong>忘记。简单来说就是会 “忘记不重要的，记住重要的”。</li>
+<li><p>论文链接 <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2102.09267.pdf">https://arxiv.org/pdf/2102.09267.pdf</a></p>
+</li>
+<li><p>代码链接  <a target="_blank" rel="noopener" href="https://github.com/benedekrozemberczki/SINE">https://github.com/benedekrozemberczki/SINE</a></p>
+</li>
+<li><p>文章介绍链接：（知乎）<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/408714836">https://zhuanlan.zhihu.com/p/408714836</a> </p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/390625181">https://zhuanlan.zhihu.com/p/390625181</a></p>
+</li>
 </ol>
-<p>具体来说是通过计算得到的 <img src="https://www.zhihu.com/equation?tex=z%5Ef"> （f表示forget）来作为忘记门控，来控制上一个状态的 <img src="https://www.zhihu.com/equation?tex=c%5E%7Bt-1%7D"> 哪些需要留哪些需要忘。</p>
-<ol start="2">
-<li>选择记忆阶段。这个阶段将这个阶段的输入有选择性地进行“记忆”。主要是会对输入 <img src="https://www.zhihu.com/equation?tex=x%5Et"> 进行选择记忆。哪些重要则着重记录下来，哪些不重要，则少记一些。当前的输入内容由前面计算得到的 <img src="https://www.zhihu.com/equation?tex=z+"> 表示。而选择的门控信号则是由 <img src="https://www.zhihu.com/equation?tex=z%5Ei"> （i代表information）来进行控制。</li>
+<p>相关知识：</p>
+<ol>
+<li>序列推荐</li>
+<li>概念原型</li>
+<li>工业界</li>
 </ol>
-<blockquote>
-<p>将上面两步得到的结果相加，即可得到传输给下一个状态的 <img src="https://www.zhihu.com/equation?tex=c%5Et"> 。也就是上图中的第一个公式。</p>
-</blockquote>
-<ol start="3">
-<li>输出阶段。这个阶段将决定哪些将会被当成当前状态的输出。主要是通过 <img src="https://www.zhihu.com/equation?tex=z%5Eo"> 来进行控制的。并且还对上一阶段得到的 <img src="https://www.zhihu.com/equation?tex=c%5Eo"> 进行了放缩（通过一个tanh激活函数进行变化）。</li>
+<h2 id="1-相关背景"><a href="#1-相关背景" class="headerlink" title="1. 相关背景"></a>1. 相关背景</h2><p>拟解决的问题：推荐系统的召回阶段仅用一个user embedding无法表征用户丰富的意图。目前通常利用聚类的方法生成多兴趣embedidng的方法，但现实场景的item categories太多 ，聚类不现实。</p>
+<p>1）如何有效地利用概念原型对大量的item在细粒度上进行聚类是一项重要的任务。</p>
+<p>2）一个人通常只与一组稀疏的概念进行交互，需要准确从全量概念原型中抽出一部分 </p>
+<h3 id="1-1-核心思想"><a href="#1-1-核心思想" class="headerlink" title="1.1 核心思想"></a>1.1 核心思想</h3><ol>
+<li><p>通过在一个大的核心概念池中 提取对应序列的核心的几个兴趣点</p>
+</li>
+<li><p>准确从概念原型中抽出一部分对用户意图进行表示</p>
+</li>
 </ol>
-<p>与普通RNN类似，输出 <img src="https://www.zhihu.com/equation?tex=y%5Et"> 往往最终也是通过 <img src="https://www.zhihu.com/equation?tex=h%5Et"> 变化得到。</p>
-<h3 id="1-3-总结"><a href="#1-3-总结" class="headerlink" title="1.3 总结"></a>1.3 总结</h3><p>以上，就是LSTM的内部结构。通过门控状态来控制传输状态，记住需要长时间记忆的，忘记不重要的信息；而不像普通的RNN那样只能够“呆萌”地仅有一种记忆叠加方式。对很多需要“长期记忆”的任务来说，尤其好用。</p>
-<p>但也因为引入了很多内容，导致参数变多，也使得训练难度加大了很多。因此很多时候我们往往会使用效果和LSTM相当但参数更少的GRU来构建大训练量的模型。</p>
-<h2 id="2-GRU"><a href="#2-GRU" class="headerlink" title="2. GRU"></a>2. GRU</h2><p> GRU（Gate Recurrent Unit）是循环神经网络（Recurrent Neural Network, RNN）的一种。和LSTM（Long-Short Term Memory）一样，也是为了解决长期记忆和反向传播中的梯度等问题而提出来的 。</p>
-<p>其性能与LSTM相当 ，但是 其计算的消耗较前者少。</p>
-<p> <img src="https://pic4.zhimg.com/v2-a8424cd80eae1b7d312991692decbe8b_r.jpg" alt="preview"> </p>
-<h3 id="2-1-输入输出"><a href="#2-1-输入输出" class="headerlink" title="2.1 输入输出"></a>2.1 输入输出</h3><p>GRU的输入输出结构与普通的RNN是一样的。</p>
-<p>有一个当前的输入 <img src="https://www.zhihu.com/equation?tex=x%5Et"> ，和上一个节点传递下来的隐状态（hidden state） <img src="https://www.zhihu.com/equation?tex=h%5E%7Bt-1%7D"> ，这个隐状态包含了之前节点的相关信息。</p>
-<p>结合 <img src="https://www.zhihu.com/equation?tex=x%5Et+"> 和 <img src="https://www.zhihu.com/equation?tex=h%5E%7Bt-1%7D">，GRU会得到当前隐藏节点的输出 <img src="https://www.zhihu.com/equation?tex=y%5Et+"> 和传递给下一个节点的隐状态 <img src="https://www.zhihu.com/equation?tex=h%5Et"> 。</p>
-<p> <img src="https://pic2.zhimg.com/80/v2-49244046a83e30ef2383b94644bf0f31_720w.jpg"> </p>
-<h3 id="2-2-内部结构"><a href="#2-2-内部结构" class="headerlink" title="2.2 内部结构"></a>2.2 内部结构</h3><p> 通过上一个传输下来的状态 <img src="https://www.zhihu.com/equation?tex=h%5E%7Bt-1%7D"> 和当前节点的输入 <img src="https://www.zhihu.com/equation?tex=x%5Et"> 来获取两个门控状态。 其中 <img src="https://www.zhihu.com/equation?tex=r+"> 控制重置的门控（reset gate）， <img src="https://www.zhihu.com/equation?tex=z"> 为控制更新的门控（update gate）。 </p>
-<p> <img src="https://pic3.zhimg.com/80/v2-7fff5d817530dada1b279c7279d73b8a_720w.jpg"> </p>
-<p> 得到门控信号之后，首先使用重置门控来得到<strong>“重置”</strong>之后的数据 <img src="https://www.zhihu.com/equation?tex=%7Bh%5E%7Bt-1%7D%7D%27+=+h%5E%7Bt-1%7D+%5Codot+r+"> ，再将 <img src="https://www.zhihu.com/equation?tex=%7Bh%5E%7Bt-1%7D%7D%27"> 与输入 <img src="https://www.zhihu.com/equation?tex=x%5Et+"> 进行拼接，再通过一个<a href="https://link.zhihu.com/?target=https://baike.baidu.com/item/tanh">tanh</a>激活函数来将数据放缩到**-1~1**的范围内。即得到如下图2-3所示的 <img src="https://www.zhihu.com/equation?tex=h%27"> 。 </p>
-<p> <img src="https://pic4.zhimg.com/80/v2-390781506bbebbef799f1a12acd7865b_720w.jpg"> </p>
-<p> 这里的 <img src="https://www.zhihu.com/equation?tex=h%27+"> 主要是包含了当前输入的 <img src="https://www.zhihu.com/equation?tex=x%5Et"> 数据。有针对性地对 <img src="https://www.zhihu.com/equation?tex=h%27"> 添加到当前的隐藏状态，相当于”记忆了当前时刻的状态“。 </p>
-<p> <img src="https://pic3.zhimg.com/80/v2-5b805241ab36e126c4b06b903f148ffa_720w.jpg"> </p>
-<p>最后介绍GRU最关键的一个步骤，我们可以称之为<strong>”更新记忆“</strong>阶段。</p>
-<p>在这个阶段，我们同时进行了遗忘了记忆两个步骤。我们使用了先前得到的更新门控 <img src="https://www.zhihu.com/equation?tex=z"> （update gate）。</p>
-<p><strong>更新表达式</strong>： <img src="https://www.zhihu.com/equation?tex=h%5Et+=+(1-z)+%5Codot+h%5E%7Bt-1%7D+++z%5Codot+h%27"></p>
-<p>首先再次强调一下，门控信号（这里的 <img src="https://www.zhihu.com/equation?tex=z"> ）的范围为0~1。门控信号越接近1，代表”记忆“下来的数据越多；而越接近0则代表”遗忘“的越多。</p>
-<blockquote>
-<p>有读者发现在pytorch里面的GRU[<a href="https://link.zhihu.com/?target=https://pytorch.org/docs/stable/nn.html?highlight=gru%23torch.nn.GRU">链接</a>]写法相比原版对 <img src="https://www.zhihu.com/equation?tex=h%5E%7Bt-1%7D"> 多了一个映射，相当于一个GRU变体，猜测是多加多这个映射能让整体实验效果提升较大。如果有了解的同学欢迎评论指出。</p>
-</blockquote>
-<p>GRU很聪明的一点就在于，<strong>我们使用了同一个门控 <img src="https://www.zhihu.com/equation?tex=z"> 就同时可以进行遗忘和选择记忆（LSTM则要使用多个门控）</strong>。</p>
+<h2 id="2-实证分析"><a href="#2-实证分析" class="headerlink" title="2. 实证分析"></a>2. 实证分析</h2><p><a target="_blank" rel="noopener" href="https://imgtu.com/i/vui9XV"><img src="https://s1.ax1x.com/2022/08/06/vui9XV.png"></a></p>
+<p>如SASRec仅用单一的emb建模用户丰富的兴趣容易受到recent行为影响 </p>
+<h2 id="3-问题描述"><a href="#3-问题描述" class="headerlink" title="3. 问题描述"></a>3. 问题描述</h2><p>序列推荐</p>
+<h2 id="4-方法（基本为论文方法部分）"><a href="#4-方法（基本为论文方法部分）" class="headerlink" title="4. 方法（基本为论文方法部分）"></a>4. 方法（基本为论文方法部分）</h2><p>实验模型</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/vuiSlq"><img src="https://s1.ax1x.com/2022/08/06/vuiSlq.md.png"></a></p>
 <ul>
-<li><img src="https://www.zhihu.com/equation?tex=(1-z)+%5Codot+h%5E%7Bt-1%7D"> ：表示对原本隐藏状态的选择性“遗忘”。这里的 <img src="https://www.zhihu.com/equation?tex=1-z"> 可以想象成遗忘门（forget gate），忘记 <img src="https://www.zhihu.com/equation?tex=h%5E%7Bt-1%7D"> 维度中一些不重要的信息。</li>
-<li><img src="https://www.zhihu.com/equation?tex=z+%5Codot+h%27"> ： 表示对包含当前节点信息的 <img src="https://www.zhihu.com/equation?tex=h%27"> 进行选择性”记忆“。与上面类似，这里的 <img src="https://www.zhihu.com/equation?tex=(1-z)"> 同理会忘记 <img src="https://www.zhihu.com/equation?tex=h+%27"> 维度中的一些不重要的信息。或者，这里我们更应当看做是对 <img src="https://www.zhihu.com/equation?tex=h%27+"> 维度中的某些信息进行选择。</li>
-<li><img src="https://www.zhihu.com/equation?tex=h%5Et+=(1-+z)+%5Codot+h%5E%7Bt-1%7D+++z%5Codot+h%27"> ：结合上述，这一步的操作就是忘记传递下来的 <img src="https://www.zhihu.com/equation?tex=h%5E%7Bt-1%7D+"> 中的某些维度信息，并加入当前节点输入的某些维度信息。</li>
+<li>稀疏兴趣</li>
 </ul>
-<blockquote>
-<p>可以看到，这里的遗忘 <img src="https://www.zhihu.com/equation?tex=z"> 和选择 <img src="https://www.zhihu.com/equation?tex=(1-z)"> 是联动的。也就是说，对于传递进来的维度信息，我们会进行选择性遗忘，则遗忘了多少权重 （<img src="https://www.zhihu.com/equation?tex=z"> ），我们就会使用包含当前输入的 <img src="https://www.zhihu.com/equation?tex=h%27"> 中所对应的权重进行弥补 <img src="https://www.zhihu.com/equation?tex=(1-z)"> 。以保持一种”恒定“状态。</p>
-</blockquote>
-<h3 id="2-3-总结"><a href="#2-3-总结" class="headerlink" title="2.3 总结"></a>2.3 总结</h3><p>GRU输入输出的结构与普通的RNN相似，其中的内部思想与LSTM相似。</p>
-<p>与LSTM相比，GRU内部少了一个”门控“，参数比LSTM少，但是却也能够达到与LSTM相当的功能。考虑到硬件的<strong>计算能力</strong>和<strong>时间成本</strong>，因而很多时候我们也就会选择更加”实用“的GRU啦。</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/vuPzpn"><img src="https://s1.ax1x.com/2022/08/06/vuPzpn.png"></a></p>
+<p>  <a target="_blank" rel="noopener" href="https://imgtu.com/i/vuiPmT"><img src="https://s1.ax1x.com/2022/08/06/vuiPmT.md.png"></a></p>
+<ul>
+<li><p>多兴趣融合</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/vuiF7F"><img src="https://s1.ax1x.com/2022/08/06/vuiF7F.md.png"></a></p>
+</li>
+</ul>
+<h2 id="5-实验"><a href="#5-实验" class="headerlink" title="5. 实验"></a>5. 实验</h2><h3 id="5-1-消融实验"><a href="#5-1-消融实验" class="headerlink" title="5.1 消融实验"></a>5.1 消融实验</h3><p><a target="_blank" rel="noopener" href="https://imgtu.com/i/vuip60"><img src="https://s1.ax1x.com/2022/08/06/vuip60.md.png"></a></p>
+<p>结论：</p>
+<ol>
+<li><p>多头在小数据集结果好</p>
+</li>
+<li><p>多兴趣嵌入比单兴趣好</p>
+</li>
+</ol>
+<h3 id="5-2-超参数设计"><a href="#5-2-超参数设计" class="headerlink" title="5.2 超参数设计"></a>5.2 超参数设计</h3><p><a target="_blank" rel="noopener" href="https://imgtu.com/i/vuiAk4"><img src="https://s1.ax1x.com/2022/08/06/vuiAk4.png"></a></p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/vuii0U"><img src="https://s1.ax1x.com/2022/08/06/vuii0U.png"></a></p>
+<h2 id="6-总结"><a href="#6-总结" class="headerlink" title="6. 总结"></a>6. 总结</h2><p>文章参照显式方法进行的兴趣构建</p>
+<p>将SINE与现有方法进行比较，这些方法侧重于在推荐召回阶段提取用户的多兴趣emb。粗略地将它们分为两类，并在下面分析了它们的区别。</p>
+<p>隐式方法：这种方法依赖强大的神经网络来隐式聚类历史行为并提取不同的兴趣。例如，MIND [24] 利用 Capsule 网络 [34] 自适应地将用户的行为聚合到兴趣嵌入向量中。 SASRec [21] 采用多头自注意力机制 [43] 为用户输出多个表示。与这些方法相比，我们的模型属于一种显式方法，该方法基于潜在的概念原型从用户的行为序列中显式地检测意图。</p>
+<p>显式方法：维护一组概念原型，以明确确定用户行为序列中item的意图。 MCPRN [44] 是最近的一项代表性工作，用于从Session中提取多个兴趣以完成序列推荐。 DisenRec [29] 利用潜在原型来帮助学习用于推荐的解耦表示。与它们相比，文章也遵循显式方法，但SINE可扩展到大规模数据集。具体来说，前人的工作要求不同兴趣emb的数量等于概念原型的数量。然而，潜在概念的数量取决于应用程序，并且在工业推荐系统中可以很容易地扩展到数百甚至数千，这阻碍了它们在实践中的应用。相比之下，SINE能够自动从大型概念池中推断出一组稀疏的首选意图。</p>
+<h2 id="7-自己的想法"><a href="#7-自己的想法" class="headerlink" title="7. 自己的想法"></a>7. 自己的想法</h2><p>现在的我 看过源码 我算是基本没什么想法</p>
 
         </div>
         
@@ -303,7 +286,7 @@
     <script type="text/javascript">
         $(()=>{
             new QRCode("wechat-qr", {
-                text: "http://example.com/2022/04/03/RNN%E7%B1%BB%E6%A8%A1%E5%9E%8B/",
+                text: "http://example.com/2022/08/06/sine-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/",
                 width: 150,
                 height: 150,
                 correctLevel : QRCode.CorrectLevel.H
@@ -315,14 +298,13 @@
             const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
             const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
             const twitterBase   = "https://twitter.com/intent/tweet?";
-            const hostUrl       = "http://example.com/2022/04/03/RNN%E7%B1%BB%E6%A8%A1%E5%9E%8B/";
-            const title         = "「RNN模型」";
-            const excerpt       = `感谢：https://zhuanlan.zhihu.com/p/32085405
- 文章 写的怪好的 但是 在博客的体现并不怎么好看 如果想看 去看md文档
-0. RNN先简单介绍一下一般的RNN。 
-  
-这里：
-x为当前状态下数据...`;
+            const hostUrl       = "http://example.com/2022/08/06/sine-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/";
+            const title         = "「sine 论文阅读」";
+            const excerpt       = `说些废话目前 论文分析要求 很重 而且 我心很杂 需要一套班子
+前言论文名：SINE Sparse-Interest Network for Sequential Recommendation
+链接：
+
+论文链接 https://ar...`;
             let _URL;
             switch (dest) {
                 case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
@@ -344,7 +326,7 @@ x为当前状态下数据...`;
                     
                 </div>
                 <div class="pull-date">
-                <span>最后编辑：2022-08-05</span>
+                <span>最后编辑：2022-08-06</span>
                 </div>
             </div>
         </footer>
@@ -353,13 +335,9 @@ x为当前状态下数据...`;
         <nav class="navigation post-navigation clearfix" role="navigation">
             
             <div class="nav-previous clearfix">
-                <a title=" Recommender-System-Pytorch 项目 网络参数指南" href="/2022/03/28/Recommender-System-Pytorch 项目 网络函数/">&lt; 上一篇</a>
+                <a title=" CauseRec 反事实生成的序列推荐" href="/2022/08/04/CauseRec-反事实生成的序列推荐/">&lt; 上一篇</a>
             </div>
             
-            
-            <div class="nav-next clearfix">
-                <a title=" 从din到dien 推荐模型（文献部分）" href="/2022/04/04/从din到dien 推荐模型（文献部分）/">下一篇 &gt;</a>
-            </div>
             
         </nav>
     
