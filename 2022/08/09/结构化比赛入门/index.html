@@ -4,7 +4,7 @@
   <!-- 元数据 -->
   <meta charset="utf-8">
   <link rel="icon" href="">
-  <title>CauseRec 反事实生成的序列推荐 | limhao博客</title>
+  <title>结构化比赛入门 | limhao博客</title>
   <meta name="author" content="limhao" />
   <meta http-equiv="Cache-Control" content="no-transform" />
   <meta http-equiv="Cache-Control" content="no-siteapp" />
@@ -15,16 +15,16 @@
   
     <meta name="keywords" content="" />
   
-  <meta name="description" content="说些废话2022&#x2F;8&#x2F;4  在8&#x2F;2日 在写完core这篇文章的时候 发现 文章的一个思路非常像这篇文中的反事实生成这个部分 还有 我其实写完了sine的文章 但是 学校服务器不让用 就离谱 然后发现 这个东西 我以前度过 说实话 没有整理出来 我东西都忘光了 说实话 现在回头看 自己还是看的不怎么清晰 前言论文名：CauseRec: Counterfactual U">
+  <meta name="description" content="说些废话9.9 买不到吃亏 买不到上当 加油吧 通过第一个课 感知到了 这个比赛的快乐 哈哈哈！ 前言比赛名：RecSys Challenge 2022 链接：  代码链接 https:&#x2F;&#x2F;github.com&#x2F;limhao&#x2F;kaggle-competition 文章介绍链接：（知乎）pandas操作  相关知识： code印象较深的pandas操作 123# value_count# 它可以用来">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CauseRec 反事实生成的序列推荐">
-<meta property="og:url" content="http://example.com/2022/08/04/CauseRec-%E5%8F%8D%E4%BA%8B%E5%AE%9E%E7%94%9F%E6%88%90%E7%9A%84%E5%BA%8F%E5%88%97%E6%8E%A8%E8%8D%90/index.html">
+<meta property="og:title" content="结构化比赛入门">
+<meta property="og:url" content="http://example.com/2022/08/09/%E7%BB%93%E6%9E%84%E5%8C%96%E6%AF%94%E8%B5%9B%E5%85%A5%E9%97%A8/index.html">
 <meta property="og:site_name" content="limhao博客">
-<meta property="og:description" content="说些废话2022&#x2F;8&#x2F;4  在8&#x2F;2日 在写完core这篇文章的时候 发现 文章的一个思路非常像这篇文中的反事实生成这个部分 还有 我其实写完了sine的文章 但是 学校服务器不让用 就离谱 然后发现 这个东西 我以前度过 说实话 没有整理出来 我东西都忘光了 说实话 现在回头看 自己还是看的不怎么清晰 前言论文名：CauseRec: Counterfactual U">
+<meta property="og:description" content="说些废话9.9 买不到吃亏 买不到上当 加油吧 通过第一个课 感知到了 这个比赛的快乐 哈哈哈！ 前言比赛名：RecSys Challenge 2022 链接：  代码链接 https:&#x2F;&#x2F;github.com&#x2F;limhao&#x2F;kaggle-competition 文章介绍链接：（知乎）pandas操作  相关知识： code印象较深的pandas操作 123# value_count# 它可以用来">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/null">
-<meta property="article:published_time" content="2022-08-04T02:08:37.612Z">
-<meta property="article:modified_time" content="2022-08-05T01:59:35.372Z">
+<meta property="article:published_time" content="2022-08-09T02:04:56.423Z">
+<meta property="article:modified_time" content="2022-08-09T10:35:43.062Z">
 <meta property="article:author" content="limhao">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/null">
@@ -152,17 +152,17 @@
     <div class="kratos-hentry kratos-post-inner clearfix">
         <header class="kratos-entry-header">
             
-                <h1 class="kratos-entry-title text-center">CauseRec 反事实生成的序列推荐</h1>
+                <h1 class="kratos-entry-title text-center">结构化比赛入门</h1>
             
             
             <ul class="kratos-post-meta text-center">
-                <li><i class="fa fa-calendar"></i> 2022-08-04</li>
+                <li><i class="fa fa-calendar"></i> 2022-08-09</li>
                 <li><i class="fa fa-user"></i> 作者 limhao</li>
                 <li>
                     <i class="fa fa-edit"></i> 
                     
                     
-                        ~4.15K
+                        747
                     
                     字
                 </li>
@@ -172,90 +172,34 @@
         <div class="kratos-post-content">
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>本文最后编辑于 <time datetime="1659664775372"></time> 前，其中的内容可能需要更新。</p></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1660041343062"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
             <hr />
-            <h2 id="说些废话"><a href="#说些废话" class="headerlink" title="说些废话"></a>说些废话</h2><p>2022&#x2F;8&#x2F;4 </p>
-<p>在8&#x2F;2日 在写完core这篇文章的时候 发现 文章的一个思路非常像这篇文中的反事实生成这个部分</p>
-<p>还有 我其实写完了sine的文章 但是 学校服务器不让用 就离谱</p>
-<p>然后发现 这个东西 我以前度过 说实话 没有整理出来 我东西都忘光了</p>
-<p>说实话 现在回头看 自己还是看的不怎么清晰</p>
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>论文名：CauseRec: Counterfactual User Sequence Synthesis for Sequential Recommendation</p>
+            <h2 id="说些废话"><a href="#说些废话" class="headerlink" title="说些废话"></a>说些废话</h2><p>9.9 买不到吃亏 买不到上当</p>
+<p>加油吧 通过第一个课 感知到了 这个比赛的快乐</p>
+<p>哈哈哈！</p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>比赛名：RecSys Challenge 2022</p>
 <p>链接：</p>
 <ol>
-<li>论文链接 <a target="_blank" rel="noopener" href="https://dl.acm.org/doi/abs/10.1145/3404835.3462908">https://dl.acm.org/doi/abs/10.1145/3404835.3462908</a></li>
-<li>代码链接  <a target="_blank" rel="noopener" href="https://github.com/gzy-rgb/CauseRec">https://github.com/gzy-rgb/CauseRec</a></li>
-<li>文章介绍链接：（知乎）<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/406794449">https://zhuanlan.zhihu.com/p/406794449</a></li>
+<li>代码链接 <a target="_blank" rel="noopener" href="https://github.com/limhao/kaggle-competition">https://github.com/limhao/kaggle-competition</a></li>
+<li>文章介绍链接：（知乎）pandas操作</li>
 </ol>
 <p>相关知识：</p>
-<h2 id="1-相关背景"><a href="#1-相关背景" class="headerlink" title="1. 相关背景"></a>1. 相关背景</h2><p>由于记录的用户交互的噪声和稀疏性，仅对观测行为序列进行建模可能最终导致系统脆弱和不稳定。</p>
-<h3 id="1-1-核心思想"><a href="#1-1-核心思想" class="headerlink" title="1.1 核心思想"></a>1.1 核心思想</h3><p>CauseRec通过替换原始概念序列中的可有可无和不可或缺的概念，从反事实数据分布中有条件地采样用户概念序列。利用从合成用户序列获得的用户表示，CauseRec通过对比反事实和观察数据来执行对比用户表示学习。 </p>
-<ul>
-<li><p>对比学习<br>设计了模型无关和非侵入性框架，帮助任何基线模型以端到端的方式学习更有效的用户表示。通过将原始用户表示与反事实正样本和反事实负样本进行对比，这种表示更加准确和稳健 </p>
-</li>
-<li><p>反事实建议</p>
-<p>专注于去噪用户表示学习，并考虑了回顾问题，即“如果我们干预观察到的行为序列，用户表示会是什么？”。从技术上讲，我们提出了几个基于识别不可或缺&#x2F;可有可无概念的反事实转换，并设计了几个对比目标，用于学习准确和稳健的用户表示</p>
-</li>
-</ul>
-<h2 id="2-实证分析"><a href="#2-实证分析" class="headerlink" title="2. 实证分析"></a>2. 实证分析</h2><p><a target="_blank" rel="noopener" href="https://imgtu.com/i/vmydBR"><img src="https://s1.ax1x.com/2022/08/05/vmydBR.png"></a></p>
-<p>这个实证 是根据作者经验得到</p>
-<p>在推荐系统中，用户通常仅与有限数量的项目进行交互，而在大型实时系统中，项目库很容易达到1亿个。因此，仅对既稀疏又有噪声的观测行为序列进行建模可能最终导致不太令人满意的脆弱系统。  </p>
-<h2 id="3-问题描述"><a href="#3-问题描述" class="headerlink" title="3. 问题描述"></a>3. 问题描述</h2><p>序列推荐</p>
-<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/vmyJ9U"><img src="https://s1.ax1x.com/2022/08/05/vmyJ9U.png"></a></p>
-<p>从顺序推荐的观点来看，数据集可以表示为D&#x3D;{（xu，t，yu，t）}u&#x3D;1,2，…，N，t&#x3D;1,3，…，Tu，其中xu，t&#x3D;{yu，1:（t−1） }表示用户在第t个行为yu，t之前的历史行为，并按时间顺序排列，Tu表示用户u的行为数。顺序推荐的目标是预测下一个项目yu，t，给定历史行为xu，t，其可以表示为建模所有可能项目的概率 </p>
-<p>同样的 因为要偶然删除子序列 所以 输入被定成了（关键是 有时候还得提取子序列）</p>
-<p> (xu,t,yu,t )</p>
-<h2 id="4-方法（基本为论文方法部分）"><a href="#4-方法（基本为论文方法部分）" class="headerlink" title="4. 方法（基本为论文方法部分）"></a>4. 方法（基本为论文方法部分）</h2><p><strong>注意，文章提出的框架CauseRec的所有变体都是在基础模型上展开的。</strong></p>
-<h3 id="4-1-整体架构"><a href="#4-1-整体架构" class="headerlink" title="4.1 整体架构"></a>4.1 整体架构</h3><p>模型的本质是 回答追溯问题</p>
-<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/vmytc4"><img src="https://s1.ax1x.com/2022/08/05/vmytc4.md.png"></a></p>
-<p>具体来说，我们首先确定历史行为序列中不可或缺的概念。一个不可或缺的概念表示一个行为序列的子集，可以共同表示用户兴趣的一个有意义的方面。可有可无的概念表示在表示感兴趣的方面不太重要的噪声子集 </p>
-<h3 id="4-2-归纳偏置（类似于先验）"><a href="#4-2-归纳偏置（类似于先验）" class="headerlink" title="4.2 归纳偏置（类似于先验）"></a>4.2 归纳偏置（类似于先验）</h3><p><a target="_blank" rel="noopener" href="https://imgtu.com/i/vmyNjJ"><img src="https://s1.ax1x.com/2022/08/05/vmyNjJ.md.png"></a></p>
-<p>通常情况下，我们不知道具体上帝函数的情况，但我们猜测它类似于一个比较具体的函数。这种基于先验知识对目标模型的判断就是归纳偏置（inductive bias）。归纳偏置所做的事情，是将无限可能的目标函数约束在一个有限的假设类别之中，这样，模型的学习才成为可能。 </p>
-<h3 id="4-3-概念不可或缺-x2F-可有可无的划分"><a href="#4-3-概念不可或缺-x2F-可有可无的划分" class="headerlink" title="4.3 概念不可或缺&#x2F;可有可无的划分"></a>4.3 概念不可或缺&#x2F;可有可无的划分</h3><ul>
-<li><em>Item-level Concepts</em></li>
-</ul>
-<p>  <a target="_blank" rel="noopener" href="https://imgtu.com/i/vmyY3F"><img src="https://s1.ax1x.com/2022/08/05/vmyY3F.md.png"></a></p>
-<ul>
-<li><em>Interest-level Concepts</em></li>
-</ul>
-<p>  <a target="_blank" rel="noopener" href="https://imgtu.com/i/vmyau9"><img src="https://s1.ax1x.com/2022/08/05/vmyau9.md.png"></a></p>
-<ul>
-<li><p>反事实变换 </p>
-<p>旨在通过替换原始用户序列的一部分概念来构建分布外out-of-distribution的用户序列。这里的用户序列可以是众所周知的item序列，也可以是兴趣level的概念序列。基于<strong>全局总览</strong>中描述的归纳偏差，建议以 rrep 的速率替换已识别的必不可少&#x2F;可有可无的概念，以分别构建反事实的negative&#x2F;positive用户序列。直接删除不可或缺&#x2F;可有可无的概念似乎也是可行的，但替换具有不影响整体序列长度和概念的相对位置的优点。<strong>具体来说，文章维护一个先进先出队列作为每个level的概念memory</strong>，<strong>将从当前mini-batch中提取的全量概念加入队列，并使用dequeue的概念作为替代。（这部分没说清楚可能要看代码）</strong> </p>
-</li>
-<li><p>用户embedding生成</p>
-<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/vmywH1"><img src="https://s1.ax1x.com/2022/08/05/vmywH1.md.png" alt="vmywH1.md.png"></a></p>
-</li>
-<li><p>目标函数</p>
-<p>除了最大化似然概率的目标函数外，文章引入几个对比学习的目标函数来学习更精确的更鲁棒的用户表示。</p>
-<p>反事实和真实序列之间的对比</p>
-<p>一个健壮的用户表示应该对序列中可有可无的概念不那么敏感。 因此，从反事实序列中学习到的具有必不可少的概念转换的用户表示应该远离原始用户表示。 类似，准确的表示应该更多地信任不可或缺的概念。 因此，从具有可有可无的概念转换的反事实序列中学习的用户表示应该直观地更接近原始用户表示。因此，文章使用三元组边际损失来衡量样本之间的相对相似性：</p>
-<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/vmyBAx"><img src="https://s1.ax1x.com/2022/08/05/vmyBAx.md.png"></a></p>
-<p>不过这里想强调的是，在 测试&#x2F;服务阶段，生成 user embedding 只用到了原始行为序列，不需要计算 proposal scores 以及 反事实用户序列生成。强调这个原因在于，文章计算 proposal scores 需要用到 target item，而 target item 在测试和服务阶段是看不到的。具体来说，CauseRec-H 和 CauseRec-In 在测试阶段完全一样，而CauseRec-Item 和 Base Model 的差别也是在训练阶段。</p>
-</li>
-</ul>
-<h2 id="5-实验"><a href="#5-实验" class="headerlink" title="5. 实验"></a>5. 实验</h2><p>验证：1）CauseRec对比SOTA的序列推荐模型性能提升了多少；2）消融实验和超参数对实验指标的影响；3）用户表示如何从反事实数据建模和对比表示学习中受益 </p>
-<ul>
-<li><p>效果</p>
-<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/vmyy9O"><img src="https://s1.ax1x.com/2022/08/05/vmyy9O.md.png"></a></p>
-<p>文章验证了 CauseRec 的三种架构，包括 CauseRec-Item (CauseItem)、CauseRec-Interest (CauseIn) 和 CauseRec-Hierarchical (CauseH)，观察到这些架构在各种baseline和三个不同指标上的明显改进。值得注意的是，CauseRec-H 对比之前的 SOTA ComiRec-SA&#x2F;DR 在 Amazon Books 数据集上提高了 +.0299（相对 22.1%）的 NDCG@50 和在关于 Gowalla 上提高了+.0179（相对 8.64%）的 Recall@20。</p>
-<p>ComiRec 主要通过对给定用户的多个兴趣进行建模来产生最佳性能。然而，对嘈杂的历史行为进行建模可能会导致可能无法准确代表用户的多样化，最终导致较差的结果。 GRU4Rec 在 Gowalla 数据集上与 ComiRec 取得了相当好的结果。 GRU4Rec 可以有效地对行为序列中item之间的顺序依赖性进行建模。但是，由于严格的逐步编码过程，它可能更容易受到噪声的影响。相比之下，CauseRec 架构通过将用户表示远离反事实的negative的用户表示并将其拉近反事实的positive的用户表示来对抗用户行为中的噪音。此外，这些结果证明了 CauseRec 通过对反事实数据进行建模来应对分布外out-of-distribution的用户序列的泛化能力。</p>
-<p>在三种 CauseRec 架构中，CauseRec-Item 是一种模型无关设计，这意味着它可以应用于任何其他顺序推荐系统，而无需对原始用户编码器进行任何修改，并且仅在训练阶段起作用，而不会牺牲推理效率（训练阶段才需要替换掉用户行为序列的一部分，测试阶段完全不需要。）CauseRec-Interest 通过将可能与某一兴趣相关的item（例如巧克力和蛋糕属于糖果）组合成一个整体概念来构建兴趣级别的概念。与 CauseRec-Item 相比，CauseRec-Interest 具有减少概念冗余和建模item之间高阶关系的优点，从而改进 CauseRec-Item。为了结合 CauseRec Interest 和 CauseRec-Item 的优点，CauseRec-Hierarchical 在反事实转换中同时考虑了兴趣级别和item级别的概念。 CauseRec-H 取得了最好的结果，这表明item级概念上的反事实替换仍然产生了一些独特的优势，例如对细粒度偏好进行建模。如人们通常不会喜欢所有的甜食，而更喜欢蛋糕而不是巧克力。（item-level能区分蛋糕还是巧克力，而兴趣level将二者都融合成甜食概念。）</p>
-</li>
-<li><p><strong>消融实验</strong></p>
-<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/vmyDN6"><img src="https://s1.ax1x.com/2022/08/05/vmyDN6.md.png" alt="vmyDN6.md.png"></a></p>
-<p>CauseRec-Item 具有以下优点：易于实现（与模型无关）、服务高效（测试阶段不需要做任何的修改）和有效。文章通过消融实验、更好地理解 CauseRec Item 中的不同模块： </p>
-<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/vmyr4K"><img src="https://s1.ax1x.com/2022/08/05/vmyr4K.md.png"></a></p>
-</li>
-</ul>
-<h2 id="6-总结"><a href="#6-总结" class="headerlink" title="6. 总结"></a>6. 总结</h2><p>文章对反事实数据分布进行建模，以应对推荐系统中的用户交互的稀疏性和噪声行为。文章提出的CauseRec 有条件地对反事实的positive和negative用户序列进行采样，并对可有可无&#x2F;不可缺少的概念进行转换。文章提出了多种结构（-item、-interest、-hierarchical）来面对细粒度的item-level概念和抽象的兴趣level概念。此外，文章设计了几个对比目标来对比反事实与现实序列数据，以学习准确和鲁棒的用户表示。CauseRec-Item 具有<strong>模型无关</strong>的优点，即仅在训练中起作用而不影响evaluate&#x2F;inference效率。大量实验证明 CauseRec 的优势是设计简单且性能有效。 </p>
-<h2 id="7-自己的想法"><a href="#7-自己的想法" class="headerlink" title="7. 自己的想法"></a>7. 自己的想法</h2><p>之前没看懂 现在觉得这个工作 很复杂 根本不想看下去</p>
-<p>对对对</p>
-<ol>
-<li>对于 项目的距离是没有一个明细的 （通过替换正负的项目 来实现 是作者的一个先验） 但是 这个操作是不是太过复杂 （理解还好）</li>
-<li></li>
-</ol>
+<h2 id="code"><a href="#code" class="headerlink" title="code"></a>code</h2><p>印象较深的pandas操作</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># value_count</span></span><br><span class="line"><span class="comment"># 它可以用来查看数据表中，指定列里有多少个不同的数据值，并计算每个不同值有在该列中的个数，同时还能根据需要进行排序</span></span><br><span class="line">item_map = train_sessions[<span class="string">&#x27;item_id&#x27;</span>].value_counts()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># sns.distplot</span></span><br><span class="line"><span class="comment"># 画图</span></span><br><span class="line">sns.distplot(item_map.values)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 返回唯一值个数</span></span><br><span class="line">item_features[<span class="string">&#x27;feature_category_id&#x27;</span>].nunique()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 返回所有的唯一值</span></span><br><span class="line">item_features[<span class="string">&#x27;feature_category_id&#x27;</span>].unique()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># grouby</span></span><br><span class="line"><span class="comment"># 分组 </span></span><br><span class="line">user_item_dict = train_sessions.groupby(<span class="string">&#x27;session_id&#x27;</span>)[<span class="string">&#x27;item_id&#x27;</span>].agg(<span class="built_in">list</span>).to_dict()</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/v1Q0HO"><img src="https://s1.ax1x.com/2022/08/09/v1Q0HO.png" alt="v1Q0HO.png"></a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># agg</span></span><br><span class="line"><span class="comment"># 聚合</span></span><br><span class="line">user_item_dict = train_sessions.groupby(<span class="string">&#x27;session_id&#x27;</span>)[<span class="string">&#x27;item_id&#x27;</span>].agg(<span class="built_in">list</span>).to_dict()</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+
 
         </div>
         
@@ -309,7 +253,7 @@
     <script type="text/javascript">
         $(()=>{
             new QRCode("wechat-qr", {
-                text: "http://example.com/2022/08/04/CauseRec-%E5%8F%8D%E4%BA%8B%E5%AE%9E%E7%94%9F%E6%88%90%E7%9A%84%E5%BA%8F%E5%88%97%E6%8E%A8%E8%8D%90/",
+                text: "http://example.com/2022/08/09/%E7%BB%93%E6%9E%84%E5%8C%96%E6%AF%94%E8%B5%9B%E5%85%A5%E9%97%A8/",
                 width: 150,
                 height: 150,
                 correctLevel : QRCode.CorrectLevel.H
@@ -321,12 +265,15 @@
             const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
             const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
             const twitterBase   = "https://twitter.com/intent/tweet?";
-            const hostUrl       = "http://example.com/2022/08/04/CauseRec-%E5%8F%8D%E4%BA%8B%E5%AE%9E%E7%94%9F%E6%88%90%E7%9A%84%E5%BA%8F%E5%88%97%E6%8E%A8%E8%8D%90/";
-            const title         = "「CauseRec 反事实生成的序列推荐」";
-            const excerpt       = `说些废话2022&#x2F;8&#x2F;4 
-在8&#x2F;2日 在写完core这篇文章的时候 发现 文章的一个思路非常像这篇文中的反事实生成这个部分
-还有 我其实写完了sine的文章 但是 学校服务器不让用 就离谱
-然后发现 这...`;
+            const hostUrl       = "http://example.com/2022/08/09/%E7%BB%93%E6%9E%84%E5%8C%96%E6%AF%94%E8%B5%9B%E5%85%A5%E9%97%A8/";
+            const title         = "「结构化比赛入门」";
+            const excerpt       = `说些废话9.9 买不到吃亏 买不到上当
+加油吧 通过第一个课 感知到了 这个比赛的快乐
+哈哈哈！
+前言比赛名：RecSys Challenge 2022
+链接：
+
+代码链接 https://github.com/limhao/kagg...`;
             let _URL;
             switch (dest) {
                 case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
@@ -348,7 +295,7 @@
                     
                 </div>
                 <div class="pull-date">
-                <span>最后编辑：2022-08-05</span>
+                <span>最后编辑：2022-08-09</span>
                 </div>
             </div>
         </footer>
@@ -357,13 +304,9 @@
         <nav class="navigation post-navigation clearfix" role="navigation">
             
             <div class="nav-previous clearfix">
-                <a title=" core 在一致表示空间内基于会话的简单有效的推荐" href="/2022/08/02/core-在一致表示空间内基于会话的简单有效的推荐/">&lt; 上一篇</a>
+                <a title=" sine 论文阅读" href="/2022/08/06/sine-论文阅读/">&lt; 上一篇</a>
             </div>
             
-            
-            <div class="nav-next clearfix">
-                <a title=" sine 论文阅读" href="/2022/08/06/sine-论文阅读/">下一篇 &gt;</a>
-            </div>
             
         </nav>
     
