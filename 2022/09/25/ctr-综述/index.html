@@ -15,16 +15,16 @@
   
     <meta name="keywords" content="" />
   
-  <meta name="description" content="说些废话点击率预估(CTR)在各种个性化在线服务中扮演着重要的角色，包括：计算广告、推荐系统和Web搜索等。  根据时间来分 可以稍微看看这个图！ 2010年 以前 都是 LR+人工特征工程为主  到了2010年 以 隐向量为代表的FM 模型，解决了人工组合特征的困扰 而在2014 年 facebook提出的 GBDT + LR  提出的一种树模型特点构建组合特征的思路 2015年以后，借助非线性">
+  <meta name="description" content="说些废话点击率预估(CTR)在各种个性化在线服务中扮演着重要的角色，包括：计算广告、推荐系统和Web搜索等。  根据时间来分 可以稍微看看这个图！ 2007年 以前 都是 LR+人工特征工程为主  到了2010年 以 隐向量为代表的FM 模型，解决了人工组合特征的困扰 而在2014 年 facebook提出的 GBDT + LR  提出的一种树模型特点构建组合特征的思路 2015年以后，借助非线性">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ctr 综述">
-<meta property="og:url" content="http://example.com/2022/09/23/ctr-%E7%BB%BC%E8%BF%B0/index.html">
+<meta property="og:url" content="http://example.com/2022/09/25/ctr-%E7%BB%BC%E8%BF%B0/index.html">
 <meta property="og:site_name" content="limhao博客">
-<meta property="og:description" content="说些废话点击率预估(CTR)在各种个性化在线服务中扮演着重要的角色，包括：计算广告、推荐系统和Web搜索等。  根据时间来分 可以稍微看看这个图！ 2010年 以前 都是 LR+人工特征工程为主  到了2010年 以 隐向量为代表的FM 模型，解决了人工组合特征的困扰 而在2014 年 facebook提出的 GBDT + LR  提出的一种树模型特点构建组合特征的思路 2015年以后，借助非线性">
+<meta property="og:description" content="说些废话点击率预估(CTR)在各种个性化在线服务中扮演着重要的角色，包括：计算广告、推荐系统和Web搜索等。  根据时间来分 可以稍微看看这个图！ 2007年 以前 都是 LR+人工特征工程为主  到了2010年 以 隐向量为代表的FM 模型，解决了人工组合特征的困扰 而在2014 年 facebook提出的 GBDT + LR  提出的一种树模型特点构建组合特征的思路 2015年以后，借助非线性">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/null">
-<meta property="article:published_time" content="2022-09-23T14:38:34.391Z">
-<meta property="article:modified_time" content="2022-09-23T14:38:34.704Z">
+<meta property="article:published_time" content="2022-09-25T13:21:33.196Z">
+<meta property="article:modified_time" content="2022-09-25T13:21:33.266Z">
 <meta property="article:author" content="limhao">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/null">
@@ -156,13 +156,13 @@
             
             
             <ul class="kratos-post-meta text-center">
-                <li><i class="fa fa-calendar"></i> 2022-09-23</li>
+                <li><i class="fa fa-calendar"></i> 2022-09-25</li>
                 <li><i class="fa fa-user"></i> 作者 limhao</li>
                 <li>
                     <i class="fa fa-edit"></i> 
                     
                     
-                        466
+                        ~4.43K
                     
                     字
                 </li>
@@ -172,28 +172,193 @@
         <div class="kratos-post-content">
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>本文最后编辑于 <time datetime="1663943914704"></time> 前，其中的内容可能需要更新。</p></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1664112093266"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
             <hr />
             <h2 id="说些废话"><a href="#说些废话" class="headerlink" title="说些废话"></a>说些废话</h2><p>点击率预估(CTR)在各种个性化在线服务中扮演着重要的角色，包括：计算广告、推荐系统和Web搜索等。 </p>
 <p>根据时间来分 可以稍微看看这个图！</p>
-<p>2010年 以前 都是 LR+人工特征工程为主 </p>
+<p>2007年 以前 都是 LR+人工特征工程为主 </p>
 <p>到了2010年 以 隐向量为代表的FM 模型，解决了人工组合特征的困扰</p>
 <p>而在2014 年 facebook提出的 GBDT + LR  提出的一种树模型特点构建组合特征的思路</p>
 <p>2015年以后，借助非线性自动组合特征能力的深度模型，开始成为业界的主流</p>
 <p>从经典的DNN 到 结合浅层的Wide&amp;Deep 用于CTR预估模型的深度模型在这些年百花盛开。</p>
 <p>各种交叉特征建模方法层出不穷，attention机制也帮助更好的适应业务，提升模型的解释性。</p>
 <p>而核心问题离不开解决数据高维稀疏难题，自动化组合特征，模型可解释性等问题。</p>
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>论文名：</p>
-<p>链接：</p>
+<h2 id="主要看了什么"><a href="#主要看了什么" class="headerlink" title="主要看了什么"></a>主要看了什么</h2><h2 id="1-前言-–-CTR推荐是啥"><a href="#1-前言-–-CTR推荐是啥" class="headerlink" title="1. 前言 – CTR推荐是啥"></a>1. 前言 – CTR推荐是啥</h2><h3 id="ctr是啥"><a href="#ctr是啥" class="headerlink" title="ctr是啥"></a>ctr是啥</h3><p>CTR指在搜索引擎中输入关键词后进行搜索，然后按竞价等因素把相关的网页按顺序进行排列出来，然后用户会选择自己感兴趣的网站点击进去；把一个网站所有搜索出来的次数作为总次数，把用户点击并进入网站的次数占总次数的比例叫点击率。</p>
+<p>计算公式</p>
+<p>计算公式为CTR&#x3D;实际点击次数&#x2F;展示量，即 Click &#x2F; Show content。</p>
+<p>CTR：点击通过率，Click-Through-Rate (点击通过比率)</p>
+<h3 id="ctr预估推荐"><a href="#ctr预估推荐" class="headerlink" title="ctr预估推荐"></a>ctr预估推荐</h3><p><a target="_blank" rel="noopener" href="https://imgse.com/i/xA56df"><img src="https://s1.ax1x.com/2022/09/24/xA56df.md.png"></a></p>
+<p>预测点击率(CTR）的算法被称为CTR预估算法，CTR预估的一系列算法经常用于推荐系统的排序阶段，其实有很多机器学习的方法或者深度学习的方法都可以作为CTR预估的算法，前提是这些算法的输出是一个0~1的概率值，并以概率作为分类的依据。</p>
+<h2 id="2-问题定义以及评价"><a href="#2-问题定义以及评价" class="headerlink" title="2. 问题定义以及评价"></a>2. 问题定义以及评价</h2><p>ctr推荐并不相同与ctr预估。其目标存在差距。</p>
+<p>CTR预估起源于计算广告，因为关系到真金白银的定价问题，因此要求预估出来的CTR必须“<strong>绝对准确</strong>”。这是因为，假如给一个用户准备了A&#x2F;B&#x2F;C三个广告，那么无论预测CTR是0.9、0.8、0.6，还是0.5、0.4、0.3都不影响三个广告的展现顺序，但是向客户的收费却有天壤之别。</p>
+<p>但是推荐系统只要求“<strong>相对准确</strong>”。假如ABC换成了三篇文章，只要能够将用户最喜欢的A排在第1位，次喜欢的B排在第2位，无论我们预测的CTR是0.9、0.8、0.6，还是0.5、0.4、0.3，用户都能接受。</p>
+<h3 id="2-1-定义"><a href="#2-1-定义" class="headerlink" title="2.1 定义"></a>2.1 定义</h3><p>其输入是用户的点击和未点击的数据。通过分析，输出一个相对排序的item 进行推荐</p>
+<h3 id="2-2-数据集"><a href="#2-2-数据集" class="headerlink" title="2.2 数据集"></a>2.2 数据集</h3><p>数据集以点击数据集为主</p>
+<p>同样的 我看到的数据集类型基本都是广告这个类型</p>
+<p>一定比的数据集有Criteo，azavu</p>
+<p>其他的有 kdd12，ml-1m，iPinYou等</p>
+<table>
+<thead>
+<tr>
+<th>dataset</th>
+<th>website</th>
+<th>filed</th>
+<th>records&#x2F;k</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Criteo</td>
+<td><a target="_blank" rel="noopener" href="https://www.kaggle.com/c/criteo-display-ad-challenge/data">https://www.kaggle.com/c/criteo-display-ad-challenge/data</a></td>
+<td>广告点击</td>
+<td>45,850</td>
+</tr>
+<tr>
+<td>azavu</td>
+<td><a target="_blank" rel="noopener" href="https://www.kaggle.com/c/avazu-ctr-prediction/data">https://www.kaggle.com/c/avazu-ctr-prediction/data</a></td>
+<td>广告点击</td>
+<td>40,428</td>
+</tr>
+<tr>
+<td>iPinYou</td>
+<td><a target="_blank" rel="noopener" href="http://contest.ipinyou.com/">http://contest.ipinyou.com/</a></td>
+<td>广告点击</td>
+<td>15,367</td>
+</tr>
+<tr>
+<td>kdd2010</td>
+<td><a target="_blank" rel="noopener" href="https://grouplens.org/datasets/mov">https://grouplens.org/datasets/mov</a></td>
+<td>教育评分</td>
+<td></td>
+</tr>
+<tr>
+<td>ml-1m</td>
+<td><a target="_blank" rel="noopener" href="https://grouplens.org/datasets/movielens/">https://grouplens.org/datasets/movielens/</a></td>
+<td>电影评分</td>
+<td>1000</td>
+</tr>
+</tbody></table>
+<h3 id="2-3-常用评估指标"><a href="#2-3-常用评估指标" class="headerlink" title="2.3 常用评估指标"></a>2.3 常用评估指标</h3><p>一定会比较的 AUC logloss</p>
+<p>其他的 RelaImpr Rmse RIG</p>
+<ul>
+<li>AUC</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/fanfangyu/article/details/122885441">https://blog.csdn.net/fanfangyu/article/details/122885441</a></p>
+<p>是一个模型的评价指标，只能适用于二分类模型的评价。</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/xA5RJg"><img src="https://s1.ax1x.com/2022/09/24/xA5RJg.jpg"></a></p>
+<p>AUC（Area Under Curve）被定义为ROC曲线下与坐标轴围成的面积，</p>
+<p>其中，ROC曲线全称为受试者工作特征曲线（receiver operating characteristic curve）</p>
+<p>二元分类模型的预测结果有四个结局。即以下四种。</p>
+<p>ROC曲线的横坐标是<strong>伪阳性率</strong>（也叫假正类率，False Positive Rate），纵坐标是<strong>真阳性率</strong>（真正类率，True Positive Rate），相应的还有<strong>真阴性率</strong>（真负类率，True Negative Rate）和<strong>伪阴性率</strong>（假负类率，False Negative Rate）。这四类指标的计算方法如下： </p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/xA5co8"><img src="https://s1.ax1x.com/2022/09/24/xA5co8.png"></a></p>
+<p>其中坐标轴的定义：</p>
+<p>（1）伪阳性率（<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/FPR/6343296?fromModule=lemma_inlink">FPR</a>）：判定为正例却不是真正例的概率，即真负例中判为正例的概率</p>
+<p>（2）真阳性率（<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/TPR/5548598?fromModule=lemma_inlink">TPR</a>）：判定为正例也是真正例的概率，即真正例中判为正例的概率（也即正例召回率）</p>
+<p>（3）伪阴性率（<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/FNR/5609400?fromModule=lemma_inlink">FNR</a>）：判定为负例却不是真负例的概率，即真正例中判为负例的概率。</p>
+<p>（4）真阴性率（<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/TNR/4663071?fromModule=lemma_inlink">TNR</a>）：判定为负例也是真负例的概率，即真负例中判为负例的概率。</p>
+<p>关于曲线的绘制 得看这个</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/xiaohuihui1994/article/details/87987836">https://blog.csdn.net/xiaohuihui1994/article/details/87987836</a></p>
+<p>步骤大致分为三步：</p>
 <ol>
-<li>论文链接</li>
-<li>代码链接</li>
-<li>文章介绍链接：（知乎）</li>
+<li>按照属于“正样本”的概率将所有样本排序</li>
+<li>将分类阈值设为最大，即把所有样例均预测为反例，所以得到此时的p和r均为0</li>
+<li>依次将样本从高到低的样本score值作为阈值</li>
 </ol>
-<p>相关知识：</p>
-<h2 id="1-相关背景"><a href="#1-相关背景" class="headerlink" title="1. 相关背景"></a>1. 相关背景</h2><h3 id="1-1-核心思想"><a href="#1-1-核心思想" class="headerlink" title="1.1 核心思想"></a>1.1 核心思想</h3><h2 id="2-实证分析"><a href="#2-实证分析" class="headerlink" title="2. 实证分析"></a>2. 实证分析</h2><h2 id="3-问题描述"><a href="#3-问题描述" class="headerlink" title="3. 问题描述"></a>3. 问题描述</h2><h2 id="4-方法（基本为论文方法部分）"><a href="#4-方法（基本为论文方法部分）" class="headerlink" title="4. 方法（基本为论文方法部分）"></a>4. 方法（基本为论文方法部分）</h2><h2 id="5-实验"><a href="#5-实验" class="headerlink" title="5. 实验"></a>5. 实验</h2><h2 id="6-总结"><a href="#6-总结" class="headerlink" title="6. 总结"></a>6. 总结</h2><h2 id="7-自己的想法"><a href="#7-自己的想法" class="headerlink" title="7. 自己的想法"></a>7. 自己的想法</h2>
+<ul>
+<li>logloss</li>
+</ul>
+<p>二分类时 logloss 就是交叉熵</p>
+<ul>
+<li>RelaImpr</li>
+</ul>
+<p>$$<br>Relalmpr &#x3D; (\frac {AUC(meadured\quad model)-0.5}{AUC(base\quad model)-0.5}-1)\times 100%<br>$$</p>
+<p>RelaImpr代表相对于based model的相对改进指标，对于随机猜测的话，值AUC是0.5 （阿里DIN）</p>
+<ul>
+<li>RMSE</li>
+</ul>
+<p>均方根误差</p>
+<p>$$<br>RMSE &#x3D; \sqrt\frac{\sum_{i&#x3D;1}^{N}(Predicted_i - Actual_i)^{2}}{N}<br>$$<br>均方根误差RMSE和标准差的计算公式也是高度近似的：标准差是用来衡量一组数自身的离散程度，而均方根误差是用来衡量观测值（真值）与预测值之间的偏差</p>
+<ul>
+<li>RIG</li>
+</ul>
+<p>相对信息增益(Relative Information Gain) </p>
+<p>信息熵公式为：<br>$$<br>h(X) &#x3D; - \sum_{i&#x3D;1}^{n} p_i\log p_i<br>$$<br>在条件A一直的情况下，X的相对熵为：<br>$$<br>h(X|A) &#x3D; \sum_{i&#x3D;1}^{n} p_i(x_i|A)\log p_i(x_i|A)<br>$$<br>熵与条件熵的差值为信息增益：<br>$$<br>g(X,A) &#x3D; H(X) - H(X|A)<br>$$<br>信息增益值的大小是相对数据集而言的，并没有绝对的意义，在分类问题比较困难的时候，也就是训练数据集的经验熵比较大的时候，信息增益的值比较大，反之，信息增益值会偏小。使用相对信息增益(信息增益比)可以对这一个问题进行校正，相对信息增益(Relative Information Gain):<br>$$<br>RIG &#x3D;\frac {H(X) - H(X|A)}{H(X)}<br>$$<br>RIG指标不仅和模型的质量有关，还和数据集的分布情况有关；因此千万注意不可以使用RIG来对比不同数据集上生成的模型，但可以用来对比相同数据集上不同模型的质量差异。 </p>
+<h3 id="2-4-模型大类"><a href="#2-4-模型大类" class="headerlink" title="2.4 模型大类"></a>2.4 模型大类</h3><table>
+<thead>
+<tr>
+<th>模型大类</th>
+<th>提出时间</th>
+<th>原理</th>
+<th>优势</th>
+<th>局限性</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>LR</td>
+<td>2010年以前</td>
+<td>使用线性权重组合每个单一的特征</td>
+<td>具有效率高、易于快速部署、快速挖掘有效特征的优点</td>
+<td>不具备特征交互的能力，交叉特征可能比单一特征具有更重要的影响</td>
+</tr>
+<tr>
+<td>FM</td>
+<td>2010</td>
+<td>对Poly2中的权重矩阵W做矩阵分解，为每个特征学一个k为的向量表示。两个向量的内积表示特征对的重要性</td>
+<td>FM可以捕获特征交互，同时可以在稀疏场景下有效的学习</td>
+<td>FM忽略了这样一个事实: 当一个特性与来自其他域(Field)的特性交互时，它的行为可能会有所不同。</td>
+</tr>
+<tr>
+<td>DNN</td>
+<td>2015</td>
+<td>利用深度网络，提高模型的交叉特征建模能力</td>
+<td>偏重于挖掘高阶，增强了模型的表达能力</td>
+<td>对低阶交叉特征信息利用不足，可解释性差</td>
+</tr>
+<tr>
+<td>wide&amp;deep</td>
+<td>2016</td>
+<td>通过联合训练的方式，同时获得线性模型（Wide）的记忆能力和深度模型（Deep）的泛化能力，提高模型的预测准确性和多样性</td>
+<td>具有线性和深度两个特性</td>
+<td>模型复杂 训练时间长</td>
+</tr>
+</tbody></table>
+<h2 id="3-模型"><a href="#3-模型" class="headerlink" title="3. 模型"></a>3. 模型</h2><h3 id="3-1-LR模型"><a href="#3-1-LR模型" class="headerlink" title="3.1 LR模型"></a>3.1 LR模型</h3><ul>
+<li>LR</li>
+</ul>
+<p>LR( Logistic Regression ) 是机器学习中一种线性分类模型， 由于其简单、高效、易并行的特点，在实际生产环境中被广泛地应用。 </p>
+<p>同样的在实际广告场景下的广告点击率预估问题。对于 给定年龄、性别、教育程度、兴趣类目等用户侧特征，上下文特征，以及广告id，商品类型等广告侧特征。预测用户对于特征的点击概率。针对特征的做法是对各类特征进行one-hot编码，针对连续数值特征，会按照区间分段的方法将其离散化再进行one-hot编码。</p>
+<p>对于LR的模型来说，需要提供成熟的特征工程工作，而对应的模型结构较为简单。对于其模型来说没有使用到组合特征，是一大问题。<br>$$<br>\hat{y}(x) &#x3D; w_o + \sum_{i&#x3D;1}^{n} w_ix_i<br>$$</p>
+<ul>
+<li>poly2</li>
+</ul>
+<p>模型有效的解决了LR的组合特征的问题，需要o（m2）的参数空间。 特征xi和xj的两两组合用xixj表示，可见只有当xi和xj都为非零值时，组合特征（或称交叉项）在多项式模型中才有意义。在真实业务场景下，样本特征通常高维稀疏，而组合特征xixj的稀疏程度则更为严重。在这种极度稀疏的情形下，模型很难准确地学习出参数wij 。 因为特征数据十分稀疏，模型在训练样本中从未见过有效的交叉项xixj，无法学习这个交叉项和label之间的关系。而参数无法准确学习，必然会严重影响模型效果。<br>$$<br>\hat{y}<em>{Poly2}(x) &#x3D; w_0 + \sum</em>{i&#x3D;1}^{n} w_ix_i +\sum_{i&#x3D;1}^{n}\sum_{j&#x3D;i+1}^{n}w_{ij}x_ix_j<br>$$</p>
+<table>
+<thead>
+<tr>
+<th>模型名</th>
+<th>论文名</th>
+<th>优势</th>
+<th>缺陷</th>
+<th>年份</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>LR</td>
+<td></td>
+<td>简单、高效、易并行的特点，在实际生产环境中被广泛地应用</td>
+<td>缺少组合特征</td>
+<td>2007</td>
+</tr>
+<tr>
+<td>poly2</td>
+<td></td>
+<td>相较于LR 添加了 组合特征</td>
+<td>稀疏特征向量会变得更加稀疏，无法收敛。权重参数由n直接上升到 n2，增加了训练复杂度</td>
+<td>2010</td>
+</tr>
+</tbody></table>
+
         </div>
         
             <div class="kratos-copyright text-center clearfix">
@@ -246,7 +411,7 @@
     <script type="text/javascript">
         $(()=>{
             new QRCode("wechat-qr", {
-                text: "http://example.com/2022/09/23/ctr-%E7%BB%BC%E8%BF%B0/",
+                text: "http://example.com/2022/09/25/ctr-%E7%BB%BC%E8%BF%B0/",
                 width: 150,
                 height: 150,
                 correctLevel : QRCode.CorrectLevel.H
@@ -258,11 +423,11 @@
             const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
             const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
             const twitterBase   = "https://twitter.com/intent/tweet?";
-            const hostUrl       = "http://example.com/2022/09/23/ctr-%E7%BB%BC%E8%BF%B0/";
+            const hostUrl       = "http://example.com/2022/09/25/ctr-%E7%BB%BC%E8%BF%B0/";
             const title         = "「ctr 综述」";
             const excerpt       = `说些废话点击率预估(CTR)在各种个性化在线服务中扮演着重要的角色，包括：计算广告、推荐系统和Web搜索等。 
 根据时间来分 可以稍微看看这个图！
-2010年 以前 都是 LR+人工特征工程为主 
+2007年 以前 都是 LR+人工特征工程为主 
 到了2010年 以 隐向量为代表的F...`;
             let _URL;
             switch (dest) {
@@ -285,7 +450,7 @@
                     
                 </div>
                 <div class="pull-date">
-                <span>最后编辑：2022-09-23</span>
+                <span>最后编辑：2022-09-25</span>
                 </div>
             </div>
         </footer>
@@ -294,7 +459,7 @@
         <nav class="navigation post-navigation clearfix" role="navigation">
             
             <div class="nav-previous clearfix">
-                <a title=" 会议总结" href="/2022/09/23/会议总结/">&lt; 上一篇</a>
+                <a title=" 知识追踪综述" href="/2022/09/25/知识追踪综述/">&lt; 上一篇</a>
             </div>
             
             
@@ -370,19 +535,19 @@
         
           
           
-            <a class="list-group-item" href="/2022/09/23/ctr-%E7%BB%BC%E8%BF%B0/"><i class="fa  fa-book"></i> ctr 综述</a>
+            <a class="list-group-item" href="/2022/09/25/ctr-%E7%BB%BC%E8%BF%B0/"><i class="fa  fa-book"></i> ctr 综述</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2022/09/25/%E7%9F%A5%E8%AF%86%E8%BF%BD%E8%B8%AA%E7%BB%BC%E8%BF%B0/"><i class="fa  fa-book"></i> 知识追踪综述</a>
             
           
         
           
           
             <a class="list-group-item" href="/2022/09/23/%E4%BC%9A%E8%AE%AE%E6%80%BB%E7%BB%93/"><i class="fa  fa-book"></i> 会议总结</a>
-            
-          
-        
-          
-          
-            <a class="list-group-item" href="/2022/09/23/%E7%9F%A5%E8%AF%86%E8%BF%BD%E8%B8%AA%E7%BB%BC%E8%BF%B0/"><i class="fa  fa-book"></i> 知识追踪综述</a>
             
           
         
