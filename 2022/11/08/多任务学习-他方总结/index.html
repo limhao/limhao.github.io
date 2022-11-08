@@ -4,7 +4,7 @@
   <!-- 元数据 -->
   <meta charset="utf-8">
   <link rel="icon" href="">
-  <title>argparse操作 | limhao博客</title>
+  <title>多任务学习 他方总结 | limhao博客</title>
   <meta name="author" content="limhao" />
   <meta http-equiv="Cache-Control" content="no-transform" />
   <meta http-equiv="Cache-Control" content="no-siteapp" />
@@ -15,16 +15,16 @@
   
     <meta name="keywords" content="" />
   
-  <meta name="description" content="0. 前言对于 argparse 这个命令行小助手 其 对于深度网络的开发具有相当重要的作用  一开始 对于开发者来说 对于其描述 add_argument 定义 一眼就能看出来 这个东西需要啥 要给啥  其使用 具体三个步骤  实例化 ArgumentParser  使用add_argument函数添加参数  使用parse_args 解析参数   1. 实例化ArgumentParser（挺固">
+  <meta name="description" content="2022&#x2F;11&#x2F;8 链接：https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;363059498 一文梳理多任务学习(MMoE&#x2F;PLE&#x2F;DUPN&#x2F;ESSM等) 多任务为什么有效 隐式数据增强：每个任务都有自己的样本，使用多任务学习的话，模型的样本量会提升很多。而且数据都会有噪声，如果单学A任务，模型会把A数据的噪声也学进去，如果是多任务学习，">
 <meta property="og:type" content="article">
-<meta property="og:title" content="argparse操作">
-<meta property="og:url" content="http://example.com/2022/05/03/argparse%E6%93%8D%E4%BD%9C/index.html">
+<meta property="og:title" content="多任务学习 他方总结">
+<meta property="og:url" content="http://example.com/2022/11/08/%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0-%E4%BB%96%E6%96%B9%E6%80%BB%E7%BB%93/index.html">
 <meta property="og:site_name" content="limhao博客">
-<meta property="og:description" content="0. 前言对于 argparse 这个命令行小助手 其 对于深度网络的开发具有相当重要的作用  一开始 对于开发者来说 对于其描述 add_argument 定义 一眼就能看出来 这个东西需要啥 要给啥  其使用 具体三个步骤  实例化 ArgumentParser  使用add_argument函数添加参数  使用parse_args 解析参数   1. 实例化ArgumentParser（挺固">
+<meta property="og:description" content="2022&#x2F;11&#x2F;8 链接：https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;363059498 一文梳理多任务学习(MMoE&#x2F;PLE&#x2F;DUPN&#x2F;ESSM等) 多任务为什么有效 隐式数据增强：每个任务都有自己的样本，使用多任务学习的话，模型的样本量会提升很多。而且数据都会有噪声，如果单学A任务，模型会把A数据的噪声也学进去，如果是多任务学习，">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/null">
-<meta property="article:published_time" content="2022-05-03T12:28:12.894Z">
-<meta property="article:modified_time" content="2022-05-03T12:49:52.176Z">
+<meta property="article:published_time" content="2022-11-08T13:28:21.991Z">
+<meta property="article:modified_time" content="2022-11-08T14:26:26.988Z">
 <meta property="article:author" content="limhao">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/null">
@@ -152,17 +152,17 @@
     <div class="kratos-hentry kratos-post-inner clearfix">
         <header class="kratos-entry-header">
             
-                <h1 class="kratos-entry-title text-center">argparse操作</h1>
+                <h1 class="kratos-entry-title text-center">多任务学习 他方总结</h1>
             
             
             <ul class="kratos-post-meta text-center">
-                <li><i class="fa fa-calendar"></i> 2022-05-03</li>
+                <li><i class="fa fa-calendar"></i> 2022-11-08</li>
                 <li><i class="fa fa-user"></i> 作者 limhao</li>
                 <li>
                     <i class="fa fa-edit"></i> 
                     
                     
-                        1388
+                        1055
                     
                     字
                 </li>
@@ -172,40 +172,27 @@
         <div class="kratos-post-content">
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>本文最后编辑于 <time datetime="1651582192176"></time> 前，其中的内容可能需要更新。</p></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1667917586988"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
             <hr />
-            <h2 id="0-前言"><a href="#0-前言" class="headerlink" title="0. 前言"></a>0. 前言</h2><p>对于 argparse 这个命令行小助手</p>
-<p>其 对于深度网络的开发具有相当重要的作用 </p>
-<p>一开始 对于开发者来说 对于其描述 add_argument 定义 一眼就能看出来 这个东西需要啥</p>
-<p>要给啥 </p>
-<p>其使用 具体三个步骤</p>
-<ol>
-<li><p>实例化 ArgumentParser</p>
-</li>
-<li><p>使用add_argument函数添加参数</p>
-</li>
-<li><p>使用parse_args 解析参数</p>
-</li>
-</ol>
-<h2 id="1-实例化ArgumentParser（挺固定的）"><a href="#1-实例化ArgumentParser（挺固定的）" class="headerlink" title="1. 实例化ArgumentParser（挺固定的）"></a>1. 实例化ArgumentParser（挺固定的）</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 导入关键包</span></span><br><span class="line"><span class="keyword">import</span> argparse</span><br><span class="line"><span class="comment"># 创建一个 ArgumentParser 对象</span></span><br><span class="line">parser = argparse.ArgumentParser()</span><br></pre></td></tr></table></figure>
-
-<h2 id="2-添加参数"><a href="#2-添加参数" class="headerlink" title="2. 添加参数"></a>2. 添加参数</h2><p>举一下本人的例子</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">parser.add_argument(<span class="string">&#x27;--train_root&#x27;</span>, <span class="built_in">type</span>=<span class="built_in">str</span>, default=<span class="string">&#x27;datasets/ml1m/test/train.txt&#x27;</span>)</span><br><span class="line">parser.add_argument(<span class="string">&#x27;--test_root&#x27;</span>, <span class="built_in">type</span>=<span class="built_in">str</span>, default=<span class="string">&#x27;datasets/ml1m/test/test.txt&#x27;</span>)</span><br><span class="line">parser.add_argument(<span class="string">&#x27;--L&#x27;</span>, <span class="built_in">type</span>=<span class="built_in">int</span>, default=<span class="number">5</span>)</span><br><span class="line">parser.add_argument(<span class="string">&#x27;--T&#x27;</span>, <span class="built_in">type</span>=<span class="built_in">int</span>, default=<span class="number">2</span>)</span><br><span class="line"><span class="comment"># train arguments</span></span><br><span class="line">parser.add_argument(<span class="string">&#x27;--n_iter&#x27;</span>, <span class="built_in">type</span>=<span class="built_in">int</span>, default=<span class="number">50</span>)</span><br><span class="line">parser.add_argument(<span class="string">&#x27;--seed&#x27;</span>, <span class="built_in">type</span>=<span class="built_in">int</span>, default=<span class="number">1234</span>)</span><br><span class="line">parser.add_argument(<span class="string">&#x27;--batch_size&#x27;</span>, <span class="built_in">type</span>=<span class="built_in">int</span>, default=<span class="number">512</span>)</span><br><span class="line">parser.add_argument(<span class="string">&#x27;--learning_rate&#x27;</span>, <span class="built_in">type</span>=<span class="built_in">float</span>, default=<span class="number">1e-3</span>)</span><br><span class="line">parser.add_argument(<span class="string">&#x27;--l2&#x27;</span>, <span class="built_in">type</span>=<span class="built_in">float</span>, default=<span class="number">1e-6</span>)</span><br><span class="line">parser.add_argument(<span class="string">&#x27;--neg_samples&#x27;</span>, <span class="built_in">type</span>=<span class="built_in">int</span>, default=<span class="number">3</span>)</span><br><span class="line">parser.add_argument(<span class="string">&#x27;--use_cuda&#x27;</span>, <span class="built_in">type</span>=<span class="built_in">str</span>, default=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
-
-<p>在add_argument 中间有三个参数</p>
-<p>参数一： 看作变量名 前面得加 –</p>
-<p>参数二： 变量数据类型</p>
-<p>参数三： 缺省值（default）</p>
-<p>目前 俺觉得俺能学这三个参数就好了</p>
-<h2 id="3-解析参数"><a href="#3-解析参数" class="headerlink" title="3. 解析参数"></a>3. 解析参数</h2><p>最后会被解析成</p>
- <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">args = parser.parse_args()</span><br><span class="line"><span class="comment"># 在ipython中 这个操作得是这个样子</span></span><br><span class="line">args = parser.parse_args(args=[])</span><br></pre></td></tr></table></figure>
-
-<h2 id="神奇操作"><a href="#神奇操作" class="headerlink" title="神奇操作"></a>神奇操作</h2><p><a target="_blank" rel="noopener" href="https://imgtu.com/i/OAMjln"><img src="https://s1.ax1x.com/2022/05/03/OAMjln.md.png"></a></p>
-<p>这里存在 我叫做变量的继承 挺有意思的</p>
-<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/OAlCut"><img src="https://s1.ax1x.com/2022/05/03/OAlCut.md.png"></a></p>
-<p>被封装成namespace对象 不能在使用add_argument 函数对其 变量进行添加</p>
+            <p>2022&#x2F;11&#x2F;8</p>
+<p>链接：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/363059498">https://zhuanlan.zhihu.com/p/363059498</a> 一文梳理多任务学习(MMoE&#x2F;PLE&#x2F;DUPN&#x2F;ESSM等)</p>
+<h2 id="多任务为什么有效"><a href="#多任务为什么有效" class="headerlink" title="多任务为什么有效"></a>多任务为什么有效</h2><ul>
+<li><strong>隐式数据增强</strong>：每个任务都有自己的样本，使用多任务学习的话，模型的样本量会提升很多。而且数据都会有噪声，如果单学A任务，模型会把A数据的噪声也学进去，如果是多任务学习，模型因为要求B任务也要学习好，就会忽视掉A任务的噪声，同理，模型学A的时候也会忽视掉B任务的噪声，因此多任务学习可以学到一个更精确的嵌入表达。</li>
+<li><strong>注意力聚焦</strong>：如果任务的数据噪声非常多，数据很少且非常高维，模型对相关特征和非相关特征就无法区分。多任务学习可以帮助模型聚焦到有用的特征上，因为不同任务都会反应特征与任务的相关性。</li>
+<li><strong>特征信息窃取</strong>：有些特征在任务B中容易学习，在任务A中较难学习，主要原因是任务A与这些特征的交互更为复杂，且对于任务A来说其他特征可能会阻碍部分特征的学习，因此通过多任务学习，模型可以高效的学习每一个重要的特征。</li>
+<li><strong>表达偏差</strong>：MTL使模型学到所有任务都偏好的向量表示。这也将有助于该模型推广到未来的新任务，因为假设空间对于足够多的训练任务表现良好，对于学习新任务也表现良好。</li>
+<li><strong>正则化</strong>：对于一个任务而言，其他任务的学习都会对该任务有正则化效果。</li>
+</ul>
+<h2 id="DUPN"><a href="#DUPN" class="headerlink" title="DUPN"></a>DUPN</h2><p><a target="_blank" rel="noopener" href="https://postimg.cc/VSJkwWf0"><img src="https://i.postimg.cc/bvTDQm4g/v2-520db381c459b615c30e7841b7401949-720w.webp" alt="v2-520db381c459b615c30e7841b7401949-720w.webp"></a></p>
+<p> 模型分为行为序列层、Embedding层、LSTM层、Attention层、下游多任务层(CTR、LTR、时尚达人关注预估、用户购买力度量)。如下图所示 </p>
+<h2 id="MMoE"><a href="#MMoE" class="headerlink" title="MMoE"></a>MMoE</h2><p><a target="_blank" rel="noopener" href="https://postimg.cc/k21gLpmd"><img src="https://i.postimg.cc/5t1QYhKj/v2-2724353e8849e0bdd26ef4e5c2f1d541-720w.webp" alt="v2-2724353e8849e0bdd26ef4e5c2f1d541-720w.webp"></a></p>
+<p>如下图所示，模型(a)最常见，共享了底层网络，上面分别接不同任务的全连接层。模型(b)认为不同的专家可以从相同的输入中提取出不同的特征，由一个Gate(类似) attention结构，把专家提取出的特征筛选出各个task最相关的特征，最后分别接不同任务的全连接层。MMOE的思想就是对于不同任务，需要不同专家提取出的信息，因此每个任务都需要一个独立的gate。 </p>
+<h2 id="PLE"><a href="#PLE" class="headerlink" title="PLE"></a><strong>PLE</strong></h2><p> 即使通过MMoE这种方式减轻负迁移现象，跷跷板现象仍然是广泛存在的(跷跷板现象指多任务之间相关性不强时，信息共享就会影响模型效果，会出现一个任务泛化性变强，另一个变弱的现象）。PLE的本质是MMOE的改进版本，有些expert是任务专属，有些expert是共享的，如下图CGC架构，对于任务A而言，通过A的gate把A的expert和共享的expert进行融合，去学习A。 </p>
+<p><a target="_blank" rel="noopener" href="https://postimg.cc/HrsLZCF2"><img src="https://i.postimg.cc/pLKndWZg/v2-783e2e10da94bc581eeabcf575ab5a06-720w.webp" alt="v2-783e2e10da94bc581eeabcf575ab5a06-720w.webp"></a></p>
+<p>真实的模样！</p>
+<p><a target="_blank" rel="noopener" href="https://postimg.cc/GHj2xpgt"><img src="https://i.postimg.cc/jdp7KwzH/v2-6f0786458500b49caf0d077a5b1e2c27-720w.webp" alt="v2-6f0786458500b49caf0d077a5b1e2c27-720w.webp"></a></p>
 
         </div>
         
@@ -259,7 +246,7 @@
     <script type="text/javascript">
         $(()=>{
             new QRCode("wechat-qr", {
-                text: "http://example.com/2022/05/03/argparse%E6%93%8D%E4%BD%9C/",
+                text: "http://example.com/2022/11/08/%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0-%E4%BB%96%E6%96%B9%E6%80%BB%E7%BB%93/",
                 width: 150,
                 height: 150,
                 correctLevel : QRCode.CorrectLevel.H
@@ -271,15 +258,12 @@
             const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
             const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
             const twitterBase   = "https://twitter.com/intent/tweet?";
-            const hostUrl       = "http://example.com/2022/05/03/argparse%E6%93%8D%E4%BD%9C/";
-            const title         = "「argparse操作」";
-            const excerpt       = `0. 前言对于 argparse 这个命令行小助手
-其 对于深度网络的开发具有相当重要的作用 
-一开始 对于开发者来说 对于其描述 add_argument 定义 一眼就能看出来 这个东西需要啥
-要给啥 
-其使用 具体三个步骤
-
-实例...`;
+            const hostUrl       = "http://example.com/2022/11/08/%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0-%E4%BB%96%E6%96%B9%E6%80%BB%E7%BB%93/";
+            const title         = "「多任务学习 他方总结」";
+            const excerpt       = `2022&#x2F;11&#x2F;8
+链接：https://zhuanlan.zhihu.com/p/363059498 一文梳理多任务学习(MMoE&#x2F;PLE&#x2F;DUPN&#x2F;ESSM等)
+多任务为什么有效
+...`;
             let _URL;
             switch (dest) {
                 case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
@@ -301,7 +285,7 @@
                     
                 </div>
                 <div class="pull-date">
-                <span>最后编辑：2022-05-03</span>
+                <span>最后编辑：2022-11-08</span>
                 </div>
             </div>
         </footer>
@@ -310,13 +294,9 @@
         <nav class="navigation post-navigation clearfix" role="navigation">
             
             <div class="nav-previous clearfix">
-                <a title=" 对于embedding操作 新的理解" href="/2022/05/01/对于embedding操作-新的理解/">&lt; 上一篇</a>
+                <a title=" 10月14日 面对的问题" href="/2022/10/30/10月14日-面对的问题/">&lt; 上一篇</a>
             </div>
             
-            
-            <div class="nav-next clearfix">
-                <a title=" 深度框架 4D数据格式" href="/2022/05/04/深度框架-数据格式/">下一篇 &gt;</a>
-            </div>
             
         </nav>
     
