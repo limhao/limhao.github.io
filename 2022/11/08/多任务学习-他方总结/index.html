@@ -15,16 +15,16 @@
   
     <meta name="keywords" content="" />
   
-  <meta name="description" content="2022&#x2F;11&#x2F;8 链接：https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;363059498 一文梳理多任务学习(MMoE&#x2F;PLE&#x2F;DUPN&#x2F;ESSM等) 多任务为什么有效 隐式数据增强：每个任务都有自己的样本，使用多任务学习的话，模型的样本量会提升很多。而且数据都会有噪声，如果单学A任务，模型会把A数据的噪声也学进去，如果是多任务学习，">
+  <meta name="description" content="2022&#x2F;11&#x2F;8 链接：https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;363059498 一文梳理多任务学习(MMoE&#x2F;PLE&#x2F;DUPN&#x2F;ESSM等) 链接：https:&#x2F;&#x2F;www.bilibili.com&#x2F;video&#x2F;BV1354y1Z7jD 这个老师讲的也很好的  多任务为什么有效 隐式数据增强：每个任务都有自己的样本，使用多任务">
 <meta property="og:type" content="article">
 <meta property="og:title" content="多任务学习 他方总结">
 <meta property="og:url" content="http://example.com/2022/11/08/%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0-%E4%BB%96%E6%96%B9%E6%80%BB%E7%BB%93/index.html">
 <meta property="og:site_name" content="limhao博客">
-<meta property="og:description" content="2022&#x2F;11&#x2F;8 链接：https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;363059498 一文梳理多任务学习(MMoE&#x2F;PLE&#x2F;DUPN&#x2F;ESSM等) 多任务为什么有效 隐式数据增强：每个任务都有自己的样本，使用多任务学习的话，模型的样本量会提升很多。而且数据都会有噪声，如果单学A任务，模型会把A数据的噪声也学进去，如果是多任务学习，">
+<meta property="og:description" content="2022&#x2F;11&#x2F;8 链接：https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;363059498 一文梳理多任务学习(MMoE&#x2F;PLE&#x2F;DUPN&#x2F;ESSM等) 链接：https:&#x2F;&#x2F;www.bilibili.com&#x2F;video&#x2F;BV1354y1Z7jD 这个老师讲的也很好的  多任务为什么有效 隐式数据增强：每个任务都有自己的样本，使用多任务">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/null">
 <meta property="article:published_time" content="2022-11-08T13:28:21.991Z">
-<meta property="article:modified_time" content="2022-11-09T03:40:09.505Z">
+<meta property="article:modified_time" content="2022-11-11T02:40:21.342Z">
 <meta property="article:author" content="limhao">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/null">
@@ -162,7 +162,7 @@
                     <i class="fa fa-edit"></i> 
                     
                     
-                        ~1.64K
+                        ~2.03K
                     
                     字
                 </li>
@@ -172,28 +172,45 @@
         <div class="kratos-post-content">
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>本文最后编辑于 <time datetime="1667965209505"></time> 前，其中的内容可能需要更新。</p></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1668134421342"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
             <hr />
             <p>2022&#x2F;11&#x2F;8</p>
 <p>链接：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/363059498">https://zhuanlan.zhihu.com/p/363059498</a> 一文梳理多任务学习(MMoE&#x2F;PLE&#x2F;DUPN&#x2F;ESSM等)</p>
-<h2 id="多任务为什么有效"><a href="#多任务为什么有效" class="headerlink" title="多任务为什么有效"></a>多任务为什么有效</h2><ul>
+<p>链接：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1354y1Z7jD">https://www.bilibili.com/video/BV1354y1Z7jD</a> 这个老师讲的也很好的 </p>
+<h1 id="多任务为什么有效"><a href="#多任务为什么有效" class="headerlink" title="多任务为什么有效"></a>多任务为什么有效</h1><ul>
 <li><strong>隐式数据增强</strong>：每个任务都有自己的样本，使用多任务学习的话，模型的样本量会提升很多。而且数据都会有噪声，如果单学A任务，模型会把A数据的噪声也学进去，如果是多任务学习，模型因为要求B任务也要学习好，就会忽视掉A任务的噪声，同理，模型学A的时候也会忽视掉B任务的噪声，因此多任务学习可以学到一个更精确的嵌入表达。</li>
 <li><strong>注意力聚焦</strong>：如果任务的数据噪声非常多，数据很少且非常高维，模型对相关特征和非相关特征就无法区分。多任务学习可以帮助模型聚焦到有用的特征上，因为不同任务都会反应特征与任务的相关性。</li>
 <li><strong>特征信息窃取</strong>：有些特征在任务B中容易学习，在任务A中较难学习，主要原因是任务A与这些特征的交互更为复杂，且对于任务A来说其他特征可能会阻碍部分特征的学习，因此通过多任务学习，模型可以高效的学习每一个重要的特征。</li>
 <li><strong>表达偏差</strong>：MTL使模型学到所有任务都偏好的向量表示。这也将有助于该模型推广到未来的新任务，因为假设空间对于足够多的训练任务表现良好，对于学习新任务也表现良好。</li>
 <li><strong>正则化</strong>：对于一个任务而言，其他任务的学习都会对该任务有正则化效果。</li>
 </ul>
-<h2 id="DUPN"><a href="#DUPN" class="headerlink" title="DUPN"></a>DUPN</h2><p><img src="https://pic1.imgdb.cn/item/636b0ece16f2c2beb185266e.png"></p>
-<p> 模型分为行为序列层、Embedding层、LSTM层、Attention层、下游多任务层(CTR、LTR、时尚达人关注预估、用户购买力度量)。如下图所示 </p>
-<h2 id="（图b为OMoE）"><a href="#（图b为OMoE）" class="headerlink" title="（图b为OMoE）"></a>（图b为OMoE）</h2><p><img src="https://pic1.imgdb.cn/item/636b0ece16f2c2beb18526d0.png"></p>
+<h1 id="任务关系的隐式建模"><a href="#任务关系的隐式建模" class="headerlink" title="任务关系的隐式建模"></a>任务关系的隐式建模</h1><h2 id="shared-bottom"><a href="#shared-bottom" class="headerlink" title="shared-bottom"></a>shared-bottom</h2><p><img src="https://pic1.imgdb.cn/item/636db58d16f2c2beb158f22c.png"></p>
+<p>一般用于 两个任务适不适合做多任务！ 做一个验证</p>
+<p>一般来说 这个模型会出现 负迁移现象</p>
+<h2 id="MMoE（图b为OMoE）"><a href="#MMoE（图b为OMoE）" class="headerlink" title="MMoE（图b为OMoE）"></a>MMoE（图b为OMoE）</h2><p><img src="https://pic1.imgdb.cn/item/636b0ece16f2c2beb18526d0.png"></p>
 <p>如下图所示，模型(a)最常见，共享了底层网络，上面分别接不同任务的全连接层。模型(b)认为不同的专家可以从相同的输入中提取出不同的特征，由一个Gate(类似) attention结构，把专家提取出的特征筛选出各个task最相关的特征，最后分别接不同任务的全连接层。MMOE的思想就是对于不同任务，需要不同专家提取出的信息，因此每个任务都需要一个独立的gate。 </p>
-<h2 id="PLE"><a href="#PLE" class="headerlink" title="PLE"></a><strong>PLE</strong></h2><p> 即使通过MMoE这种方式减轻负迁移现象，跷跷板现象仍然是广泛存在的(跷跷板现象指多任务之间相关性不强时，信息共享就会影响模型效果，会出现一个任务泛化性变强，另一个变弱的现象）。PLE的本质是MMOE的改进版本，有些expert是任务专属，有些expert是共享的，如下图CGC架构，对于任务A而言，通过A的gate把A的expert和共享的expert进行融合，去学习A。 </p>
-<p><img src="https://pic1.imgdb.cn/item/636b0ece16f2c2beb1852676.png"></p>
-<p>真实的模样！</p>
-<p><img src="https://pic1.imgdb.cn/item/636b0ece16f2c2beb185266b.png"></p>
+<p><img src="https://pic1.imgdb.cn/item/636db58d16f2c2beb158f221.png"></p>
+<p>mmoe 在使用上会存在<strong>跷跷板</strong>效应（即 一个效果提升 一个效果下降）</p>
+<h2 id="PLE"><a href="#PLE" class="headerlink" title="PLE"></a><strong>PLE</strong></h2><p>即使通过MMoE这种方式减轻负迁移现象，<strong>跷跷板现象</strong>仍然是广泛存在的(跷跷板现象指多任务之间相关性不强时，信息共享就会影响模型效果，会出现一个任务泛化性变强，另一个变弱的现象）。PLE的本质是MMOE的改进版本，有些expert是任务专属，有些expert是共享的，如下图CGC架构，对于任务A而言，通过A的gate把A的expert和共享的expert进行融合，去学习A。 </p>
+<p><img src="https://pic1.imgdb.cn/item/636db58d16f2c2beb158f216.png"></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p><img src="https://pic1.imgdb.cn/item/636db58d16f2c2beb158f20d.png"></p>
+<h1 id="任务关系的显示建模"><a href="#任务关系的显示建模" class="headerlink" title="任务关系的显示建模"></a>任务关系的显示建模</h1><h2 id="ESSM"><a href="#ESSM" class="headerlink" title="ESSM"></a>ESSM</h2><p><img src="https://pic1.imgdb.cn/item/636db5fd16f2c2beb1598957.png"></p>
+<p>解决的问题：</p>
+<ol>
+<li>cvr 正样本数量稀疏</li>
+<li>cvr 模型训练样本空间和线上测试样本空间。不符合独立同分布。</li>
+</ol>
+<p>how：</p>
+<ol>
+<li>cvr 与ctr 的embedding共享，使得cvr网络可以在未点击曝光样本中学习</li>
+<li>通过引入ctcvr任务，将ctcvr与ctr任务定义在全样本空间，来辅组cvr在全样本空间建模</li>
+</ol>
+<h2 id="ESSM2"><a href="#ESSM2" class="headerlink" title="ESSM2"></a>ESSM2</h2><p>更长的序列</p>
+<p><img src="https://pic1.imgdb.cn/item/636db5fd16f2c2beb1598946.png"></p>
 <h2 id="AITM"><a href="#AITM" class="headerlink" title="AITM"></a>AITM</h2><p>业务模型：信用卡有5个状态  五个状态（impression-&gt;click-&gt;application-&gt;approval-&gt;activation），链路很长。样本非常不均衡，即正样本越到后面越少，因此，前面任务的信息如何传递到后面任务，是本文研究的一个话题。</p>
+<p>塔之间的传递 不在只是使用乘法！</p>
 <p>论文提出了一个<strong>AIT（Adaptive Information Transfer）</strong>模块进行信息的传递，此外，在任务与任务之间，论文还增加了一个辅助损失函数 </p>
 <p><img src="https://pic1.imgdb.cn/item/636b1bca16f2c2beb19af800.jpg"></p>
 <p>其中 qt 是当前任务塔的输出， zt−1 是前面一个任务塔t-1的AIT模块的输出。所以变量z地位可以理解为循环式神经网络隐藏层的地位。 gt−1 是一个函数（网络层），他的物理意义是决定两个任务之间什么信息可以流动。 </p>
@@ -201,8 +218,13 @@
 <p>损失函数 （生产环境下！）</p>
 <p><img src="https://pic1.imgdb.cn/item/636b1db316f2c2beb19d9dbc.png"></p>
 <p>如果yt-1≥yt， Llc(θ)将输出一个正惩罚项，否则输出0。</p>
+<p>图！</p>
 <h2 id="MetaHeac"><a href="#MetaHeac" class="headerlink" title="MetaHeac"></a>MetaHeac</h2><p><strong>MetaHeac</strong>摒弃底部bottom共享，tower分离的模式，认为<strong>tower层的信息也是可以共享的</strong>，比如有的item不会被点击那么也不会被转化，MetaHeac采用Gate机制同时控制bottom（Expert）和tower（Critic），并且采用<strong>元学习（meta learning）</strong>来学到<strong>任务通用的参数</strong>，再通过Gate机制选择任务特异的特征和预测结果的组合。 </p>
 <p><img src="https://pic1.imgdb.cn/item/636b1bca16f2c2beb19af7fb.jpg"></p>
+<h1 id="多loss优化策略"><a href="#多loss优化策略" class="headerlink" title="多loss优化策略"></a>多loss优化策略</h1><p>优化策略 主要是 在不同任务之间 提供单任务的loss权重 </p>
+<p>即<br>$$<br>L(t)&#x3D; \sum {}<em>{i}w</em>{i}(t)L_{i}(t)<br>$$<br>确认 Loss 前面权重t是啥样子</p>
+<h2 id="GradNorm"><a href="#GradNorm" class="headerlink" title="GradNorm"></a>GradNorm</h2><p><img src="https://pic1.imgdb.cn/item/636db5fd16f2c2beb1598934.png"></p>
+<h2 id="UWL"><a href="#UWL" class="headerlink" title="UWL"></a>UWL</h2><p><img src="https://pic1.imgdb.cn/item/636db5fd16f2c2beb159892a.png"></p>
 
         </div>
         
@@ -272,8 +294,7 @@
             const title         = "「多任务学习 他方总结」";
             const excerpt       = `2022&#x2F;11&#x2F;8
 链接：https://zhuanlan.zhihu.com/p/363059498 一文梳理多任务学习(MMoE&#x2F;PLE&#x2F;DUPN&#x2F;ESSM等)
-多任务为什么有效
-...`;
+链接：https:...`;
             let _URL;
             switch (dest) {
                 case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
@@ -295,7 +316,7 @@
                     
                 </div>
                 <div class="pull-date">
-                <span>最后编辑：2022-11-09</span>
+                <span>最后编辑：2022-11-11</span>
                 </div>
             </div>
         </footer>
@@ -307,6 +328,10 @@
                 <a title=" 10月14日 面对的问题" href="/2022/10/30/10月14日-面对的问题/">&lt; 上一篇</a>
             </div>
             
+            
+            <div class="nav-next clearfix">
+                <a title=" lite transformer讲解" href="/2022/11/09/lite-transformer讲解/">下一篇 &gt;</a>
+            </div>
             
         </nav>
     
@@ -342,7 +367,7 @@
                 文章
             </span>
             <span class="count">
-                70
+                72
             </span>
         </a>
         <a class="meta-item" href="/categories/">
@@ -380,6 +405,18 @@
         
           
           
+            <a class="list-group-item" href="/2022/11/11/%E5%8F%8C%E5%A1%94%E9%82%A3%E4%BA%9B%E4%BA%8B%E5%84%BF/"><i class="fa  fa-book"></i> 双塔那些事儿</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2022/11/09/lite-transformer%E8%AE%B2%E8%A7%A3/"><i class="fa  fa-book"></i> lite transformer讲解</a>
+            
+          
+        
+          
+          
             <a class="list-group-item" href="/2022/11/08/%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0-%E4%BB%96%E6%96%B9%E6%80%BB%E7%BB%93/"><i class="fa  fa-book"></i> 多任务学习 他方总结</a>
             
           
@@ -397,17 +434,9 @@
           
         
           
-          
-            <a class="list-group-item" href="/2022/09/29/ctr-%E7%BB%BC%E8%BF%B0/"><i class="fa  fa-book"></i> ctr 综述</a>
             
           
-        
-          
-          
-            <a class="list-group-item" href="/2022/09/25/%E7%9F%A5%E8%AF%86%E8%BF%BD%E8%B8%AA%E7%BB%BC%E8%BF%B0/"><i class="fa  fa-book"></i> 知识追踪综述</a>
             
-          
-        
           
             
           

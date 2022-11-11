@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+  <!-- 元数据 -->
+  <meta charset="utf-8">
+  <link rel="icon" href="">
+  <title>双塔那些事儿 | limhao博客</title>
+  <meta name="author" content="limhao" />
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="robots" content="index,follow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="format-detection" content="telphone=no, email=no" />
+  
+    <meta name="keywords" content="" />
+  
+  <meta name="description" content="推荐系统的双塔 解耦 user 和 item，部署时可分离  双塔训练训练方式三种训练方式 pointwise pairwise n对pairwise – listwise softmaxwise  样本选择正： 用户点击物品 负：没有被召回 ​        召回但是被排序模型淘汰的 ​        曝光但未点击的 DSSM初代双塔softmaxwise loss 更新 首先使用的是百度广告">
+<meta property="og:type" content="article">
+<meta property="og:title" content="双塔那些事儿">
+<meta property="og:url" content="http://example.com/2022/11/11/%E5%8F%8C%E5%A1%94%E9%82%A3%E4%BA%9B%E4%BA%8B%E5%84%BF/index.html">
+<meta property="og:site_name" content="limhao博客">
+<meta property="og:description" content="推荐系统的双塔 解耦 user 和 item，部署时可分离  双塔训练训练方式三种训练方式 pointwise pairwise n对pairwise – listwise softmaxwise  样本选择正： 用户点击物品 负：没有被召回 ​        召回但是被排序模型淘汰的 ​        曝光但未点击的 DSSM初代双塔softmaxwise loss 更新 首先使用的是百度广告">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/null">
+<meta property="article:published_time" content="2022-11-11T02:42:53.203Z">
+<meta property="article:modified_time" content="2022-11-11T08:41:33.880Z">
+<meta property="article:author" content="limhao">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/null">
+<meta name="twitter:site" content="@null">
+  
+  <!-- 站点验证相关 -->
+  
+    
+    
+    
+  
+  <!-- 样式表文件 -->
+  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" type="text/css" media="all">
+  
+    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" type="text/css" media="all">
+  
+  
+  <link rel="stylesheet" id="fontawe-css" href="https://unpkg.com/font-awesome@4.7.0/css/font-awesome.min.css" type="text/css" media="all">
+  <link rel="stylesheet" id="nprogress-css" href="https://unpkg.com/nprogress@0.2.0/nprogress.css" type="text/css" media="all">
+  
+  
+  
+    <link rel="stylesheet" href="https://unpkg.com/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+  
+  
+    <link rel="stylesheet" id="darkmode-css" href="/css/kr-dark.min.css" type="text/css" media="all">
+  
+  <!-- 不得不预先加载的一些JS文件 -->
+  <script src="https://unpkg.com/jquery@3.6.0/dist/jquery.min.js"></script>
+  
+    <script src="https://unpkg.com/qrcode_js@1.0.0/qrcode.min.js"></script>
+  
+  
+  <style>
+    
+      .kratos-cover.kratos-cover-2 {
+        background-image: url('/images/banner.webp');
+      }
+    
+    
+      @media(min-width:768px) {
+        body.custom-background {
+          background-image: url('/images/bg.webp');
+        }
+      }
+    
+  </style>
+  
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+
+    <body class="custom-background">
+        <div id="kratos-wrapper">
+    <div id="kratos-page">
+        <div id="kratos-header">
+            <header id="kratos-desktop-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="nav-header">
+                        <nav id="kratos-menu-wrap">
+                            <ul id="kratos-primary-menu" class="sf-menu">
+                                
+                                    
+                                        <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+                                    
+                                
+                                    
+                                        <li><a href="/archives/"><i class="fa fa-file"></i>档案馆</a></li>
+                                    
+                                
+                                    
+                                        <li>
+                                            <a><i class="fa fa-link"></i>链接</a>
+                                            <ul class="sub-menu">
+                                                
+                                                    
+                                                
+                                                    
+                                                        <li><a target="_blank" rel="noopener" href="https://github.com/limhao">项目链接</a></li>
+                                                    
+                                                
+                                            </ul>
+                                        </li>
+                                    
+                                
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+            <header id="kratos-mobile-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="color-logo"><a href="/">limhao博客</a></div>
+                    <div class="nav-toggle">
+                        <a class="kratos-nav-toggle js-kratos-nav-toggle">
+                            <i></i>
+                        </a>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <div class="kratos-start kratos-hero-2">
+            <!-- <div class="kratos-overlay"></div> -->
+            <div class="kratos-cover kratos-cover-2 text-center">
+                <div class="desc desc2 animate-box">
+                    <a href="/">
+                        <h2>limhao博客</h2> <br />
+                        <span></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="kratos-blog-post">
+            <div class="container">
+                <div id="main" class="row">
+                    
+
+        
+
+            <section class="col-md-8">
+
+        
+
+            <article>
+    <div class="kratos-hentry kratos-post-inner clearfix">
+        <header class="kratos-entry-header">
+            
+                <h1 class="kratos-entry-title text-center">双塔那些事儿</h1>
+            
+            
+            <ul class="kratos-post-meta text-center">
+                <li><i class="fa fa-calendar"></i> 2022-11-11</li>
+                <li><i class="fa fa-user"></i> 作者 limhao</li>
+                <li>
+                    <i class="fa fa-edit"></i> 
+                    
+                    
+                        846
+                    
+                    字
+                </li>
+                
+            </ul>
+        </header>
+        <div class="kratos-post-content">
+            <div id="expire-alert" class="alert alert-warning hidden" role="alert">
+                <div class="icon"><i class="fa fa-warning"></i></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1668156093880"></time> 前，其中的内容可能需要更新。</p></div>
+            </div>
+            
+            <hr />
+            <p><img src="https://pic1.imgdb.cn/item/636e0ab316f2c2beb1d4be51.png"></p>
+<p>推荐系统的双塔</p>
+<p>解耦 user 和 item，部署时可分离</p>
+<p><img src="https://pic1.imgdb.cn/item/636e0ab316f2c2beb1d4be3d.png"></p>
+<h2 id="双塔训练"><a href="#双塔训练" class="headerlink" title="双塔训练"></a>双塔训练</h2><h3 id="训练方式"><a href="#训练方式" class="headerlink" title="训练方式"></a>训练方式</h3><p>三种训练方式</p>
+<p>pointwise</p>
+<p>pairwise</p>
+<p>n对pairwise – listwise softmaxwise</p>
+<p><img src="https://pic1.imgdb.cn/item/636e0ab316f2c2beb1d4be29.png"></p>
+<h3 id="样本选择"><a href="#样本选择" class="headerlink" title="样本选择"></a>样本选择</h3><p>正： 用户点击物品</p>
+<p>负：没有被召回</p>
+<p>​        召回但是被排序模型淘汰的</p>
+<p>​        曝光但未点击的</p>
+<h2 id="DSSM初代双塔"><a href="#DSSM初代双塔" class="headerlink" title="DSSM初代双塔"></a>DSSM初代双塔</h2><p>softmaxwise loss 更新</p>
+<p>首先使用的是百度广告</p>
+<p><img src="https://pic1.imgdb.cn/item/636e0ab316f2c2beb1d4be2d.png"></p>
+<h2 id="YOUTUBE-双塔"><a href="#YOUTUBE-双塔" class="headerlink" title="YOUTUBE 双塔"></a>YOUTUBE 双塔</h2><p>in batch sampled softmax</p>
+<p><img src="https://pic1.imgdb.cn/item/636e0b1316f2c2beb1d59b94.png"></p>
+<ul>
+<li>负采样</li>
+</ul>
+<p>在模型中也并不需要 整个batch来作为负样本来计算</p>
+<p>可以考虑1：10， 1：100</p>
+<ul>
+<li>纠偏</li>
+</ul>
+<p>sample-bias-corrected</p>
+<p>u，v计算出一个score之后</p>
+<p>通过剪出这个物品被采样的log（pj）得到一个新的score</p>
+<p>pj的计算 可以使用全局被采样的概率来计算</p>
+<ul>
+<li>重要经验</li>
+</ul>
+<p><img src="https://pic1.imgdb.cn/item/636e0ab316f2c2beb1d4be47.png"></p>
+<p>重要经验：正则化和温度系数</p>
+<p>如果不采用正则化 而直接采用点积<br>$$<br>\overrightarrow{a}\cdot\overrightarrow{b}&#x3D;|\overrightarrow{a}||\overrightarrow{b}|\cos\theta<br>$$<br>想让点积越大,角度越小。是我们预想的训练方向。</p>
+<p>但是 在模型中可能会增加item向量的模 导致模型训练坍塌。</p>
+<p>所以要使用正则化</p>
+<p>正则化之后 数据难收敛 [-1,1]</p>
+<p>举个例子：</p>
+<p>模型完美的预测成功了正样本 且负采样10个 也同样完美的预测出来</p>
+<p>但 使用正则化预测出的分数为0.42 就很拉</p>
+<p>添加了温度系数 预测分数达到了0.999 就很强</p>
+<p>所以需要添加 温度系数</p>
+<h2 id="负样本构造总结-–-召回阶段很重要"><a href="#负样本构造总结-–-召回阶段很重要" class="headerlink" title="负样本构造总结 – 召回阶段很重要"></a>负样本构造总结 – 召回阶段很重要</h2><p><img src="https://pic1.imgdb.cn/item/636e0b1316f2c2beb1d59b9c.png"></p>
+<h2 id="召回元素怎么找"><a href="#召回元素怎么找" class="headerlink" title="召回元素怎么找"></a>召回元素怎么找</h2><ul>
+<li>一个用户 和所有物品算相似度</li>
+</ul>
+<p>效果一定好 但是时间慢了</p>
+<ul>
+<li>annoy - 只支持CPU 用的多</li>
+</ul>
+<p>将物品的向量空间 通过树的形式 分割出来，确保每个树 有定量的样本</p>
+<ul>
+<li>Faiss - 啥都支持 但是 用的少</li>
+</ul>
+<h2 id="复现踩坑"><a href="#复现踩坑" class="headerlink" title="复现踩坑"></a>复现踩坑</h2><p><img src="https://pic1.imgdb.cn/item/636e0b1316f2c2beb1d59bc6.png"></p>
+<h2 id="未来发展"><a href="#未来发展" class="headerlink" title="未来发展"></a>未来发展</h2><p><img src="https://pic1.imgdb.cn/item/636e0b1316f2c2beb1d59bd0.png"></p>
+
+        </div>
+        
+            <div class="kratos-copyright text-center clearfix">
+                <h5>本作品采用 <a rel="license nofollow" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a> 进行许可</h5>
+            </div>
+        
+        <footer class="kratos-entry-footer clearfix">
+            
+                <div class="post-like-donate text-center clearfix" id="post-like-donate">
+                
+                
+                    <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> 分享</a>
+                    <div class="share-wrap" style="display: none;">
+    <div class="share-group">
+        <a href="javascript:;" class="share-plain qq" onclick="share('qq');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-qq"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain qzone" onclick="share('qzone');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-star"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weixin pop style-plain" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weixin"></i>
+            </div>
+            <div class="share-int">
+                <div class="qrcode" id="wechat-qr"></div>
+                <p>打开微信“扫一扫”，打开网页后点击屏幕右上角分享按钮</p>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weibo" onclick="share('weibo');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weibo"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain facebook style-plain" onclick="share('facebook');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-facebook"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain twitter style-plain" onclick="share('twitter');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-twitter"></i>
+            </div>
+        </a>
+    </div>
+    <script type="text/javascript">
+        $(()=>{
+            new QRCode("wechat-qr", {
+                text: "http://example.com/2022/11/11/%E5%8F%8C%E5%A1%94%E9%82%A3%E4%BA%9B%E4%BA%8B%E5%84%BF/",
+                width: 150,
+                height: 150,
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        });
+        function share(dest) {
+            const qqBase        = "https://connect.qq.com/widget/shareqq/index.html?";
+            const weiboBase     = "https://service.weibo.com/share/share.php?";
+            const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
+            const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
+            const twitterBase   = "https://twitter.com/intent/tweet?";
+            const hostUrl       = "http://example.com/2022/11/11/%E5%8F%8C%E5%A1%94%E9%82%A3%E4%BA%9B%E4%BA%8B%E5%84%BF/";
+            const title         = "「双塔那些事儿」";
+            const excerpt       = `
+推荐系统的双塔
+解耦 user 和 item，部署时可分离
+
+双塔训练训练方式三种训练方式
+pointwise
+pairwise
+n对pairwise – listwise softmaxwise
+
+样本选择正： 用户点击物品
+负：...`;
+            let _URL;
+            switch (dest) {
+                case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
+                case "weibo"    : _URL = weiboBase+"url="+hostUrl+"&title="+title+excerpt;                                 break;
+                case "qzone"    : _URL = qzoneBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";  break;
+                case "facebook" : _URL = facebookBase+"u="+hostUrl;                                                        break;
+                case "twitter"  : _URL = twitterBase+"text="+title+excerpt+"&url="+hostUrl;                                break;
+            }
+            window.open(_URL);
+        };
+    </script>
+</div>
+                
+                </div>
+            
+            <div class="footer-tag clearfix">
+                <div class="pull-left">
+                <i class="fa fa-tags"></i>
+                    
+                </div>
+                <div class="pull-date">
+                <span>最后编辑：2022-11-11</span>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+        <nav class="navigation post-navigation clearfix" role="navigation">
+            
+            <div class="nav-previous clearfix">
+                <a title=" lite transformer讲解" href="/2022/11/09/lite-transformer讲解/">&lt; 上一篇</a>
+            </div>
+            
+            
+        </nav>
+    
+    
+</article>
+
+        
+
+            </section>
+
+        
+
+                
+            
+
+<section id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm">
+    <!-- 文章和页面根据splitter来分割，没有的话就从头开始设置为sticky -->
+    
+    
+                <aside id="krw-about" class="widget widget-kratos-about clearfix">
+    <div class="photo-background"></div>
+    <div class="photo-wrapper clearfix">
+        <div class="photo-wrapper-tip text-center">
+            <img class="about-photo" src="/images/avatar.webp" />
+        </div>
+    </div>
+    <div class="textwidget">
+        <p class="text-center"></p>
+    </div>
+    <div class="site-meta">
+        <a class="meta-item" href="/archives/">
+            <span class="title">
+                文章
+            </span>
+            <span class="count">
+                72
+            </span>
+        </a>
+        <a class="meta-item" href="/categories/">
+            <span class="title">
+                分类
+            </span>
+            <span class="count">
+                0
+            </span>
+        </a>
+        <a class="meta-item" href="/tags/">
+            <span class="title">
+                标签
+            </span>
+            <span class="count">
+                0
+            </span>
+        </a>
+    </div>
+</aside>
+            
+                    <div class="sticky-area">
+                
+                
+
+            
+                
+            
+                
+  <aside id="krw-posts" class="widget widget-kratos-posts">
+  <h4 class="widget-title"><i class="fa fa-file"></i>最新文章</h4>
+  <div class="tab-content">
+      <ul class="list-group">
+        
+        
+          
+          
+            <a class="list-group-item" href="/2022/11/11/%E5%8F%8C%E5%A1%94%E9%82%A3%E4%BA%9B%E4%BA%8B%E5%84%BF/"><i class="fa  fa-book"></i> 双塔那些事儿</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2022/11/09/lite-transformer%E8%AE%B2%E8%A7%A3/"><i class="fa  fa-book"></i> lite transformer讲解</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2022/11/08/%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0-%E4%BB%96%E6%96%B9%E6%80%BB%E7%BB%93/"><i class="fa  fa-book"></i> 多任务学习 他方总结</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2022/10/30/10%E6%9C%8814%E6%97%A5-%E9%9D%A2%E5%AF%B9%E7%9A%84%E9%97%AE%E9%A2%98/"><i class="fa  fa-book"></i> 10月14日 面对的问题</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2022/10/30/%E9%98%85%E8%AF%BBDKVMN%E6%97%B6%E4%BA%A7%E7%94%9F%E7%9A%84%E9%97%AE%E9%A2%98/"><i class="fa  fa-book"></i> 阅读DKVMN时产生的问题</a>
+            
+          
+        
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+      </ul>
+  </div>
+  </aside>
+
+            
+    </div>
+</section>
+        
+        </div>
+    </div>
+</div>
+<footer>
+    <div id="footer"  >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 footer-list text-center">
+                    <ul class="kratos-social-icons">
+                        
+                        <li><a href="mailto:982264944@qq.com"><i class="fa fa-envelope"></i></a></li>
+                        <li><a target="_blank" rel="nofollow" href="https://t.me/CandyUnion"><i class="fa fa-telegram"></i></a></li>
+                        
+                        
+                        
+                        <li><a target="_blank" rel="me" href="https://nya.one/@Candinya"><i class="fa fa fa-share-alt-square"></i></a></li>
+                        <li><a target="_blank" rel="nofollow" href="https://github.com/Candinya"><i class="fa fa-github"></i></a></li>
+                        
+                    </ul>
+                    <ul class="kratos-copyright">
+                        <div>
+                            <li>&copy; 2022 limhao博客 版权所有.</li>
+                            <li>本站已运行<span id="span_dt">Loading...</span></li>
+                        </div>
+                        <div>
+                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
+                            <li>Site built with&nbsp;<i class="fa fa-heart throb" style="color:#d43f57"></i>&nbsp;by limhao.</li>
+                        </div>
+                        <div>
+                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
+                            <li>Hosted on <a href="https://github.io" target="_blank">Github Pages</a></li>
+                        </div>
+                        <div>
+                            
+                            
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="kr-tool text-center">
+            <div class="tool">
+                
+                    <div class="box search-box">
+                        <a href="/search/">
+                            <span class="fa fa-search"></span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="darkmode-switch">
+                        <span class="fa fa-adjust"></span>
+                    </div>
+                
+                
+            </div>
+            <div class="box gotop-box">
+                <span class="fa fa-chevron-up"></span>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+</div>
+
+        <script defer src="https://unpkg.com/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
+<script defer src="https://unpkg.com/nprogress@0.2.0/nprogress.js"></script>
+<script>
+    if (!window.kr) {
+        window.kr = {};
+    }
+    window.kr.notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));
+    window.kr.siteRoot = "/";
+</script>
+
+
+
+
+
+    <script defer src="https://unpkg.com/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+<script defer src="https://unpkg.com/clipboard@2.0.6/dist/clipboard.min.js"></script>
+<script defer src="/js/kratosr.min.js"></script>
+<script defer src="/js/pjax.min.js"></script>
+
+
+    <script defer src="/js/kr-dark.min.js"></script>
+
+
+
+<!-- Extra support for third-party plguins  -->
+
+
+    </body>
+</html>
