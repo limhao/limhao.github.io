@@ -4,7 +4,7 @@
   <!-- 元数据 -->
   <meta charset="utf-8">
   <link rel="icon" href="">
-  <title>双塔那些事儿 | limhao博客</title>
+  <title>服务器使用的问题 | limhao博客</title>
   <meta name="author" content="limhao" />
   <meta http-equiv="Cache-Control" content="no-transform" />
   <meta http-equiv="Cache-Control" content="no-siteapp" />
@@ -15,16 +15,16 @@
   
     <meta name="keywords" content="" />
   
-  <meta name="description" content="推荐系统的双塔 解耦 user 和 item，部署时可分离  双塔训练训练方式三种训练方式 pointwise pairwise n对pairwise – listwise softmaxwise  样本选择正： 用户点击物品 负：没有被召回 ​        召回但是被排序模型淘汰的 ​        曝光但未点击的 DSSM初代双塔softmaxwise loss 更新 首先使用的是百度广告">
+  <meta name="description" content="当我们拿到了ip和密码 我们要干的活如下：  连接服务器 配置conda运行环境 上传数据集 配置conda jupyterab kernel（内核） jupyterlab使用 配置pycharm远程连接  还有一个 是我在编码过程中 总结的一些小窍门  缩小数据集 - 目的是本地的debug1 以及 快速的验证 远程连接时的注意点 - 啊哈 咱忘了 以后再补！ 进程守护 - 使用jupyterl">
 <meta property="og:type" content="article">
-<meta property="og:title" content="双塔那些事儿">
-<meta property="og:url" content="http://example.com/2022/11/11/%E5%8F%8C%E5%A1%94%E9%82%A3%E4%BA%9B%E4%BA%8B%E5%84%BF/index.html">
+<meta property="og:title" content="服务器使用的问题">
+<meta property="og:url" content="http://example.com/2022/11/19/%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%BD%BF%E7%94%A8%E7%9A%84%E9%97%AE%E9%A2%98/index.html">
 <meta property="og:site_name" content="limhao博客">
-<meta property="og:description" content="推荐系统的双塔 解耦 user 和 item，部署时可分离  双塔训练训练方式三种训练方式 pointwise pairwise n对pairwise – listwise softmaxwise  样本选择正： 用户点击物品 负：没有被召回 ​        召回但是被排序模型淘汰的 ​        曝光但未点击的 DSSM初代双塔softmaxwise loss 更新 首先使用的是百度广告">
+<meta property="og:description" content="当我们拿到了ip和密码 我们要干的活如下：  连接服务器 配置conda运行环境 上传数据集 配置conda jupyterab kernel（内核） jupyterlab使用 配置pycharm远程连接  还有一个 是我在编码过程中 总结的一些小窍门  缩小数据集 - 目的是本地的debug1 以及 快速的验证 远程连接时的注意点 - 啊哈 咱忘了 以后再补！ 进程守护 - 使用jupyterl">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/null">
-<meta property="article:published_time" content="2022-11-11T02:42:53.203Z">
-<meta property="article:modified_time" content="2022-11-11T08:41:33.880Z">
+<meta property="article:published_time" content="2022-11-19T08:51:37.541Z">
+<meta property="article:modified_time" content="2022-11-19T08:51:04.407Z">
 <meta property="article:author" content="limhao">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/null">
@@ -152,17 +152,17 @@
     <div class="kratos-hentry kratos-post-inner clearfix">
         <header class="kratos-entry-header">
             
-                <h1 class="kratos-entry-title text-center">双塔那些事儿</h1>
+                <h1 class="kratos-entry-title text-center">服务器使用的问题</h1>
             
             
             <ul class="kratos-post-meta text-center">
-                <li><i class="fa fa-calendar"></i> 2022-11-11</li>
+                <li><i class="fa fa-calendar"></i> 2022-11-19</li>
                 <li><i class="fa fa-user"></i> 作者 limhao</li>
                 <li>
                     <i class="fa fa-edit"></i> 
                     
                     
-                        846
+                        ~1.62K
                     
                     字
                 </li>
@@ -172,68 +172,89 @@
         <div class="kratos-post-content">
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>本文最后编辑于 <time datetime="1668156093880"></time> 前，其中的内容可能需要更新。</p></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1668847864407"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
             <hr />
-            <p><img src="https://pic1.imgdb.cn/item/636e0ab316f2c2beb1d4be51.png"></p>
-<p>推荐系统的双塔</p>
-<p>解耦 user 和 item，部署时可分离</p>
-<p><img src="https://pic1.imgdb.cn/item/636e0ab316f2c2beb1d4be3d.png"></p>
-<h2 id="双塔训练"><a href="#双塔训练" class="headerlink" title="双塔训练"></a>双塔训练</h2><h3 id="训练方式"><a href="#训练方式" class="headerlink" title="训练方式"></a>训练方式</h3><p>三种训练方式</p>
-<p>pointwise</p>
-<p>pairwise</p>
-<p>n对pairwise – listwise softmaxwise</p>
-<p><img src="https://pic1.imgdb.cn/item/636e0ab316f2c2beb1d4be29.png"></p>
-<h3 id="样本选择"><a href="#样本选择" class="headerlink" title="样本选择"></a>样本选择</h3><p>正： 用户点击物品</p>
-<p>负：没有被召回</p>
-<p>​        召回但是被排序模型淘汰的</p>
-<p>​        曝光但未点击的</p>
-<h2 id="DSSM初代双塔"><a href="#DSSM初代双塔" class="headerlink" title="DSSM初代双塔"></a>DSSM初代双塔</h2><p>softmaxwise loss 更新</p>
-<p>首先使用的是百度广告</p>
-<p><img src="https://pic1.imgdb.cn/item/636e0ab316f2c2beb1d4be2d.png"></p>
-<h2 id="YOUTUBE-双塔"><a href="#YOUTUBE-双塔" class="headerlink" title="YOUTUBE 双塔"></a>YOUTUBE 双塔</h2><p>in batch sampled softmax</p>
-<p><img src="https://pic1.imgdb.cn/item/636e0b1316f2c2beb1d59b94.png"></p>
+            <p>当我们拿到了ip和密码 我们要干的活如下：</p>
+<ol>
+<li>连接服务器</li>
+<li>配置conda运行环境</li>
+<li>上传数据集</li>
+<li>配置conda jupyterab kernel（内核） jupyterlab使用</li>
+<li>配置pycharm远程连接</li>
+</ol>
+<p>还有一个 是我在编码过程中 总结的一些小窍门</p>
+<ol>
+<li>缩小数据集 - 目的是本地的debug1 以及 快速的验证</li>
+<li>远程连接时的注意点 - 啊哈 咱忘了 以后再补！</li>
+<li>进程守护 - 使用jupyterlab teimial 来跑文件 </li>
+<li>多卡的优势 - cuda0 cuda1 一个机器 同时跑两个 怪快的</li>
+</ol>
+<h2 id="要干的活：-上传数据集"><a href="#要干的活：-上传数据集" class="headerlink" title="要干的活： 上传数据集"></a>要干的活： 上传数据集</h2><p>前两个活 就不具体说了 情况都不一样</p>
+<p>上传数据集 使用 xshell 连接</p>
+<p><a target="_blank" rel="noopener" href="https://www.autodl.com/docs/xshell/">https://www.autodl.com/docs/xshell/</a> 看看这个网址</p>
+<h2 id="配置conda-jupyterab-kernel（内核）-jupyterlab使用"><a href="#配置conda-jupyterab-kernel（内核）-jupyterlab使用" class="headerlink" title="配置conda jupyterab kernel（内核） jupyterlab使用"></a>配置conda jupyterab kernel（内核） jupyterlab使用</h2><p>我之前写过一个怎么配置来着 </p>
+<p><a target="_blank" rel="noopener" href="https://limhao.github.io/2022/03/20/kaggle%E5%85%A5%E9%97%A8/">https://limhao.github.io/2022/03/20/kaggle%E5%85%A5%E9%97%A8/</a></p>
+<p>感觉有点不合时宜</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 将新的Conda虚拟环境加入jupyterlab中</span></span><br><span class="line">conda activate tf                         <span class="comment"># 切换到创建的虚拟环境：tf</span></span><br><span class="line">conda install ipykernel</span><br><span class="line">ipython kernel install --user --name=tf   <span class="comment"># 设置kernel，--user表示当前用户，tf为虚拟环境名称</span></span><br></pre></td></tr></table></figure>
+
 <ul>
-<li>负采样</li>
+<li>jupyterlab  端口映射</li>
 </ul>
-<p>在模型中也并不需要 整个batch来作为负样本来计算</p>
-<p>可以考虑1：10， 1：100</p>
+<p>因为 服务器 一般来说 我们都摸不着</p>
+<p>所以说 对于jupylab 我们需要做端口映射</p>
+<p>我发现我的文章写的怪好的 就直接粘过来</p>
 <ul>
-<li>纠偏</li>
+<li>第一步 在远程服务器开启jupyter lab服务</li>
 </ul>
-<p>sample-bias-corrected</p>
-<p>u，v计算出一个score之后</p>
-<p>通过剪出这个物品被采样的log（pj）得到一个新的score</p>
-<p>pj的计算 可以使用全局被采样的概率来计算</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jupyter lab --port=9000 --no-browser</span><br></pre></td></tr></table></figure>
+
 <ul>
-<li>重要经验</li>
+<li>第二步  在自己本地的ssh命令窗口上输入以下命令，将本地端口与远程服务器的9000端口实现映射，在此将本地的6666与服务器的9000端口进行映射</li>
 </ul>
-<p><img src="https://pic1.imgdb.cn/item/636e0ab316f2c2beb1d4be47.png"></p>
-<p>重要经验：正则化和温度系数</p>
-<p>如果不采用正则化 而直接采用点积<br>$$<br>\overrightarrow{a}\cdot\overrightarrow{b}&#x3D;|\overrightarrow{a}||\overrightarrow{b}|\cos\theta<br>$$<br>想让点积越大,角度越小。是我们预想的训练方向。</p>
-<p>但是 在模型中可能会增加item向量的模 导致模型训练坍塌。</p>
-<p>所以要使用正则化</p>
-<p>正则化之后 数据难收敛 [-1,1]</p>
-<p>举个例子：</p>
-<p>模型完美的预测成功了正样本 且负采样10个 也同样完美的预测出来</p>
-<p>但 使用正则化预测出的分数为0.42 就很拉</p>
-<p>添加了温度系数 预测分数达到了0.999 就很强</p>
-<p>所以需要添加 温度系数</p>
-<h2 id="负样本构造总结-–-召回阶段很重要"><a href="#负样本构造总结-–-召回阶段很重要" class="headerlink" title="负样本构造总结 – 召回阶段很重要"></a>负样本构造总结 – 召回阶段很重要</h2><p><img src="https://pic1.imgdb.cn/item/636e0b1316f2c2beb1d59b9c.png"></p>
-<h2 id="召回元素怎么找"><a href="#召回元素怎么找" class="headerlink" title="召回元素怎么找"></a>召回元素怎么找</h2><ul>
-<li>一个用户 和所有物品算相似度</li>
-</ul>
-<p>效果一定好 但是时间慢了</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># </span><span class="language-bash">在git bash中输入</span></span><br><span class="line">ssh -N -f -L 6666:localhost:9000 Tom@11.22.38.214</span><br></pre></td></tr></table></figure>
+
+<p><a href="mailto:&#x54;&#111;&#x6d;&#x40;&#x31;&#49;&#x2e;&#50;&#x32;&#x2e;&#51;&#56;&#x2e;&#x32;&#x31;&#x34;">&#x54;&#111;&#x6d;&#x40;&#x31;&#49;&#x2e;&#50;&#x32;&#x2e;&#51;&#56;&#x2e;&#x32;&#x31;&#x34;</a> 对应远程服务器的用户名和IP地址</p>
+<h2 id="配置-pycharm-远程连接（大坑）"><a href="#配置-pycharm-远程连接（大坑）" class="headerlink" title="配置 pycharm 远程连接（大坑）"></a>配置 pycharm 远程连接（大坑）</h2><p>真的坑特别多 也是我卡的时间最久的项目</p>
+<p>看了看其他的文档 写的怪简单的 我这里写个详细点的</p>
+<p><strong>十分建议 从 你需要的文件夹 作为pycharm项目文件打开</strong></p>
+<p>一共分为三步</p>
+<ol>
+<li>ssh确认解释器</li>
+<li>ssh确认同步本地以及远程文件位置</li>
+<li>确认本地以及远程 不同步的文件夹</li>
+</ol>
 <ul>
-<li>annoy - 只支持CPU 用的多</li>
+<li>ssh python 解释器</li>
 </ul>
-<p>将物品的向量空间 通过树的形式 分割出来，确保每个树 有定量的样本</p>
-<ul>
-<li>Faiss - 啥都支持 但是 用的少</li>
-</ul>
-<h2 id="复现踩坑"><a href="#复现踩坑" class="headerlink" title="复现踩坑"></a>复现踩坑</h2><p><img src="https://pic1.imgdb.cn/item/636e0b1316f2c2beb1d59bc6.png"></p>
-<h2 id="未来发展"><a href="#未来发展" class="headerlink" title="未来发展"></a>未来发展</h2><p><img src="https://pic1.imgdb.cn/item/636e0b1316f2c2beb1d59bd0.png"></p>
+<p>一直走到这一步</p>
+<p>file -》 setting -》project xxx -》 左边的设置 -》 add -》 ssh</p>
+<p><img src="https://pic.imgdb.cn/item/6375fe8516f2c2beb1371199.png"></p>
+<p>这里的interpreter 需要 设置成 conda 配置环境的python文件</p>
+<p>一般在 miniconda&#x2F;envs&#x2F;xxxx你设置的环境名&#x2F;bin&#x2F;python</p>
+<p>这里注意一个坑 </p>
+<ol>
+<li>running code 那底下的一行 一定要设置对应清楚（有的教程教你 这个位置乱填 简直了）</li>
+</ol>
+<p><img src="https://pic.imgdb.cn/item/6375fe8516f2c2beb137119d.png"></p>
+<p>finsh -》 apply</p>
+<ol start="2">
+<li>设置 远程本地文件夹</li>
+</ol>
+<p>坑的地方是 你需要点击 项目总文件夹才能设置好</p>
+<ol start="3">
+<li>设置 剔除文件</li>
+</ol>
+<p>这个没啥坑</p>
+<ol start="4">
+<li>一定要打的小勾勾</li>
+</ol>
+<p>本人 将这个坑 称为特别的坑</p>
+<p>在这里打勾的时候 一定要查清楚 只有一个只有一个只有一个</p>
+<p>然后 查完了之后 你就可以打勾了</p>
+<p>打勾的项目会存在加深的效果 记住了哈 真的是血泪教训</p>
+<p><img src="https://pic.imgdb.cn/item/6375fe8516f2c2beb13711a3.png"></p>
 
         </div>
         
@@ -287,7 +308,7 @@
     <script type="text/javascript">
         $(()=>{
             new QRCode("wechat-qr", {
-                text: "http://example.com/2022/11/11/%E5%8F%8C%E5%A1%94%E9%82%A3%E4%BA%9B%E4%BA%8B%E5%84%BF/",
+                text: "http://example.com/2022/11/19/%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%BD%BF%E7%94%A8%E7%9A%84%E9%97%AE%E9%A2%98/",
                 width: 150,
                 height: 150,
                 correctLevel : QRCode.CorrectLevel.H
@@ -299,19 +320,17 @@
             const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
             const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
             const twitterBase   = "https://twitter.com/intent/tweet?";
-            const hostUrl       = "http://example.com/2022/11/11/%E5%8F%8C%E5%A1%94%E9%82%A3%E4%BA%9B%E4%BA%8B%E5%84%BF/";
-            const title         = "「双塔那些事儿」";
-            const excerpt       = `
-推荐系统的双塔
-解耦 user 和 item，部署时可分离
+            const hostUrl       = "http://example.com/2022/11/19/%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%BD%BF%E7%94%A8%E7%9A%84%E9%97%AE%E9%A2%98/";
+            const title         = "「服务器使用的问题」";
+            const excerpt       = `当我们拿到了ip和密码 我们要干的活如下：
 
-双塔训练训练方式三种训练方式
-pointwise
-pairwise
-n对pairwise – listwise softmaxwise
+连接服务器
+配置conda运行环境
+上传数据集
+配置conda jupyterab kernel（内核） jupyterlab使用
+配置pycharm远程连接
 
-样本选择正： 用户点击物品
-负：...`;
+还有一个 是我在编码过程中...`;
             let _URL;
             switch (dest) {
                 case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
@@ -333,7 +352,7 @@ n对pairwise – listwise softmaxwise
                     
                 </div>
                 <div class="pull-date">
-                <span>最后编辑：2022-11-11</span>
+                <span>最后编辑：2022-11-19</span>
                 </div>
             </div>
         </footer>
@@ -342,13 +361,9 @@ n对pairwise – listwise softmaxwise
         <nav class="navigation post-navigation clearfix" role="navigation">
             
             <div class="nav-previous clearfix">
-                <a title=" lite transformer讲解" href="/2022/11/09/lite-transformer讲解/">&lt; 上一篇</a>
+                <a title=" 双塔那些事儿" href="/2022/11/11/双塔那些事儿/">&lt; 上一篇</a>
             </div>
             
-            
-            <div class="nav-next clearfix">
-                <a title=" 服务器使用的问题" href="/2022/11/19/服务器使用的问题/">下一篇 &gt;</a>
-            </div>
             
         </nav>
     
