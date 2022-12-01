@@ -15,16 +15,16 @@
   
     <meta name="keywords" content="" />
   
-  <meta name="description" content="当我们拿到了ip和密码 我们要干的活如下：  连接服务器 配置conda运行环境 上传数据集 配置conda jupyterab kernel（内核） jupyterlab使用 配置pycharm远程连接  还有一个 是我在编码过程中 总结的一些小窍门  缩小数据集 - 目的是本地的debug1 以及 快速的验证 远程连接时的注意点 - 啊哈 咱忘了 以后再补！ 进程守护 - 使用jupyterl">
+  <meta name="description" content="当我们拿到了ip和密码 我们要干的活如下：  连接服务器 配置conda运行环境 上传数据集 配置conda jupyterab kernel（内核） jupyterlab使用 配置pycharm远程连接  还有一个 是我在编码过程中 总结的一些小窍门  缩小数据集 - 目的是本地的debug 以及 快速的验证 远程连接时的注意点 - 啊哈 咱忘了 以后再补！ 进程守护 - 使用jupyterla">
 <meta property="og:type" content="article">
 <meta property="og:title" content="服务器使用的问题">
 <meta property="og:url" content="http://example.com/2022/11/19/%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%BD%BF%E7%94%A8%E7%9A%84%E9%97%AE%E9%A2%98/index.html">
 <meta property="og:site_name" content="limhao博客">
-<meta property="og:description" content="当我们拿到了ip和密码 我们要干的活如下：  连接服务器 配置conda运行环境 上传数据集 配置conda jupyterab kernel（内核） jupyterlab使用 配置pycharm远程连接  还有一个 是我在编码过程中 总结的一些小窍门  缩小数据集 - 目的是本地的debug1 以及 快速的验证 远程连接时的注意点 - 啊哈 咱忘了 以后再补！ 进程守护 - 使用jupyterl">
+<meta property="og:description" content="当我们拿到了ip和密码 我们要干的活如下：  连接服务器 配置conda运行环境 上传数据集 配置conda jupyterab kernel（内核） jupyterlab使用 配置pycharm远程连接  还有一个 是我在编码过程中 总结的一些小窍门  缩小数据集 - 目的是本地的debug 以及 快速的验证 远程连接时的注意点 - 啊哈 咱忘了 以后再补！ 进程守护 - 使用jupyterla">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/null">
 <meta property="article:published_time" content="2022-11-19T08:51:37.541Z">
-<meta property="article:modified_time" content="2022-11-19T08:51:04.407Z">
+<meta property="article:modified_time" content="2022-11-21T02:00:38.007Z">
 <meta property="article:author" content="limhao">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/null">
@@ -162,7 +162,7 @@
                     <i class="fa fa-edit"></i> 
                     
                     
-                        ~1.62K
+                        ~1.90K
                     
                     字
                 </li>
@@ -172,7 +172,7 @@
         <div class="kratos-post-content">
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>本文最后编辑于 <time datetime="1668847864407"></time> 前，其中的内容可能需要更新。</p></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1668996038007"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
             <hr />
@@ -186,11 +186,14 @@
 </ol>
 <p>还有一个 是我在编码过程中 总结的一些小窍门</p>
 <ol>
-<li>缩小数据集 - 目的是本地的debug1 以及 快速的验证</li>
+<li>缩小数据集 - 目的是本地的debug 以及 快速的验证</li>
 <li>远程连接时的注意点 - 啊哈 咱忘了 以后再补！</li>
 <li>进程守护 - 使用jupyterlab teimial 来跑文件 </li>
 <li>多卡的优势 - cuda0 cuda1 一个机器 同时跑两个 怪快的</li>
+<li>如果碰到了 要关闭远程连接工具 一直连接的指令 这个要和3 一起食用</li>
 </ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 开启nohup  且 日志重定向</span></span><br><span class="line">nohup python -u main.py &gt; log.out <span class="number">2</span>&gt;&amp;<span class="number">1</span> &amp;</span><br><span class="line"><span class="comment"># 关闭nohup </span></span><br><span class="line">ps -ef | grep train</span><br><span class="line">kill -<span class="number">9</span> ****<span class="comment">#pid为每一行的第二个id编码，表示的是该进程的父进程）</span></span><br><span class="line"><span class="comment"># 突然想到一个方法可以获得pid进程号 cuda程序</span></span><br><span class="line">nvidia-smi</span><br><span class="line">kill -<span class="number">9</span> **** <span class="comment"># **** 为 pid 进程号</span></span><br><span class="line"><span class="comment"># 实时查看日志</span></span><br><span class="line">tail -f train.log</span><br></pre></td></tr></table></figure>
+
 <h2 id="要干的活：-上传数据集"><a href="#要干的活：-上传数据集" class="headerlink" title="要干的活： 上传数据集"></a>要干的活： 上传数据集</h2><p>前两个活 就不具体说了 情况都不一样</p>
 <p>上传数据集 使用 xshell 连接</p>
 <p><a target="_blank" rel="noopener" href="https://www.autodl.com/docs/xshell/">https://www.autodl.com/docs/xshell/</a> 看看这个网址</p>
@@ -215,7 +218,7 @@
 </ul>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># </span><span class="language-bash">在git bash中输入</span></span><br><span class="line">ssh -N -f -L 6666:localhost:9000 Tom@11.22.38.214</span><br></pre></td></tr></table></figure>
 
-<p><a href="mailto:&#x54;&#111;&#x6d;&#x40;&#x31;&#49;&#x2e;&#50;&#x32;&#x2e;&#51;&#56;&#x2e;&#x32;&#x31;&#x34;">&#x54;&#111;&#x6d;&#x40;&#x31;&#49;&#x2e;&#50;&#x32;&#x2e;&#51;&#56;&#x2e;&#x32;&#x31;&#x34;</a> 对应远程服务器的用户名和IP地址</p>
+<p><a href="mailto:&#84;&#x6f;&#109;&#64;&#49;&#49;&#x2e;&#50;&#50;&#46;&#x33;&#56;&#x2e;&#50;&#x31;&#52;">&#84;&#x6f;&#109;&#64;&#49;&#49;&#x2e;&#50;&#50;&#46;&#x33;&#56;&#x2e;&#50;&#x31;&#52;</a> 对应远程服务器的用户名和IP地址</p>
 <h2 id="配置-pycharm-远程连接（大坑）"><a href="#配置-pycharm-远程连接（大坑）" class="headerlink" title="配置 pycharm 远程连接（大坑）"></a>配置 pycharm 远程连接（大坑）</h2><p>真的坑特别多 也是我卡的时间最久的项目</p>
 <p>看了看其他的文档 写的怪简单的 我这里写个详细点的</p>
 <p><strong>十分建议 从 你需要的文件夹 作为pycharm项目文件打开</strong></p>
@@ -352,7 +355,7 @@
                     
                 </div>
                 <div class="pull-date">
-                <span>最后编辑：2022-11-19</span>
+                <span>最后编辑：2022-11-21</span>
                 </div>
             </div>
         </footer>
@@ -364,6 +367,10 @@
                 <a title=" 双塔那些事儿" href="/2022/11/11/双塔那些事儿/">&lt; 上一篇</a>
             </div>
             
+            
+            <div class="nav-next clearfix">
+                <a title=" sci写作" href="/2022/11/30/sci写作/">下一篇 &gt;</a>
+            </div>
             
         </nav>
     
@@ -399,7 +406,7 @@
                 文章
             </span>
             <span class="count">
-                73
+                74
             </span>
         </a>
         <a class="meta-item" href="/categories/">
@@ -437,6 +444,12 @@
         
           
           
+            <a class="list-group-item" href="/2022/11/30/sci%E5%86%99%E4%BD%9C/"><i class="fa  fa-book"></i> sci写作</a>
+            
+          
+        
+          
+          
             <a class="list-group-item" href="/2022/11/19/%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%BD%BF%E7%94%A8%E7%9A%84%E9%97%AE%E9%A2%98/"><i class="fa  fa-book"></i> 服务器使用的问题</a>
             
           
@@ -460,11 +473,7 @@
           
         
           
-          
-            <a class="list-group-item" href="/2022/10/30/10%E6%9C%8814%E6%97%A5-%E9%9D%A2%E5%AF%B9%E7%9A%84%E9%97%AE%E9%A2%98/"><i class="fa  fa-book"></i> 10月14日 面对的问题</a>
             
-          
-        
           
             
           
