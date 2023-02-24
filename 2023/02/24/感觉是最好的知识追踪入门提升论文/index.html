@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+  <!-- 元数据 -->
+  <meta charset="utf-8">
+  <link rel="icon" href="">
+  <title>感觉是最好的知识追踪入门提升论文 | limhao博客</title>
+  <meta name="author" content="limhao" />
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="robots" content="index,follow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="format-detection" content="telphone=no, email=no" />
+  
+    <meta name="keywords" content="" />
+  
+  <meta name="description" content="说在前面论文名称： PYKT: A Python Library to Benchmark Deep Learning based Knowledge Tracing Models https:&#x2F;&#x2F;arxiv.org&#x2F;pdf&#x2F;2206.11460.pdf 0 问题定义E &#x3D;&lt; q， {c}， r, t &gt; q 问题 c kc的集合 r 对还是不对 t 学生的响应时间戳 1 模">
+<meta property="og:type" content="article">
+<meta property="og:title" content="感觉是最好的知识追踪入门提升论文">
+<meta property="og:url" content="http://example.com/2023/02/24/%E6%84%9F%E8%A7%89%E6%98%AF%E6%9C%80%E5%A5%BD%E7%9A%84%E7%9F%A5%E8%AF%86%E8%BF%BD%E8%B8%AA%E5%85%A5%E9%97%A8%E6%8F%90%E5%8D%87%E8%AE%BA%E6%96%87/index.html">
+<meta property="og:site_name" content="limhao博客">
+<meta property="og:description" content="说在前面论文名称： PYKT: A Python Library to Benchmark Deep Learning based Knowledge Tracing Models https:&#x2F;&#x2F;arxiv.org&#x2F;pdf&#x2F;2206.11460.pdf 0 问题定义E &#x3D;&lt; q， {c}， r, t &gt; q 问题 c kc的集合 r 对还是不对 t 学生的响应时间戳 1 模">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/null">
+<meta property="article:published_time" content="2023-02-24T11:56:33.164Z">
+<meta property="article:modified_time" content="2023-02-03T09:10:31.000Z">
+<meta property="article:author" content="limhao">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/null">
+<meta name="twitter:site" content="@null">
+  
+  <!-- 站点验证相关 -->
+  
+    
+    
+    
+  
+  <!-- 样式表文件 -->
+  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" type="text/css" media="all">
+  
+    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" type="text/css" media="all">
+  
+  
+  <link rel="stylesheet" id="fontawe-css" href="https://unpkg.com/font-awesome@4.7.0/css/font-awesome.min.css" type="text/css" media="all">
+  <link rel="stylesheet" id="nprogress-css" href="https://unpkg.com/nprogress@0.2.0/nprogress.css" type="text/css" media="all">
+  
+  
+  
+    <link rel="stylesheet" href="https://unpkg.com/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+  
+  
+    <link rel="stylesheet" id="darkmode-css" href="/css/kr-dark.min.css" type="text/css" media="all">
+  
+  <!-- 不得不预先加载的一些JS文件 -->
+  <script src="https://unpkg.com/jquery@3.6.0/dist/jquery.min.js"></script>
+  
+    <script src="https://unpkg.com/qrcode_js@1.0.0/qrcode.min.js"></script>
+  
+  
+  <style>
+    
+      .kratos-cover.kratos-cover-2 {
+        background-image: url('/images/banner.webp');
+      }
+    
+    
+      @media(min-width:768px) {
+        body.custom-background {
+          background-image: url('/images/bg.webp');
+        }
+      }
+    
+  </style>
+  
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+
+    <body class="custom-background">
+        <div id="kratos-wrapper">
+    <div id="kratos-page">
+        <div id="kratos-header">
+            <header id="kratos-desktop-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="nav-header">
+                        <nav id="kratos-menu-wrap">
+                            <ul id="kratos-primary-menu" class="sf-menu">
+                                
+                                    
+                                        <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+                                    
+                                
+                                    
+                                        <li><a href="/archives/"><i class="fa fa-file"></i>档案馆</a></li>
+                                    
+                                
+                                    
+                                        <li>
+                                            <a><i class="fa fa-link"></i>链接</a>
+                                            <ul class="sub-menu">
+                                                
+                                                    
+                                                
+                                                    
+                                                        <li><a target="_blank" rel="noopener" href="https://github.com/limhao">项目链接</a></li>
+                                                    
+                                                
+                                            </ul>
+                                        </li>
+                                    
+                                
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+            <header id="kratos-mobile-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="color-logo"><a href="/">limhao博客</a></div>
+                    <div class="nav-toggle">
+                        <a class="kratos-nav-toggle js-kratos-nav-toggle">
+                            <i></i>
+                        </a>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <div class="kratos-start kratos-hero-2">
+            <!-- <div class="kratos-overlay"></div> -->
+            <div class="kratos-cover kratos-cover-2 text-center">
+                <div class="desc desc2 animate-box">
+                    <a href="/">
+                        <h2>limhao博客</h2> <br />
+                        <span></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="kratos-blog-post">
+            <div class="container">
+                <div id="main" class="row">
+                    
+
+        
+
+            <section class="col-md-8">
+
+        
+
+            <article>
+    <div class="kratos-hentry kratos-post-inner clearfix">
+        <header class="kratos-entry-header">
+            
+                <h1 class="kratos-entry-title text-center">感觉是最好的知识追踪入门提升论文</h1>
+            
+            
+            <ul class="kratos-post-meta text-center">
+                <li><i class="fa fa-calendar"></i> 2023-02-24</li>
+                <li><i class="fa fa-user"></i> 作者 limhao</li>
+                <li>
+                    <i class="fa fa-edit"></i> 
+                    
+                    
+                        1266
+                    
+                    字
+                </li>
+                
+            </ul>
+        </header>
+        <div class="kratos-post-content">
+            <div id="expire-alert" class="alert alert-warning hidden" role="alert">
+                <div class="icon"><i class="fa fa-warning"></i></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1675415431000"></time> 前，其中的内容可能需要更新。</p></div>
+            </div>
+            
+            <hr />
+            <h2 id="说在前面"><a href="#说在前面" class="headerlink" title="说在前面"></a>说在前面</h2><p>论文名称：</p>
+<p>PYKT: A Python Library to Benchmark Deep Learning based Knowledge Tracing Models</p>
+<p><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2206.11460.pdf">https://arxiv.org/pdf/2206.11460.pdf</a></p>
+<h2 id="0-问题定义"><a href="#0-问题定义" class="headerlink" title="0 问题定义"></a>0 问题定义</h2><p>E &#x3D;&lt; q， {c}， r, t &gt;</p>
+<p>q 问题</p>
+<p>c kc的集合</p>
+<p>r 对还是不对</p>
+<p>t 学生的响应时间戳</p>
+<h2 id="1-模型分类"><a href="#1-模型分类" class="headerlink" title="1 模型分类"></a>1 模型分类</h2><ol>
+<li>深度顺序模型</li>
+</ol>
+<p>DKT, DKT+, DKT-F,KQN</p>
+<p>KQN：使用学生知识状态编码器和技能编码器通过点积来预测学生的反应表现</p>
+<ol start="2">
+<li>内存增强模型</li>
+</ol>
+<p>DKVMN</p>
+<ol start="3">
+<li>基于对抗的模型</li>
+</ol>
+<p>将对抗性扰动等对抗性训练技术应用到原始学生交互序列中，以降低DLKT过拟合和有限泛化问题的风险</p>
+<p>ATKT</p>
+<ol start="4">
+<li>基于图的模型</li>
+</ol>
+<p>GKT</p>
+<ol start="5">
+<li>注意力方法</li>
+</ol>
+<p>AKT,SAKT,SAINT</p>
+<p>上述方法不具有排他性</p>
+<p>例如SKVMN</p>
+<h2 id="2-数据处理"><a href="#2-数据处理" class="headerlink" title="2 数据处理"></a>2 数据处理</h2><ol>
+<li>去除空值和重复值 以及 交互数量小于三的集合</li>
+<li>20% 80%</li>
+<li>将问题拆解成kc子序列进行训练和验证（当一个问题有多个KC时，通过多次重复回答）</li>
+</ol>
+<h2 id="3-训练"><a href="#3-训练" class="headerlink" title="3 训练"></a>3 训练</h2><p><img src="https://pic.imgdb.cn/item/63dc966e07d5ca720660dd09.png"></p>
+<ol>
+<li>将问题扩展成kc</li>
+<li>首先使用学习到的DLKT模型对上述扩展的KC-response数据进行预测，然后通过聚合其kc的预测掌握水平来输出最终的问题级预测</li>
+</ol>
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>标签泄露 注意看结论二</p>
+<p>这将导致地面真相的泄漏，因为连续的kc，如kt和kt+1可能与相同的问题相关联，这被称为标签泄漏问题。</p>
+<h2 id="KC聚合"><a href="#KC聚合" class="headerlink" title="KC聚合"></a>KC聚合</h2><p><img src="https://pic.imgdb.cn/item/63dc966e07d5ca720660dcfe.png"></p>
+<h2 id="一步-和-多步预测"><a href="#一步-和-多步预测" class="headerlink" title="一步 和 多步预测"></a>一步 和 多步预测</h2><p>(1)超前一步预测;</p>
+<p>(2)多步超前预测。</p>
+<p>具体来说，提前一步预测任务仅预测学生在给定学生历史交互序列的最后一个问题上的反应。而多步提前预测任务预测学生的反应跨度给定学生的历史交互序列。准确的一步提前预测将极大地改进实时教育推荐系统，多步提前预测将为学习路径选择和构建提供建设性反馈，并帮助教师对未来的教材进行适应性调整。</p>
+<p><img src="https://pic.imgdb.cn/item/63dc966e07d5ca720660dd17.png"></p>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><ol>
+<li>注意机制对DLKT模型性能影响较大。首先将深度学习应用于KT问题的DKT模型仍然是优秀的。</li>
+</ol>
+<p><img src="https://pic.imgdb.cn/item/63dc966e07d5ca720660dd2f.png"></p>
+<ol start="2">
+<li>对扩展KC序列的逐个评估会导致标签泄漏问题，从而导致性能膨胀。（注意看table2 和 table1）</li>
+</ol>
+<p><img src="https://pic.imgdb.cn/item/63dc974007d5ca7206621891.png"></p>
+<ol start="3">
+<li>DLKT模型对于具有非常长的交互序列的学生表现不同</li>
+</ol>
+<p><img src="https://pic.imgdb.cn/item/63dc974007d5ca72066218a3.png"></p>
+<ol start="4">
+<li>不同KC聚集方式的预测结果基本一致，“后期融合-平均”方法的预测结果略好于其他方法</li>
+</ol>
+<p><img src="https://pic.imgdb.cn/item/63dc96b707d5ca720661397c.png"></p>
+<ol start="5">
+<li>在多步超前预测情况下，累计或非累计预测的选择对DLKT性能有很大影响</li>
+</ol>
+<p><img src="https://pic.imgdb.cn/item/63dc96b707d5ca7206613963.png"></p>
+<h2 id="限制"><a href="#限制" class="headerlink" title="限制"></a>限制</h2><p>问题侧信息 :</p>
+<p>(1)问题文本内容;</p>
+<p>EKT，EERNN</p>
+<p>(2)各KC的潜在问题变化;</p>
+<p>AKT</p>
+<p>(3)问题难度等级;</p>
+<p>AKT，PEBG，MF-DAKT</p>
+<p>(4)问题之间的关系。</p>
+<p>RKT，MF-DAKT，PEBG</p>
+<p>学生侧信息 :</p>
+<p>(1)历史成功尝试和失败尝试;</p>
+<p>MF-DAKT</p>
+<p>(2)最近的尝试;</p>
+<p>MF-DAKT</p>
+<p>(3)学生学习能力;</p>
+<p>DKT-DSC</p>
+<p>(4)学生的个性化先验知识。</p>
+<p>CKT</p>
+<p>KC侧信息 :</p>
+<p>(1)潜在知识表示;</p>
+<p>AKT，KQN</p>
+<p>(2) KCs之间的关系。</p>
+<p>PEBG</p>
+
+        </div>
+        
+            <div class="kratos-copyright text-center clearfix">
+                <h5>本作品采用 <a rel="license nofollow" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a> 进行许可</h5>
+            </div>
+        
+        <footer class="kratos-entry-footer clearfix">
+            
+                <div class="post-like-donate text-center clearfix" id="post-like-donate">
+                
+                
+                    <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> 分享</a>
+                    <div class="share-wrap" style="display: none;">
+    <div class="share-group">
+        <a href="javascript:;" class="share-plain qq" onclick="share('qq');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-qq"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain qzone" onclick="share('qzone');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-star"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weixin pop style-plain" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weixin"></i>
+            </div>
+            <div class="share-int">
+                <div class="qrcode" id="wechat-qr"></div>
+                <p>打开微信“扫一扫”，打开网页后点击屏幕右上角分享按钮</p>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weibo" onclick="share('weibo');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weibo"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain facebook style-plain" onclick="share('facebook');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-facebook"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain twitter style-plain" onclick="share('twitter');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-twitter"></i>
+            </div>
+        </a>
+    </div>
+    <script type="text/javascript">
+        $(()=>{
+            new QRCode("wechat-qr", {
+                text: "http://example.com/2023/02/24/%E6%84%9F%E8%A7%89%E6%98%AF%E6%9C%80%E5%A5%BD%E7%9A%84%E7%9F%A5%E8%AF%86%E8%BF%BD%E8%B8%AA%E5%85%A5%E9%97%A8%E6%8F%90%E5%8D%87%E8%AE%BA%E6%96%87/",
+                width: 150,
+                height: 150,
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        });
+        function share(dest) {
+            const qqBase        = "https://connect.qq.com/widget/shareqq/index.html?";
+            const weiboBase     = "https://service.weibo.com/share/share.php?";
+            const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
+            const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
+            const twitterBase   = "https://twitter.com/intent/tweet?";
+            const hostUrl       = "http://example.com/2023/02/24/%E6%84%9F%E8%A7%89%E6%98%AF%E6%9C%80%E5%A5%BD%E7%9A%84%E7%9F%A5%E8%AF%86%E8%BF%BD%E8%B8%AA%E5%85%A5%E9%97%A8%E6%8F%90%E5%8D%87%E8%AE%BA%E6%96%87/";
+            const title         = "「感觉是最好的知识追踪入门提升论文」";
+            const excerpt       = `说在前面论文名称：
+PYKT: A Python Library to Benchmark Deep Learning based Knowledge Tracing Models
+https://arxiv.org/pdf/2206...`;
+            let _URL;
+            switch (dest) {
+                case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
+                case "weibo"    : _URL = weiboBase+"url="+hostUrl+"&title="+title+excerpt;                                 break;
+                case "qzone"    : _URL = qzoneBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";  break;
+                case "facebook" : _URL = facebookBase+"u="+hostUrl;                                                        break;
+                case "twitter"  : _URL = twitterBase+"text="+title+excerpt+"&url="+hostUrl;                                break;
+            }
+            window.open(_URL);
+        };
+    </script>
+</div>
+                
+                </div>
+            
+            <div class="footer-tag clearfix">
+                <div class="pull-left">
+                <i class="fa fa-tags"></i>
+                    
+                </div>
+                <div class="pull-date">
+                <span>最后编辑：2023-02-03</span>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+        <nav class="navigation post-navigation clearfix" role="navigation">
+            
+            <div class="nav-previous clearfix">
+                <a title=" sci写作" href="/2022/11/30/sci写作/">&lt; 上一篇</a>
+            </div>
+            
+            
+            <div class="nav-next clearfix">
+                <a title=" 没有继承且无法复现论文模型" href="/2023/02/24/没有文章继承怎么办/">下一篇 &gt;</a>
+            </div>
+            
+        </nav>
+    
+    
+</article>
+
+        
+
+            </section>
+
+        
+
+                
+            
+
+<section id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm">
+    <!-- 文章和页面根据splitter来分割，没有的话就从头开始设置为sticky -->
+    
+    
+                <aside id="krw-about" class="widget widget-kratos-about clearfix">
+    <div class="photo-background"></div>
+    <div class="photo-wrapper clearfix">
+        <div class="photo-wrapper-tip text-center">
+            <img class="about-photo" src="/images/avatar.webp" />
+        </div>
+    </div>
+    <div class="textwidget">
+        <p class="text-center"></p>
+    </div>
+    <div class="site-meta">
+        <a class="meta-item" href="/archives/">
+            <span class="title">
+                文章
+            </span>
+            <span class="count">
+                80
+            </span>
+        </a>
+        <a class="meta-item" href="/categories/">
+            <span class="title">
+                分类
+            </span>
+            <span class="count">
+                0
+            </span>
+        </a>
+        <a class="meta-item" href="/tags/">
+            <span class="title">
+                标签
+            </span>
+            <span class="count">
+                0
+            </span>
+        </a>
+    </div>
+</aside>
+            
+                    <div class="sticky-area">
+                
+                
+
+            
+                
+            
+                
+  <aside id="krw-posts" class="widget widget-kratos-posts">
+  <h4 class="widget-title"><i class="fa fa-file"></i>最新文章</h4>
+  <div class="tab-content">
+      <ul class="list-group">
+        
+        
+          
+          
+            <a class="list-group-item" href="/2023/02/24/tf%E5%AE%89%E8%A3%85%E6%8C%87%E5%9D%91/"><i class="fa  fa-book"></i> tf安装指坑</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/02/24/git%E4%BB%A3%E7%90%86/"><i class="fa  fa-book"></i> git代理</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/02/24/%E5%AD%A6%E6%9C%AF%E4%B8%8D%E7%AB%AF/"><i class="fa  fa-book"></i> 学术不端</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/02/24/%E5%88%A4%E6%96%AD%E6%98%AF%E5%90%A6%E6%98%AF%E5%88%9B%E6%96%B0/"><i class="fa  fa-book"></i> 判断创新</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/02/24/%E6%B2%A1%E6%9C%89%E6%96%87%E7%AB%A0%E7%BB%A7%E6%89%BF%E6%80%8E%E4%B9%88%E5%8A%9E/"><i class="fa  fa-book"></i> 没有继承且无法复现论文模型</a>
+            
+          
+        
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+      </ul>
+  </div>
+  </aside>
+
+            
+    </div>
+</section>
+        
+        </div>
+    </div>
+</div>
+<footer>
+    <div id="footer"  >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 footer-list text-center">
+                    <ul class="kratos-social-icons">
+                        
+                        <li><a href="mailto:982264944@qq.com"><i class="fa fa-envelope"></i></a></li>
+                        <li><a target="_blank" rel="nofollow" href="https://t.me/CandyUnion"><i class="fa fa-telegram"></i></a></li>
+                        
+                        
+                        
+                        <li><a target="_blank" rel="me" href="https://nya.one/@Candinya"><i class="fa fa fa-share-alt-square"></i></a></li>
+                        <li><a target="_blank" rel="nofollow" href="https://github.com/Candinya"><i class="fa fa-github"></i></a></li>
+                        
+                    </ul>
+                    <ul class="kratos-copyright">
+                        <div>
+                            <li>&copy; 2023 limhao博客 版权所有.</li>
+                            <li>本站已运行<span id="span_dt">Loading...</span></li>
+                        </div>
+                        <div>
+                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
+                            <li>Site built with&nbsp;<i class="fa fa-heart throb" style="color:#d43f57"></i>&nbsp;by limhao.</li>
+                        </div>
+                        <div>
+                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
+                            <li>Hosted on <a href="https://github.io" target="_blank">Github Pages</a></li>
+                        </div>
+                        <div>
+                            
+                            
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="kr-tool text-center">
+            <div class="tool">
+                
+                    <div class="box search-box">
+                        <a href="/search/">
+                            <span class="fa fa-search"></span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="darkmode-switch">
+                        <span class="fa fa-adjust"></span>
+                    </div>
+                
+                
+            </div>
+            <div class="box gotop-box">
+                <span class="fa fa-chevron-up"></span>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+</div>
+
+        <script defer src="https://unpkg.com/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
+<script defer src="https://unpkg.com/nprogress@0.2.0/nprogress.js"></script>
+<script>
+    if (!window.kr) {
+        window.kr = {};
+    }
+    window.kr.notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));
+    window.kr.siteRoot = "/";
+</script>
+
+
+
+
+
+    <script defer src="https://unpkg.com/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+<script defer src="https://unpkg.com/clipboard@2.0.6/dist/clipboard.min.js"></script>
+<script defer src="/js/kratosr.min.js"></script>
+<script defer src="/js/pjax.min.js"></script>
+
+
+    <script defer src="/js/kr-dark.min.js"></script>
+
+
+
+<!-- Extra support for third-party plguins  -->
+
+
+    </body>
+</html>
