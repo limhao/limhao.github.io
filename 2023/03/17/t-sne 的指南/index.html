@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+  <!-- 元数据 -->
+  <meta charset="utf-8">
+  <link rel="icon" href="">
+  <title>t-sne指南 | limhao博客</title>
+  <meta name="author" content="limhao" />
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="robots" content="index,follow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="format-detection" content="telphone=no, email=no" />
+  
+    <meta name="keywords" content="" />
+  
+  <meta name="description" content="前言2-27 3-17 这个星期三发的文章给老师看  距离上次发文章快20天了 差不多这20天 自己重新把文章又写了一遍 主要是发现  文章不能写太久了 写太久的话 文章会忘掉好多东西  在 写完这篇之后 随便整理个文章框架出来 很不错 为什么会用到这个东西这篇论文是一个多任务相关的推荐 采取的交叉压缩单元 通过交叉压缩两个向量 来保证两个特征之间的相关性  即 为了考虑到相关性 我考虑是不是可以">
+<meta property="og:type" content="article">
+<meta property="og:title" content="t-sne指南">
+<meta property="og:url" content="http://example.com/2023/03/17/t-sne%20%E7%9A%84%E6%8C%87%E5%8D%97/index.html">
+<meta property="og:site_name" content="limhao博客">
+<meta property="og:description" content="前言2-27 3-17 这个星期三发的文章给老师看  距离上次发文章快20天了 差不多这20天 自己重新把文章又写了一遍 主要是发现  文章不能写太久了 写太久的话 文章会忘掉好多东西  在 写完这篇之后 随便整理个文章框架出来 很不错 为什么会用到这个东西这篇论文是一个多任务相关的推荐 采取的交叉压缩单元 通过交叉压缩两个向量 来保证两个特征之间的相关性  即 为了考虑到相关性 我考虑是不是可以">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/null">
+<meta property="article:published_time" content="2023-03-17T12:15:46.900Z">
+<meta property="article:modified_time" content="2023-03-17T13:43:41.055Z">
+<meta property="article:author" content="limhao">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/null">
+<meta name="twitter:site" content="@null">
+  
+  <!-- 站点验证相关 -->
+  
+    
+    
+    
+  
+  <!-- 样式表文件 -->
+  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" type="text/css" media="all">
+  
+    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" type="text/css" media="all">
+  
+  
+  <link rel="stylesheet" id="fontawe-css" href="https://unpkg.com/font-awesome@4.7.0/css/font-awesome.min.css" type="text/css" media="all">
+  <link rel="stylesheet" id="nprogress-css" href="https://unpkg.com/nprogress@0.2.0/nprogress.css" type="text/css" media="all">
+  
+  
+  
+    <link rel="stylesheet" href="https://unpkg.com/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+  
+  
+    <link rel="stylesheet" id="darkmode-css" href="/css/kr-dark.min.css" type="text/css" media="all">
+  
+  <!-- 不得不预先加载的一些JS文件 -->
+  <script src="https://unpkg.com/jquery@3.6.0/dist/jquery.min.js"></script>
+  
+    <script src="https://unpkg.com/qrcode_js@1.0.0/qrcode.min.js"></script>
+  
+  
+  <style>
+    
+      .kratos-cover.kratos-cover-2 {
+        background-image: url('/images/banner.webp');
+      }
+    
+    
+      @media(min-width:768px) {
+        body.custom-background {
+          background-image: url('/images/bg.webp');
+        }
+      }
+    
+  </style>
+  
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+
+    <body class="custom-background">
+        <div id="kratos-wrapper">
+    <div id="kratos-page">
+        <div id="kratos-header">
+            <header id="kratos-desktop-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="nav-header">
+                        <nav id="kratos-menu-wrap">
+                            <ul id="kratos-primary-menu" class="sf-menu">
+                                
+                                    
+                                        <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+                                    
+                                
+                                    
+                                        <li><a href="/archives/"><i class="fa fa-file"></i>档案馆</a></li>
+                                    
+                                
+                                    
+                                        <li>
+                                            <a><i class="fa fa-link"></i>链接</a>
+                                            <ul class="sub-menu">
+                                                
+                                                    
+                                                
+                                                    
+                                                        <li><a target="_blank" rel="noopener" href="https://github.com/limhao">项目链接</a></li>
+                                                    
+                                                
+                                            </ul>
+                                        </li>
+                                    
+                                
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+            <header id="kratos-mobile-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="color-logo"><a href="/">limhao博客</a></div>
+                    <div class="nav-toggle">
+                        <a class="kratos-nav-toggle js-kratos-nav-toggle">
+                            <i></i>
+                        </a>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <div class="kratos-start kratos-hero-2">
+            <!-- <div class="kratos-overlay"></div> -->
+            <div class="kratos-cover kratos-cover-2 text-center">
+                <div class="desc desc2 animate-box">
+                    <a href="/">
+                        <h2>limhao博客</h2> <br />
+                        <span></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="kratos-blog-post">
+            <div class="container">
+                <div id="main" class="row">
+                    
+
+        
+
+            <section class="col-md-8">
+
+        
+
+            <article>
+    <div class="kratos-hentry kratos-post-inner clearfix">
+        <header class="kratos-entry-header">
+            
+                <h1 class="kratos-entry-title text-center">t-sne指南</h1>
+            
+            
+            <ul class="kratos-post-meta text-center">
+                <li><i class="fa fa-calendar"></i> 2023-03-17</li>
+                <li><i class="fa fa-user"></i> 作者 limhao</li>
+                <li>
+                    <i class="fa fa-edit"></i> 
+                    
+                    
+                        ~4.09K
+                    
+                    字
+                </li>
+                
+            </ul>
+        </header>
+        <div class="kratos-post-content">
+            <div id="expire-alert" class="alert alert-warning hidden" role="alert">
+                <div class="icon"><i class="fa fa-warning"></i></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1679060621055"></time> 前，其中的内容可能需要更新。</p></div>
+            </div>
+            
+            <hr />
+            <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>2-27 3-17 这个星期三发的文章给老师看</p>
+<p><img src="https://pic.imgdb.cn/item/64146641a682492fcc29fc03.png"></p>
+<p>距离上次发文章快20天了</p>
+<p>差不多这20天 自己重新把文章又写了一遍</p>
+<p>主要是发现 </p>
+<p>文章不能写太久了 写太久的话 文章会忘掉好多东西 </p>
+<p>在 写完这篇之后 随便整理个文章框架出来 很不错</p>
+<h3 id="为什么会用到这个东西"><a href="#为什么会用到这个东西" class="headerlink" title="为什么会用到这个东西"></a>为什么会用到这个东西</h3><p>这篇论文是一个多任务相关的推荐</p>
+<p>采取的交叉压缩单元 通过交叉压缩两个向量 来保证两个特征之间的相关性 </p>
+<p>即 为了考虑到相关性 我考虑是不是可以使用t-sne来展现特征两者的相关性</p>
+<p>于是乎 就出现了这么个我学习的东西</p>
+<h3 id="学习到了什么？"><a href="#学习到了什么？" class="headerlink" title="学习到了什么？"></a>学习到了什么？</h3><p>参考 链接</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/tszupup/article/details/84997804">https://blog.csdn.net/tszupup/article/details/84997804</a></p>
+<ol>
+<li>模型的权重文件 在模型save的时候 要注意下面这个</li>
+</ol>
+<p><img src="https://pic.imgdb.cn/item/64146640a682492fcc29fb91.png"></p>
+<p>注意不要是save_dict() 否者模型无法验证</p>
+<ol start="2">
+<li>看了看aitm 里面 出现了 sample正负样本的方法 在本次使用的是下面这个</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">data.info()</span><br><span class="line">minidata = data.sample(<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line">minidata</span><br><span class="line">minidata = minidata.drop(columns=[<span class="string">&#x27;search_id&#x27;</span>])</span><br><span class="line">minidata.to_csv(<span class="string">&#x27;tsne.csv&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>sample 函数真好用 但是 下次看下 是不是 sample函数是不是可以给些限制条件 来保证sample出的正负样本</p>
+<ol start="3">
+<li>sklearn 中 tsne 函数奇奇怪怪的点</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ValueError: perplexity must be less than n_samples</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://pic.imgdb.cn/item/64146641a682492fcc29fc4d.png"></p>
+<p>说实话 真的有人看的懂这个东西？</p>
+<p>我当时还问了chatgpt</p>
+<p>sklearn 的中文化教程是真的差 csdn也没找到</p>
+<p>其中 得到的解答是  perplexity 这个超参数的值 大于了 n_samples 的值</p>
+<p>soga 立马 改了 </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 改之前</span></span><br><span class="line">tsne = TSNE(n_components=<span class="number">2</span>, init=<span class="string">&#x27;pca&#x27;</span>, random_state=<span class="number">0</span>)</span><br><span class="line"><span class="comment"># 改之后 默认的值好像是50来着</span></span><br><span class="line">tsne = TSNE(n_components=<span class="number">2</span>, init=<span class="string">&#x27;pca&#x27;</span>, random_state=<span class="number">0</span>, perlexity=<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+
+<p>但是 结果是真的奇怪 或者 t-sne 不太合适去展现中间的过程吧 去找找</p>
+<p><img src="https://pic.imgdb.cn/item/64146641a682492fcc29fca1.png"></p>
+<ol start="4">
+<li>下一步的思考</li>
+</ol>
+<p>找找什么方法可以较好的展现中间结果</p>
+<p>试一试三维的t-sne 估计又得学一会</p>
+<p>我对于模型的权重文件的理解 </p>
+<p>应该是将四个结果展现出来 我画个图！ 最后使用三维图将结果弄出来</p>
+<p><img src="https://pic.imgdb.cn/item/64146e43a682492fcc464b87.png"></p>
+<p>但我感觉 我想了想内积 来保证权重的相似性</p>
+<p>多想想</p>
+<h3 id="代码整个流程"><a href="#代码整个流程" class="headerlink" title="代码整个流程"></a>代码整个流程</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 模型导入</span></span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line">model = torch.load(<span class="string">&#x27;t-sne模型文件/AliExpress_US_sharedbottom.pt&#x27;</span>)</span><br><span class="line">model.<span class="built_in">eval</span>()</span><br><span class="line"><span class="comment"># 数据导入</span></span><br><span class="line"><span class="keyword">from</span> datasets.aliexpress <span class="keyword">import</span> AliExpressDataset</span><br><span class="line">train_dataset = AliExpressDataset(<span class="string">&#x27;tsne.csv&#x27;</span>)</span><br><span class="line"><span class="comment"># 数据加载器导入</span></span><br><span class="line"><span class="keyword">from</span> torch.utils.data <span class="keyword">import</span> DataLoader</span><br><span class="line"><span class="keyword">import</span> random </span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">seed = <span class="number">2022</span></span><br><span class="line">random.seed(seed)</span><br><span class="line">np.random.seed(seed)</span><br><span class="line">torch.manual_seed(seed)</span><br><span class="line">torch.cuda.manual_seed(seed)</span><br><span class="line">torch.cuda.manual_seed_all(seed)</span><br><span class="line">train_data_loader = DataLoader(train_dataset, batch_size=<span class="number">1</span>, num_workers=<span class="number">4</span>, shuffle=<span class="literal">False</span>)</span><br><span class="line"><span class="comment"># 下面的代码是 https://blog.csdn.net/tszupup/article/details/84997804 改的</span></span><br><span class="line"><span class="comment"># coding=&#x27;utf-8&#x27;</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;t-SNE对手写数字进行可视化&quot;&quot;&quot;</span></span><br><span class="line"><span class="keyword">from</span> time <span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> tqdm</span><br><span class="line">device = <span class="string">&#x27;cuda:0&#x27;</span></span><br><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> datasets</span><br><span class="line"><span class="keyword">from</span> sklearn.manifold <span class="keyword">import</span> TSNE</span><br><span class="line"><span class="keyword">from</span> sklearn.decomposition <span class="keyword">import</span> PCA</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">plot_embedding</span>(<span class="params">data, label, title</span>):</span><br><span class="line">    x_min, x_max = np.<span class="built_in">min</span>(data, <span class="number">0</span>), np.<span class="built_in">max</span>(data, <span class="number">0</span>)</span><br><span class="line">    data = (data - x_min) / (x_max - x_min)</span><br><span class="line"></span><br><span class="line">    fig = plt.figure()</span><br><span class="line">    ax = plt.subplot(<span class="number">111</span>)</span><br><span class="line">    colors = [<span class="string">&#x27;r&#x27;</span>, <span class="string">&#x27;b&#x27;</span>]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(data.shape[<span class="number">0</span>]):</span><br><span class="line">        plt.scatter(data[i, <span class="number">0</span>], data[i, <span class="number">1</span>], c=colors[label[i]], alpha=<span class="number">0.5</span>)</span><br><span class="line">    plt.xticks([])</span><br><span class="line">    plt.yticks([])</span><br><span class="line">    plt.title(title)</span><br><span class="line">    <span class="keyword">return</span> fig</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    <span class="keyword">with</span> torch.no_grad():</span><br><span class="line">        data1 = []</span><br><span class="line">        data2 = []</span><br><span class="line">        <span class="keyword">for</span> categorical_fields, numerical_fields, labels <span class="keyword">in</span> tqdm.tqdm(train_data_loader, smoothing=<span class="number">0</span>, mininterval=<span class="number">1.0</span>):</span><br><span class="line">            categorical_fields, numerical_fields, labels = categorical_fields.to(device), numerical_fields.to(device), labels.to(device)</span><br><span class="line">            y, _ ,cross= model(categorical_fields, numerical_fields)</span><br><span class="line">            data1 += cross[<span class="number">0</span>].cpu().numpy().tolist()</span><br><span class="line">            data2 += cross[<span class="number">1</span>].cpu().numpy().tolist()</span><br><span class="line">        <span class="comment"># data = np.array(data1)</span></span><br><span class="line">        data = np.concatenate((data1, data2), axis=<span class="number">0</span>)</span><br><span class="line">        label = <span class="built_in">len</span>(data1)*[<span class="number">0</span>] + <span class="built_in">len</span>(data2)*[<span class="number">1</span>]</span><br><span class="line">        <span class="comment"># label = len(data1)*[1]</span></span><br><span class="line">        n_samples, n_features = data.shape</span><br><span class="line">        <span class="built_in">print</span>(data.shape)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;data.shape&#x27;</span>,data.shape) </span><br><span class="line">    <span class="comment"># print(data)</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;label&#x27;</span>,label)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;label中数字有&#x27;</span>,<span class="built_in">len</span>(<span class="built_in">set</span>(label)),<span class="string">&#x27;个不同的数字&#x27;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;data有&#x27;</span>,n_samples,<span class="string">&#x27;个样本&#x27;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;每个样本&#x27;</span>,n_features,<span class="string">&#x27;维数据&#x27;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;Computing t-SNE embedding&#x27;</span>)</span><br><span class="line">    tsne = TSNE(n_components=<span class="number">2</span>, init=<span class="string">&#x27;pca&#x27;</span>, random_state=<span class="number">0</span>)</span><br><span class="line">    <span class="comment"># pca = PCA(n_components=2, random_state=0)</span></span><br><span class="line">    t0 = time()</span><br><span class="line">    <span class="comment"># result = tsne.fit_transform(data)</span></span><br><span class="line">    result = tsne.fit_transform(data)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;result.shape&#x27;</span>,result.shape)</span><br><span class="line">    fig = plot_embedding(result, label,</span><br><span class="line">                         <span class="string">&#x27;t-SNE embedding of the digits (time %.2fs)&#x27;</span></span><br><span class="line">                         % (time() - t0))</span><br><span class="line">    plt.show(fig)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    main()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+        </div>
+        
+            <div class="kratos-copyright text-center clearfix">
+                <h5>本作品采用 <a rel="license nofollow" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a> 进行许可</h5>
+            </div>
+        
+        <footer class="kratos-entry-footer clearfix">
+            
+                <div class="post-like-donate text-center clearfix" id="post-like-donate">
+                
+                
+                    <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> 分享</a>
+                    <div class="share-wrap" style="display: none;">
+    <div class="share-group">
+        <a href="javascript:;" class="share-plain qq" onclick="share('qq');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-qq"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain qzone" onclick="share('qzone');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-star"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weixin pop style-plain" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weixin"></i>
+            </div>
+            <div class="share-int">
+                <div class="qrcode" id="wechat-qr"></div>
+                <p>打开微信“扫一扫”，打开网页后点击屏幕右上角分享按钮</p>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weibo" onclick="share('weibo');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weibo"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain facebook style-plain" onclick="share('facebook');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-facebook"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain twitter style-plain" onclick="share('twitter');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-twitter"></i>
+            </div>
+        </a>
+    </div>
+    <script type="text/javascript">
+        $(()=>{
+            new QRCode("wechat-qr", {
+                text: "http://example.com/2023/03/17/t-sne%20%E7%9A%84%E6%8C%87%E5%8D%97/",
+                width: 150,
+                height: 150,
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        });
+        function share(dest) {
+            const qqBase        = "https://connect.qq.com/widget/shareqq/index.html?";
+            const weiboBase     = "https://service.weibo.com/share/share.php?";
+            const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
+            const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
+            const twitterBase   = "https://twitter.com/intent/tweet?";
+            const hostUrl       = "http://example.com/2023/03/17/t-sne%20%E7%9A%84%E6%8C%87%E5%8D%97/";
+            const title         = "「t-sne指南」";
+            const excerpt       = `前言2-27 3-17 这个星期三发的文章给老师看
+
+距离上次发文章快20天了
+差不多这20天 自己重新把文章又写了一遍
+主要是发现 
+文章不能写太久了 写太久的话 文章会忘掉好多东西 
+在 写完这篇之后 随便整理个文章框架出来 很不...`;
+            let _URL;
+            switch (dest) {
+                case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
+                case "weibo"    : _URL = weiboBase+"url="+hostUrl+"&title="+title+excerpt;                                 break;
+                case "qzone"    : _URL = qzoneBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";  break;
+                case "facebook" : _URL = facebookBase+"u="+hostUrl;                                                        break;
+                case "twitter"  : _URL = twitterBase+"text="+title+excerpt+"&url="+hostUrl;                                break;
+            }
+            window.open(_URL);
+        };
+    </script>
+</div>
+                
+                </div>
+            
+            <div class="footer-tag clearfix">
+                <div class="pull-left">
+                <i class="fa fa-tags"></i>
+                    
+                </div>
+                <div class="pull-date">
+                <span>最后编辑：2023-03-17</span>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+        <nav class="navigation post-navigation clearfix" role="navigation">
+            
+            <div class="nav-previous clearfix">
+                <a title=" 如何缝论文 缝完该怎么写" href="/2023/02/27/如何缝论文-缝完该怎么写/">&lt; 上一篇</a>
+            </div>
+            
+            
+            <div class="nav-next clearfix">
+                <a title=" 最近想写的个东西" href="/2023/03/17/最近想写的个东西/">下一篇 &gt;</a>
+            </div>
+            
+        </nav>
+    
+    
+</article>
+
+        
+
+            </section>
+
+        
+
+                
+            
+
+<section id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm">
+    <!-- 文章和页面根据splitter来分割，没有的话就从头开始设置为sticky -->
+    
+    
+                <aside id="krw-about" class="widget widget-kratos-about clearfix">
+    <div class="photo-background"></div>
+    <div class="photo-wrapper clearfix">
+        <div class="photo-wrapper-tip text-center">
+            <img class="about-photo" src="/images/avatar.webp" />
+        </div>
+    </div>
+    <div class="textwidget">
+        <p class="text-center"></p>
+    </div>
+    <div class="site-meta">
+        <a class="meta-item" href="/archives/">
+            <span class="title">
+                文章
+            </span>
+            <span class="count">
+                93
+            </span>
+        </a>
+        <a class="meta-item" href="/categories/">
+            <span class="title">
+                分类
+            </span>
+            <span class="count">
+                0
+            </span>
+        </a>
+        <a class="meta-item" href="/tags/">
+            <span class="title">
+                标签
+            </span>
+            <span class="count">
+                0
+            </span>
+        </a>
+    </div>
+</aside>
+            
+                    <div class="sticky-area">
+                
+                
+
+            
+                
+            
+                
+  <aside id="krw-posts" class="widget widget-kratos-posts">
+  <h4 class="widget-title"><i class="fa fa-file"></i>最新文章</h4>
+  <div class="tab-content">
+      <ul class="list-group">
+        
+        
+          
+          
+            <a class="list-group-item" href="/2023/03/17/%E6%9C%80%E8%BF%91%E6%83%B3%E5%86%99%E7%9A%84%E4%B8%AA%E4%B8%9C%E8%A5%BF/"><i class="fa  fa-book"></i> 最近想写的个东西</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/03/17/t-sne%20%E7%9A%84%E6%8C%87%E5%8D%97/"><i class="fa  fa-book"></i> t-sne指南</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/02/27/%E5%A6%82%E4%BD%95%E7%BC%9D%E8%AE%BA%E6%96%87-%E7%BC%9D%E5%AE%8C%E8%AF%A5%E6%80%8E%E4%B9%88%E5%86%99/"><i class="fa  fa-book"></i> 如何缝论文 缝完该怎么写</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/02/27/ai%E6%A8%A1%E5%9D%97%E7%BC%9D%E5%90%88%E5%AE%9E%E6%93%8D/"><i class="fa  fa-book"></i> ai模块缝合实操</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/02/26/%E7%AD%94%E7%96%91%20%E6%95%B0%E6%8D%AE%E9%9B%86%E5%92%8C%E5%88%9B%E6%96%B0%E7%82%B9/"><i class="fa  fa-book"></i> 答疑 数据集和创新点</a>
+            
+          
+        
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+      </ul>
+  </div>
+  </aside>
+
+            
+    </div>
+</section>
+        
+        </div>
+    </div>
+</div>
+<footer>
+    <div id="footer"  >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 footer-list text-center">
+                    <ul class="kratos-social-icons">
+                        
+                        <li><a href="mailto:982264944@qq.com"><i class="fa fa-envelope"></i></a></li>
+                        <li><a target="_blank" rel="nofollow" href="https://t.me/CandyUnion"><i class="fa fa-telegram"></i></a></li>
+                        
+                        
+                        
+                        <li><a target="_blank" rel="me" href="https://nya.one/@Candinya"><i class="fa fa fa-share-alt-square"></i></a></li>
+                        <li><a target="_blank" rel="nofollow" href="https://github.com/Candinya"><i class="fa fa-github"></i></a></li>
+                        
+                    </ul>
+                    <ul class="kratos-copyright">
+                        <div>
+                            <li>&copy; 2023 limhao博客 版权所有.</li>
+                            <li>本站已运行<span id="span_dt">Loading...</span></li>
+                        </div>
+                        <div>
+                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
+                            <li>Site built with&nbsp;<i class="fa fa-heart throb" style="color:#d43f57"></i>&nbsp;by limhao.</li>
+                        </div>
+                        <div>
+                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
+                            <li>Hosted on <a href="https://github.io" target="_blank">Github Pages</a></li>
+                        </div>
+                        <div>
+                            
+                            
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="kr-tool text-center">
+            <div class="tool">
+                
+                    <div class="box search-box">
+                        <a href="/search/">
+                            <span class="fa fa-search"></span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="darkmode-switch">
+                        <span class="fa fa-adjust"></span>
+                    </div>
+                
+                
+            </div>
+            <div class="box gotop-box">
+                <span class="fa fa-chevron-up"></span>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+</div>
+
+        <script defer src="https://unpkg.com/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
+<script defer src="https://unpkg.com/nprogress@0.2.0/nprogress.js"></script>
+<script>
+    if (!window.kr) {
+        window.kr = {};
+    }
+    window.kr.notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));
+    window.kr.siteRoot = "/";
+</script>
+
+
+
+
+
+    <script defer src="https://unpkg.com/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+<script defer src="https://unpkg.com/clipboard@2.0.6/dist/clipboard.min.js"></script>
+<script defer src="/js/kratosr.min.js"></script>
+<script defer src="/js/pjax.min.js"></script>
+
+
+    <script defer src="/js/kr-dark.min.js"></script>
+
+
+
+<!-- Extra support for third-party plguins  -->
+
+
+    </body>
+</html>
