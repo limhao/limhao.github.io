@@ -15,16 +15,16 @@
   
     <meta name="keywords" content="" />
   
-  <meta name="description" content="说在前面论文名称： PYKT: A Python Library to Benchmark Deep Learning based Knowledge Tracing Models https:&#x2F;&#x2F;arxiv.org&#x2F;pdf&#x2F;2206.11460.pdf 0 问题定义E &#x3D;&lt; q， {c}， r, t &gt; q 问题 c kc的集合 r 对还是不对 t 学生的响应时间戳 1 模">
+  <meta name="description" content="说在前面论文名称： PYKT: A Python Library to Benchmark Deep Learning based Knowledge Tracing Models https:&#x2F;&#x2F;arxiv.org&#x2F;pdf&#x2F;2206.11460.pdf 作者试图回答两个问题  什么是DLKT算法的合理、可靠和现实的评估过程？  学生数据、模型设计和预测情景的不同特征如何影响模型性能 ？  0 问">
 <meta property="og:type" content="article">
 <meta property="og:title" content="感觉是最好的知识追踪入门提升论文">
 <meta property="og:url" content="http://example.com/2023/02/24/%E6%84%9F%E8%A7%89%E6%98%AF%E6%9C%80%E5%A5%BD%E7%9A%84%E7%9F%A5%E8%AF%86%E8%BF%BD%E8%B8%AA%E5%85%A5%E9%97%A8%E6%8F%90%E5%8D%87%E8%AE%BA%E6%96%87/index.html">
 <meta property="og:site_name" content="limhao博客">
-<meta property="og:description" content="说在前面论文名称： PYKT: A Python Library to Benchmark Deep Learning based Knowledge Tracing Models https:&#x2F;&#x2F;arxiv.org&#x2F;pdf&#x2F;2206.11460.pdf 0 问题定义E &#x3D;&lt; q， {c}， r, t &gt; q 问题 c kc的集合 r 对还是不对 t 学生的响应时间戳 1 模">
+<meta property="og:description" content="说在前面论文名称： PYKT: A Python Library to Benchmark Deep Learning based Knowledge Tracing Models https:&#x2F;&#x2F;arxiv.org&#x2F;pdf&#x2F;2206.11460.pdf 作者试图回答两个问题  什么是DLKT算法的合理、可靠和现实的评估过程？  学生数据、模型设计和预测情景的不同特征如何影响模型性能 ？  0 问">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/null">
 <meta property="article:published_time" content="2023-02-24T11:56:33.164Z">
-<meta property="article:modified_time" content="2023-02-03T09:10:31.000Z">
+<meta property="article:modified_time" content="2023-03-18T12:10:45.945Z">
 <meta property="article:author" content="limhao">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/null">
@@ -162,7 +162,7 @@
                     <i class="fa fa-edit"></i> 
                     
                     
-                        1266
+                        ~2.38K
                     
                     字
                 </li>
@@ -172,13 +172,18 @@
         <div class="kratos-post-content">
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>本文最后编辑于 <time datetime="1675415431000"></time> 前，其中的内容可能需要更新。</p></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1679141445945"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
             <hr />
             <h2 id="说在前面"><a href="#说在前面" class="headerlink" title="说在前面"></a>说在前面</h2><p>论文名称：</p>
 <p>PYKT: A Python Library to Benchmark Deep Learning based Knowledge Tracing Models</p>
 <p><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2206.11460.pdf">https://arxiv.org/pdf/2206.11460.pdf</a></p>
+<p>作者试图回答两个问题</p>
+<ol>
+<li>什么是DLKT算法的合理、可靠和现实的评估过程？ </li>
+<li>学生数据、模型设计和预测情景的不同特征如何影响模型性能 ？</li>
+</ol>
 <h2 id="0-问题定义"><a href="#0-问题定义" class="headerlink" title="0 问题定义"></a>0 问题定义</h2><p>E &#x3D;&lt; q， {c}， r, t &gt;</p>
 <p>q 问题</p>
 <p>c kc的集合</p>
@@ -188,7 +193,8 @@
 <li>深度顺序模型</li>
 </ol>
 <p>DKT, DKT+, DKT-F,KQN</p>
-<p>KQN：使用学生知识状态编码器和技能编码器通过点积来预测学生的反应表现</p>
+<p>KQN：使用学生知识状态编码器和技能编码器通过点积来预测学生的反应表现，通过点积预测学生反应</p>
+<p>KQN 可以看看 很像啊 我不说是啥 很像双塔的说</p>
 <ol start="2">
 <li>内存增强模型</li>
 </ol>
@@ -208,23 +214,43 @@
 <p>AKT,SAKT,SAINT</p>
 <p>上述方法不具有排他性</p>
 <p>例如SKVMN</p>
-<h2 id="2-数据处理"><a href="#2-数据处理" class="headerlink" title="2 数据处理"></a>2 数据处理</h2><ol>
-<li>去除空值和重复值 以及 交互数量小于三的集合</li>
-<li>20% 80%</li>
-<li>将问题拆解成kc子序列进行训练和验证（当一个问题有多个KC时，通过多次重复回答）</li>
-</ol>
-<h2 id="3-训练"><a href="#3-训练" class="headerlink" title="3 训练"></a>3 训练</h2><p><img src="https://pic.imgdb.cn/item/63dc966e07d5ca720660dd09.png"></p>
+<h2 id="2-数据集"><a href="#2-数据集" class="headerlink" title="2 数据集"></a>2 数据集</h2><ul>
+<li>Statics2011:此数据集收集自2011年秋季在卡内基梅隆大学教授的工程静力学课程[33]。 由[6,10,46]推荐，通过串联问题名和步骤名来构造唯一问题。 </li>
+<li>ASSISTments2009:此数据集由2009-2010学年从免费在线辅导辅助平台收集的数学练习组成。 在过去的十年中，该数据集被广泛使用，并已成为KT方法的标准基准[1,9,10,23,43,46]。 </li>
+<li>Assistments2015:与Assistments2009类似，此数据集是2015年从Assistments平台收集的。 此数据集是其他辅助数据集中学生人数最多的 </li>
+<li>Algebra2005:此数据集来自KDD Cup 2010 EDM挑战赛，包含13-14岁学生对代数问题的回答[32]。 它包含详细的步骤级学生响应。 独特的问题结构类似于Statics2011中使用的过程。 </li>
+<li>Bridge2006:此数据集也来自KDD杯2010 EDM挑战赛，其独特的问题构造类似于Statics2011中使用的过程。 </li>
+<li>NIPS34:此数据集来自NeurIPS 2020教育挑战赛的任务3和4。 它包含学生对多项选择诊断性数学问题的答案，并从EEDI平台收集[40]。 对于每个问题，我们选择使用主题树中的叶节点作为其KCS。 </li>
+<li>POJ：本数据集由编程练习组成，收集自北京编码实践在线平台。 该数据集最初是由Pandey和Srivastava[24]刮取的。</li>
+</ul>
+<h2 id="现实世界的预测场景"><a href="#现实世界的预测场景" class="headerlink" title="现实世界的预测场景"></a>现实世界的预测场景</h2><p>步骤1</p>
+<p>在KC响应数据上训练DLKT模型，当问题与一组KC相关联时，通过将每个问题级交互扩展为多个KC级交互，但问题由多个KC响应组成的</p>
+<p>步骤2</p>
+<p>首先利用学习到的DLKT模型对上述扩展的KC反应数据进行预测，然后通过聚合预测的KC掌握水平输出最终的问题水平预测。 </p>
+<p>扩展 在聚合 </p>
+<p>为什么会这个样子捏</p>
+<p>KC 比问题相比 数据简直太少了的说 </p>
+<p><img src="https://pic.imgdb.cn/item/6415a988a682492fccb6e909.png"></p>
+<h2 id="4-训练"><a href="#4-训练" class="headerlink" title="4 训练"></a>4 训练</h2><p><img src="https://pic.imgdb.cn/item/63dc966e07d5ca720660dd09.png"></p>
 <ol>
 <li>将问题扩展成kc</li>
 <li>首先使用学习到的DLKT模型对上述扩展的KC-response数据进行预测，然后通过聚合其kc的预测掌握水平来输出最终的问题级预测</li>
 </ol>
 <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>标签泄露 注意看结论二</p>
-<p>这将导致地面真相的泄漏，因为连续的kc，如kt和kt+1可能与相同的问题相关联，这被称为标签泄漏问题。</p>
+<p>这将导致地面真相的泄漏，因为连续的kc，如kt和kt+1可能与相同的问题相关联，这被称为标签泄漏问题。（类似于 图中的k3 和 k4 先后预测 如果k3 和k4 存在相关关系，就会存在标签泄露问题）</p>
 <h2 id="KC聚合"><a href="#KC聚合" class="headerlink" title="KC聚合"></a>KC聚合</h2><p><img src="https://pic.imgdb.cn/item/63dc966e07d5ca720660dcfe.png"></p>
+<img src="https://pic.imgdb.cn/item/6415a988a682492fccb6e975.jpg" style="zoom:50%;transform:rotate(270deg)" />
+
 <h2 id="一步-和-多步预测"><a href="#一步-和-多步预测" class="headerlink" title="一步 和 多步预测"></a>一步 和 多步预测</h2><p>(1)超前一步预测;</p>
 <p>(2)多步超前预测。</p>
 <p>具体来说，提前一步预测任务仅预测学生在给定学生历史交互序列的最后一个问题上的反应。而多步提前预测任务预测学生的反应跨度给定学生的历史交互序列。准确的一步提前预测将极大地改进实时教育推荐系统，多步提前预测将为学习路径选择和构建提供建设性反馈，并帮助教师对未来的教材进行适应性调整。</p>
 <p><img src="https://pic.imgdb.cn/item/63dc966e07d5ca720660dd17.png"></p>
+<h2 id="标准化的数据处理"><a href="#标准化的数据处理" class="headerlink" title="标准化的数据处理"></a>标准化的数据处理</h2><ol>
+<li>数据过滤 去除空值和重复值 以及 交互数量小于三的集合 四元组中缺失的也得去掉</li>
+<li>80% 20% 其中 80% 被分成5叠 4叠训练 1叠验证</li>
+<li>KC子序列生成用于训练和验证。 当一个问题有一个以上的KCs时，通过重复回答多次将原始问题-响应序列扩展到KC级别，每个KC对应一个KC。 将扩展后的KC水平响应序列截断为长度为m的较短子序列，其中m为预定义的最大训练序列长度。 小于m的序列将由-1 填充</li>
+<li>默认情况下，我们选择使用LF-AVG进行KC预测融合</li>
+</ol>
 <h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><ol>
 <li>注意机制对DLKT模型性能影响较大。首先将深度学习应用于KT问题的DKT模型仍然是优秀的。</li>
 </ol>
@@ -359,7 +385,7 @@ https://arxiv.org/pdf/2206...`;
                     
                 </div>
                 <div class="pull-date">
-                <span>最后编辑：2023-02-03</span>
+                <span>最后编辑：2023-03-18</span>
                 </div>
             </div>
         </footer>
