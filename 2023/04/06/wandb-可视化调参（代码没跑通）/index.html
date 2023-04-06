@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+  <!-- 元数据 -->
+  <meta charset="utf-8">
+  <link rel="icon" href="">
+  <title>wandb 可视化调参 | limhao博客</title>
+  <meta name="author" content="limhao" />
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="robots" content="index,follow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="format-detection" content="telphone=no, email=no" />
+  
+    <meta name="keywords" content="" />
+  
+  <meta name="description" content="主从的结构 老板和员工  三步 1234561. 配置sweep_config配置调优算法，调优目标，需要优化的超参数列表 等2. 初始化sweep controllersweep_id &#x3D; wandb.sweep(sweep_config)3. 启动wandb.agent(sweep_id, function&#x3D;train)  开始之前 123456789101112131415161718192">
+<meta property="og:type" content="article">
+<meta property="og:title" content="wandb 可视化调参">
+<meta property="og:url" content="http://example.com/2023/04/06/wandb-%E5%8F%AF%E8%A7%86%E5%8C%96%E8%B0%83%E5%8F%82%EF%BC%88%E4%BB%A3%E7%A0%81%E6%B2%A1%E8%B7%91%E9%80%9A%EF%BC%89/index.html">
+<meta property="og:site_name" content="limhao博客">
+<meta property="og:description" content="主从的结构 老板和员工  三步 1234561. 配置sweep_config配置调优算法，调优目标，需要优化的超参数列表 等2. 初始化sweep controllersweep_id &#x3D; wandb.sweep(sweep_config)3. 启动wandb.agent(sweep_id, function&#x3D;train)  开始之前 123456789101112131415161718192">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/null">
+<meta property="article:published_time" content="2023-04-06T02:17:40.868Z">
+<meta property="article:modified_time" content="2023-04-06T02:17:40.873Z">
+<meta property="article:author" content="limhao">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/null">
+<meta name="twitter:site" content="@null">
+  
+  <!-- 站点验证相关 -->
+  
+    
+    
+    
+  
+  <!-- 样式表文件 -->
+  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" type="text/css" media="all">
+  
+    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" type="text/css" media="all">
+  
+  
+  <link rel="stylesheet" id="fontawe-css" href="https://unpkg.com/font-awesome@4.7.0/css/font-awesome.min.css" type="text/css" media="all">
+  <link rel="stylesheet" id="nprogress-css" href="https://unpkg.com/nprogress@0.2.0/nprogress.css" type="text/css" media="all">
+  
+  
+  
+    <link rel="stylesheet" href="https://unpkg.com/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+  
+  
+    <link rel="stylesheet" id="darkmode-css" href="/css/kr-dark.min.css" type="text/css" media="all">
+  
+  <!-- 不得不预先加载的一些JS文件 -->
+  <script src="https://unpkg.com/jquery@3.6.0/dist/jquery.min.js"></script>
+  
+    <script src="https://unpkg.com/qrcode_js@1.0.0/qrcode.min.js"></script>
+  
+  
+  <style>
+    
+      .kratos-cover.kratos-cover-2 {
+        background-image: url('/images/banner.webp');
+      }
+    
+    
+      @media(min-width:768px) {
+        body.custom-background {
+          background-image: url('/images/bg.webp');
+        }
+      }
+    
+  </style>
+  
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+
+    <body class="custom-background">
+        <div id="kratos-wrapper">
+    <div id="kratos-page">
+        <div id="kratos-header">
+            <header id="kratos-desktop-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="nav-header">
+                        <nav id="kratos-menu-wrap">
+                            <ul id="kratos-primary-menu" class="sf-menu">
+                                
+                                    
+                                        <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+                                    
+                                
+                                    
+                                        <li><a href="/archives/"><i class="fa fa-file"></i>档案馆</a></li>
+                                    
+                                
+                                    
+                                        <li>
+                                            <a><i class="fa fa-link"></i>链接</a>
+                                            <ul class="sub-menu">
+                                                
+                                                    
+                                                
+                                                    
+                                                        <li><a target="_blank" rel="noopener" href="https://github.com/limhao">项目链接</a></li>
+                                                    
+                                                
+                                            </ul>
+                                        </li>
+                                    
+                                
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+            <header id="kratos-mobile-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="color-logo"><a href="/">limhao博客</a></div>
+                    <div class="nav-toggle">
+                        <a class="kratos-nav-toggle js-kratos-nav-toggle">
+                            <i></i>
+                        </a>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <div class="kratos-start kratos-hero-2">
+            <!-- <div class="kratos-overlay"></div> -->
+            <div class="kratos-cover kratos-cover-2 text-center">
+                <div class="desc desc2 animate-box">
+                    <a href="/">
+                        <h2>limhao博客</h2> <br />
+                        <span></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="kratos-blog-post">
+            <div class="container">
+                <div id="main" class="row">
+                    
+
+        
+
+            <section class="col-md-8">
+
+        
+
+            <article>
+    <div class="kratos-hentry kratos-post-inner clearfix">
+        <header class="kratos-entry-header">
+            
+                <h1 class="kratos-entry-title text-center">wandb 可视化调参</h1>
+            
+            
+            <ul class="kratos-post-meta text-center">
+                <li><i class="fa fa-calendar"></i> 2023-04-06</li>
+                <li><i class="fa fa-user"></i> 作者 limhao</li>
+                <li>
+                    <i class="fa fa-edit"></i> 
+                    
+                    
+                        ~7.32K
+                    
+                    字
+                </li>
+                
+            </ul>
+        </header>
+        <div class="kratos-post-content">
+            <div id="expire-alert" class="alert alert-warning hidden" role="alert">
+                <div class="icon"><i class="fa fa-warning"></i></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1680747460873"></time> 前，其中的内容可能需要更新。</p></div>
+            </div>
+            
+            <hr />
+            <p>主从的结构</p>
+<p>老板和员工</p>
+<p><img src="https://pic.imgdb.cn/item/641a8314a682492fccf565cb.png"></p>
+<p>三步</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span> 配置sweep_config</span><br><span class="line">配置调优算法，调优目标，需要优化的超参数列表 等</span><br><span class="line"><span class="number">2.</span> 初始化sweep controller</span><br><span class="line">sweep_id = wandb.sweep(sweep_config)</span><br><span class="line"><span class="number">3.</span> 启动</span><br><span class="line">wandb.agent(sweep_id, function=train)</span><br></pre></td></tr></table></figure>
+
+<p>开始之前</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os,PIL </span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> torch.utils.data <span class="keyword">import</span> DataLoader, Dataset</span><br><span class="line"><span class="keyword">import</span> torch </span><br><span class="line"><span class="keyword">from</span> torch <span class="keyword">import</span> nn </span><br><span class="line"><span class="keyword">import</span> torchvision </span><br><span class="line"><span class="keyword">from</span> torchvision <span class="keyword">import</span> transforms</span><br><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line"><span class="keyword">import</span> wandb </span><br><span class="line"></span><br><span class="line">wandb.login()</span><br><span class="line"><span class="keyword">from</span> argparse <span class="keyword">import</span> Namespace</span><br><span class="line"></span><br><span class="line">device = torch.device(<span class="string">&#x27;cuda:0&#x27;</span> <span class="keyword">if</span> torch.cuda.is_available() <span class="keyword">else</span> <span class="string">&#x27;cpu&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#初始化参数配置</span></span><br><span class="line">config = Namespace(</span><br><span class="line">    project_name = <span class="string">&#x27;wandb_demo&#x27;</span>,</span><br><span class="line">    </span><br><span class="line">    batch_size = <span class="number">512</span>,</span><br><span class="line">    </span><br><span class="line">    hidden_layer_width = <span class="number">64</span>,</span><br><span class="line">    dropout_p = <span class="number">0.1</span>,</span><br><span class="line">    </span><br><span class="line">    lr = <span class="number">1e-4</span>,</span><br><span class="line">    optim_type = <span class="string">&#x27;Adam&#x27;</span>,</span><br><span class="line">    </span><br><span class="line">    epochs = <span class="number">15</span>,</span><br><span class="line">    ckpt_path = <span class="string">&#x27;checkpoint.pt&#x27;</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="配置sweep-config"><a href="#配置sweep-config" class="headerlink" title="配置sweep config"></a>配置sweep config</h2><ul>
+<li>选择一个调优算法</li>
+</ul>
+<p><img src="https://pic.imgdb.cn/item/641a8315a682492fccf566b2.png"></p>
+<p>俺们这边选择random算法</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sweep_config = &#123;</span><br><span class="line">    <span class="string">&#x27;method&#x27;</span>: <span class="string">&#x27;random&#x27;</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>定义优化目标</li>
+</ul>
+<p><img src="https://pic.imgdb.cn/item/641a8315a682492fccf56702.png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">metric = &#123;</span><br><span class="line">    <span class="string">&#x27;name&#x27;</span>: <span class="string">&#x27;val_acc&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;goal&#x27;</span>: <span class="string">&#x27;maximize&#x27;</span>   </span><br><span class="line">    &#125;</span><br><span class="line">sweep_config[<span class="string">&#x27;metric&#x27;</span>] = metric</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>定义超参空间</li>
+</ul>
+<p><img src="https://pic.imgdb.cn/item/641a8316a682492fccf5676b.png"></p>
+<p>超参空间分成三种</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">sweep_config[<span class="string">&#x27;parameters&#x27;</span>] = &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 固定不变的超参</span></span><br><span class="line">sweep_config[<span class="string">&#x27;parameters&#x27;</span>].update(&#123;</span><br><span class="line">    <span class="string">&#x27;project_name&#x27;</span>:&#123;<span class="string">&#x27;value&#x27;</span>:<span class="string">&#x27;wandb_demo&#x27;</span>&#125;,</span><br><span class="line">    <span class="string">&#x27;epochs&#x27;</span>: &#123;<span class="string">&#x27;value&#x27;</span>: <span class="number">10</span>&#125;,</span><br><span class="line">    <span class="string">&#x27;ckpt_path&#x27;</span>: &#123;<span class="string">&#x27;value&#x27;</span>:<span class="string">&#x27;checkpoint.pt&#x27;</span>&#125;&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 离散型分布超参</span></span><br><span class="line">sweep_config[<span class="string">&#x27;parameters&#x27;</span>].update(&#123;</span><br><span class="line">    <span class="string">&#x27;optim_type&#x27;</span>: &#123;</span><br><span class="line">        <span class="string">&#x27;values&#x27;</span>: [<span class="string">&#x27;Adam&#x27;</span>, <span class="string">&#x27;SGD&#x27;</span>,<span class="string">&#x27;AdamW&#x27;</span>]</span><br><span class="line">        &#125;,</span><br><span class="line">    <span class="string">&#x27;hidden_layer_width&#x27;</span>: &#123;</span><br><span class="line">        <span class="string">&#x27;values&#x27;</span>: [<span class="number">16</span>,<span class="number">32</span>,<span class="number">48</span>,<span class="number">64</span>,<span class="number">80</span>,<span class="number">96</span>,<span class="number">112</span>,<span class="number">128</span>]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 连续型分布超参</span></span><br><span class="line">sweep_config[<span class="string">&#x27;parameters&#x27;</span>].update(&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="string">&#x27;lr&#x27;</span>: &#123;</span><br><span class="line">        <span class="string">&#x27;distribution&#x27;</span>: <span class="string">&#x27;log_uniform_values&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;min&#x27;</span>: <span class="number">1e-6</span>,</span><br><span class="line">        <span class="string">&#x27;max&#x27;</span>: <span class="number">0.1</span></span><br><span class="line">      &#125;,</span><br><span class="line">    </span><br><span class="line">    <span class="string">&#x27;batch_size&#x27;</span>: &#123;</span><br><span class="line">        <span class="string">&#x27;distribution&#x27;</span>: <span class="string">&#x27;q_uniform&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;q&#x27;</span>: <span class="number">8</span>,</span><br><span class="line">        <span class="string">&#x27;min&#x27;</span>: <span class="number">32</span>,</span><br><span class="line">        <span class="string">&#x27;max&#x27;</span>: <span class="number">256</span>,</span><br><span class="line">      &#125;,</span><br><span class="line">    </span><br><span class="line">    <span class="string">&#x27;dropout_p&#x27;</span>: &#123;</span><br><span class="line">        <span class="string">&#x27;distribution&#x27;</span>: <span class="string">&#x27;uniform&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;min&#x27;</span>: <span class="number">0</span>,</span><br><span class="line">        <span class="string">&#x27;max&#x27;</span>: <span class="number">0.6</span>,</span><br><span class="line">      &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>定义剪枝策略（可选）</li>
+</ul>
+<p><img src="https://pic.imgdb.cn/item/641a83aea682492fccf648d4.png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sweep_config[<span class="string">&#x27;early_terminate&#x27;</span>] = &#123;</span><br><span class="line">    <span class="string">&#x27;type&#x27;</span>:<span class="string">&#x27;hyperband&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;min_iter&#x27;</span>:<span class="number">3</span>,</span><br><span class="line">    <span class="string">&#x27;eta&#x27;</span>:<span class="number">2</span>,</span><br><span class="line">    <span class="string">&#x27;s&#x27;</span>:<span class="number">3</span></span><br><span class="line">&#125; <span class="comment">#在step=3, 6, 12 时考虑是否剪枝</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>后言</li>
+</ul>
+<p>可以通过pprint 来看看我们的config写的好不好</p>
+<p><img src="https://pic.imgdb.cn/item/641a83aea682492fccf648fe.png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pprint <span class="keyword">import</span> pprint</span><br><span class="line">pprint(sweep_config)</span><br></pre></td></tr></table></figure>
+
+<h2 id="初始化sweep-controller（老板初始化）"><a href="#初始化sweep-controller（老板初始化）" class="headerlink" title="初始化sweep controller（老板初始化）"></a>初始化sweep controller（老板初始化）</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在一个project内 是 可以使用多个sweep的0</span></span><br><span class="line">sweep_id = wandb.sweep(sweep_config, project=config.project_name)</span><br></pre></td></tr></table></figure>
+
+<h2 id="启动sweep-agent（开始干活）"><a href="#启动sweep-agent（开始干活）" class="headerlink" title="启动sweep agent（开始干活）"></a>启动sweep agent（开始干活）</h2><p>需要将模型训练写成一个函数</p>
+<p><img src="https://pic.imgdb.cn/item/641a83aea682492fccf648b6.png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">create_dataloaders</span>(<span class="params">config</span>):</span><br><span class="line">    transform = transforms.Compose([transforms.ToTensor()])</span><br><span class="line">    ds_train = torchvision.datasets.MNIST(root=<span class="string">&quot;./mnist/&quot;</span>,train=<span class="literal">True</span>,download=<span class="literal">True</span>,transform=transform)</span><br><span class="line">    ds_val = torchvision.datasets.MNIST(root=<span class="string">&quot;./mnist/&quot;</span>,train=<span class="literal">False</span>,download=<span class="literal">True</span>,transform=transform)</span><br><span class="line"></span><br><span class="line">    ds_train_sub = torch.utils.data.Subset(ds_train, indices=<span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">len</span>(ds_train), <span class="number">5</span>))</span><br><span class="line">    dl_train =  torch.utils.data.DataLoader(ds_train_sub, batch_size=config.batch_size, shuffle=<span class="literal">True</span>,</span><br><span class="line">                                            num_workers=<span class="number">2</span>,drop_last=<span class="literal">True</span>)</span><br><span class="line">    dl_val =  torch.utils.data.DataLoader(ds_val, batch_size=config.batch_size, shuffle=<span class="literal">False</span>, </span><br><span class="line">                                          num_workers=<span class="number">2</span>,drop_last=<span class="literal">True</span>)</span><br><span class="line">    <span class="keyword">return</span> dl_train,dl_val</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">create_net</span>(<span class="params">config</span>):</span><br><span class="line">    net = nn.Sequential()</span><br><span class="line">    net.add_module(<span class="string">&quot;conv1&quot;</span>,nn.Conv2d(in_channels=<span class="number">1</span>,out_channels=config.hidden_layer_width,kernel_size = <span class="number">3</span>))</span><br><span class="line">    net.add_module(<span class="string">&quot;pool1&quot;</span>,nn.MaxPool2d(kernel_size = <span class="number">2</span>,stride = <span class="number">2</span>)) </span><br><span class="line">    net.add_module(<span class="string">&quot;conv2&quot;</span>,nn.Conv2d(in_channels=config.hidden_layer_width,</span><br><span class="line">                                     out_channels=config.hidden_layer_width,kernel_size = <span class="number">5</span>))</span><br><span class="line">    net.add_module(<span class="string">&quot;pool2&quot;</span>,nn.MaxPool2d(kernel_size = <span class="number">2</span>,stride = <span class="number">2</span>))</span><br><span class="line">    net.add_module(<span class="string">&quot;dropout&quot;</span>,nn.Dropout2d(p = config.dropout_p))</span><br><span class="line">    net.add_module(<span class="string">&quot;adaptive_pool&quot;</span>,nn.AdaptiveMaxPool2d((<span class="number">1</span>,<span class="number">1</span>)))</span><br><span class="line">    net.add_module(<span class="string">&quot;flatten&quot;</span>,nn.Flatten())</span><br><span class="line">    net.add_module(<span class="string">&quot;linear1&quot;</span>,nn.Linear(config.hidden_layer_width,config.hidden_layer_width))</span><br><span class="line">    net.add_module(<span class="string">&quot;relu&quot;</span>,nn.ReLU())</span><br><span class="line">    net.add_module(<span class="string">&quot;linear2&quot;</span>,nn.Linear(config.hidden_layer_width,<span class="number">10</span>))</span><br><span class="line">    net.to(device)</span><br><span class="line">    <span class="keyword">return</span> net </span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">train_epoch</span>(<span class="params">model,dl_train,optimizer</span>):</span><br><span class="line">    model.train()</span><br><span class="line">    <span class="keyword">for</span> step, batch <span class="keyword">in</span> <span class="built_in">enumerate</span>(dl_train):</span><br><span class="line">        features,labels = batch</span><br><span class="line">        features,labels = features.to(device),labels.to(device)</span><br><span class="line"></span><br><span class="line">        preds = model(features)</span><br><span class="line">        loss = nn.CrossEntropyLoss()(preds,labels)</span><br><span class="line">        loss.backward()</span><br><span class="line"></span><br><span class="line">        optimizer.step()</span><br><span class="line">        optimizer.zero_grad()</span><br><span class="line">    <span class="keyword">return</span> model</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">eval_epoch</span>(<span class="params">model,dl_val</span>):</span><br><span class="line">    model.<span class="built_in">eval</span>()</span><br><span class="line">    accurate = <span class="number">0</span></span><br><span class="line">    num_elems = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> batch <span class="keyword">in</span> dl_val:</span><br><span class="line">        features,labels = batch</span><br><span class="line">        features,labels = features.to(device),labels.to(device)</span><br><span class="line">        <span class="keyword">with</span> torch.no_grad():</span><br><span class="line">            preds = model(features)</span><br><span class="line">        predictions = preds.argmax(dim=-<span class="number">1</span>)</span><br><span class="line">        accurate_preds =  (predictions==labels)</span><br><span class="line">        num_elems += accurate_preds.shape[<span class="number">0</span>]</span><br><span class="line">        accurate += accurate_preds.long().<span class="built_in">sum</span>()</span><br><span class="line"></span><br><span class="line">    val_acc = accurate.item() / num_elems</span><br><span class="line">    <span class="keyword">return</span> val_acc</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">train</span>(<span class="params">config = config</span>):</span><br><span class="line">    dl_train, dl_val = create_dataloaders(config)</span><br><span class="line">    model = create_net(config); </span><br><span class="line">    optimizer = torch.optim.__dict__[config.optim_type](params=model.parameters(), lr=config.lr)</span><br><span class="line">    <span class="comment">#======================================================================</span></span><br><span class="line">    nowtime = datetime.datetime.now().strftime(<span class="string">&#x27;%Y-%m-%d %H:%M:%S&#x27;</span>)</span><br><span class="line">    wandb.init(project=config.project_name, config = config.__dict__, name = nowtime, save_code=<span class="literal">True</span>)</span><br><span class="line">    model.run_id = wandb.run.<span class="built_in">id</span></span><br><span class="line">    <span class="comment">#======================================================================</span></span><br><span class="line">    model.best_metric = -<span class="number">1.0</span></span><br><span class="line">    <span class="keyword">for</span> epoch <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,config.epochs+<span class="number">1</span>):</span><br><span class="line">        model = train_epoch(model,dl_train,optimizer)</span><br><span class="line">        val_acc = eval_epoch(model,dl_val)</span><br><span class="line">        <span class="keyword">if</span> val_acc&gt;model.best_metric:</span><br><span class="line">            model.best_metric = val_acc</span><br><span class="line">            torch.save(model.state_dict(),config.ckpt_path)   </span><br><span class="line">        nowtime = datetime.datetime.now().strftime(<span class="string">&#x27;%Y-%m-%d %H:%M:%S&#x27;</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;epoch【<span class="subst">&#123;epoch&#125;</span>】@<span class="subst">&#123;nowtime&#125;</span> --&gt; val_acc= <span class="subst">&#123;<span class="number">100</span> * val_acc:<span class="number">.2</span>f&#125;</span>%&quot;</span>)</span><br><span class="line">        <span class="comment">#======================================================================</span></span><br><span class="line">        wandb.log(&#123;<span class="string">&#x27;epoch&#x27;</span>:epoch, <span class="string">&#x27;val_acc&#x27;</span>: val_acc, <span class="string">&#x27;best_val_acc&#x27;</span>:model.best_metric&#125;)</span><br><span class="line">        <span class="comment">#======================================================================        </span></span><br><span class="line">    <span class="comment">#======================================================================</span></span><br><span class="line">    wandb.finish()</span><br><span class="line">    <span class="comment">#======================================================================</span></span><br><span class="line">    <span class="keyword">return</span> model   </span><br><span class="line"></span><br><span class="line"><span class="comment">#model = train(config) </span></span><br></pre></td></tr></table></figure>
+
+<p>将模型训练 最后打包成一个函数</p>
+<p>最后</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wandb.agent(sweep_id, train, count=<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="可视化"><a href="#可视化" class="headerlink" title="可视化"></a>可视化</h2><p>平行坐标系图</p>
+<p><img src="https://pic.imgdb.cn/item/641a861da682492fccfafed7.png"></p>
+<p>通过该图 我们可以知道具体的超参数 对于模型结果的影响 </p>
+<p>参数重要性</p>
+<p><img src="https://pic.imgdb.cn/item/641a861da682492fccfafe9c.png"></p>
+
+        </div>
+        
+            <div class="kratos-copyright text-center clearfix">
+                <h5>本作品采用 <a rel="license nofollow" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a> 进行许可</h5>
+            </div>
+        
+        <footer class="kratos-entry-footer clearfix">
+            
+                <div class="post-like-donate text-center clearfix" id="post-like-donate">
+                
+                
+                    <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> 分享</a>
+                    <div class="share-wrap" style="display: none;">
+    <div class="share-group">
+        <a href="javascript:;" class="share-plain qq" onclick="share('qq');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-qq"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain qzone" onclick="share('qzone');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-star"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weixin pop style-plain" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weixin"></i>
+            </div>
+            <div class="share-int">
+                <div class="qrcode" id="wechat-qr"></div>
+                <p>打开微信“扫一扫”，打开网页后点击屏幕右上角分享按钮</p>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weibo" onclick="share('weibo');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weibo"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain facebook style-plain" onclick="share('facebook');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-facebook"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain twitter style-plain" onclick="share('twitter');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-twitter"></i>
+            </div>
+        </a>
+    </div>
+    <script type="text/javascript">
+        $(()=>{
+            new QRCode("wechat-qr", {
+                text: "http://example.com/2023/04/06/wandb-%E5%8F%AF%E8%A7%86%E5%8C%96%E8%B0%83%E5%8F%82%EF%BC%88%E4%BB%A3%E7%A0%81%E6%B2%A1%E8%B7%91%E9%80%9A%EF%BC%89/",
+                width: 150,
+                height: 150,
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        });
+        function share(dest) {
+            const qqBase        = "https://connect.qq.com/widget/shareqq/index.html?";
+            const weiboBase     = "https://service.weibo.com/share/share.php?";
+            const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
+            const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
+            const twitterBase   = "https://twitter.com/intent/tweet?";
+            const hostUrl       = "http://example.com/2023/04/06/wandb-%E5%8F%AF%E8%A7%86%E5%8C%96%E8%B0%83%E5%8F%82%EF%BC%88%E4%BB%A3%E7%A0%81%E6%B2%A1%E8%B7%91%E9%80%9A%EF%BC%89/";
+            const title         = "「wandb 可视化调参」";
+            const excerpt       = `主从的结构
+老板和员工
+
+三步
+1234561. 配置sweep_config配置调优算法，调优目标，需要优化的超参数列表 等2. 初始化sweep controllersweep_id = wandb.sweep(sweep_con...`;
+            let _URL;
+            switch (dest) {
+                case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
+                case "weibo"    : _URL = weiboBase+"url="+hostUrl+"&title="+title+excerpt;                                 break;
+                case "qzone"    : _URL = qzoneBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";  break;
+                case "facebook" : _URL = facebookBase+"u="+hostUrl;                                                        break;
+                case "twitter"  : _URL = twitterBase+"text="+title+excerpt+"&url="+hostUrl;                                break;
+            }
+            window.open(_URL);
+        };
+    </script>
+</div>
+                
+                </div>
+            
+            <div class="footer-tag clearfix">
+                <div class="pull-left">
+                <i class="fa fa-tags"></i>
+                    
+                </div>
+                <div class="pull-date">
+                <span>最后编辑：2023-04-06</span>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+        <nav class="navigation post-navigation clearfix" role="navigation">
+            
+            <div class="nav-previous clearfix">
+                <a title=" caser环境使用方法" href="/2023/04/05/caser_readme/">&lt; 上一篇</a>
+            </div>
+            
+            
+        </nav>
+    
+    
+</article>
+
+        
+
+            </section>
+
+        
+
+                
+            
+
+<section id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm">
+    <!-- 文章和页面根据splitter来分割，没有的话就从头开始设置为sticky -->
+    
+    
+                <aside id="krw-about" class="widget widget-kratos-about clearfix">
+    <div class="photo-background"></div>
+    <div class="photo-wrapper clearfix">
+        <div class="photo-wrapper-tip text-center">
+            <img class="about-photo" src="/images/avatar.webp" />
+        </div>
+    </div>
+    <div class="textwidget">
+        <p class="text-center"></p>
+    </div>
+    <div class="site-meta">
+        <a class="meta-item" href="/archives/">
+            <span class="title">
+                文章
+            </span>
+            <span class="count">
+                96
+            </span>
+        </a>
+        <a class="meta-item" href="/categories/">
+            <span class="title">
+                分类
+            </span>
+            <span class="count">
+                0
+            </span>
+        </a>
+        <a class="meta-item" href="/tags/">
+            <span class="title">
+                标签
+            </span>
+            <span class="count">
+                0
+            </span>
+        </a>
+    </div>
+</aside>
+            
+                    <div class="sticky-area">
+                
+                
+
+            
+                
+            
+                
+  <aside id="krw-posts" class="widget widget-kratos-posts">
+  <h4 class="widget-title"><i class="fa fa-file"></i>最新文章</h4>
+  <div class="tab-content">
+      <ul class="list-group">
+        
+        
+          
+          
+            <a class="list-group-item" href="/2023/04/06/wandb-%E5%8F%AF%E8%A7%86%E5%8C%96%E8%B0%83%E5%8F%82%EF%BC%88%E4%BB%A3%E7%A0%81%E6%B2%A1%E8%B7%91%E9%80%9A%EF%BC%89/"><i class="fa  fa-book"></i> wandb 可视化调参</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/04/05/caser_readme/"><i class="fa  fa-book"></i> caser环境使用方法</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/03/24/recbole-%E5%AE%89%E8%A3%85/"><i class="fa  fa-book"></i> recbole 安装</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/03/24/NAS-%E7%BB%BC%E8%BF%B0-%EF%BC%882019-Thomas-Elsken%EF%BC%89/"><i class="fa  fa-book"></i> NAS 综述 （2019 Thomas Elsken）</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/03/22/nas%E5%8F%AF%E5%BE%AE%E6%96%B9%E6%B3%95/"><i class="fa  fa-book"></i> nas可微方法</a>
+            
+          
+        
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+      </ul>
+  </div>
+  </aside>
+
+            
+    </div>
+</section>
+        
+        </div>
+    </div>
+</div>
+<footer>
+    <div id="footer"  >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 footer-list text-center">
+                    <ul class="kratos-social-icons">
+                        
+                        <li><a href="mailto:982264944@qq.com"><i class="fa fa-envelope"></i></a></li>
+                        <li><a target="_blank" rel="nofollow" href="https://t.me/CandyUnion"><i class="fa fa-telegram"></i></a></li>
+                        
+                        
+                        
+                        <li><a target="_blank" rel="me" href="https://nya.one/@Candinya"><i class="fa fa fa-share-alt-square"></i></a></li>
+                        <li><a target="_blank" rel="nofollow" href="https://github.com/Candinya"><i class="fa fa-github"></i></a></li>
+                        
+                    </ul>
+                    <ul class="kratos-copyright">
+                        <div>
+                            <li>&copy; 2023 limhao博客 版权所有.</li>
+                            <li>本站已运行<span id="span_dt">Loading...</span></li>
+                        </div>
+                        <div>
+                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
+                            <li>Site built with&nbsp;<i class="fa fa-heart throb" style="color:#d43f57"></i>&nbsp;by limhao.</li>
+                        </div>
+                        <div>
+                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
+                            <li>Hosted on <a href="https://github.io" target="_blank">Github Pages</a></li>
+                        </div>
+                        <div>
+                            
+                            
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="kr-tool text-center">
+            <div class="tool">
+                
+                    <div class="box search-box">
+                        <a href="/search/">
+                            <span class="fa fa-search"></span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="darkmode-switch">
+                        <span class="fa fa-adjust"></span>
+                    </div>
+                
+                
+            </div>
+            <div class="box gotop-box">
+                <span class="fa fa-chevron-up"></span>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+</div>
+
+        <script defer src="https://unpkg.com/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
+<script defer src="https://unpkg.com/nprogress@0.2.0/nprogress.js"></script>
+<script>
+    if (!window.kr) {
+        window.kr = {};
+    }
+    window.kr.notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));
+    window.kr.siteRoot = "/";
+</script>
+
+
+
+
+
+    <script defer src="https://unpkg.com/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+<script defer src="https://unpkg.com/clipboard@2.0.6/dist/clipboard.min.js"></script>
+<script defer src="/js/kratosr.min.js"></script>
+<script defer src="/js/pjax.min.js"></script>
+
+
+    <script defer src="/js/kr-dark.min.js"></script>
+
+
+
+<!-- Extra support for third-party plguins  -->
+
+
+    </body>
+</html>
