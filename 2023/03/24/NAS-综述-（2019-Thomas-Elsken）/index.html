@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+  <!-- 元数据 -->
+  <meta charset="utf-8">
+  <link rel="icon" href="">
+  <title>NAS 综述 （2019 Thomas Elsken） | limhao博客</title>
+  <meta name="author" content="limhao" />
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="robots" content="index,follow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="format-detection" content="telphone=no, email=no" />
+  
+    <meta name="keywords" content="" />
+  
+  <meta name="description" content="前言文章讲了三个点  搜索空间 搜索策略 性能评估    搜索空间定义了原则上可以表示哪些体系结构。结合关于非常适合于任务的体系结构的典型属性的先验知识可以减小搜索空间的大小并且简化搜索。**但是，这也引入了人类的偏见，这可能会阻止发现超出当前人类知识的新颖的架构构建块。 **  搜索策略详细说明了如何探索搜索空间（搜索空间通常是指数级的，甚至是无界的）。它包含了经典的探索-利用权衡，因为**一方">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NAS 综述 （2019 Thomas Elsken）">
+<meta property="og:url" content="http://example.com/2023/03/24/NAS-%E7%BB%BC%E8%BF%B0-%EF%BC%882019-Thomas-Elsken%EF%BC%89/index.html">
+<meta property="og:site_name" content="limhao博客">
+<meta property="og:description" content="前言文章讲了三个点  搜索空间 搜索策略 性能评估    搜索空间定义了原则上可以表示哪些体系结构。结合关于非常适合于任务的体系结构的典型属性的先验知识可以减小搜索空间的大小并且简化搜索。**但是，这也引入了人类的偏见，这可能会阻止发现超出当前人类知识的新颖的架构构建块。 **  搜索策略详细说明了如何探索搜索空间（搜索空间通常是指数级的，甚至是无界的）。它包含了经典的探索-利用权衡，因为**一方">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/null">
+<meta property="article:published_time" content="2023-03-24T02:44:34.573Z">
+<meta property="article:modified_time" content="2023-03-25T13:03:30.601Z">
+<meta property="article:author" content="limhao">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/null">
+<meta name="twitter:site" content="@null">
+  
+  <!-- 站点验证相关 -->
+  
+    
+    
+    
+  
+  <!-- 样式表文件 -->
+  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" type="text/css" media="all">
+  
+    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" type="text/css" media="all">
+  
+  
+  <link rel="stylesheet" id="fontawe-css" href="https://unpkg.com/font-awesome@4.7.0/css/font-awesome.min.css" type="text/css" media="all">
+  <link rel="stylesheet" id="nprogress-css" href="https://unpkg.com/nprogress@0.2.0/nprogress.css" type="text/css" media="all">
+  
+  
+  
+    <link rel="stylesheet" href="https://unpkg.com/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+  
+  
+    <link rel="stylesheet" id="darkmode-css" href="/css/kr-dark.min.css" type="text/css" media="all">
+  
+  <!-- 不得不预先加载的一些JS文件 -->
+  <script src="https://unpkg.com/jquery@3.6.0/dist/jquery.min.js"></script>
+  
+    <script src="https://unpkg.com/qrcode_js@1.0.0/qrcode.min.js"></script>
+  
+  
+  <style>
+    
+      .kratos-cover.kratos-cover-2 {
+        background-image: url('/images/banner.webp');
+      }
+    
+    
+      @media(min-width:768px) {
+        body.custom-background {
+          background-image: url('/images/bg.webp');
+        }
+      }
+    
+  </style>
+  
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+
+    <body class="custom-background">
+        <div id="kratos-wrapper">
+    <div id="kratos-page">
+        <div id="kratos-header">
+            <header id="kratos-desktop-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="nav-header">
+                        <nav id="kratos-menu-wrap">
+                            <ul id="kratos-primary-menu" class="sf-menu">
+                                
+                                    
+                                        <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+                                    
+                                
+                                    
+                                        <li><a href="/archives/"><i class="fa fa-file"></i>档案馆</a></li>
+                                    
+                                
+                                    
+                                        <li>
+                                            <a><i class="fa fa-link"></i>链接</a>
+                                            <ul class="sub-menu">
+                                                
+                                                    
+                                                
+                                                    
+                                                        <li><a target="_blank" rel="noopener" href="https://github.com/limhao">项目链接</a></li>
+                                                    
+                                                
+                                            </ul>
+                                        </li>
+                                    
+                                
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+            <header id="kratos-mobile-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="color-logo"><a href="/">limhao博客</a></div>
+                    <div class="nav-toggle">
+                        <a class="kratos-nav-toggle js-kratos-nav-toggle">
+                            <i></i>
+                        </a>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <div class="kratos-start kratos-hero-2">
+            <!-- <div class="kratos-overlay"></div> -->
+            <div class="kratos-cover kratos-cover-2 text-center">
+                <div class="desc desc2 animate-box">
+                    <a href="/">
+                        <h2>limhao博客</h2> <br />
+                        <span></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="kratos-blog-post">
+            <div class="container">
+                <div id="main" class="row">
+                    
+
+        
+
+            <section class="col-md-8">
+
+        
+
+            <article>
+    <div class="kratos-hentry kratos-post-inner clearfix">
+        <header class="kratos-entry-header">
+            
+                <h1 class="kratos-entry-title text-center">NAS 综述 （2019 Thomas Elsken）</h1>
+            
+            
+            <ul class="kratos-post-meta text-center">
+                <li><i class="fa fa-calendar"></i> 2023-03-24</li>
+                <li><i class="fa fa-user"></i> 作者 limhao</li>
+                <li>
+                    <i class="fa fa-edit"></i> 
+                    
+                    
+                        ~1.83K
+                    
+                    字
+                </li>
+                
+            </ul>
+        </header>
+        <div class="kratos-post-content">
+            <div id="expire-alert" class="alert alert-warning hidden" role="alert">
+                <div class="icon"><i class="fa fa-warning"></i></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1679749410601"></time> 前，其中的内容可能需要更新。</p></div>
+            </div>
+            
+            <hr />
+            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>文章讲了三个点</p>
+<ol>
+<li>搜索空间</li>
+<li>搜索策略</li>
+<li>性能评估</li>
+</ol>
+<p><img src="https://pic.imgdb.cn/item/641d1f84a682492fcc26dcdc.png"></p>
+<ol>
+<li><p>搜索空间定义了原则上可以表示哪些体系结构。结合关于非常适合于任务的体系结构的典型属性的先验知识可以减小搜索空间的大小并且简化搜索。**但是，这也引入了人类的偏见，这可能会阻止发现超出当前人类知识的新颖的架构构建块。 **</p>
+</li>
+<li><p>搜索策略详细说明了如何探索搜索空间（搜索空间通常是指数级的，甚至是无界的）。它包含了经典的探索-利用权衡，因为**一方面，希望快速找到性能良好的架构，而另一方面，应避免过早收敛到次优架构区域 **</p>
+</li>
+<li><p>NAS的目标通常是找到能够对不可见数据实现高预测性能的体系结构。性能评估是指评估该性能的过程：最简单的选择是对数据执行体系结构的标准训练和验证，但不幸的是，这在计算上是昂贵的，并且限制了可以探索的体系结构的数量。因此，许多最近的研究集中于开发降低这些性能估计的成本的方法。</p>
+</li>
+</ol>
+<h2 id="搜索空间"><a href="#搜索空间" class="headerlink" title="搜索空间"></a>搜索空间</h2><p>搜索空间由下面公式参数化：</p>
+<ol>
+<li>最大层数</li>
+<li>每一层 能执行的操作（pooling conv）</li>
+<li>关于操作的超参数</li>
+</ol>
+<p>网络结构</p>
+<p><img src="https://pic.imgdb.cn/item/641d1f84a682492fcc26dcfd.png"></p>
+<ol>
+<li>链式网络 如左图</li>
+<li>残差网络 如右图 L0 L8 残差添加在一起</li>
+<li>denseNet l10</li>
+</ol>
+<h3 id="基于细胞的搜索空间"><a href="#基于细胞的搜索空间" class="headerlink" title="基于细胞的搜索空间"></a>基于细胞的搜索空间</h3><p>设定重复的单元 为 单一的细胞或者块 来堆叠模型 </p>
+<p><img src="https://pic.imgdb.cn/item/641d1f84a682492fcc26dd27.png"></p>
+<ul>
+<li>优点</li>
+</ul>
+<ol>
+<li>搜索空间的大小急剧减小，因为单元通常由比整个体系结构少得多的层组成。 </li>
+<li>通过简单地改变模型中使用的单元和过滤器的数量，从单元构建的架构可以更容易地转移或适应其他数据集。 </li>
+<li>通过重复构建块来创建体系结构已被证明是一种有用的设计</li>
+</ol>
+<ul>
+<li>问题</li>
+</ul>
+<p> 一个新的设计选择，即如何选择宏观体系结构 </p>
+<p>宏观结构如何构建</p>
+<ol>
+<li>使用多少个细胞</li>
+<li>如何连接细胞</li>
+</ol>
+<p> 在微观下</p>
+<ol>
+<li>细胞的结构是如何构建</li>
+</ol>
+<h2 id="搜索策略"><a href="#搜索策略" class="headerlink" title="搜索策略"></a>搜索策略</h2><p>许多不同的搜索策略可以用来探索神经结构的空间，包括随机搜索、贝叶斯优化、进化方法、强化学习(RL)和基于梯度的方法。</p>
+<h3 id="贝叶斯优化"><a href="#贝叶斯优化" class="headerlink" title="贝叶斯优化"></a>贝叶斯优化</h3><p>无聊 没意思</p>
+<h3 id="RL"><a href="#RL" class="headerlink" title="RL"></a>RL</h3><p>神经体系结构的生成可以被认为是Agent的动作，动作空间与搜索空间相同。 代理的奖励是基于对训练过的体系结构在未见数据上的性能的估计（参见第4节）。 不同的RL方法在如何表示代理的策略以及如何优化策略方面有所不同： </p>
+<h3 id="进化"><a href="#进化" class="headerlink" title="进化"></a>进化</h3><p>进化算法进化一群模型，即一组（可能训练过的）网络； 在每一个进化步骤中，至少从种群中抽取一个模型，并作为父母通过对其施加突变来产生后代。 在NAS环境中，突变是局部操作，例如添加或删除一个层，改变一个层的超参数，添加跳过连接，以及改变训练超参数。 在训练后代后，评估它们的适应度（例如，在验证集上的表现），并将它们添加到种群中。 </p>
+<p> 神经进化的方法在如何取样父母，更新种群和产生后代方面有所不同。 </p>
+<h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3><p>结论是RL和进化在最终测试精度方面表现同样好，进化具有更好的随时性能和发现更小的模型。 </p>
+<h2 id="性能估算策略"><a href="#性能估算策略" class="headerlink" title="性能估算策略"></a>性能估算策略</h2><p>从头开始对每个体系结构进行评估的训练通常会产生NAS数千GPU天的计算需求 </p>
+<h3 id="第一种"><a href="#第一种" class="headerlink" title="第一种"></a>第一种</h3><p> 我的总结是缩小数据量</p>
+<ol>
+<li>缩小训练epoch</li>
+<li>数据子集</li>
+<li>缩小模型规模</li>
+<li>缩小数据</li>
+</ol>
+<h3 id="第二种-曲线外推"><a href="#第二种-曲线外推" class="headerlink" title="第二种 曲线外推"></a>第二种 曲线外推</h3><p>通过一开始的曲线 来提前取消一些垃圾曲线</p>
+<p>建议外推初始学习曲线并终止那些预测表现不佳的曲线，以加快架构搜索过程。 （剪枝？）</p>
+<p>预测神经结构性能的主要挑战是，为了加快搜索过程，在相对较大的搜索空间中需要基于相对较少的评估来做出良好的预测。 </p>
+<h3 id="第三种-权重遗传-x2F-网络态射"><a href="#第三种-权重遗传-x2F-网络态射" class="headerlink" title="第三种 权重遗传&#x2F;网络态射"></a>第三种 权重遗传&#x2F;网络态射</h3><p> 它们不是从零开始训练模型，而是通过继承权重来进行热启动 </p>
+<p>态射：看看图！</p>
+<h3 id="第四种-一次性模型-x2F-重量分摊（GPU可行性研究）"><a href="#第四种-一次性模型-x2F-重量分摊（GPU可行性研究）" class="headerlink" title="第四种 一次性模型&#x2F;重量分摊（GPU可行性研究）"></a>第四种 一次性模型&#x2F;重量分摊（GPU可行性研究）</h3><p>只有一次性模型才需要训练，他的权重在不同的架构中共享</p>
+<p>这些架构只是一次性模型的子图。</p>
+<p>One-shot Architecture Search（参见图4）将所有架构视为一个超图（One-shot Model）的不同子图，并在具有该超图共同边的架构之间共享权重 </p>
+<p>这大大加快了体系结构的性能评估，因为不需要任何训练（只需要在验证数据上评估性能），同样导致了只需要几个GPU天的方法。 一次性模型通常会产生很大的偏差，因为它严重低估了最佳架构的实际性能； 然而，它允许对体系结构进行排序，如果估计的性能与实际性能密切相关，这就足够了。 </p>
+<p>单次NAS的一个普遍缺陷是先验定义的超图将搜索空间限制在子图上。 此外，要求在架构搜索期间整个超图驻留在GPU存储器中的方法将被限制在相对较小的超图和相应的搜索空间中，因此通常与基于单元的搜索空间结合使用。 </p>
+
+        </div>
+        
+            <div class="kratos-copyright text-center clearfix">
+                <h5>本作品采用 <a rel="license nofollow" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a> 进行许可</h5>
+            </div>
+        
+        <footer class="kratos-entry-footer clearfix">
+            
+                <div class="post-like-donate text-center clearfix" id="post-like-donate">
+                
+                
+                    <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> 分享</a>
+                    <div class="share-wrap" style="display: none;">
+    <div class="share-group">
+        <a href="javascript:;" class="share-plain qq" onclick="share('qq');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-qq"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain qzone" onclick="share('qzone');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-star"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weixin pop style-plain" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weixin"></i>
+            </div>
+            <div class="share-int">
+                <div class="qrcode" id="wechat-qr"></div>
+                <p>打开微信“扫一扫”，打开网页后点击屏幕右上角分享按钮</p>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weibo" onclick="share('weibo');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weibo"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain facebook style-plain" onclick="share('facebook');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-facebook"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain twitter style-plain" onclick="share('twitter');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-twitter"></i>
+            </div>
+        </a>
+    </div>
+    <script type="text/javascript">
+        $(()=>{
+            new QRCode("wechat-qr", {
+                text: "http://example.com/2023/03/24/NAS-%E7%BB%BC%E8%BF%B0-%EF%BC%882019-Thomas-Elsken%EF%BC%89/",
+                width: 150,
+                height: 150,
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        });
+        function share(dest) {
+            const qqBase        = "https://connect.qq.com/widget/shareqq/index.html?";
+            const weiboBase     = "https://service.weibo.com/share/share.php?";
+            const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
+            const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
+            const twitterBase   = "https://twitter.com/intent/tweet?";
+            const hostUrl       = "http://example.com/2023/03/24/NAS-%E7%BB%BC%E8%BF%B0-%EF%BC%882019-Thomas-Elsken%EF%BC%89/";
+            const title         = "「NAS 综述 （2019 Thomas Elsken）」";
+            const excerpt       = `前言文章讲了三个点
+
+搜索空间
+搜索策略
+性能评估
+
+
+
+搜索空间定义了原则上可以表示哪些体系结构。结合关于非常适合于任务的体系结构的典型属性的先验知识可以减小搜索空间的大小并且简化搜索。**但是，这也引入了人类的偏见，这可能会阻止发...`;
+            let _URL;
+            switch (dest) {
+                case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
+                case "weibo"    : _URL = weiboBase+"url="+hostUrl+"&title="+title+excerpt;                                 break;
+                case "qzone"    : _URL = qzoneBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";  break;
+                case "facebook" : _URL = facebookBase+"u="+hostUrl;                                                        break;
+                case "twitter"  : _URL = twitterBase+"text="+title+excerpt+"&url="+hostUrl;                                break;
+            }
+            window.open(_URL);
+        };
+    </script>
+</div>
+                
+                </div>
+            
+            <div class="footer-tag clearfix">
+                <div class="pull-left">
+                <i class="fa fa-tags"></i>
+                    
+                </div>
+                <div class="pull-date">
+                <span>最后编辑：2023-03-25</span>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+        <nav class="navigation post-navigation clearfix" role="navigation">
+            
+            <div class="nav-previous clearfix">
+                <a title=" nas可微方法" href="/2023/03/22/nas可微方法/">&lt; 上一篇</a>
+            </div>
+            
+            
+            <div class="nav-next clearfix">
+                <a title=" recbole 安装" href="/2023/03/24/recbole-安装/">下一篇 &gt;</a>
+            </div>
+            
+        </nav>
+    
+    
+</article>
+
+        
+
+            </section>
+
+        
+
+                
+            
+
+<section id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm">
+    <!-- 文章和页面根据splitter来分割，没有的话就从头开始设置为sticky -->
+    
+    
+                <aside id="krw-about" class="widget widget-kratos-about clearfix">
+    <div class="photo-background"></div>
+    <div class="photo-wrapper clearfix">
+        <div class="photo-wrapper-tip text-center">
+            <img class="about-photo" src="/images/avatar.webp" />
+        </div>
+    </div>
+    <div class="textwidget">
+        <p class="text-center"></p>
+    </div>
+    <div class="site-meta">
+        <a class="meta-item" href="/archives/">
+            <span class="title">
+                文章
+            </span>
+            <span class="count">
+                100
+            </span>
+        </a>
+        <a class="meta-item" href="/categories/">
+            <span class="title">
+                分类
+            </span>
+            <span class="count">
+                0
+            </span>
+        </a>
+        <a class="meta-item" href="/tags/">
+            <span class="title">
+                标签
+            </span>
+            <span class="count">
+                0
+            </span>
+        </a>
+    </div>
+</aside>
+            
+                    <div class="sticky-area">
+                
+                
+
+            
+                
+            
+                
+  <aside id="krw-posts" class="widget widget-kratos-posts">
+  <h4 class="widget-title"><i class="fa fa-file"></i>最新文章</h4>
+  <div class="tab-content">
+      <ul class="list-group">
+        
+        
+          
+          
+            <a class="list-group-item" href="/2023/04/05/caser_readme/"><i class="fa  fa-book"></i> caser环境使用方法</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/03/24/recbole-%E5%AE%89%E8%A3%85/"><i class="fa  fa-book"></i> recbole 安装</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/03/24/NAS-%E7%BB%BC%E8%BF%B0-%EF%BC%882019-Thomas-Elsken%EF%BC%89/"><i class="fa  fa-book"></i> NAS 综述 （2019 Thomas Elsken）</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/03/22/nas%E5%8F%AF%E5%BE%AE%E6%96%B9%E6%B3%95/"><i class="fa  fa-book"></i> nas可微方法</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/03/21/wandb-%E5%8F%AF%E8%A7%86%E5%8C%96%E8%B0%83%E5%8F%82%EF%BC%88%E4%BB%A3%E7%A0%81%E6%B2%A1%E8%B7%91%E9%80%9A%EF%BC%89/"><i class="fa  fa-book"></i> wandb 可视化调参</a>
+            
+          
+        
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+      </ul>
+  </div>
+  </aside>
+
+            
+    </div>
+</section>
+        
+        </div>
+    </div>
+</div>
+<footer>
+    <div id="footer"  >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 footer-list text-center">
+                    <ul class="kratos-social-icons">
+                        
+                        <li><a href="mailto:982264944@qq.com"><i class="fa fa-envelope"></i></a></li>
+                        <li><a target="_blank" rel="nofollow" href="https://t.me/CandyUnion"><i class="fa fa-telegram"></i></a></li>
+                        
+                        
+                        
+                        <li><a target="_blank" rel="me" href="https://nya.one/@Candinya"><i class="fa fa fa-share-alt-square"></i></a></li>
+                        <li><a target="_blank" rel="nofollow" href="https://github.com/Candinya"><i class="fa fa-github"></i></a></li>
+                        
+                    </ul>
+                    <ul class="kratos-copyright">
+                        <div>
+                            <li>&copy; 2023 limhao博客 版权所有.</li>
+                            <li>本站已运行<span id="span_dt">Loading...</span></li>
+                        </div>
+                        <div>
+                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
+                            <li>Site built with&nbsp;<i class="fa fa-heart throb" style="color:#d43f57"></i>&nbsp;by limhao.</li>
+                        </div>
+                        <div>
+                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
+                            <li>Hosted on <a href="https://github.io" target="_blank">Github Pages</a></li>
+                        </div>
+                        <div>
+                            
+                            
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="kr-tool text-center">
+            <div class="tool">
+                
+                    <div class="box search-box">
+                        <a href="/search/">
+                            <span class="fa fa-search"></span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="darkmode-switch">
+                        <span class="fa fa-adjust"></span>
+                    </div>
+                
+                
+            </div>
+            <div class="box gotop-box">
+                <span class="fa fa-chevron-up"></span>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+</div>
+
+        <script defer src="https://unpkg.com/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
+<script defer src="https://unpkg.com/nprogress@0.2.0/nprogress.js"></script>
+<script>
+    if (!window.kr) {
+        window.kr = {};
+    }
+    window.kr.notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));
+    window.kr.siteRoot = "/";
+</script>
+
+
+
+
+
+    <script defer src="https://unpkg.com/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+<script defer src="https://unpkg.com/clipboard@2.0.6/dist/clipboard.min.js"></script>
+<script defer src="/js/kratosr.min.js"></script>
+<script defer src="/js/pjax.min.js"></script>
+
+
+    <script defer src="/js/kr-dark.min.js"></script>
+
+
+
+<!-- Extra support for third-party plguins  -->
+
+
+    </body>
+</html>
