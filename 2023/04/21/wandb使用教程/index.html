@@ -4,7 +4,7 @@
   <!-- 元数据 -->
   <meta charset="utf-8">
   <link rel="icon" href="">
-  <title>基于知识细粒度查询设计方案(使用手册) | limhao博客</title>
+  <title>wandb 项目修改教程 | limhao博客</title>
   <meta name="author" content="limhao" />
   <meta http-equiv="Cache-Control" content="no-transform" />
   <meta http-equiv="Cache-Control" content="no-siteapp" />
@@ -15,16 +15,16 @@
   
     <meta name="keywords" content="" />
   
-  <meta name="description" content="作者：谢昊 班级：计算机应用技术 1. 使用说明本系统涉及的环境有点多，本设计将从爬虫获取，知识点提取，知识点展示来说明。 2. 爬虫获取项目爬虫功能是一个代码开源的软件来完成对应的功能  软件设计清晰 且帮助文档完善 下载网址为：https:&#x2F;&#x2F;www.xuewuzhi.cn&#x2F;downloader 3. 知识点提取这个是整个项目的难点和重点 知识点提取 是基于mooc视频中的视频提取 举个例子">
+  <meta name="description" content="0. 前言距离上次发博客 是4&#x2F;6号 现在 过了快两周  差不多是我这篇新的论文 验证完思路 效果好 且 跟师兄讨论的一个时间点 wandb 来找找超参 之前学过一些 链接： https:&#x2F;&#x2F;docs.wandb.ai&#x2F;guides&#x2F;sweeps&#x2F;add-w-and-b-to-your-code https:&#x2F;&#x2F;docs.wandb.ai&#x2F;guides&#x2F;sweeps&#x2F;existing-p">
 <meta property="og:type" content="article">
-<meta property="og:title" content="基于知识细粒度查询设计方案(使用手册)">
-<meta property="og:url" content="http://example.com/2022/07/02/%E5%9F%BA%E4%BA%8E%E7%9F%A5%E8%AF%86%E7%BB%86%E7%B2%92%E5%BA%A6%E6%9F%A5%E8%AF%A2%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88/index.html">
+<meta property="og:title" content="wandb 项目修改教程">
+<meta property="og:url" content="http://example.com/2023/04/21/wandb%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/index.html">
 <meta property="og:site_name" content="limhao博客">
-<meta property="og:description" content="作者：谢昊 班级：计算机应用技术 1. 使用说明本系统涉及的环境有点多，本设计将从爬虫获取，知识点提取，知识点展示来说明。 2. 爬虫获取项目爬虫功能是一个代码开源的软件来完成对应的功能  软件设计清晰 且帮助文档完善 下载网址为：https:&#x2F;&#x2F;www.xuewuzhi.cn&#x2F;downloader 3. 知识点提取这个是整个项目的难点和重点 知识点提取 是基于mooc视频中的视频提取 举个例子">
+<meta property="og:description" content="0. 前言距离上次发博客 是4&#x2F;6号 现在 过了快两周  差不多是我这篇新的论文 验证完思路 效果好 且 跟师兄讨论的一个时间点 wandb 来找找超参 之前学过一些 链接： https:&#x2F;&#x2F;docs.wandb.ai&#x2F;guides&#x2F;sweeps&#x2F;add-w-and-b-to-your-code https:&#x2F;&#x2F;docs.wandb.ai&#x2F;guides&#x2F;sweeps&#x2F;existing-p">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/null">
-<meta property="article:published_time" content="2022-07-02T12:17:08.173Z">
-<meta property="article:modified_time" content="2022-07-03T02:17:19.611Z">
+<meta property="article:published_time" content="2023-04-21T01:32:27.806Z">
+<meta property="article:modified_time" content="2023-04-21T02:38:03.934Z">
 <meta property="article:author" content="limhao">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/null">
@@ -152,17 +152,17 @@
     <div class="kratos-hentry kratos-post-inner clearfix">
         <header class="kratos-entry-header">
             
-                <h1 class="kratos-entry-title text-center">基于知识细粒度查询设计方案(使用手册)</h1>
+                <h1 class="kratos-entry-title text-center">wandb 项目修改教程</h1>
             
             
             <ul class="kratos-post-meta text-center">
-                <li><i class="fa fa-calendar"></i> 2022-07-02</li>
+                <li><i class="fa fa-calendar"></i> 2023-04-21</li>
                 <li><i class="fa fa-user"></i> 作者 limhao</li>
                 <li>
                     <i class="fa fa-edit"></i> 
                     
                     
-                        ~2.41K
+                        ~2.89K
                     
                     字
                 </li>
@@ -172,96 +172,60 @@
         <div class="kratos-post-content">
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>本文最后编辑于 <time datetime="1656814639611"></time> 前，其中的内容可能需要更新。</p></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1682044683934"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
             <hr />
-            <p>作者：谢昊</p>
-<p>班级：计算机应用技术</p>
-<h2 id="1-使用说明"><a href="#1-使用说明" class="headerlink" title="1. 使用说明"></a>1. 使用说明</h2><p>本系统涉及的环境有点多，本设计将从爬虫获取，知识点提取，知识点展示来说明。</p>
-<h2 id="2-爬虫获取"><a href="#2-爬虫获取" class="headerlink" title="2. 爬虫获取"></a>2. 爬虫获取</h2><p>项目爬虫功能是一个代码开源的软件来完成对应的功能</p>
-<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/j3OWKs"><img src="https://s1.ax1x.com/2022/07/03/j3OWKs.md.png"></a></p>
-<p>软件设计清晰 且帮助文档完善</p>
-<p>下载网址为：<a target="_blank" rel="noopener" href="https://www.xuewuzhi.cn/downloader">https://www.xuewuzhi.cn/downloader</a></p>
-<h2 id="3-知识点提取"><a href="#3-知识点提取" class="headerlink" title="3. 知识点提取"></a>3. 知识点提取</h2><p>这个是整个项目的难点和重点</p>
-<p>知识点提取 是基于mooc视频中的视频提取</p>
-<p>举个例子 在 python程序语言设计中RGB色彩体系这个课中，存在下列两个小的知识点。但是视频并没有对其进行区分。（没有划分出知识点的起始结束时间）</p>
-<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/j3LqBt"><img src="https://s1.ax1x.com/2022/07/03/j3LqBt.png"></a></p>
-<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/j3LLHP"><img src="https://s1.ax1x.com/2022/07/03/j3LLHP.md.png"></a></p>
-<p>对于该功能的讲解 打算分成三个部分来说明</p>
-<h3 id="3-1-项目介绍"><a href="#3-1-项目介绍" class="headerlink" title="3.1 项目介绍"></a>3.1 项目介绍</h3><p><a target="_blank" rel="noopener" href="https://imgtu.com/i/j3Lo1H"><img src="https://s1.ax1x.com/2022/07/03/j3Lo1H.png"></a></p>
-<p>项目的文件夹三个 为pic text video 分别存取 图片 文字 视频的信息</p>
-<p>重要的py文件有三个 video_pic ,pic_word, json_mysql</p>
-<p>分别完成 下面介绍的 3.2 3.3 3.4 的功能</p>
-<h3 id="3-2-视频关键帧提取"><a href="#3-2-视频关键帧提取" class="headerlink" title="3.2 视频关键帧提取"></a>3.2 视频关键帧提取</h3><p>视频的关键帧提取使用的是 基于ffmpeg的pyav库来进行存取</p>
-<p>输入：视频</p>
-<p>输出：视频关键帧图片（名称含有视频关键帧时间）</p>
-<p>关键代码：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">extract_video</span>(<span class="params">filename</span>):</span><br><span class="line">	container = av.<span class="built_in">open</span>(filename)</span><br><span class="line">	<span class="comment"># Signal that we only want to look at keyframes.</span></span><br><span class="line">	stream = container.streams.video[<span class="number">0</span>]</span><br><span class="line">	stream.codec_context.skip_frame = <span class="string">&#x27;NONKEY&#x27;</span></span><br><span class="line">	<span class="comment"># default 不能用</span></span><br><span class="line">	<span class="comment"># stream.codec_context.skip_frame = &#x27;DEFAULT&#x27;</span></span><br><span class="line">	<span class="keyword">for</span> frame <span class="keyword">in</span> container.decode(stream):</span><br><span class="line">		<span class="comment"># 这里应该能管到时间戳</span></span><br><span class="line">		frame.to_image().save(</span><br><span class="line">			<span class="string">&#x27;&#123;&#125;.png&#x27;</span>.<span class="built_in">format</span>((frame.pts/<span class="number">100000</span>), <span class="string">&#x27;.1f&#x27;</span>),</span><br><span class="line">			quality=<span class="number">80</span>,</span><br><span class="line">		)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+            <h2 id="0-前言"><a href="#0-前言" class="headerlink" title="0. 前言"></a>0. 前言</h2><p>距离上次发博客 是4&#x2F;6号</p>
+<p>现在 过了快两周 </p>
+<p>差不多是我这篇新的论文 验证完思路 效果好 且 跟师兄讨论的一个时间点</p>
+<p>wandb 来找找超参 之前学过一些</p>
+<p>链接：</p>
+<p><a target="_blank" rel="noopener" href="https://docs.wandb.ai/guides/sweeps/add-w-and-b-to-your-code">https://docs.wandb.ai/guides/sweeps/add-w-and-b-to-your-code</a></p>
+<p><a target="_blank" rel="noopener" href="https://docs.wandb.ai/guides/sweeps/existing-project">https://docs.wandb.ai/guides/sweeps/existing-project</a></p>
+<p>自己的问题是 在一个已经能跑好的模型 添加wandb sweep 来 搜索超参</p>
+<p>这个跑好的模型存在Namespace 命名空间 </p>
+<p>来看看 代码的修改</p>
+<h2 id="1-来看看官方要我们加什么"><a href="#1-来看看官方要我们加什么" class="headerlink" title="1. 来看看官方要我们加什么"></a>1. 来看看官方要我们加什么</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> wandb</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np </span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"></span><br><span class="line"><span class="comment"># Define sweep config</span></span><br><span class="line">sweep_configuration = &#123;</span><br><span class="line">    <span class="string">&#x27;method&#x27;</span>: <span class="string">&#x27;random&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;name&#x27;</span>: <span class="string">&#x27;sweep&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;metric&#x27;</span>: &#123;<span class="string">&#x27;goal&#x27;</span>: <span class="string">&#x27;maximize&#x27;</span>, <span class="string">&#x27;name&#x27;</span>: <span class="string">&#x27;val_acc&#x27;</span>&#125;,</span><br><span class="line">    <span class="string">&#x27;parameters&#x27;</span>: </span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">&#x27;batch_size&#x27;</span>: &#123;<span class="string">&#x27;values&#x27;</span>: [<span class="number">16</span>, <span class="number">32</span>, <span class="number">64</span>]&#125;,</span><br><span class="line">        <span class="string">&#x27;epochs&#x27;</span>: &#123;<span class="string">&#x27;values&#x27;</span>: [<span class="number">5</span>, <span class="number">10</span>, <span class="number">15</span>]&#125;,</span><br><span class="line">        <span class="string">&#x27;lr&#x27;</span>: &#123;<span class="string">&#x27;max&#x27;</span>: <span class="number">0.1</span>, <span class="string">&#x27;min&#x27;</span>: <span class="number">0.0001</span>&#125;</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># Initialize sweep by passing in config. </span></span><br><span class="line"><span class="comment"># (Optional) Provide a name of the project.</span></span><br><span class="line">sweep_id = wandb.sweep(</span><br><span class="line">  sweep=sweep_configuration, </span><br><span class="line">  project=<span class="string">&#x27;my-first-sweep&#x27;</span></span><br><span class="line">  )</span><br><span class="line"></span><br><span class="line"><span class="comment"># Define training function that takes in hyperparameter </span></span><br><span class="line"><span class="comment"># values from `wandb.config` and uses them to train a </span></span><br><span class="line"><span class="comment"># model and return metric</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">train_one_epoch</span>(<span class="params">epoch, lr, bs</span>): </span><br><span class="line">  acc = <span class="number">0.25</span> + ((epoch/<span class="number">30</span>) +  (random.random()/<span class="number">10</span>))</span><br><span class="line">  loss = <span class="number">0.2</span> + (<span class="number">1</span> - ((epoch-<span class="number">1</span>)/<span class="number">10</span> +  random.random()/<span class="number">5</span>))</span><br><span class="line">  <span class="keyword">return</span> acc, loss</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">evaluate_one_epoch</span>(<span class="params">epoch</span>): </span><br><span class="line">  acc = <span class="number">0.1</span> + ((epoch/<span class="number">20</span>) +  (random.random()/<span class="number">10</span>))</span><br><span class="line">  loss = <span class="number">0.25</span> + (<span class="number">1</span> - ((epoch-<span class="number">1</span>)/<span class="number">10</span> +  random.random()/<span class="number">6</span>))</span><br><span class="line">  <span class="keyword">return</span> acc, loss</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    run = wandb.init()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># note that we define values from `wandb.config`  </span></span><br><span class="line">    <span class="comment"># instead of defining hard values</span></span><br><span class="line">    lr  =  wandb.config.lr</span><br><span class="line">    bs = wandb.config.batch_size</span><br><span class="line">    epochs = wandb.config.epochs</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> epoch <span class="keyword">in</span> np.arange(<span class="number">1</span>, epochs):</span><br><span class="line">      train_acc, train_loss = train_one_epoch(epoch, lr, bs)</span><br><span class="line">      val_acc, val_loss = evaluate_one_epoch(epoch)</span><br><span class="line"></span><br><span class="line">      wandb.log(&#123;</span><br><span class="line">        <span class="string">&#x27;epoch&#x27;</span>: epoch, </span><br><span class="line">        <span class="string">&#x27;train_acc&#x27;</span>: train_acc,</span><br><span class="line">        <span class="string">&#x27;train_loss&#x27;</span>: train_loss, </span><br><span class="line">        <span class="string">&#x27;val_acc&#x27;</span>: val_acc, </span><br><span class="line">        <span class="string">&#x27;val_loss&#x27;</span>: val_loss</span><br><span class="line">      &#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Start sweep job.</span></span><br><span class="line">wandb.agent(sweep_id, function=main, count=<span class="number">4</span>)</span><br></pre></td></tr></table></figure>
 
-<h4 id="3-2-1-使用方式"><a href="#3-2-1-使用方式" class="headerlink" title="3.2.1 使用方式"></a>3.2.1 使用方式</h4><p>项目文件为 video_pic</p>
-<p>将我们下载好的视频总集 放入video文件夹内</p>
-<p>然后修改好 我们要提取的文件夹名称</p>
-<p>run 就生成了对应视频总集文件的png</p>
-<p>你需要修改的位置</p>
-<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/j3L7jA"><img src="https://s1.ax1x.com/2022/07/03/j3L7jA.png"></a></p>
-<p>运行的情况</p>
-<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/j3LbnI"><img src="https://s1.ax1x.com/2022/07/03/j3LbnI.md.png"></a></p>
-<h3 id="3-3-图片信息提取"><a href="#3-3-图片信息提取" class="headerlink" title="3.3 图片信息提取"></a>3.3 图片信息提取</h3><p>图片信息的提取，使用了百度提供的ocr服务，基本手敲了300行代码</p>
-<p><strong>这个为项目的难点和核心点</strong></p>
-<p>输入：视频关键帧图片</p>
-<p>输出：含有课程名称，课件名，知识点（topic），知识点内容（content），起始时间，终止时间的json文件</p>
-<p>工作流程：</p>
+<p>需要添加什么？</p>
 <ol>
-<li>先将一个课件名内的图片按时间戳顺序整理</li>
-<li>ocr遍历课件内的图片<ol>
-<li><p>图片ocr处理 得到图片文字内容</p>
+<li>sweep config</li>
+<li>sweep id</li>
+<li>在main函数里面init() 好 且给超参赋值 log好我们需要记录的值</li>
+<li>开始工作 wandb.agent(sweep_id, function&#x3D;main, count&#x3D;4)</li>
+</ol>
+<h2 id="2-原样"><a href="#2-原样" class="headerlink" title="2. 原样"></a>2. 原样</h2><p>我的train文件 有 </p>
+<p>一个类 一个方法 一个main 入口</p>
+<p>其中的main 函数里面有 Namespace 命名空间</p>
+<p><img src="https://pic1.imgdb.cn/item/6441f00d0d2dde5777b20b1c.png"></p>
+<p>其实 一开始 是打算将 参数搜索的字典放在main入口里面的</p>
+<p>但是 我 找了很多方法 就是config打印不出来结果 </p>
+<p><img src="https://pic1.imgdb.cn/item/6441f00e0d2dde5777b20bab.png"></p>
+<h2 id="3-解法"><a href="#3-解法" class="headerlink" title="3. 解法"></a>3. 解法</h2><p>看了看韩同学的代码 有可能是 pykt的代码</p>
+<p>很牛 </p>
+<p>先交代好参数</p>
+<p><img src="https://pic1.imgdb.cn/item/6441f0f20d2dde5777b316c3.png"></p>
+<p>将main入口 写成一个函数 def main():</p>
+<p><img src="https://pic1.imgdb.cn/item/6441f0f20d2dde5777b3170c.png"></p>
+<p>参数的传递 通过修改 parser 中default来修改</p>
+<p><img src="https://pic1.imgdb.cn/item/6441f00e0d2dde5777b20bda.png"></p>
+<p>设置好wandb 需要log的值</p>
+<p><img src="https://pic1.imgdb.cn/item/6441f0f20d2dde5777b316ec.png">yo</p>
+<p>然后将 将执行函数 写入 wandb.agent(sweep_id, function&#x3D;main, count&#x3D;4)</p>
+<p><img src="https://pic1.imgdb.cn/item/6441f00e0d2dde5777b20bfc.png"></p>
+<h2 id="4-总结"><a href="#4-总结" class="headerlink" title="4. 总结"></a>4. 总结</h2><p>一共四步</p>
 <ol>
-<li>ocr会返回含有文字的条数 如果条数小于3 则跳过</li>
-<li>文字进行垃圾词清理</li>
-<li>判断文字条数是不是为 0 为0跳过</li>
-<li>和上一个content进行比较 如果存在相同的字段 则不存 若有不同 则添加字段(topic相同)</li>
+<li>定义config</li>
+<li>将之前的main调用改成 main方法</li>
+<li>修改好命名空间内的default中的值</li>
+<li>设置好wandb需要log的值</li>
+<li>在main调用内 写wandb.agent</li>
 </ol>
-</li>
-<li><p>当topic 发生改变时候</p>
-<ol>
-<li>将存下上一次topic改变的时间，和这一次topic的修改时间记为起始时间和结束时间</li>
-<li>记下原topic的名称，和content</li>
-<li>存为json存取</li>
-</ol>
-</li>
-<li><p>当遍历到最后一个图片时</p>
-<ol>
-<li>将存下上一次topic改变的时间，和这一次topic的修改时间记为起始时间和结束时间</li>
-<li>记下原topic的名称，和content</li>
-<li>存为json存取</li>
-</ol>
-</li>
-</ol>
-</li>
-</ol>
-<h4 id="3-3-1-使用方式"><a href="#3-3-1-使用方式" class="headerlink" title="3.3.1 使用方式"></a>3.3.1 使用方式</h4><p>项目文件: pic_word</p>
-<p>通过百度智能云 获得对应的api_key 和 secret_key</p>
-<p><a target="_blank" rel="noopener" href="https://cloud.baidu.com/doc/OCR/s/dk3iqnq51">https://cloud.baidu.com/doc/OCR/s/dk3iqnq51</a></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">API_KEY = <span class="string">&#x27;ZOYegM165651651zf13suG2&#x27;</span></span><br><span class="line"></span><br><span class="line">SECRET_KEY = <span class="string">&#x27;6HjW4xdUWw9MXoaVT6514896161WpZw&#x27;</span></span><br><span class="line"></span><br><span class="line">OCR_URL = <span class="string">&#x27;https://aip.baidubce.com/rest/2.0/ocr/v1/general_basic&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>最后 </p>
+<p>用nohup保护进程</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nohup python -u main.py &gt; log.out <span class="number">2</span>&gt;&amp;<span class="number">1</span> &amp;</span><br></pre></td></tr></table></figure>
 
-<p>填入自己要获取课程知识点的课程名称</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">className = <span class="string">&quot;python语言程序设计&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p> <img src="https://s1.ax1x.com/2022/07/03/j3OqxJ.png"> </p>
-<h3 id="3-4-json数据转存"><a href="#3-4-json数据转存" class="headerlink" title="3.4 json数据转存"></a>3.4 json数据转存</h3><p>通过读取json数据 生成能够插入数据库的.sql文件</p>
-<p>输入：知识点json文件</p>
-<p>输出：基于课程的sql文件</p>
-<h4 id="3-4-1-使用方式"><a href="#3-4-1-使用方式" class="headerlink" title="3.4.1 使用方式"></a>3.4.1 使用方式</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">className = <span class="string">&quot;python语言程序设计&quot;</span></span><br><span class="line">word_root = os.path.join(os.getcwd(), <span class="string">&#x27;text&#x27;</span>)</span><br><span class="line">classWordRoot = os.path.join(word_root, className)</span><br><span class="line">sqlRoot = os.path.join(os.getcwd(), <span class="string">&#x27;knowledgeSearch.sql&#x27;</span>)</span><br></pre></td></tr></table></figure>
-
-<p>在使用的时候 需要填入对应的className 和sqlroot 想要生成的sql文件名称</p>
-<h2 id="4-数据库展示"><a href="#4-数据库展示" class="headerlink" title="4. 数据库展示"></a>4. 数据库展示</h2><p>本次的数据库 展示使用的是 jeecgboot来完成我们的数据库展示的功能</p>
-<p>其具体的开发开发文档：<a target="_blank" rel="noopener" href="http://jeecg.com/">http://jeecg.com/</a></p>
-<p>比较好的视频文档：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1V34y187Y9">https://www.bilibili.com/video/BV1V34y187Y9</a></p>
-<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/j3zEp8"><img src="https://s1.ax1x.com/2022/07/03/j3zEp8.md.png"></a></p>
-<p>展示功能完成了 基于 classname topic main的查询功能</p>
-<p>完成了基础的增删改</p>
-<p>且能够导入导出exel文档来进行查阅</p>
 
         </div>
         
@@ -315,7 +279,7 @@
     <script type="text/javascript">
         $(()=>{
             new QRCode("wechat-qr", {
-                text: "http://example.com/2022/07/02/%E5%9F%BA%E4%BA%8E%E7%9F%A5%E8%AF%86%E7%BB%86%E7%B2%92%E5%BA%A6%E6%9F%A5%E8%AF%A2%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88/",
+                text: "http://example.com/2023/04/21/wandb%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/",
                 width: 150,
                 height: 150,
                 correctLevel : QRCode.CorrectLevel.H
@@ -327,15 +291,14 @@
             const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
             const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
             const twitterBase   = "https://twitter.com/intent/tweet?";
-            const hostUrl       = "http://example.com/2022/07/02/%E5%9F%BA%E4%BA%8E%E7%9F%A5%E8%AF%86%E7%BB%86%E7%B2%92%E5%BA%A6%E6%9F%A5%E8%AF%A2%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88/";
-            const title         = "「基于知识细粒度查询设计方案(使用手册)」";
-            const excerpt       = `作者：谢昊
-班级：计算机应用技术
-1. 使用说明本系统涉及的环境有点多，本设计将从爬虫获取，知识点提取，知识点展示来说明。
-2. 爬虫获取项目爬虫功能是一个代码开源的软件来完成对应的功能
-
-软件设计清晰 且帮助文档完善
-下载网址为：h...`;
+            const hostUrl       = "http://example.com/2023/04/21/wandb%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/";
+            const title         = "「wandb 项目修改教程」";
+            const excerpt       = `0. 前言距离上次发博客 是4&#x2F;6号
+现在 过了快两周 
+差不多是我这篇新的论文 验证完思路 效果好 且 跟师兄讨论的一个时间点
+wandb 来找找超参 之前学过一些
+链接：
+https://docs.wandb.ai/gu...`;
             let _URL;
             switch (dest) {
                 case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
@@ -357,7 +320,7 @@
                     
                 </div>
                 <div class="pull-date">
-                <span>最后编辑：2022-07-03</span>
+                <span>最后编辑：2023-04-21</span>
                 </div>
             </div>
         </footer>
@@ -366,13 +329,9 @@
         <nav class="navigation post-navigation clearfix" role="navigation">
             
             <div class="nav-previous clearfix">
-                <a title=" 模型调参" href="/2022/06/26/模型调参/">&lt; 上一篇</a>
+                <a title=" 年度总结" href="/2023/04/06/年度总结/">&lt; 上一篇</a>
             </div>
             
-            
-            <div class="nav-next clearfix">
-                <a title=" 文章的idea到产出的完整环节" href="/2022/07/12/idea/">下一篇 &gt;</a>
-            </div>
             
         </nav>
     
