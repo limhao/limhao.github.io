@@ -4,7 +4,7 @@
   <!-- 元数据 -->
   <meta charset="utf-8">
   <link rel="icon" href="">
-  <title>limhao博客</title>
+  <title>模型效果保存（cosrec） | limhao博客</title>
   <meta name="author" content="limhao" />
   <meta http-equiv="Cache-Control" content="no-transform" />
   <meta http-equiv="Cache-Control" content="no-siteapp" />
@@ -15,12 +15,16 @@
   
     <meta name="keywords" content="" />
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="limhao博客">
-<meta property="og:url" content="http://example.com/archives/2022/04/index.html">
+  <meta name="description" content="在最后 总结出了 自己的模型结构 1.cnn对比学习 有趣 原模型效果 ml1m    gowalla   现模型效果 ml1m   这个是 se cnn的那个模型  这个是 对比学习的效果 没有去找超参epoch34map0.1898,&amp;#112;&amp;#114;&amp;#101;&amp;#99;&amp;#x40;&amp;#x31;&amp;#45;&amp;#48;&amp;#46;&amp;#51;&amp;#50;&amp;#x38;&amp;#49;, &amp;#x70;&amp;#">
+<meta property="og:type" content="article">
+<meta property="og:title" content="模型效果保存（cosrec）">
+<meta property="og:url" content="http://example.com/2023/05/13/%E6%A8%A1%E5%9E%8B%E6%95%88%E6%9E%9C%E4%BF%9D%E5%AD%98%EF%BC%88cosrec%EF%BC%89/index.html">
 <meta property="og:site_name" content="limhao博客">
+<meta property="og:description" content="在最后 总结出了 自己的模型结构 1.cnn对比学习 有趣 原模型效果 ml1m    gowalla   现模型效果 ml1m   这个是 se cnn的那个模型  这个是 对比学习的效果 没有去找超参epoch34map0.1898,&amp;#112;&amp;#114;&amp;#101;&amp;#99;&amp;#x40;&amp;#x31;&amp;#45;&amp;#48;&amp;#46;&amp;#51;&amp;#50;&amp;#x38;&amp;#49;, &amp;#x70;&amp;#">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/null">
+<meta property="article:published_time" content="2023-05-13T14:18:29.989Z">
+<meta property="article:modified_time" content="2023-05-13T14:23:11.823Z">
 <meta property="article:author" content="limhao">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/null">
@@ -144,289 +148,173 @@
 
         
 
+            <article>
+    <div class="kratos-hentry kratos-post-inner clearfix">
+        <header class="kratos-entry-header">
             
-<style>
-  .post-meta time{color:#00a7e0}
-  @media (max-width:767px){.posts-collapse{margin:0 20px}
-  .posts-collapse .post-meta,
-  .posts-collapse .post-title{display:block;width:auto;text-align:left}}
-  .posts-collapse{position:relative}
-  .posts-collapse::after{content:" ";position:absolute;top:20px;left:0;margin-left:-2px;width:4px;height:calc(100% - 35px);background:#f5f5f5;z-index:-1}
-  @media (max-width:991px){.posts-collapse{margin:0 20px}}
-  .posts-collapse .collection-title{position:relative}
-  .posts-collapse .collection-title h1,
-  .posts-collapse .collection-title h2{margin-left:20px}
-  .posts-collapse .collection-title small{color:#bbb;margin-left:5px}
-  .posts-collapse .collection-title::before{content:" ";position:absolute;left:0;top:50%;margin-left:-4px;margin-top:-4px;width:8px;height:8px;background:#bbb;border-radius:50%}
-  .posts-collapse .post-header{position:relative;transition-duration:.2s;transition-timing-function:ease-in-out;transition-delay:0s;transition-property:border}
-  .posts-collapse .post-header::before{content:" ";position:absolute;left:0;top:12px;width:6px;height:6px;margin-left:-4px;background:#bbb;border-radius:50%;border:1px solid #fff;transition: all .3s ease-in-out}
-  .posts-collapse .post-header:hover{border-bottom-color:#666}
-  .posts-collapse .post-header:hover::before{background:#222}
-  .posts-collapse .post-meta{position:absolute;font-size:12px;left:20px;top:5px}
-  .posts-collapse .post-comments-count{display:none}
-  .posts-collapse .post-title{margin-left:70px;font-size:16px;font-weight:400;line-height:inherit}
-  .posts-collapse .post-title::after{margin-left:3px;opacity:.6}
-  .posts-collapse .post-title a{color:#666;border-bottom:none}
-</style>
-
-  <article>
-      <div class="kratos-hentry kratos-post-inner clearfix">
-          <div class="kratos-post-content">
-            <h2 class="title-h2 text-center">文章归档</h2>
-            <div id="archives">
-              <div class="post-block archive post" style="margin-left: 2em;">
-                <h3 class="archive-page-counter">当前共有 10 篇文章 (゜-゜)つロ 干杯~</h3>
-                <div class="posts-collapse">
-                  
-                  
+                <h1 class="kratos-entry-title text-center">模型效果保存（cosrec）</h1>
+            
+            
+            <ul class="kratos-post-meta text-center">
+                <li><i class="fa fa-calendar"></i> 2023-05-13</li>
+                <li><i class="fa fa-user"></i> 作者 limhao</li>
+                <li>
+                    <i class="fa fa-edit"></i> 
                     
                     
-                      <!-- 没遇到Title的会被自动忽略年份，即使并不一致 -->
-                      
-                      <div class="collection-title">
-                        <a href="/archives/2022/"><h2 class="archive-year">2022</h2></a>
-                      </div>
+                        611
                     
-                    
-                      <article class="post" itemscope>
-                        <header class="post-header">
-                          <h3 class="post-title">
-                            
-                                <a class="post-title-link" href="/2022/04/26/pytorch-%E5%BC%A0%E9%87%8F%E6%93%8D%E4%BD%9C/" itemprop="url">
-                                  <span itemprop="name">PyTorch 张量操作</span>
-                                </a>
-                            
-                          </h3>
-                          <div class="post-meta">
-                            <time class="post-time" itemprop="dateCreated"
-                                  datetime="2022-04-26T20:53:22+08:00"
-                                  content="2022-04-26" >
-                              04-26
-                            </time>
-                          </div>
-                        </header>
-                      </article>
-                    
-                  
-                    
-                    
-                    
-                      <article class="post" itemscope>
-                        <header class="post-header">
-                          <h3 class="post-title">
-                            
-                                <a class="post-title-link" href="/2022/04/26/git-%E6%B2%99%E9%9B%95%E4%BD%BF%E7%94%A8/" itemprop="url">
-                                  <span itemprop="name">git 沙雕使用</span>
-                                </a>
-                            
-                          </h3>
-                          <div class="post-meta">
-                            <time class="post-time" itemprop="dateCreated"
-                                  datetime="2022-04-26T20:26:08+08:00"
-                                  content="2022-04-26" >
-                              04-26
-                            </time>
-                          </div>
-                        </header>
-                      </article>
-                    
-                  
-                    
-                    
-                    
-                      <article class="post" itemscope>
-                        <header class="post-header">
-                          <h3 class="post-title">
-                            
-                                <a class="post-title-link" href="/2022/04/23/%E6%AF%95%E4%B8%9A%E8%AE%BA%E6%96%87%E6%80%9D%E8%B7%AF/" itemprop="url">
-                                  <span itemprop="name">毕业论文思路</span>
-                                </a>
-                            
-                          </h3>
-                          <div class="post-meta">
-                            <time class="post-time" itemprop="dateCreated"
-                                  datetime="2022-04-23T14:40:11+08:00"
-                                  content="2022-04-23" >
-                              04-23
-                            </time>
-                          </div>
-                        </header>
-                      </article>
-                    
-                  
-                    
-                    
-                    
-                      <article class="post" itemscope>
-                        <header class="post-header">
-                          <h3 class="post-title">
-                            
-                                <a class="post-title-link" href="/2022/04/21/%E9%A1%BA%E5%BA%8F%E6%8E%A8%E8%8D%90%E6%A8%A1%E5%9E%8B%E7%BB%BC%E8%BF%B0/" itemprop="url">
-                                  <span itemprop="name">顺序推荐模型综述</span>
-                                </a>
-                            
-                          </h3>
-                          <div class="post-meta">
-                            <time class="post-time" itemprop="dateCreated"
-                                  datetime="2022-04-21T19:32:08+08:00"
-                                  content="2022-04-21" >
-                              04-21
-                            </time>
-                          </div>
-                        </header>
-                      </article>
-                    
-                  
-                    
-                    
-                    
-                      <article class="post" itemscope>
-                        <header class="post-header">
-                          <h3 class="post-title">
-                            
-                                <a class="post-title-link" href="/2022/04/16/cin%E7%9A%84%E6%B2%99%E9%9B%95%E7%90%86%E8%A7%A3/" itemprop="url">
-                                  <span itemprop="name">cin的沙雕理解</span>
-                                </a>
-                            
-                          </h3>
-                          <div class="post-meta">
-                            <time class="post-time" itemprop="dateCreated"
-                                  datetime="2022-04-16T19:53:20+08:00"
-                                  content="2022-04-16" >
-                              04-16
-                            </time>
-                          </div>
-                        </header>
-                      </article>
-                    
-                  
-                    
-                    
-                    
-                      <article class="post" itemscope>
-                        <header class="post-header">
-                          <h3 class="post-title">
-                            
-                                <a class="post-title-link" href="/2022/04/13/%E5%B0%8F%E7%9C%8B%E7%9A%84FM/" itemprop="url">
-                                  <span itemprop="name">小看的FM</span>
-                                </a>
-                            
-                          </h3>
-                          <div class="post-meta">
-                            <time class="post-time" itemprop="dateCreated"
-                                  datetime="2022-04-13T15:04:51+08:00"
-                                  content="2022-04-13" >
-                              04-13
-                            </time>
-                          </div>
-                        </header>
-                      </article>
-                    
-                  
-                    
-                    
-                    
-                      <article class="post" itemscope>
-                        <header class="post-header">
-                          <h3 class="post-title">
-                            
-                                <a class="post-title-link" href="/2022/04/10/Capsule%20%E8%83%B6%E5%9B%8A%E7%BD%91%E7%BB%9C/" itemprop="url">
-                                  <span itemprop="name">Capsule 网络</span>
-                                </a>
-                            
-                          </h3>
-                          <div class="post-meta">
-                            <time class="post-time" itemprop="dateCreated"
-                                  datetime="2022-04-10T22:19:13+08:00"
-                                  content="2022-04-10" >
-                              04-10
-                            </time>
-                          </div>
-                        </header>
-                      </article>
-                    
-                  
-                    
-                    
-                    
-                      <article class="post" itemscope>
-                        <header class="post-header">
-                          <h3 class="post-title">
-                            
-                                <a class="post-title-link" href="/2022/04/10/transformer%20%E8%AF%A6%E8%A7%A3%EF%BC%81%EF%BC%88%E5%86%99%E7%9A%84%E5%83%8F%E4%BA%BA%E8%AF%9D%E4%B8%80%E7%82%B9%EF%BC%89/" itemprop="url">
-                                  <span itemprop="name">transformer 详解！（写的像人话一点）</span>
-                                </a>
-                            
-                          </h3>
-                          <div class="post-meta">
-                            <time class="post-time" itemprop="dateCreated"
-                                  datetime="2022-04-10T20:50:30+08:00"
-                                  content="2022-04-10" >
-                              04-10
-                            </time>
-                          </div>
-                        </header>
-                      </article>
-                    
-                  
-                    
-                    
-                    
-                      <article class="post" itemscope>
-                        <header class="post-header">
-                          <h3 class="post-title">
-                            
-                                <a class="post-title-link" href="/2022/04/10/attention%20%E6%9C%BA%E5%88%B6/" itemprop="url">
-                                  <span itemprop="name">attention机制 简单理解（废弃） 说实话看不太懂 太抽象</span>
-                                </a>
-                            
-                          </h3>
-                          <div class="post-meta">
-                            <time class="post-time" itemprop="dateCreated"
-                                  datetime="2022-04-10T15:05:28+08:00"
-                                  content="2022-04-10" >
-                              04-10
-                            </time>
-                          </div>
-                        </header>
-                      </article>
-                    
-                  
-                    
-                    
-                    
-                      <article class="post" itemscope>
-                        <header class="post-header">
-                          <h3 class="post-title">
-                            
-                                <a class="post-title-link" href="/2022/04/06/%E5%90%84%E7%A7%8D%E6%85%A2/" itemprop="url">
-                                  <span itemprop="name">各种慢</span>
-                                </a>
-                            
-                          </h3>
-                          <div class="post-meta">
-                            <time class="post-time" itemprop="dateCreated"
-                                  datetime="2022-04-06T21:34:45+08:00"
-                                  content="2022-04-06" >
-                              04-06
-                            </time>
-                          </div>
-                        </header>
-                      </article>
-                    
-                  
-                </div>
-              </div>
+                    字
+                </li>
+                
+            </ul>
+        </header>
+        <div class="kratos-post-content">
+            <div id="expire-alert" class="alert alert-warning hidden" role="alert">
+                <div class="icon"><i class="fa fa-warning"></i></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1683987791823"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
-        </div>
-      </div>
-      
-        <div class='text-center pagination'>
-        <span class="page-number current">1</span><a class="page-number" href="/archives/2022/04/page/2/">2</a><a class="extend next" rel="next" href="/archives/2022/04/page/2/"><i class="fa fa-angle-right"></i></a>
-        </div>
-      
-  </article>
+            
+            <hr />
+            <p>在最后 总结出了 自己的模型结构</p>
+<p>1.cnn对比学习 有趣</p>
+<h2 id="原模型效果"><a href="#原模型效果" class="headerlink" title="原模型效果"></a>原模型效果</h2><ul>
+<li>ml1m</li>
+</ul>
+<p><img src="https://pic2.imgdb.cn/item/645f9b8a0d2dde577739a7d9.png"></p>
+<ul>
+<li>gowalla</li>
+</ul>
+<p><img src="https://pic2.imgdb.cn/item/645f9c2a0d2dde57773b51e3.png"></p>
+<h2 id="现模型效果"><a href="#现模型效果" class="headerlink" title="现模型效果"></a>现模型效果</h2><ul>
+<li>ml1m</li>
+</ul>
+<p><img src="https://pic2.imgdb.cn/item/645f9b8a0d2dde577739a833.png"></p>
+<p>这个是 se cnn的那个模型</p>
+<p><img src="https://pic2.imgdb.cn/item/645f9b890d2dde577739a791.png"></p>
+<p>这个是 对比学习的效果 没有去找超参<br>epoch34<br>map0.1898,<a href="mailto:&#112;&#114;&#101;&#99;&#x40;&#x31;&#45;&#48;&#46;&#51;&#50;&#x38;&#49;">&#112;&#114;&#101;&#99;&#x40;&#x31;&#45;&#48;&#46;&#51;&#50;&#x38;&#49;</a>, <a href="mailto:&#x70;&#114;&#101;&#99;&#64;&#53;&#x2d;&#x30;&#x2e;&#x32;&#x38;&#49;&#x32;">&#x70;&#114;&#101;&#99;&#64;&#53;&#x2d;&#x30;&#x2e;&#x32;&#x38;&#49;&#x32;</a>, <a href="mailto:&#x70;&#114;&#x65;&#x63;&#64;&#x6c;&#48;&#x2d;&#48;&#46;&#x32;&#x34;&#x39;&#x36;">&#x70;&#114;&#x65;&#x63;&#64;&#x6c;&#48;&#x2d;&#48;&#46;&#x32;&#x34;&#x39;&#x36;</a>, <a href="mailto:&#114;&#x65;&#99;&#97;&#108;&#x6c;&#x40;&#x6c;&#x2d;&#x30;&#x2e;&#x30;&#49;&#57;&#57;">&#114;&#x65;&#99;&#97;&#108;&#x6c;&#x40;&#x6c;&#x2d;&#x30;&#x2e;&#x30;&#49;&#57;&#57;</a>, <a href="mailto:&#114;&#x65;&#x63;&#97;&#x6c;&#108;&#64;&#53;&#45;&#48;&#46;&#x30;&#56;&#51;&#56;">&#114;&#x65;&#x63;&#97;&#x6c;&#108;&#64;&#53;&#45;&#48;&#46;&#x30;&#56;&#51;&#56;</a>, <a href="mailto:&#x72;&#101;&#x63;&#x61;&#x6c;&#x6c;&#64;&#x6c;&#48;&#x2d;&#48;&#46;&#x31;&#52;&#51;&#x36;">&#x72;&#101;&#x63;&#x61;&#x6c;&#x6c;&#64;&#x6c;&#48;&#x2d;&#48;&#46;&#x31;&#52;&#51;&#x36;</a></p>
 
+        </div>
+        
+            <div class="kratos-copyright text-center clearfix">
+                <h5>本作品采用 <a rel="license nofollow" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a> 进行许可</h5>
+            </div>
+        
+        <footer class="kratos-entry-footer clearfix">
+            
+                <div class="post-like-donate text-center clearfix" id="post-like-donate">
+                
+                
+                    <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> 分享</a>
+                    <div class="share-wrap" style="display: none;">
+    <div class="share-group">
+        <a href="javascript:;" class="share-plain qq" onclick="share('qq');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-qq"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain qzone" onclick="share('qzone');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-star"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weixin pop style-plain" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weixin"></i>
+            </div>
+            <div class="share-int">
+                <div class="qrcode" id="wechat-qr"></div>
+                <p>打开微信“扫一扫”，打开网页后点击屏幕右上角分享按钮</p>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weibo" onclick="share('weibo');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weibo"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain facebook style-plain" onclick="share('facebook');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-facebook"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain twitter style-plain" onclick="share('twitter');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-twitter"></i>
+            </div>
+        </a>
+    </div>
+    <script type="text/javascript">
+        $(()=>{
+            new QRCode("wechat-qr", {
+                text: "http://example.com/2023/05/13/%E6%A8%A1%E5%9E%8B%E6%95%88%E6%9E%9C%E4%BF%9D%E5%AD%98%EF%BC%88cosrec%EF%BC%89/",
+                width: 150,
+                height: 150,
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        });
+        function share(dest) {
+            const qqBase        = "https://connect.qq.com/widget/shareqq/index.html?";
+            const weiboBase     = "https://service.weibo.com/share/share.php?";
+            const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
+            const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
+            const twitterBase   = "https://twitter.com/intent/tweet?";
+            const hostUrl       = "http://example.com/2023/05/13/%E6%A8%A1%E5%9E%8B%E6%95%88%E6%9E%9C%E4%BF%9D%E5%AD%98%EF%BC%88cosrec%EF%BC%89/";
+            const title         = "「模型效果保存（cosrec）」";
+            const excerpt       = `在最后 总结出了 自己的模型结构
+1.cnn对比学习 有趣
+原模型效果
+ml1m
+
+
+
+gowalla
+
+
+现模型效果
+ml1m
+
+
+这个是 se cnn的那个模型
+
+这个是 对比学习的效果 没有去找超参epoch34map0.189...`;
+            let _URL;
+            switch (dest) {
+                case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
+                case "weibo"    : _URL = weiboBase+"url="+hostUrl+"&title="+title+excerpt;                                 break;
+                case "qzone"    : _URL = qzoneBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";  break;
+                case "facebook" : _URL = facebookBase+"u="+hostUrl;                                                        break;
+                case "twitter"  : _URL = twitterBase+"text="+title+excerpt+"&url="+hostUrl;                                break;
+            }
+            window.open(_URL);
+        };
+    </script>
+</div>
+                
+                </div>
+            
+            <div class="footer-tag clearfix">
+                <div class="pull-left">
+                <i class="fa fa-tags"></i>
+                    
+                </div>
+                <div class="pull-date">
+                <span>最后编辑：2023-05-13</span>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+        <nav class="navigation post-navigation clearfix" role="navigation">
+            
+            <div class="nav-previous clearfix">
+                <a title=" 5月4号 这一周学习总结" href="/2023/05/04/54号-这一周学习总结/">&lt; 上一篇</a>
+            </div>
+            
+            
+        </nav>
+    
+    
+</article>
 
         
 
@@ -439,8 +327,6 @@
 
 <section id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm">
     <!-- 文章和页面根据splitter来分割，没有的话就从头开始设置为sticky -->
-    
-        <div class="sticky-area">
     
     
                 <aside id="krw-about" class="widget widget-kratos-about clearfix">
@@ -481,6 +367,8 @@
     </div>
 </aside>
             
+                    <div class="sticky-area">
+                
                 
 
             
