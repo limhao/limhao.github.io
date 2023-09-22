@@ -4,7 +4,7 @@
   <!-- 元数据 -->
   <meta charset="utf-8">
   <link rel="icon" href="">
-  <title>大论文算法章框架 | limhao博客</title>
+  <title>stm32学习 按键控制 oled 中断 | limhao博客</title>
   <meta name="author" content="limhao" />
   <meta http-equiv="Cache-Control" content="no-transform" />
   <meta http-equiv="Cache-Control" content="no-siteapp" />
@@ -15,16 +15,16 @@
   
     <meta name="keywords" content="" />
   
-  <meta name="description" content="x.1 引言 x.2 算法研究  从输入写到输出 模型训练   x.3 实验结果及讨论 数据集 评价指标 实验设置 结果及分析   x.4 小节">
+  <meta name="description" content="今天 研究的东西有点多  心态有点疲倦 看来三块时间还是得分割一下 2023&#x2F;9&#x2F;22 p8-p12 按键控制主要是按键的消抖以及模块化编程的思想 key.h 文件 1234567#ifndef __KEY_H#define __KEY_Hvoid Key_Init(void);uint8_t Key_GetNum(void);#endif  key.c 文件 12345678">
 <meta property="og:type" content="article">
-<meta property="og:title" content="大论文算法章框架">
-<meta property="og:url" content="http://example.com/2023/08/09/%E5%A4%A7%E8%AE%BA%E6%96%87%E7%AE%97%E6%B3%95%E7%AB%A0%E6%A1%86%E6%9E%B6/index.html">
+<meta property="og:title" content="stm32学习 按键控制 oled 中断">
+<meta property="og:url" content="http://example.com/2023/09/22/stm32%E5%AD%A6%E4%B9%A0-%E6%8C%89%E9%94%AE%E6%8E%A7%E5%88%B6-oled-%E4%B8%AD%E6%96%AD/index.html">
 <meta property="og:site_name" content="limhao博客">
-<meta property="og:description" content="x.1 引言 x.2 算法研究  从输入写到输出 模型训练   x.3 实验结果及讨论 数据集 评价指标 实验设置 结果及分析   x.4 小节">
+<meta property="og:description" content="今天 研究的东西有点多  心态有点疲倦 看来三块时间还是得分割一下 2023&#x2F;9&#x2F;22 p8-p12 按键控制主要是按键的消抖以及模块化编程的思想 key.h 文件 1234567#ifndef __KEY_H#define __KEY_Hvoid Key_Init(void);uint8_t Key_GetNum(void);#endif  key.c 文件 12345678">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/null">
-<meta property="article:published_time" content="2023-08-09T14:10:53.432Z">
-<meta property="article:modified_time" content="2023-08-09T14:10:53.591Z">
+<meta property="article:published_time" content="2023-09-22T14:16:57.141Z">
+<meta property="article:modified_time" content="2023-09-22T14:43:49.440Z">
 <meta property="article:author" content="limhao">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/null">
@@ -152,17 +152,17 @@
     <div class="kratos-hentry kratos-post-inner clearfix">
         <header class="kratos-entry-header">
             
-                <h1 class="kratos-entry-title text-center">大论文算法章框架</h1>
+                <h1 class="kratos-entry-title text-center">stm32学习 按键控制 oled 中断</h1>
             
             
             <ul class="kratos-post-meta text-center">
-                <li><i class="fa fa-calendar"></i> 2023-08-09</li>
+                <li><i class="fa fa-calendar"></i> 2023-09-22</li>
                 <li><i class="fa fa-user"></i> 作者 limhao</li>
                 <li>
                     <i class="fa fa-edit"></i> 
                     
                     
-                        75
+                        ~2.59K
                     
                     字
                 </li>
@@ -172,26 +172,44 @@
         <div class="kratos-post-content">
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>本文最后编辑于 <time datetime="1691590253591"></time> 前，其中的内容可能需要更新。</p></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1695393829440"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
             <hr />
-            <ul>
-<li>x.1 引言</li>
-<li>x.2 算法研究 <ul>
-<li>从输入写到输出</li>
-<li>模型训练</li>
-</ul>
+            <p>今天 研究的东西有点多 </p>
+<p>心态有点疲倦</p>
+<p>看来三块时间还是得分割一下</p>
+<p>2023&#x2F;9&#x2F;22</p>
+<p>p8-p12</p>
+<h2 id="按键控制"><a href="#按键控制" class="headerlink" title="按键控制"></a>按键控制</h2><p>主要是按键的消抖以及模块化编程的思想</p>
+<p>key.h 文件</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">ifndef</span> __KEY_H</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> __KEY_H</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Key_Init</span><span class="params">(<span class="type">void</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="type">uint8_t</span> <span class="title">Key_GetNum</span><span class="params">(<span class="type">void</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+
+<p>key.c 文件</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;stm32f10x.h&quot;</span>                  <span class="comment">// Device header</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;Delay.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Key_Init</span><span class="params">(<span class="type">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">RCC_APB2PeriphClockCmd</span>(RCC_APB2Periph_GPIOB, ENABLE);</span><br><span class="line">	</span><br><span class="line">	GPIO_InitTypeDef GPIO_InitStructure;</span><br><span class="line">	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU;</span><br><span class="line">	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_1 | GPIO_Pin_11;</span><br><span class="line">	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;</span><br><span class="line">	<span class="built_in">GPIO_Init</span>(GPIOB, &amp;GPIO_InitStructure);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">uint8_t</span> <span class="title">Key_GetNum</span><span class="params">(<span class="type">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">uint8_t</span> KeyNum = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span> (<span class="built_in">GPIO_ReadInputDataBit</span>(GPIOB, GPIO_Pin_1) == <span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">Delay_ms</span>(<span class="number">20</span>);</span><br><span class="line">		<span class="keyword">while</span> (<span class="built_in">GPIO_ReadInputDataBit</span>(GPIOB, GPIO_Pin_1) == <span class="number">0</span>);</span><br><span class="line">		<span class="built_in">Delay_ms</span>(<span class="number">20</span>);</span><br><span class="line">		KeyNum = <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (<span class="built_in">GPIO_ReadInputDataBit</span>(GPIOB, GPIO_Pin_11) == <span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">Delay_ms</span>(<span class="number">20</span>);</span><br><span class="line">		<span class="keyword">while</span> (<span class="built_in">GPIO_ReadInputDataBit</span>(GPIOB, GPIO_Pin_11) == <span class="number">0</span>);</span><br><span class="line">		<span class="built_in">Delay_ms</span>(<span class="number">20</span>);</span><br><span class="line">		KeyNum = <span class="number">2</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> KeyNum;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="逻辑电路"><a href="#逻辑电路" class="headerlink" title="逻辑电路"></a>逻辑电路</h2><img src="https://pic.imgdb.cn/item/650da654c458853aef792681.jpg" style="zoom: 25%;" />
+
+<h2 id="中断控制"><a href="#中断控制" class="headerlink" title="中断控制"></a>中断控制</h2><p>EXTI外部中断</p>
+<p>中断：在主程序运行过程中，出现了特定的中断触发条件（中断源），使得CPU暂停当前正在运行的程序，转而去处理中断程序，处理完成后又返回原来被暂停的位置继续运行</p>
+<p><img src="https://pic.imgdb.cn/item/650da409c458853aef7734e1.jpg"></p>
+<p>针对于不同的GPIO 使用的pin不能相同 否者会打架</p>
+<p>中断的代码逻辑</p>
+<ol>
+<li>RCC启动时钟</li>
+<li>设置端口为输入模式</li>
+<li>配置AFIO</li>
+<li>配置EXTI 选择触发方式</li>
+<li>配置NVIC<ol>
+<li>配置文件在 misc.h 中 被称为杂项文件</li>
+<li>nvic_priorConfig</li>
+<li>nvic_init</li>
+</ol>
 </li>
-<li>x.3 实验结果及讨论<ul>
-<li>数据集</li>
-<li>评价指标</li>
-<li>实验设置</li>
-<li>结果及分析</li>
-</ul>
-</li>
-<li>x.4 小节</li>
-</ul>
+</ol>
+<p>其中的代码</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">CountSensor_Init</span><span class="params">(<span class="type">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// 貌似NVIC一直是常启动 然后导致exti也不需要RCC启动</span></span><br><span class="line">	<span class="built_in">RCC_APB2PeriphClockCmd</span>(RCC_APB2Periph_GPIOB, ENABLE);</span><br><span class="line">	<span class="built_in">RCC_APB2PeriphClockCmd</span>(RCC_APB2Periph_AFIO, ENABLE);</span><br><span class="line">	</span><br><span class="line">	GPIO_InitTypeDef GPIO_InitStructure;</span><br><span class="line">	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU;</span><br><span class="line">	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_14;</span><br><span class="line">	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;</span><br><span class="line">	<span class="built_in">GPIO_Init</span>(GPIOB, &amp;GPIO_InitStructure);</span><br><span class="line">	<span class="comment">// 这行 是配置AFIO 的 主要是选择线 和 引脚</span></span><br><span class="line">	<span class="built_in">GPIO_EXTILineConfig</span>(GPIO_PortSourceGPIOB, GPIO_PinSource14);</span><br><span class="line">	<span class="comment">// 初始化结构体</span></span><br><span class="line">    <span class="comment">// 加定义</span></span><br><span class="line">    <span class="comment">// 初始化</span></span><br><span class="line">	EXTI_InitTypeDef EXTI_InitStructure;</span><br><span class="line">	EXTI_InitStructure.EXTI_Line = EXTI_Line14;</span><br><span class="line">	EXTI_InitStructure.EXTI_LineCmd = ENABLE;</span><br><span class="line">	EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;</span><br><span class="line">	EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Falling;</span><br><span class="line">	<span class="built_in">EXTI_Init</span>(&amp;EXTI_InitStructure);</span><br><span class="line">	<span class="comment">// 一样一样</span></span><br><span class="line">    <span class="comment">// 在配置nvic中断之前 先指定下分组</span></span><br><span class="line">	<span class="built_in">NVIC_PriorityGroupConfig</span>(NVIC_PriorityGroup_2);</span><br><span class="line">	<span class="comment">//跟上面差不多</span></span><br><span class="line">    <span class="comment">// 因为使用到14这个pin</span></span><br><span class="line">    <span class="comment">// 所以channel这里要用EXTI15_10_IRQn</span></span><br><span class="line">	NVIC_InitTypeDef NVIC_InitStructure;</span><br><span class="line">	NVIC_InitStructure.NVIC_IRQChannel = EXTI15_10_IRQn;</span><br><span class="line">	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;</span><br><span class="line">	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = <span class="number">1</span>;</span><br><span class="line">	NVIC_InitStructure.NVIC_IRQChannelSubPriority = <span class="number">1</span>;</span><br><span class="line">	<span class="built_in">NVIC_Init</span>(&amp;NVIC_InitStructure);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 
         </div>
         
@@ -245,7 +263,7 @@
     <script type="text/javascript">
         $(()=>{
             new QRCode("wechat-qr", {
-                text: "http://example.com/2023/08/09/%E5%A4%A7%E8%AE%BA%E6%96%87%E7%AE%97%E6%B3%95%E7%AB%A0%E6%A1%86%E6%9E%B6/",
+                text: "http://example.com/2023/09/22/stm32%E5%AD%A6%E4%B9%A0-%E6%8C%89%E9%94%AE%E6%8E%A7%E5%88%B6-oled-%E4%B8%AD%E6%96%AD/",
                 width: 150,
                 height: 150,
                 correctLevel : QRCode.CorrectLevel.H
@@ -257,25 +275,16 @@
             const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
             const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
             const twitterBase   = "https://twitter.com/intent/tweet?";
-            const hostUrl       = "http://example.com/2023/08/09/%E5%A4%A7%E8%AE%BA%E6%96%87%E7%AE%97%E6%B3%95%E7%AB%A0%E6%A1%86%E6%9E%B6/";
-            const title         = "「大论文算法章框架」";
-            const excerpt       = `
-x.1 引言
-x.2 算法研究 
-从输入写到输出
-模型训练
-
-
-x.3 实验结果及讨论
-数据集
-评价指标
-实验设置
-结果及分析
-
-
-x.4 小节
-
-`;
+            const hostUrl       = "http://example.com/2023/09/22/stm32%E5%AD%A6%E4%B9%A0-%E6%8C%89%E9%94%AE%E6%8E%A7%E5%88%B6-oled-%E4%B8%AD%E6%96%AD/";
+            const title         = "「stm32学习 按键控制 oled 中断」";
+            const excerpt       = `今天 研究的东西有点多 
+心态有点疲倦
+看来三块时间还是得分割一下
+2023&#x2F;9&#x2F;22
+p8-p12
+按键控制主要是按键的消抖以及模块化编程的思想
+key.h 文件
+1234567#ifndef __KEY_H#d...`;
             let _URL;
             switch (dest) {
                 case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
@@ -297,7 +306,7 @@ x.4 小节
                     
                 </div>
                 <div class="pull-date">
-                <span>最后编辑：2023-08-09</span>
+                <span>最后编辑：2023-09-22</span>
                 </div>
             </div>
         </footer>
@@ -306,13 +315,9 @@ x.4 小节
         <nav class="navigation post-navigation clearfix" role="navigation">
             
             <div class="nav-previous clearfix">
-                <a title=" 基于深度学习的习题推荐算法研究（大论文）" href="/2023/08/09/基于深度学习的习题推荐算法研究/">&lt; 上一篇</a>
+                <a title=" GPIO工程" href="/2023/09/21/GPIO工程/">&lt; 上一篇</a>
             </div>
             
-            
-            <div class="nav-next clearfix">
-                <a title=" 毕业论文怎么写" href="/2023/09/16/毕业论文怎么写/">下一篇 &gt;</a>
-            </div>
             
         </nav>
     
