@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+  <!-- 元数据 -->
+  <meta charset="utf-8">
+  <link rel="icon" href="">
+  <title>教育数据集特征描述 | limhao博客</title>
+  <meta name="author" content="limhao" />
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="robots" content="index,follow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="format-detection" content="telphone=no, email=no" />
+  
+    <meta name="keywords" content="" />
+  
+  <meta name="description" content="写在前头今日 2023&#x2F;9&#x2F;25 卸载了dota2 垃圾垃圾游戏  今天说实话得好好安排下自己的工作时间  中午睡得太晚 得努力了 起来就干不了啥事情了 嵌入式也不能放着 不然找不到工作了 删除流程 缺失值null太多  bottom hist skill_id answer_text answer_id   没区别  type assistment_id  多任务不用的特征">
+<meta property="og:type" content="article">
+<meta property="og:title" content="教育数据集特征描述">
+<meta property="og:url" content="http://example.com/2023/09/25/%E6%95%99%E8%82%B2%E6%95%B0%E6%8D%AE%E9%9B%86%E7%89%B9%E5%BE%81%E6%8F%8F%E8%BF%B0/index.html">
+<meta property="og:site_name" content="limhao博客">
+<meta property="og:description" content="写在前头今日 2023&#x2F;9&#x2F;25 卸载了dota2 垃圾垃圾游戏  今天说实话得好好安排下自己的工作时间  中午睡得太晚 得努力了 起来就干不了啥事情了 嵌入式也不能放着 不然找不到工作了 删除流程 缺失值null太多  bottom hist skill_id answer_text answer_id   没区别  type assistment_id  多任务不用的特征">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/null">
+<meta property="article:published_time" content="2023-09-25T08:31:43.077Z">
+<meta property="article:modified_time" content="2023-09-25T14:24:27.077Z">
+<meta property="article:author" content="limhao">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/null">
+<meta name="twitter:site" content="@null">
+  
+  <!-- 站点验证相关 -->
+  
+    
+    
+    
+  
+  <!-- 样式表文件 -->
+  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" type="text/css" media="all">
+  
+    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" type="text/css" media="all">
+  
+  
+  <link rel="stylesheet" id="fontawe-css" href="https://unpkg.com/font-awesome@4.7.0/css/font-awesome.min.css" type="text/css" media="all">
+  <link rel="stylesheet" id="nprogress-css" href="https://unpkg.com/nprogress@0.2.0/nprogress.css" type="text/css" media="all">
+  
+  
+  
+    <link rel="stylesheet" href="https://unpkg.com/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+  
+  
+    <link rel="stylesheet" id="darkmode-css" href="/css/kr-dark.min.css" type="text/css" media="all">
+  
+  <!-- 不得不预先加载的一些JS文件 -->
+  <script src="https://unpkg.com/jquery@3.6.0/dist/jquery.min.js"></script>
+  
+    <script src="https://unpkg.com/qrcode_js@1.0.0/qrcode.min.js"></script>
+  
+  
+  <style>
+    
+      .kratos-cover.kratos-cover-2 {
+        background-image: url('/images/banner.webp');
+      }
+    
+    
+      @media(min-width:768px) {
+        body.custom-background {
+          background-image: url('/images/bg.webp');
+        }
+      }
+    
+  </style>
+  
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+
+    <body class="custom-background">
+        <div id="kratos-wrapper">
+    <div id="kratos-page">
+        <div id="kratos-header">
+            <header id="kratos-desktop-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="nav-header">
+                        <nav id="kratos-menu-wrap">
+                            <ul id="kratos-primary-menu" class="sf-menu">
+                                
+                                    
+                                        <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+                                    
+                                
+                                    
+                                        <li><a href="/archives/"><i class="fa fa-file"></i>档案馆</a></li>
+                                    
+                                
+                                    
+                                        <li>
+                                            <a><i class="fa fa-link"></i>链接</a>
+                                            <ul class="sub-menu">
+                                                
+                                                    
+                                                
+                                                    
+                                                        <li><a target="_blank" rel="noopener" href="https://github.com/limhao">项目链接</a></li>
+                                                    
+                                                
+                                            </ul>
+                                        </li>
+                                    
+                                
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+            <header id="kratos-mobile-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="color-logo"><a href="/">limhao博客</a></div>
+                    <div class="nav-toggle">
+                        <a class="kratos-nav-toggle js-kratos-nav-toggle">
+                            <i></i>
+                        </a>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <div class="kratos-start kratos-hero-2">
+            <!-- <div class="kratos-overlay"></div> -->
+            <div class="kratos-cover kratos-cover-2 text-center">
+                <div class="desc desc2 animate-box">
+                    <a href="/">
+                        <h2>limhao博客</h2> <br />
+                        <span></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="kratos-blog-post">
+            <div class="container">
+                <div id="main" class="row">
+                    
+
+        
+
+            <section class="col-md-8">
+
+        
+
+            <article>
+    <div class="kratos-hentry kratos-post-inner clearfix">
+        <header class="kratos-entry-header">
+            
+                <h1 class="kratos-entry-title text-center">教育数据集特征描述</h1>
+            
+            
+            <ul class="kratos-post-meta text-center">
+                <li><i class="fa fa-calendar"></i> 2023-09-25</li>
+                <li><i class="fa fa-user"></i> 作者 limhao</li>
+                <li>
+                    <i class="fa fa-edit"></i> 
+                    
+                    
+                        ~3.62K
+                    
+                    字
+                </li>
+                
+            </ul>
+        </header>
+        <div class="kratos-post-content">
+            <div id="expire-alert" class="alert alert-warning hidden" role="alert">
+                <div class="icon"><i class="fa fa-warning"></i></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1695651867077"></time> 前，其中的内容可能需要更新。</p></div>
+            </div>
+            
+            <hr />
+            <h2 id="写在前头"><a href="#写在前头" class="headerlink" title="写在前头"></a>写在前头</h2><p>今日 2023&#x2F;9&#x2F;25 卸载了dota2 垃圾垃圾游戏 </p>
+<p>今天说实话得好好安排下自己的工作时间 </p>
+<p>中午睡得太晚 得努力了 起来就干不了啥事情了</p>
+<p>嵌入式也不能放着 不然找不到工作了</p>
+<h2 id="删除流程"><a href="#删除流程" class="headerlink" title="删除流程"></a>删除流程</h2><ol>
+<li>缺失值null太多</li>
+</ol>
+<p>bottom hist</p>
+<p><strong>skill_id</strong></p>
+<p><strong>answer_text</strong></p>
+<p><strong>answer_id</strong> </p>
+<ol>
+<li>没区别</li>
+</ol>
+<p>type <strong>assistment_id</strong></p>
+<ol>
+<li>多任务不用的特征</li>
+</ol>
+<p><strong>user_id</strong> <strong>sequence_id</strong>  <strong>base_sequence_id</strong> </p>
+<ol>
+<li>感觉没用的</li>
+</ol>
+<p>original position</p>
+<ol>
+<li>相同相似的</li>
+</ol>
+<p>student_class_id </p>
+<p>teacher_id√ </p>
+<p>school_id </p>
+<p>assistment_id</p>
+<h2 id="使用的部分"><a href="#使用的部分" class="headerlink" title="使用的部分"></a>使用的部分</h2><ul>
+<li>特征</li>
+</ul>
+<p><strong>problem_id</strong> 分类特征</p>
+<p><strong>attempt_count</strong> 数值</p>
+<p><strong>problem_type</strong>（answer_type）分类</p>
+<p><strong>teacher_id</strong> 分类</p>
+<p><strong>hint_count</strong> 数值</p>
+<p><strong>first_action</strong> 分类</p>
+<ul>
+<li>目标</li>
+</ul>
+<p>corret 分类</p>
+<p>tutor_mode 分类</p>
+<h2 id="数据集中相同特征的部分"><a href="#数据集中相同特征的部分" class="headerlink" title="数据集中相同特征的部分"></a>数据集中相同特征的部分</h2><p>**assignment_id **</p>
+<p><strong>user_id</strong></p>
+<p><strong>assistment_id</strong></p>
+<p><strong>problem_id</strong></p>
+<p><strong>original</strong></p>
+<p><strong>correct</strong> </p>
+<p><strong>attempt_count</strong> </p>
+<p> <strong>tutor_mode</strong></p>
+<p><strong>problem_type</strong></p>
+<p><strong>sequence_id</strong></p>
+<p> <strong>student_class_id</strong></p>
+<p><strong>position</strong></p>
+<p>type <strong>类型</strong></p>
+<p> <strong>base_sequence_id</strong> </p>
+<p><strong>skill_id</strong></p>
+<p><strong>teacher_id</strong></p>
+<p><strong>school_id</strong> </p>
+<p><strong>hint_count</strong></p>
+<p><strong>overlap_time</strong> </p>
+<p><strong>answer_id</strong> </p>
+<p> <strong>answer_text</strong></p>
+<p><strong>first_action</strong> </p>
+<p><strong>bottom_hint</strong></p>
+<h2 id="12教育数据集"><a href="#12教育数据集" class="headerlink" title="12教育数据集"></a>12教育数据集</h2><p> <strong>problem_log_id</strong> （问题日志唯一标识）</p>
+<p> <strong>skill</strong> 技能</p>
+<p> <strong>problem_id</strong>  问题id</p>
+<p> <strong>user_id</strong> 用户id</p>
+<p> <strong>assignment_id</strong> 分配标识</p>
+<p>​    两个不同的分配可以具有相同的序列 ID。每项作业都特定于一位教师&#x2F;班级。 </p>
+<p> <strong>assistment_id</strong> 辅助标识</p>
+<p>​    一个辅助通常由一个和多个问题构成</p>
+<p> <strong>start_time</strong> 开始时间</p>
+<p> <strong>end_time</strong> 结束时间</p>
+<p> <strong>problem_type</strong> 问题种类</p>
+<p>​    select_1：多项选择（单选按钮） </p>
+<p>​    代数：数学计算字符串（文本框） </p>
+<p>​    fill_in：简单的字符串比较答案（文本框） </p>
+<p>​    open_response：记录学生的回答，但他们的回答始终被标记为正确 </p>
+<p> <strong>original</strong>  原创</p>
+<p>​    1 主问题</p>
+<p>​    0 从问题</p>
+<p> <strong>correct</strong> 正确</p>
+<p> <strong>bottom_hint</strong> 底部提示</p>
+<p>​    无论学生要求所有提示</p>
+<p> <strong>hint_count</strong> 提示次数</p>
+<p> <strong>actions</strong> </p>
+<p>​    对这个问题的行动</p>
+<p> <strong>attempt_count</strong> </p>
+<p>​    尝试的次数</p>
+<p> <strong>ms_first_response</strong> </p>
+<p>​    学生第一次回复的时间 毫秒</p>
+<p> <strong>tutor_mode</strong> 辅导模式</p>
+<p>​    辅导 测试 前测 后测</p>
+<p> <strong>sequence_id</strong> 序列id</p>
+<p>​    问题集的内容 ID。分配了相同问题集的不同作业将具有相同的序列 ID。术语再次变得混乱，就像几年前 ASSISTments 开始时我们称之为问题集序列一样。但在我们现代使用该术语时，问题集实际上是作为一个序列存储的。大多数序列都很简单，但可以构建一个问题集的分层树状问题集 </p>
+<p> <strong>student_class_id</strong> 学生教室id</p>
+<p> <strong>position</strong> 位置 </p>
+<p>​    作业的位置</p>
+<p>type <strong>类型</strong></p>
+<p>​    三种</p>
+<p>​    线性 - 学生按预定顺序完成所有问题。 </p>
+<p>​    随机 - 学生完成所有问题，但每个学生都会以不同的随机顺序遇到问题。 </p>
+<p>​    掌握 - 随机顺序，学生必须通过连续正确回答一定数量的问题来“掌握”问题集，然后才能继续。 </p>
+<p>​    ASSISTments 将标题部分为掌握类型的问题集称为“技能生成器”。 </p>
+<p> <strong>base_sequence_id</strong> </p>
+<p>​    这是为了考虑序列是否已被复制。这将指向原始副本，或者如果尚未复制，则与sequence_id相同 </p>
+<p> <strong>skill_id</strong> 技能id</p>
+<p> <strong>teacher_id</strong> 老师id</p>
+<p> <strong>school_id</strong> 学校id</p>
+<p> <strong>overlap_time</strong> </p>
+<p>​    学生的重叠时间？ 以毫秒为单位</p>
+<p> <strong>template_id</strong> 模版id    </p>
+<p>​    相同的模版id有类似的问题</p>
+<p> <strong>answer_id</strong> </p>
+<p>​    多选题答案id</p>
+<p> <strong>answer_text</strong>  回答文本</p>
+<p> <strong>first_action</strong> </p>
+<p>​    第一个动作的类型：尝试或请求提示。 </p>
+<p><strong>problemlog_id</strong>  问题日志id</p>
+<p><strong>Average_confidence(FRUSTRATED)</strong></p>
+<p>预计学生会因该问题而感到沮丧。值接近“0”表示较少受挫，接近“1”表示较受挫败。</p>
+<p><strong>Average_confidence(CONFUSED)</strong></p>
+<p>预测学生对问题的困惑。接近“0”的值表示不太混乱，接近“1”表示更混乱。</p>
+<p><strong>Average_confidence(CONCENTRATING)</strong></p>
+<p>预测学生对问题的专注程度。接近“0”的值表示不太集中，接近“1”的值表示较集中。</p>
+<p><strong>Average_confidence(BORED)</strong></p>
+<p>预测学生对这个问题感到厌烦。值接近“0”表示不那么无聊，“1”表示更无聊</p>
+<h2 id="09-数据集"><a href="#09-数据集" class="headerlink" title="09 数据集"></a>09 数据集</h2><p> <strong>order_id</strong> </p>
+<p>​    这些ID是按时间顺序排列的，请参考原始问题日志的ID。</p>
+<p> <strong>assignment_id</strong> </p>
+<p>​    两个不同的分配可以具有相同的序列 ID。每项作业都特定于一位教师&#x2F;班级。</p>
+<p> <strong>user_id</strong> 用户id</p>
+<p> <strong>assistment_id</strong> </p>
+<p>​    一个辅助通常由一个和多个问题构成</p>
+<p> <strong>problem_id</strong> 问题id</p>
+<p> <strong>original</strong>  原创</p>
+<p>​    1 主问题</p>
+<p>​    0 从问题</p>
+<p> <strong>correct</strong> 正确</p>
+<p> <strong>attempt_count</strong> </p>
+<p>​    尝试的次数</p>
+<p> <strong>ms_first_response</strong> </p>
+<p>​    学生第一次回复的时间 毫秒</p>
+<p> <strong>tutor_mode</strong> 辅导模式</p>
+<p>​    辅导 测试 前测 后测</p>
+<p><strong>answer_type</strong> 回答类型</p>
+<p>​    select_1：多项选择（单选按钮） </p>
+<p>​    代数：数学计算字符串（文本框） </p>
+<p>​    fill_in：简单的字符串比较答案（文本框） </p>
+<p>​    open_response：记录学生的回答，但他们的回答始终被标记为正确 </p>
+<p> <strong>sequence_id</strong> 序列id</p>
+<p>​    问题集的内容 ID。分配了相同问题集的不同作业将具有相同的序列 ID。术语再次变得混乱，就像几年前 ASSISTments 开始时我们称之为问题集序列一样。但在我们现代使用该术语时，问题集实际上是作为一个序列存储的。大多数序列都很简单，但可以构建一个问题集的分层树状问题集 </p>
+<p> <strong>student_class_id</strong> 学生教室id</p>
+<p> <strong>position</strong> 位置 </p>
+<p>​    作业的位置</p>
+<p> <strong>problem_set_type</strong> </p>
+<p>​    三种</p>
+<p>​    线性 - 学生按预定顺序完成所有问题。 </p>
+<p>​    随机 - 学生完成所有问题，但每个学生都会以不同的随机顺序遇到问题。 </p>
+<p>​    掌握 - 随机顺序，学生必须通过连续正确回答一定数量的问题来“掌握”问题集，然后才能继续。 </p>
+<p>​    ASSISTments 将标题部分为掌握类型的问题集称为“技能生成器”。 </p>
+<p> <strong>base_sequence_id</strong> </p>
+<p>​    这是为了考虑序列是否已被复制。这将指向原始副本，或者如果尚未复制，则与sequence_id相同 </p>
+<p><strong>skill_id</strong> 技能id</p>
+<p><strong>skill_name</strong> 技能名字</p>
+<p><strong>teacher_id</strong> 老师id</p>
+<p><strong>school_id</strong> 学校id</p>
+<p><strong>hint_count</strong> 提示次数</p>
+<p><strong>hint_total</strong></p>
+<ul>
+<li>Number of possible hints on this problem.</li>
+</ul>
+<p> <strong>overlap_time</strong> </p>
+<p>​    学生的重叠时间？ 以毫秒为单位</p>
+<p> <strong>template_id</strong> 模版id    </p>
+<p>​    相同的模版id有类似的问题</p>
+<p><strong>answer_id</strong> </p>
+<p>​    多选题答案id</p>
+<p><strong>answer_text</strong>  回答文本</p>
+<p> <strong>first_action</strong> </p>
+<p>​    第一个动作的类型：尝试或请求提示。 </p>
+<p> <strong>bottom_hint</strong> 底部提示</p>
+<p>​    无论学生要求所有提示</p>
+<p><strong>opportunity</strong> 机会</p>
+<p><strong>opportunity_original</strong> 原始机会</p>
+
+        </div>
+        
+            <div class="kratos-copyright text-center clearfix">
+                <h5>本作品采用 <a rel="license nofollow" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a> 进行许可</h5>
+            </div>
+        
+        <footer class="kratos-entry-footer clearfix">
+            
+                <div class="post-like-donate text-center clearfix" id="post-like-donate">
+                
+                
+                    <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> 分享</a>
+                    <div class="share-wrap" style="display: none;">
+    <div class="share-group">
+        <a href="javascript:;" class="share-plain qq" onclick="share('qq');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-qq"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain qzone" onclick="share('qzone');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-star"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weixin pop style-plain" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weixin"></i>
+            </div>
+            <div class="share-int">
+                <div class="qrcode" id="wechat-qr"></div>
+                <p>打开微信“扫一扫”，打开网页后点击屏幕右上角分享按钮</p>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weibo" onclick="share('weibo');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weibo"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain facebook style-plain" onclick="share('facebook');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-facebook"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain twitter style-plain" onclick="share('twitter');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-twitter"></i>
+            </div>
+        </a>
+    </div>
+    <script type="text/javascript">
+        $(()=>{
+            new QRCode("wechat-qr", {
+                text: "http://example.com/2023/09/25/%E6%95%99%E8%82%B2%E6%95%B0%E6%8D%AE%E9%9B%86%E7%89%B9%E5%BE%81%E6%8F%8F%E8%BF%B0/",
+                width: 150,
+                height: 150,
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        });
+        function share(dest) {
+            const qqBase        = "https://connect.qq.com/widget/shareqq/index.html?";
+            const weiboBase     = "https://service.weibo.com/share/share.php?";
+            const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
+            const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
+            const twitterBase   = "https://twitter.com/intent/tweet?";
+            const hostUrl       = "http://example.com/2023/09/25/%E6%95%99%E8%82%B2%E6%95%B0%E6%8D%AE%E9%9B%86%E7%89%B9%E5%BE%81%E6%8F%8F%E8%BF%B0/";
+            const title         = "「教育数据集特征描述」";
+            const excerpt       = `写在前头今日 2023&#x2F;9&#x2F;25 卸载了dota2 垃圾垃圾游戏 
+今天说实话得好好安排下自己的工作时间 
+中午睡得太晚 得努力了 起来就干不了啥事情了
+嵌入式也不能放着 不然找不到工作了
+删除流程
+缺失值null...`;
+            let _URL;
+            switch (dest) {
+                case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
+                case "weibo"    : _URL = weiboBase+"url="+hostUrl+"&title="+title+excerpt;                                 break;
+                case "qzone"    : _URL = qzoneBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";  break;
+                case "facebook" : _URL = facebookBase+"u="+hostUrl;                                                        break;
+                case "twitter"  : _URL = twitterBase+"text="+title+excerpt+"&url="+hostUrl;                                break;
+            }
+            window.open(_URL);
+        };
+    </script>
+</div>
+                
+                </div>
+            
+            <div class="footer-tag clearfix">
+                <div class="pull-left">
+                <i class="fa fa-tags"></i>
+                    
+                </div>
+                <div class="pull-date">
+                <span>最后编辑：2023-09-25</span>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+        <nav class="navigation post-navigation clearfix" role="navigation">
+            
+            <div class="nav-previous clearfix">
+                <a title=" 定时器（2）" href="/2023/09/24/定时器（2）/">&lt; 上一篇</a>
+            </div>
+            
+            
+        </nav>
+    
+    
+</article>
+
+        
+
+            </section>
+
+        
+
+                
+            
+
+<section id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm">
+    <!-- 文章和页面根据splitter来分割，没有的话就从头开始设置为sticky -->
+    
+    
+                <aside id="krw-about" class="widget widget-kratos-about clearfix">
+    <div class="photo-background"></div>
+    <div class="photo-wrapper clearfix">
+        <div class="photo-wrapper-tip text-center">
+            <img class="about-photo" src="/images/avatar.webp" />
+        </div>
+    </div>
+    <div class="textwidget">
+        <p class="text-center"></p>
+    </div>
+    <div class="site-meta">
+        <a class="meta-item" href="/archives/">
+            <span class="title">
+                文章
+            </span>
+            <span class="count">
+                118
+            </span>
+        </a>
+        <a class="meta-item" href="/categories/">
+            <span class="title">
+                分类
+            </span>
+            <span class="count">
+                0
+            </span>
+        </a>
+        <a class="meta-item" href="/tags/">
+            <span class="title">
+                标签
+            </span>
+            <span class="count">
+                0
+            </span>
+        </a>
+    </div>
+</aside>
+            
+                    <div class="sticky-area">
+                
+                
+
+            
+                
+            
+                
+  <aside id="krw-posts" class="widget widget-kratos-posts">
+  <h4 class="widget-title"><i class="fa fa-file"></i>最新文章</h4>
+  <div class="tab-content">
+      <ul class="list-group">
+        
+        
+          
+          
+            <a class="list-group-item" href="/2023/09/25/%E6%95%99%E8%82%B2%E6%95%B0%E6%8D%AE%E9%9B%86%E7%89%B9%E5%BE%81%E6%8F%8F%E8%BF%B0/"><i class="fa  fa-book"></i> 教育数据集特征描述</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/09/24/%E5%AE%9A%E6%97%B6%E5%99%A8%EF%BC%882%EF%BC%89/"><i class="fa  fa-book"></i> 定时器（2）</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/09/23/%E5%AE%9A%E6%97%B6%E5%99%A8%EF%BC%881%EF%BC%89/"><i class="fa  fa-book"></i> 定时器（1）</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/09/23/%E4%B8%AD%E6%96%AD-%E6%97%8B%E8%BD%AC%E7%BC%96%E7%A0%81%E5%99%A8/"><i class="fa  fa-book"></i> 中断 旋转编码器</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/09/22/stm32%E5%AD%A6%E4%B9%A0-%E6%8C%89%E9%94%AE%E6%8E%A7%E5%88%B6-oled-%E4%B8%AD%E6%96%AD/"><i class="fa  fa-book"></i> stm32学习 按键控制 oled 中断</a>
+            
+          
+        
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+      </ul>
+  </div>
+  </aside>
+
+            
+    </div>
+</section>
+        
+        </div>
+    </div>
+</div>
+<footer>
+    <div id="footer"  >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 footer-list text-center">
+                    <ul class="kratos-social-icons">
+                        
+                        <li><a href="mailto:982264944@qq.com"><i class="fa fa-envelope"></i></a></li>
+                        <li><a target="_blank" rel="nofollow" href="https://t.me/CandyUnion"><i class="fa fa-telegram"></i></a></li>
+                        
+                        
+                        
+                        <li><a target="_blank" rel="me" href="https://nya.one/@Candinya"><i class="fa fa fa-share-alt-square"></i></a></li>
+                        <li><a target="_blank" rel="nofollow" href="https://github.com/Candinya"><i class="fa fa-github"></i></a></li>
+                        
+                    </ul>
+                    <ul class="kratos-copyright">
+                        <div>
+                            <li>&copy; 2023 limhao博客 版权所有.</li>
+                            <li>本站已运行<span id="span_dt">Loading...</span></li>
+                        </div>
+                        <div>
+                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
+                            <li>Site built with&nbsp;<i class="fa fa-heart throb" style="color:#d43f57"></i>&nbsp;by limhao.</li>
+                        </div>
+                        <div>
+                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
+                            <li>Hosted on <a href="https://github.io" target="_blank">Github Pages</a></li>
+                        </div>
+                        <div>
+                            
+                            
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="kr-tool text-center">
+            <div class="tool">
+                
+                    <div class="box search-box">
+                        <a href="/search/">
+                            <span class="fa fa-search"></span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="darkmode-switch">
+                        <span class="fa fa-adjust"></span>
+                    </div>
+                
+                
+            </div>
+            <div class="box gotop-box">
+                <span class="fa fa-chevron-up"></span>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+</div>
+
+        <script defer src="https://unpkg.com/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
+<script defer src="https://unpkg.com/nprogress@0.2.0/nprogress.js"></script>
+<script>
+    if (!window.kr) {
+        window.kr = {};
+    }
+    window.kr.notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));
+    window.kr.siteRoot = "/";
+</script>
+
+
+
+
+
+    <script defer src="https://unpkg.com/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+<script defer src="https://unpkg.com/clipboard@2.0.6/dist/clipboard.min.js"></script>
+<script defer src="/js/kratosr.min.js"></script>
+<script defer src="/js/pjax.min.js"></script>
+
+
+    <script defer src="/js/kr-dark.min.js"></script>
+
+
+
+<!-- Extra support for third-party plguins  -->
+
+
+    </body>
+</html>
