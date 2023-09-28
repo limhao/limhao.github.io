@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+  <!-- 元数据 -->
+  <meta charset="utf-8">
+  <link rel="icon" href="">
+  <title>定时器（3）代码部分 | limhao博客</title>
+  <meta name="author" content="limhao" />
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="robots" content="index,follow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="format-detection" content="telphone=no, email=no" />
+  
+    <meta name="keywords" content="" />
+  
+  <meta name="description" content="写在前头9&#x2F;28 昨天接受了xxx的一连串的良心拷问 花了我一晚上的时间 昨天学习了呼吸灯 控制舵机 以及 控制直流电机 现在在这里放放代码  呼吸灯1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859#include &amp;q">
+<meta property="og:type" content="article">
+<meta property="og:title" content="定时器（3）代码部分">
+<meta property="og:url" content="http://example.com/2023/09/28/%E5%AE%9A%E6%97%B6%E5%99%A8%EF%BC%883%EF%BC%89%E4%BB%A3%E7%A0%81%E9%83%A8%E5%88%86/index.html">
+<meta property="og:site_name" content="limhao博客">
+<meta property="og:description" content="写在前头9&#x2F;28 昨天接受了xxx的一连串的良心拷问 花了我一晚上的时间 昨天学习了呼吸灯 控制舵机 以及 控制直流电机 现在在这里放放代码  呼吸灯1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859#include &amp;q">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/null">
+<meta property="article:published_time" content="2023-09-28T02:45:40.523Z">
+<meta property="article:modified_time" content="2023-09-28T03:03:33.776Z">
+<meta property="article:author" content="limhao">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/null">
+<meta name="twitter:site" content="@null">
+  
+  <!-- 站点验证相关 -->
+  
+    
+    
+    
+  
+  <!-- 样式表文件 -->
+  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" type="text/css" media="all">
+  
+    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" type="text/css" media="all">
+  
+  
+  <link rel="stylesheet" id="fontawe-css" href="https://unpkg.com/font-awesome@4.7.0/css/font-awesome.min.css" type="text/css" media="all">
+  <link rel="stylesheet" id="nprogress-css" href="https://unpkg.com/nprogress@0.2.0/nprogress.css" type="text/css" media="all">
+  
+  
+  
+    <link rel="stylesheet" href="https://unpkg.com/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+  
+  
+    <link rel="stylesheet" id="darkmode-css" href="/css/kr-dark.min.css" type="text/css" media="all">
+  
+  <!-- 不得不预先加载的一些JS文件 -->
+  <script src="https://unpkg.com/jquery@3.6.0/dist/jquery.min.js"></script>
+  
+    <script src="https://unpkg.com/qrcode_js@1.0.0/qrcode.min.js"></script>
+  
+  
+  <style>
+    
+      .kratos-cover.kratos-cover-2 {
+        background-image: url('/images/banner.webp');
+      }
+    
+    
+      @media(min-width:768px) {
+        body.custom-background {
+          background-image: url('/images/bg.webp');
+        }
+      }
+    
+  </style>
+  
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+
+    <body class="custom-background">
+        <div id="kratos-wrapper">
+    <div id="kratos-page">
+        <div id="kratos-header">
+            <header id="kratos-desktop-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="nav-header">
+                        <nav id="kratos-menu-wrap">
+                            <ul id="kratos-primary-menu" class="sf-menu">
+                                
+                                    
+                                        <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+                                    
+                                
+                                    
+                                        <li><a href="/archives/"><i class="fa fa-file"></i>档案馆</a></li>
+                                    
+                                
+                                    
+                                        <li>
+                                            <a><i class="fa fa-link"></i>链接</a>
+                                            <ul class="sub-menu">
+                                                
+                                                    
+                                                
+                                                    
+                                                        <li><a target="_blank" rel="noopener" href="https://github.com/limhao">项目链接</a></li>
+                                                    
+                                                
+                                            </ul>
+                                        </li>
+                                    
+                                
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+            <header id="kratos-mobile-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="color-logo"><a href="/">limhao博客</a></div>
+                    <div class="nav-toggle">
+                        <a class="kratos-nav-toggle js-kratos-nav-toggle">
+                            <i></i>
+                        </a>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <div class="kratos-start kratos-hero-2">
+            <!-- <div class="kratos-overlay"></div> -->
+            <div class="kratos-cover kratos-cover-2 text-center">
+                <div class="desc desc2 animate-box">
+                    <a href="/">
+                        <h2>limhao博客</h2> <br />
+                        <span></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="kratos-blog-post">
+            <div class="container">
+                <div id="main" class="row">
+                    
+
+        
+
+            <section class="col-md-8">
+
+        
+
+            <article>
+    <div class="kratos-hentry kratos-post-inner clearfix">
+        <header class="kratos-entry-header">
+            
+                <h1 class="kratos-entry-title text-center">定时器（3）代码部分</h1>
+            
+            
+            <ul class="kratos-post-meta text-center">
+                <li><i class="fa fa-calendar"></i> 2023-09-28</li>
+                <li><i class="fa fa-user"></i> 作者 limhao</li>
+                <li>
+                    <i class="fa fa-edit"></i> 
+                    
+                    
+                        ~3.91K
+                    
+                    字
+                </li>
+                
+            </ul>
+        </header>
+        <div class="kratos-post-content">
+            <div id="expire-alert" class="alert alert-warning hidden" role="alert">
+                <div class="icon"><i class="fa fa-warning"></i></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1695870213776"></time> 前，其中的内容可能需要更新。</p></div>
+            </div>
+            
+            <hr />
+            <h2 id="写在前头"><a href="#写在前头" class="headerlink" title="写在前头"></a>写在前头</h2><p>9&#x2F;28 昨天接受了xxx的一连串的良心拷问 花了我一晚上的时间</p>
+<p>昨天学习了呼吸灯 控制舵机 以及 控制直流电机</p>
+<p>现在在这里放放代码</p>
+<p><img src="https://pic.imgdb.cn/item/6513994fc458853aef24e633.jpg"></p>
+<h2 id="呼吸灯"><a href="#呼吸灯" class="headerlink" title="呼吸灯"></a>呼吸灯</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;stm32f10x.h&quot;</span>                  <span class="comment">// Device header</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">PWM_Init</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="comment">//1. rcc开启时钟 TIM GPIO</span></span><br><span class="line">	<span class="comment">//2. 配置时基单元</span></span><br><span class="line">	<span class="comment">//3. 配置输出比较单元</span></span><br><span class="line">	<span class="comment">//4. 配置GPIO 把PWM对应的GPIO口 初始化为复用推挽输出模式</span></span><br><span class="line">	<span class="comment">//5. 运行控制</span></span><br><span class="line">	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA,ENABLE);</span><br><span class="line">	GPIO_InitTypeDef Gpioa_InitStruct;</span><br><span class="line">	<span class="comment">// 模式需要设置为复用推挽输出 才能把控制权交给片上外设 PWM波形才能通过引脚输出</span></span><br><span class="line">	Gpioa_InitStruct.GPIO_Mode = GPIO_Mode_AF_PP;</span><br><span class="line">	Gpioa_InitStruct.GPIO_Pin = GPIO_Pin_0;</span><br><span class="line">	Gpioa_InitStruct.GPIO_Speed = GPIO_Speed_50MHz;</span><br><span class="line">	GPIO_Init(GPIOA, &amp;Gpioa_InitStruct);    </span><br><span class="line">	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM2, ENABLE);</span><br><span class="line">	<span class="comment">// 选择时基单元的时钟</span></span><br><span class="line">	<span class="comment">// 定时器上电默认使用内部时钟</span></span><br><span class="line">	TIM_InternalClockConfig(TIM2);</span><br><span class="line">	TIM_TimeBaseInitTypeDef TIM_InitStruct;</span><br><span class="line">	<span class="comment">// 时钟分频</span></span><br><span class="line">	TIM_InitStruct.TIM_ClockDivision = TIM_CKD_DIV1;</span><br><span class="line">	TIM_InitStruct.TIM_CounterMode = TIM_CounterMode_Up;</span><br><span class="line">	<span class="comment">// ARR 自动重装器</span></span><br><span class="line">	TIM_InitStruct.TIM_Period = <span class="number">100</span> - <span class="number">1</span> ;</span><br><span class="line">	<span class="comment">// PSC 预分频器 </span></span><br><span class="line">	TIM_InitStruct.TIM_Prescaler = <span class="number">720</span> - <span class="number">1</span>;</span><br><span class="line">	<span class="comment">// CNT 计数器的值 高级计数器才有 这里不需要使用</span></span><br><span class="line">	TIM_InitStruct.TIM_RepetitionCounter = <span class="number">0x0000</span>;</span><br><span class="line">	<span class="comment">// 这里是 时基单元的初始化 </span></span><br><span class="line">	TIM_TimeBaseInit(TIM2, &amp;TIM_InitStruct);</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// 由于时基单元初始化 会触发一次更新事件</span></span><br><span class="line">	<span class="comment">// </span></span><br><span class="line">	<span class="comment">// 在这里需要重新清理一下 更新的标志位</span></span><br><span class="line">	TIM_ClearFlag(TIM2, TIM_FLAG_Update);</span><br><span class="line">	TIM_OCInitTypeDef Tim_OCInitStructure;</span><br><span class="line">	<span class="comment">// 给结构体复初始值</span></span><br><span class="line">	TIM_OCStructInit(&amp;Tim_OCInitStructure);</span><br><span class="line">	Tim_OCInitStructure.TIM_OCMode = TIM_OCMode_PWM1;</span><br><span class="line">	Tim_OCInitStructure.TIM_OCPolarity = TIM_OCPolarity_High;</span><br><span class="line">	Tim_OCInitStructure.TIM_OutputState = TIM_OutputState_Enable;</span><br><span class="line">	<span class="comment">// 设置CCR值</span></span><br><span class="line">	<span class="comment">// 呈现呼吸效果 修改ccr的值就行了</span></span><br><span class="line">    <span class="comment">// 这里的ccr 是控制占空比</span></span><br><span class="line">	Tim_OCInitStructure.TIM_Pulse = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">// 这里的OC1 需要查询引脚功能表才能查到</span></span><br><span class="line">	TIM_OC1Init(TIM2, &amp;Tim_OCInitStructure);</span><br><span class="line">	<span class="comment">// 定时器使能中断 中断输出控制</span></span><br><span class="line">	TIM_Cmd(TIM2,ENABLE);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">PWM_setCompare1</span><span class="params">(<span class="type">uint16_t</span> Compare)</span></span><br><span class="line">&#123;</span><br><span class="line">	TIM_SetCompare1(TIM2, Compare);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>注意细节</p>
+<ol>
+<li><p>gpio输出端口 需要设置成复用推挽输出模式 才能将控制权交给片上外设</p>
+</li>
+<li><p>当时基单元初始化时 会出发更新时间 在这里需要清理一下更新的标志位</p>
+</li>
+<li><p>在输出比较功能 由于结构体的赋值过多 可以先通过TIM_OCStructInit(&amp;Tim_OCInitStructure)。给结构体赋初值然后修改我们需要的初值。</p>
+</li>
+<li><p>TIM_OC1Init 需要通过查引脚参考表才能知道是通道1</p>
+</li>
+<li><p>PWM_setCompare1 该函数为设置通道1内CCR的值，PWM是什么通道就用什么通道的函数</p>
+</li>
+</ol>
+<h2 id="针对于-舵机的代码"><a href="#针对于-舵机的代码" class="headerlink" title="针对于 舵机的代码"></a>针对于 舵机的代码</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;stm32f10x.h&quot;</span>                  <span class="comment">// Device header</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;pwm.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">Servo_init</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">	PWM_Init();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">Servo_SetAngle</span><span class="params">(<span class="type">float</span> Angle)</span></span><br><span class="line">&#123;</span><br><span class="line">    </span><br><span class="line">	TIM_SetCompare2(TIM2, Angle/<span class="number">180</span> *<span class="number">2000</span> + <span class="number">500</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>一种针对于PWM的模块的封装</p>
+<p>学习下</p>
+<h2 id="针对于直流电机的代码"><a href="#针对于直流电机的代码" class="headerlink" title="针对于直流电机的代码"></a>针对于直流电机的代码</h2><p>由于直流电机功率高 且电压超过了3.3v</p>
+<p>需要通过电机驱动电路来完成任务功能</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;stm32f10x.h&quot;</span>                  <span class="comment">// Device header</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;pwm.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">motor_init</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">	</span><br><span class="line">	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE);</span><br><span class="line">	</span><br><span class="line">	GPIO_InitTypeDef GPIO_InitStructure;</span><br><span class="line">	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;</span><br><span class="line">	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_4 | GPIO_Pin_5;</span><br><span class="line">	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;</span><br><span class="line">	GPIO_Init(GPIOA, &amp;GPIO_InitStructure);</span><br><span class="line">	PWM_Init();</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">motor_SetSpeed</span><span class="params">(<span class="type">int8_t</span> speed)</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span>(speed &gt;= <span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		GPIO_SetBits(GPIOA,GPIO_Pin_4);</span><br><span class="line">		GPIO_ResetBits(GPIOA,GPIO_Pin_5);</span><br><span class="line">		PWM_setCompare3(speed);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span>&#123;</span><br><span class="line">	</span><br><span class="line">		GPIO_SetBits(GPIOA,GPIO_Pin_5);</span><br><span class="line">		GPIO_ResetBits(GPIOA,GPIO_Pin_4);</span><br><span class="line">		PWM_setCompare3(-speed);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;stm32f10x.h&quot;</span>                  <span class="comment">// Device header</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;Delay.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;OLED.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;pwm.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;motor.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;Key.h&quot;</span></span></span><br><span class="line"><span class="type">uint8_t</span> KeyNum;</span><br><span class="line"><span class="comment">// 这里的speed 要设置为一个有符号的数字</span></span><br><span class="line"><span class="type">int8_t</span> Speed;</span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">	OLED_Init();</span><br><span class="line">	motor_init();</span><br><span class="line">	Key_Init();</span><br><span class="line">	OLED_ShowString(<span class="number">1</span>,<span class="number">1</span>,<span class="string">&quot;Speed:&quot;</span>);</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">while</span> (<span class="number">1</span>)</span><br><span class="line">	&#123;	</span><br><span class="line">		KeyNum = Key_GetNum();</span><br><span class="line">		<span class="keyword">if</span>(KeyNum == <span class="number">1</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			Speed += <span class="number">20</span>;</span><br><span class="line">			<span class="keyword">if</span> (Speed &gt; <span class="number">100</span>)</span><br><span class="line">			&#123;</span><br><span class="line">				Speed = <span class="number">-100</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		OLED_ShowSignedNum(<span class="number">1</span>,<span class="number">7</span>,Speed,<span class="number">3</span>);</span><br><span class="line">		motor_SetSpeed(Speed);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注意细节</p>
+<ol>
+<li>PWM_setCompare3 中的speed只能放入正值，其中速度为负 是通过电机正反装实现的</li>
+<li>在写到main函数中 发现代码中的speed 应该设置成有符号数字 （bug查了一会）</li>
+</ol>
+
+        </div>
+        
+            <div class="kratos-copyright text-center clearfix">
+                <h5>本作品采用 <a rel="license nofollow" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a> 进行许可</h5>
+            </div>
+        
+        <footer class="kratos-entry-footer clearfix">
+            
+                <div class="post-like-donate text-center clearfix" id="post-like-donate">
+                
+                
+                    <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> 分享</a>
+                    <div class="share-wrap" style="display: none;">
+    <div class="share-group">
+        <a href="javascript:;" class="share-plain qq" onclick="share('qq');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-qq"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain qzone" onclick="share('qzone');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-star"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weixin pop style-plain" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weixin"></i>
+            </div>
+            <div class="share-int">
+                <div class="qrcode" id="wechat-qr"></div>
+                <p>打开微信“扫一扫”，打开网页后点击屏幕右上角分享按钮</p>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weibo" onclick="share('weibo');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weibo"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain facebook style-plain" onclick="share('facebook');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-facebook"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain twitter style-plain" onclick="share('twitter');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-twitter"></i>
+            </div>
+        </a>
+    </div>
+    <script type="text/javascript">
+        $(()=>{
+            new QRCode("wechat-qr", {
+                text: "http://example.com/2023/09/28/%E5%AE%9A%E6%97%B6%E5%99%A8%EF%BC%883%EF%BC%89%E4%BB%A3%E7%A0%81%E9%83%A8%E5%88%86/",
+                width: 150,
+                height: 150,
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        });
+        function share(dest) {
+            const qqBase        = "https://connect.qq.com/widget/shareqq/index.html?";
+            const weiboBase     = "https://service.weibo.com/share/share.php?";
+            const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
+            const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
+            const twitterBase   = "https://twitter.com/intent/tweet?";
+            const hostUrl       = "http://example.com/2023/09/28/%E5%AE%9A%E6%97%B6%E5%99%A8%EF%BC%883%EF%BC%89%E4%BB%A3%E7%A0%81%E9%83%A8%E5%88%86/";
+            const title         = "「定时器（3）代码部分」";
+            const excerpt       = `写在前头9&#x2F;28 昨天接受了xxx的一连串的良心拷问 花了我一晚上的时间
+昨天学习了呼吸灯 控制舵机 以及 控制直流电机
+现在在这里放放代码
+
+呼吸灯1234567891011121314151617181920212223...`;
+            let _URL;
+            switch (dest) {
+                case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
+                case "weibo"    : _URL = weiboBase+"url="+hostUrl+"&title="+title+excerpt;                                 break;
+                case "qzone"    : _URL = qzoneBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";  break;
+                case "facebook" : _URL = facebookBase+"u="+hostUrl;                                                        break;
+                case "twitter"  : _URL = twitterBase+"text="+title+excerpt+"&url="+hostUrl;                                break;
+            }
+            window.open(_URL);
+        };
+    </script>
+</div>
+                
+                </div>
+            
+            <div class="footer-tag clearfix">
+                <div class="pull-left">
+                <i class="fa fa-tags"></i>
+                    
+                </div>
+                <div class="pull-date">
+                <span>最后编辑：2023-09-28</span>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+        <nav class="navigation post-navigation clearfix" role="navigation">
+            
+            <div class="nav-previous clearfix">
+                <a title=" 定时器输出比较-定时器（3）" href="/2023/09/27/定时器输出比较-定时器（3）/">&lt; 上一篇</a>
+            </div>
+            
+            
+        </nav>
+    
+    
+</article>
+
+        
+
+            </section>
+
+        
+
+                
+            
+
+<section id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm">
+    <!-- 文章和页面根据splitter来分割，没有的话就从头开始设置为sticky -->
+    
+    
+                <aside id="krw-about" class="widget widget-kratos-about clearfix">
+    <div class="photo-background"></div>
+    <div class="photo-wrapper clearfix">
+        <div class="photo-wrapper-tip text-center">
+            <img class="about-photo" src="/images/avatar.webp" />
+        </div>
+    </div>
+    <div class="textwidget">
+        <p class="text-center"></p>
+    </div>
+    <div class="site-meta">
+        <a class="meta-item" href="/archives/">
+            <span class="title">
+                文章
+            </span>
+            <span class="count">
+                120
+            </span>
+        </a>
+        <a class="meta-item" href="/categories/">
+            <span class="title">
+                分类
+            </span>
+            <span class="count">
+                0
+            </span>
+        </a>
+        <a class="meta-item" href="/tags/">
+            <span class="title">
+                标签
+            </span>
+            <span class="count">
+                0
+            </span>
+        </a>
+    </div>
+</aside>
+            
+                    <div class="sticky-area">
+                
+                
+
+            
+                
+            
+                
+  <aside id="krw-posts" class="widget widget-kratos-posts">
+  <h4 class="widget-title"><i class="fa fa-file"></i>最新文章</h4>
+  <div class="tab-content">
+      <ul class="list-group">
+        
+        
+          
+          
+            <a class="list-group-item" href="/2023/09/28/%E5%AE%9A%E6%97%B6%E5%99%A8%EF%BC%883%EF%BC%89%E4%BB%A3%E7%A0%81%E9%83%A8%E5%88%86/"><i class="fa  fa-book"></i> 定时器（3）代码部分</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/09/27/%E5%AE%9A%E6%97%B6%E5%99%A8%E8%BE%93%E5%87%BA%E6%AF%94%E8%BE%83-%E5%AE%9A%E6%97%B6%E5%99%A8%EF%BC%883%EF%BC%89/"><i class="fa  fa-book"></i> 定时器输出比较-定时器（3）</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/09/25/%E6%95%99%E8%82%B2%E6%95%B0%E6%8D%AE%E9%9B%86%E7%89%B9%E5%BE%81%E6%8F%8F%E8%BF%B0/"><i class="fa  fa-book"></i> 教育数据集特征描述</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/09/24/%E5%AE%9A%E6%97%B6%E5%99%A8%EF%BC%882%EF%BC%89/"><i class="fa  fa-book"></i> 定时器（2）</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/09/23/%E5%AE%9A%E6%97%B6%E5%99%A8%EF%BC%881%EF%BC%89/"><i class="fa  fa-book"></i> 定时器（1）</a>
+            
+          
+        
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+      </ul>
+  </div>
+  </aside>
+
+            
+    </div>
+</section>
+        
+        </div>
+    </div>
+</div>
+<footer>
+    <div id="footer"  >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 footer-list text-center">
+                    <ul class="kratos-social-icons">
+                        
+                        <li><a href="mailto:982264944@qq.com"><i class="fa fa-envelope"></i></a></li>
+                        <li><a target="_blank" rel="nofollow" href="https://t.me/CandyUnion"><i class="fa fa-telegram"></i></a></li>
+                        
+                        
+                        
+                        <li><a target="_blank" rel="me" href="https://nya.one/@Candinya"><i class="fa fa fa-share-alt-square"></i></a></li>
+                        <li><a target="_blank" rel="nofollow" href="https://github.com/Candinya"><i class="fa fa-github"></i></a></li>
+                        
+                    </ul>
+                    <ul class="kratos-copyright">
+                        <div>
+                            <li>&copy; 2023 limhao博客 版权所有.</li>
+                            <li>本站已运行<span id="span_dt">Loading...</span></li>
+                        </div>
+                        <div>
+                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
+                            <li>Site built with&nbsp;<i class="fa fa-heart throb" style="color:#d43f57"></i>&nbsp;by limhao.</li>
+                        </div>
+                        <div>
+                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
+                            <li>Hosted on <a href="https://github.io" target="_blank">Github Pages</a></li>
+                        </div>
+                        <div>
+                            
+                            
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="kr-tool text-center">
+            <div class="tool">
+                
+                    <div class="box search-box">
+                        <a href="/search/">
+                            <span class="fa fa-search"></span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="darkmode-switch">
+                        <span class="fa fa-adjust"></span>
+                    </div>
+                
+                
+            </div>
+            <div class="box gotop-box">
+                <span class="fa fa-chevron-up"></span>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+</div>
+
+        <script defer src="https://unpkg.com/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
+<script defer src="https://unpkg.com/nprogress@0.2.0/nprogress.js"></script>
+<script>
+    if (!window.kr) {
+        window.kr = {};
+    }
+    window.kr.notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));
+    window.kr.siteRoot = "/";
+</script>
+
+
+
+
+
+    <script defer src="https://unpkg.com/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+<script defer src="https://unpkg.com/clipboard@2.0.6/dist/clipboard.min.js"></script>
+<script defer src="/js/kratosr.min.js"></script>
+<script defer src="/js/pjax.min.js"></script>
+
+
+    <script defer src="/js/kr-dark.min.js"></script>
+
+
+
+<!-- Extra support for third-party plguins  -->
+
+
+    </body>
+</html>
