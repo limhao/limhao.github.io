@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+  <!-- 元数据 -->
+  <meta charset="utf-8">
+  <link rel="icon" href="">
+  <title>定时器输入捕获（4） | limhao博客</title>
+  <meta name="author" content="limhao" />
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="robots" content="index,follow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="format-detection" content="telphone=no, email=no" />
+  
+    <meta name="keywords" content="" />
+  
+  <meta name="description" content="说在前面今天10.1号 看了看日期 学了快10天 给自己安排了下面的学习内容 准备去学学剩下的ADC I2C SPI WDG 感觉就差不多了 单一定时器 是没有 输入输出两个功能不能同时启用 输入捕获 评测方法-测周法 N 是这个标准频率内计数的次数 其中N有可能没有记一个完整的次数 导致一定的误差 主从模式（手册没这个东西） 主模式 可以将定时器内部的信号，映射到TRGO引脚 用于触发别的外设">
+<meta property="og:type" content="article">
+<meta property="og:title" content="定时器输入捕获（4）">
+<meta property="og:url" content="http://example.com/2023/10/01/%E5%AE%9A%E6%97%B6%E5%99%A8%E8%BE%93%E5%87%BA%E6%8D%95%E8%8E%B7%EF%BC%884%EF%BC%89/index.html">
+<meta property="og:site_name" content="limhao博客">
+<meta property="og:description" content="说在前面今天10.1号 看了看日期 学了快10天 给自己安排了下面的学习内容 准备去学学剩下的ADC I2C SPI WDG 感觉就差不多了 单一定时器 是没有 输入输出两个功能不能同时启用 输入捕获 评测方法-测周法 N 是这个标准频率内计数的次数 其中N有可能没有记一个完整的次数 导致一定的误差 主从模式（手册没这个东西） 主模式 可以将定时器内部的信号，映射到TRGO引脚 用于触发别的外设">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/null">
+<meta property="article:published_time" content="2023-10-01T08:15:19.229Z">
+<meta property="article:modified_time" content="2023-10-01T09:00:15.815Z">
+<meta property="article:author" content="limhao">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/null">
+<meta name="twitter:site" content="@null">
+  
+  <!-- 站点验证相关 -->
+  
+    
+    
+    
+  
+  <!-- 样式表文件 -->
+  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" type="text/css" media="all">
+  
+    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" type="text/css" media="all">
+  
+  
+  <link rel="stylesheet" id="fontawe-css" href="https://unpkg.com/font-awesome@4.7.0/css/font-awesome.min.css" type="text/css" media="all">
+  <link rel="stylesheet" id="nprogress-css" href="https://unpkg.com/nprogress@0.2.0/nprogress.css" type="text/css" media="all">
+  
+  
+  
+    <link rel="stylesheet" href="https://unpkg.com/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+  
+  
+    <link rel="stylesheet" id="darkmode-css" href="/css/kr-dark.min.css" type="text/css" media="all">
+  
+  <!-- 不得不预先加载的一些JS文件 -->
+  <script src="https://unpkg.com/jquery@3.6.0/dist/jquery.min.js"></script>
+  
+    <script src="https://unpkg.com/qrcode_js@1.0.0/qrcode.min.js"></script>
+  
+  
+  <style>
+    
+      .kratos-cover.kratos-cover-2 {
+        background-image: url('/images/banner.webp');
+      }
+    
+    
+      @media(min-width:768px) {
+        body.custom-background {
+          background-image: url('/images/bg.webp');
+        }
+      }
+    
+  </style>
+  
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+
+    <body class="custom-background">
+        <div id="kratos-wrapper">
+    <div id="kratos-page">
+        <div id="kratos-header">
+            <header id="kratos-desktop-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="nav-header">
+                        <nav id="kratos-menu-wrap">
+                            <ul id="kratos-primary-menu" class="sf-menu">
+                                
+                                    
+                                        <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+                                    
+                                
+                                    
+                                        <li><a href="/archives/"><i class="fa fa-file"></i>档案馆</a></li>
+                                    
+                                
+                                    
+                                        <li>
+                                            <a><i class="fa fa-link"></i>链接</a>
+                                            <ul class="sub-menu">
+                                                
+                                                    
+                                                
+                                                    
+                                                        <li><a target="_blank" rel="noopener" href="https://github.com/limhao">项目链接</a></li>
+                                                    
+                                                
+                                            </ul>
+                                        </li>
+                                    
+                                
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+            <header id="kratos-mobile-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="color-logo"><a href="/">limhao博客</a></div>
+                    <div class="nav-toggle">
+                        <a class="kratos-nav-toggle js-kratos-nav-toggle">
+                            <i></i>
+                        </a>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <div class="kratos-start kratos-hero-2">
+            <!-- <div class="kratos-overlay"></div> -->
+            <div class="kratos-cover kratos-cover-2 text-center">
+                <div class="desc desc2 animate-box">
+                    <a href="/">
+                        <h2>limhao博客</h2> <br />
+                        <span></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="kratos-blog-post">
+            <div class="container">
+                <div id="main" class="row">
+                    
+
+        
+
+            <section class="col-md-8">
+
+        
+
+            <article>
+    <div class="kratos-hentry kratos-post-inner clearfix">
+        <header class="kratos-entry-header">
+            
+                <h1 class="kratos-entry-title text-center">定时器输入捕获（4）</h1>
+            
+            
+            <ul class="kratos-post-meta text-center">
+                <li><i class="fa fa-calendar"></i> 2023-10-01</li>
+                <li><i class="fa fa-user"></i> 作者 limhao</li>
+                <li>
+                    <i class="fa fa-edit"></i> 
+                    
+                    
+                        ~2.46K
+                    
+                    字
+                </li>
+                
+            </ul>
+        </header>
+        <div class="kratos-post-content">
+            <div id="expire-alert" class="alert alert-warning hidden" role="alert">
+                <div class="icon"><i class="fa fa-warning"></i></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1696150815815"></time> 前，其中的内容可能需要更新。</p></div>
+            </div>
+            
+            <hr />
+            <h2 id="说在前面"><a href="#说在前面" class="headerlink" title="说在前面"></a>说在前面</h2><p>今天10.1号 看了看日期 学了快10天</p>
+<p>给自己安排了下面的学习内容</p>
+<p>准备去学学剩下的ADC I2C SPI WDG 感觉就差不多了</p>
+<p>单一定时器 是没有 输入输出两个功能不能同时启用</p>
+<h2 id="输入捕获"><a href="#输入捕获" class="headerlink" title="输入捕获"></a>输入捕获</h2><p><img src="https://pic.imgdb.cn/item/65192b55c458853aefa20419.jpg"></p>
+<h2 id="评测方法-测周法"><a href="#评测方法-测周法" class="headerlink" title="评测方法-测周法"></a>评测方法-测周法</h2><p><img src="https://pic.imgdb.cn/item/65192b55c458853aefa2042b.jpg"></p>
+<p>N 是这个标准频率内计数的次数</p>
+<p>其中N有可能没有记一个完整的次数 导致一定的误差</p>
+<h2 id="主从模式（手册没这个东西）"><a href="#主从模式（手册没这个东西）" class="headerlink" title="主从模式（手册没这个东西）"></a>主从模式（手册没这个东西）</h2><p><img src="https://pic.imgdb.cn/item/65192b56c458853aefa2044a.jpg"></p>
+<p>主模式 可以将定时器内部的信号，映射到TRGO引脚 用于触发别的外设</p>
+<p>从模式 就是接收其他外设或者自身外设的一些信号 用于控制自身定时器的运行，也就是被别的信号控制</p>
+<p>触发源选择 就是选择从模式的触发信号源的</p>
+<p>其中在这次实验中 使用TI1FP1 和TI2FP2 这两个触发方式</p>
+<h2 id="时基单元"><a href="#时基单元" class="headerlink" title="时基单元"></a>时基单元</h2><p>标准频率 &#x3D; 72M &#x2F; psc +1</p>
+<p>ARR 建议设置最大值 65535</p>
+<h2 id="输入捕获基础结构"><a href="#输入捕获基础结构" class="headerlink" title="输入捕获基础结构"></a>输入捕获基础结构</h2><p><img src="https://pic.imgdb.cn/item/65192b56c458853aefa2043c.jpg"></p>
+<p>其中 只使用一个通道 所以只能捕获频率</p>
+<p>从头到尾 先3后4 其中 3将结果保存后 从模式在进行</p>
+<ol>
+<li><p>GPIO输入方波信号</p>
+</li>
+<li><p>滤波器 一般来说越大越好 参考手册</p>
+</li>
+<li><p>边沿检测 上升沿检测</p>
+<ol>
+<li><p>输入通道选择直连</p>
+</li>
+<li><p>分频器不分频</p>
+</li>
+<li><p>TI1FP1 出现上升沿时 CNT的值 转运到 CCR1中</p>
+</li>
+</ol>
+</li>
+<li><p>触发沿触发上升沿信号</p>
+<ol>
+<li>从模式选择reset</li>
+<li>将cnt计数器清零</li>
+</ol>
+</li>
+</ol>
+<h2 id="PWMI-输出结构"><a href="#PWMI-输出结构" class="headerlink" title="PWMI 输出结构"></a>PWMI 输出结构</h2><p><img src="https://pic.imgdb.cn/item/65192b56c458853aefa20472.jpg"></p>
+<p>主要讲下面的TI2FP2 是什么原理</p>
+<p>下降沿触发</p>
+<p>交叉通道输入</p>
+<p>不分频</p>
+<p>CCR2 记下CNT的值</p>
+<p>不参与CNT清零 </p>
+<p>当记下CCR1 捕获的整个周期的cnt值的时候</p>
+<p>通过ccr2&#x2F;ccr1 就能捕获占空比 </p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;stm32f10x.h&quot;</span>                  <span class="comment">// Device header</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">ic_init</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA,ENABLE);</span><br><span class="line">	<span class="comment">// 时钟使能都能忘 我也是没谁了</span></span><br><span class="line">	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM3, ENABLE);</span><br><span class="line">	GPIO_InitTypeDef gpioA_struct;</span><br><span class="line">	gpioA_struct.GPIO_Mode = GPIO_Mode_IPU;</span><br><span class="line">	gpioA_struct.GPIO_Pin = GPIO_Pin_6;</span><br><span class="line">	gpioA_struct.GPIO_Speed = GPIO_Speed_50MHz;</span><br><span class="line">	GPIO_Init(GPIOA, &amp;gpioA_struct);</span><br><span class="line">	</span><br><span class="line">	TIM_InternalClockConfig(TIM3);</span><br><span class="line">	TIM_TimeBaseInitTypeDef TIM_InitStruct;</span><br><span class="line">	<span class="comment">// 时钟分频</span></span><br><span class="line">	TIM_InitStruct.TIM_ClockDivision = TIM_CKD_DIV1;</span><br><span class="line">	TIM_InitStruct.TIM_CounterMode = TIM_CounterMode_Up;</span><br><span class="line">	<span class="comment">// ARR 自动重装器</span></span><br><span class="line">	<span class="comment">// 计数重装值 最好设置大一点，防止计数溢出</span></span><br><span class="line">	TIM_InitStruct.TIM_Period = <span class="number">65536</span> - <span class="number">1</span> ;</span><br><span class="line">	<span class="comment">// PSC 预分频器 </span></span><br><span class="line">	<span class="comment">// 决定了测周法的标准频率FC</span></span><br><span class="line">	TIM_InitStruct.TIM_Prescaler = <span class="number">72</span> - <span class="number">1</span>;</span><br><span class="line">	<span class="comment">// CNT 计数器的值 高级计数器才有 这里不需要使用</span></span><br><span class="line">	TIM_InitStruct.TIM_RepetitionCounter = <span class="number">0x0000</span>;</span><br><span class="line">	<span class="comment">// 这里是 时基单元的初始化 </span></span><br><span class="line">	TIM_TimeBaseInit(TIM3, &amp;TIM_InitStruct);</span><br><span class="line">	TIM_ClearFlag(TIM3, TIM_FLAG_Update);</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// 定时器3 输入捕获设置</span></span><br><span class="line">	TIM_ICInitTypeDef TIM_ICinitStruct;</span><br><span class="line">	TIM_ICStructInit(&amp;TIM_ICinitStruct);</span><br><span class="line">	TIM_ICinitStruct.TIM_Channel = TIM_Channel_1;</span><br><span class="line">    <span class="comment">// 滤波器 具体看定义</span></span><br><span class="line">	TIM_ICinitStruct.TIM_ICFilter = <span class="number">0xF</span>;</span><br><span class="line">	TIM_ICinitStruct.TIM_ICPolarity = TIM_ICPolarity_Rising;</span><br><span class="line">	TIM_ICinitStruct.TIM_ICPrescaler = TIM_ICPSC_DIV1;</span><br><span class="line">	<span class="comment">// 没看懂 数据选择器 来控制是直连通道还是交叉通道</span></span><br><span class="line">	TIM_ICinitStruct.TIM_ICSelection = TIM_ICSelection_DirectTI;</span><br><span class="line">	TIM_PWMIConfig(TIM3, &amp;TIM_ICinitStruct);</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// TRGI触发源为TI1FP1</span></span><br><span class="line">	TIM_SelectInputTrigger(TIM3, TIM_TS_TI1FP1);</span><br><span class="line">	TIM_SelectSlaveMode(TIM3, TIM_SlaveMode_Reset);</span><br><span class="line">	</span><br><span class="line">	TIM_Cmd(TIM3,ENABLE);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">uint32_t</span> <span class="title function_">IC_GetFreq</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">1000000</span> /  (TIM_GetCapture1(TIM3) + <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">uint32_t</span> <span class="title function_">IC_GetDuty</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="comment">// 通道整错了 可还行</span></span><br><span class="line">	<span class="keyword">return</span> (TIM_GetCapture2(TIM3)+<span class="number">1</span>)*<span class="number">100</span> / (TIM_GetCapture1(TIM3)+<span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+        </div>
+        
+            <div class="kratos-copyright text-center clearfix">
+                <h5>本作品采用 <a rel="license nofollow" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a> 进行许可</h5>
+            </div>
+        
+        <footer class="kratos-entry-footer clearfix">
+            
+                <div class="post-like-donate text-center clearfix" id="post-like-donate">
+                
+                
+                    <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> 分享</a>
+                    <div class="share-wrap" style="display: none;">
+    <div class="share-group">
+        <a href="javascript:;" class="share-plain qq" onclick="share('qq');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-qq"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain qzone" onclick="share('qzone');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-star"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weixin pop style-plain" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weixin"></i>
+            </div>
+            <div class="share-int">
+                <div class="qrcode" id="wechat-qr"></div>
+                <p>打开微信“扫一扫”，打开网页后点击屏幕右上角分享按钮</p>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weibo" onclick="share('weibo');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weibo"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain facebook style-plain" onclick="share('facebook');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-facebook"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain twitter style-plain" onclick="share('twitter');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-twitter"></i>
+            </div>
+        </a>
+    </div>
+    <script type="text/javascript">
+        $(()=>{
+            new QRCode("wechat-qr", {
+                text: "http://example.com/2023/10/01/%E5%AE%9A%E6%97%B6%E5%99%A8%E8%BE%93%E5%87%BA%E6%8D%95%E8%8E%B7%EF%BC%884%EF%BC%89/",
+                width: 150,
+                height: 150,
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        });
+        function share(dest) {
+            const qqBase        = "https://connect.qq.com/widget/shareqq/index.html?";
+            const weiboBase     = "https://service.weibo.com/share/share.php?";
+            const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
+            const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
+            const twitterBase   = "https://twitter.com/intent/tweet?";
+            const hostUrl       = "http://example.com/2023/10/01/%E5%AE%9A%E6%97%B6%E5%99%A8%E8%BE%93%E5%87%BA%E6%8D%95%E8%8E%B7%EF%BC%884%EF%BC%89/";
+            const title         = "「定时器输入捕获（4）」";
+            const excerpt       = `说在前面今天10.1号 看了看日期 学了快10天
+给自己安排了下面的学习内容
+准备去学学剩下的ADC I2C SPI WDG 感觉就差不多了
+单一定时器 是没有 输入输出两个功能不能同时启用
+输入捕获
+评测方法-测周法
+N 是这个标准...`;
+            let _URL;
+            switch (dest) {
+                case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
+                case "weibo"    : _URL = weiboBase+"url="+hostUrl+"&title="+title+excerpt;                                 break;
+                case "qzone"    : _URL = qzoneBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";  break;
+                case "facebook" : _URL = facebookBase+"u="+hostUrl;                                                        break;
+                case "twitter"  : _URL = twitterBase+"text="+title+excerpt+"&url="+hostUrl;                                break;
+            }
+            window.open(_URL);
+        };
+    </script>
+</div>
+                
+                </div>
+            
+            <div class="footer-tag clearfix">
+                <div class="pull-left">
+                <i class="fa fa-tags"></i>
+                    
+                </div>
+                <div class="pull-date">
+                <span>最后编辑：2023-10-01</span>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+        <nav class="navigation post-navigation clearfix" role="navigation">
+            
+            <div class="nav-previous clearfix">
+                <a title=" 定时器（3）代码部分" href="/2023/09/28/定时器（3）代码部分/">&lt; 上一篇</a>
+            </div>
+            
+            
+            <div class="nav-next clearfix">
+                <a title=" 定时器编码器接口（5）" href="/2023/10/01/定时器编码器接口（5）/">下一篇 &gt;</a>
+            </div>
+            
+        </nav>
+    
+    
+</article>
+
+        
+
+            </section>
+
+        
+
+                
+            
+
+<section id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm">
+    <!-- 文章和页面根据splitter来分割，没有的话就从头开始设置为sticky -->
+    
+    
+                <aside id="krw-about" class="widget widget-kratos-about clearfix">
+    <div class="photo-background"></div>
+    <div class="photo-wrapper clearfix">
+        <div class="photo-wrapper-tip text-center">
+            <img class="about-photo" src="/images/avatar.webp" />
+        </div>
+    </div>
+    <div class="textwidget">
+        <p class="text-center"></p>
+    </div>
+    <div class="site-meta">
+        <a class="meta-item" href="/archives/">
+            <span class="title">
+                文章
+            </span>
+            <span class="count">
+                122
+            </span>
+        </a>
+        <a class="meta-item" href="/categories/">
+            <span class="title">
+                分类
+            </span>
+            <span class="count">
+                0
+            </span>
+        </a>
+        <a class="meta-item" href="/tags/">
+            <span class="title">
+                标签
+            </span>
+            <span class="count">
+                0
+            </span>
+        </a>
+    </div>
+</aside>
+            
+                    <div class="sticky-area">
+                
+                
+
+            
+                
+            
+                
+  <aside id="krw-posts" class="widget widget-kratos-posts">
+  <h4 class="widget-title"><i class="fa fa-file"></i>最新文章</h4>
+  <div class="tab-content">
+      <ul class="list-group">
+        
+        
+          
+          
+            <a class="list-group-item" href="/2023/10/01/%E5%AE%9A%E6%97%B6%E5%99%A8%E7%BC%96%E7%A0%81%E5%99%A8%E6%8E%A5%E5%8F%A3%EF%BC%885%EF%BC%89/"><i class="fa  fa-book"></i> 定时器编码器接口（5）</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/10/01/%E5%AE%9A%E6%97%B6%E5%99%A8%E8%BE%93%E5%87%BA%E6%8D%95%E8%8E%B7%EF%BC%884%EF%BC%89/"><i class="fa  fa-book"></i> 定时器输入捕获（4）</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/09/28/%E5%AE%9A%E6%97%B6%E5%99%A8%EF%BC%883%EF%BC%89%E4%BB%A3%E7%A0%81%E9%83%A8%E5%88%86/"><i class="fa  fa-book"></i> 定时器（3）代码部分</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/09/27/%E5%AE%9A%E6%97%B6%E5%99%A8%E8%BE%93%E5%87%BA%E6%AF%94%E8%BE%83-%E5%AE%9A%E6%97%B6%E5%99%A8%EF%BC%883%EF%BC%89/"><i class="fa  fa-book"></i> 定时器输出比较-定时器（3）</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/09/25/%E6%95%99%E8%82%B2%E6%95%B0%E6%8D%AE%E9%9B%86%E7%89%B9%E5%BE%81%E6%8F%8F%E8%BF%B0/"><i class="fa  fa-book"></i> 教育数据集特征描述</a>
+            
+          
+        
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+      </ul>
+  </div>
+  </aside>
+
+            
+    </div>
+</section>
+        
+        </div>
+    </div>
+</div>
+<footer>
+    <div id="footer"  >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 footer-list text-center">
+                    <ul class="kratos-social-icons">
+                        
+                        <li><a href="mailto:982264944@qq.com"><i class="fa fa-envelope"></i></a></li>
+                        <li><a target="_blank" rel="nofollow" href="https://t.me/CandyUnion"><i class="fa fa-telegram"></i></a></li>
+                        
+                        
+                        
+                        <li><a target="_blank" rel="me" href="https://nya.one/@Candinya"><i class="fa fa fa-share-alt-square"></i></a></li>
+                        <li><a target="_blank" rel="nofollow" href="https://github.com/Candinya"><i class="fa fa-github"></i></a></li>
+                        
+                    </ul>
+                    <ul class="kratos-copyright">
+                        <div>
+                            <li>&copy; 2023 limhao博客 版权所有.</li>
+                            <li>本站已运行<span id="span_dt">Loading...</span></li>
+                        </div>
+                        <div>
+                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
+                            <li>Site built with&nbsp;<i class="fa fa-heart throb" style="color:#d43f57"></i>&nbsp;by limhao.</li>
+                        </div>
+                        <div>
+                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
+                            <li>Hosted on <a href="https://github.io" target="_blank">Github Pages</a></li>
+                        </div>
+                        <div>
+                            
+                            
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="kr-tool text-center">
+            <div class="tool">
+                
+                    <div class="box search-box">
+                        <a href="/search/">
+                            <span class="fa fa-search"></span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="darkmode-switch">
+                        <span class="fa fa-adjust"></span>
+                    </div>
+                
+                
+            </div>
+            <div class="box gotop-box">
+                <span class="fa fa-chevron-up"></span>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+</div>
+
+        <script defer src="https://unpkg.com/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
+<script defer src="https://unpkg.com/nprogress@0.2.0/nprogress.js"></script>
+<script>
+    if (!window.kr) {
+        window.kr = {};
+    }
+    window.kr.notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));
+    window.kr.siteRoot = "/";
+</script>
+
+
+
+
+
+    <script defer src="https://unpkg.com/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+<script defer src="https://unpkg.com/clipboard@2.0.6/dist/clipboard.min.js"></script>
+<script defer src="/js/kratosr.min.js"></script>
+<script defer src="/js/pjax.min.js"></script>
+
+
+    <script defer src="/js/kr-dark.min.js"></script>
+
+
+
+<!-- Extra support for third-party plguins  -->
+
+
+    </body>
+</html>
